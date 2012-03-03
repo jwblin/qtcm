@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Future Work</TITLE>
+<META NAME="description" CONTENT="Future Work">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node9.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node9.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html552"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html548"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html542"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html550"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html553"
+  HREF="node9.html">Bibliography</A>
+<B> Up:</B> <A NAME="tex2html549"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html543"
+  HREF="node7.html">Developer Notes</A>
+ &nbsp; <B>  <A NAME="tex2html551"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00800000000000000000"></A>                       <A NAME="ch:future"></A>
+<BR>
+Future Work
+</H1>
+
+<P>
+This section describes the features and fixes I plan to work on
+in this package.  The most urgent items are listed closer to the
+begining of the lists.
+
+<P>
+
+<UL>
+<LI>Automate the installation using Python's
+<A NAME="tex2html139"
+  HREF="http://docs.python.org/dist/dist.html"><FONT COLOR="#0000ff"><TT>distutils</TT></FONT></A>
+utilities.
+
+<P>
+</LI>
+<LI>Describe a way of using job control (either via the operating system
+	or IPython's <FONT COLOR="#0000ff"><TT>jobctrl</TT></FONT> module) 
+	to do a quick-and-dirty parallelization of multiple
+	<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance run sessions.  Or use some sort of threading
+	to fire up two simulataneously running models.  Check that the
+	simultaneously running models have different memory space.
+
+<P>
+</LI>
+<LI>Add capability for <I><I>create_benchmark.py</I></I> to overwrite
+	existing benchmark files.
+
+<P>
+</LI>
+<LI>Make <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> set to <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> as the
+	default instantiation.  Change documentation accordingly.
+
+<P>
+</LI>
+<LI>Currently, the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> <FONT COLOR="#0000ff"><TT>plotm</TT></FONT> method works only on
+	3-D output (time, latitude, longitude).  Some of the fields
+	in the netCDF output files are 2-D.  Add the capability to
+	<FONT COLOR="#0000ff"><TT>plot_netcdf_output</TT></FONT> in the <FONT COLOR="#0000ff"><TT>plot</TT></FONT> submodule
+	to handle 2-D fields.
+
+<P>
+</LI>
+<LI>Add documentation about removing temporary files.
+	Add documentation in Section&nbsp;<A HREF="node5.html#sec:model.instances">4.2</A>
+	of details of what occurs during instantiation of 
+	a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+
+<P>
+</LI>
+<LI>Add the units and long names for all field variables in the
+	<FONT COLOR="#0000ff"><TT>defaults</TT></FONT> module.
+
+<P>
+</LI>
+<LI>Create a keyword to automatically change precipitation and
+	evaporation units to mm/day (or similar).
+
+<P>
+</LI>
+<LI>Add ability to calculate and plot fields at different pressure
+	levels.  Create another module like defaults that specifies
+	the vertical fields and gives the equation to use to calculate
+	those fields; call the module ``derivfields'' or something
+	similar.
+
+<P>
+</LI>
+<LI>Throughout the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package I use the condition
+	<FONT COLOR="#0000ff"><TT>N.rank(</TT></FONT><I>arg</I><FONT COLOR="#0000ff"><TT>)=0</TT></FONT> 
+	to test whether
+	<I>arg</I> is a scalar.  This works fine for <FONT COLOR="#0000ff"><TT>numpy</TT></FONT>	objects, but it does not work properly for
+	<FONT COLOR="#0000ff"><TT>Numeric</TT></FONT> and <FONT COLOR="#0000ff"><TT>numarray</TT></FONT> arrays.  In those
+	array packages, <FONT COLOR="#0000ff"><TT>rank('abc')</TT></FONT> returns the value&nbsp;1.
+	This is not a problem, as long as everyone has <FONT COLOR="#0000ff"><TT>numpy</TT></FONT>,
+	but in order to make the package interoperable, I need to
+	find a better way of testing for scalars.  The definitions
+	of isscalar need to be changed in <FONT COLOR="#0000ff"><TT>num_settings</TT></FONT>.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>num_settings</TT></FONT> needs to be changed to truly enable me
+	to test whether <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> works for 
+	<FONT COLOR="#0000ff"><TT>numarray</TT></FONT> and <FONT COLOR="#0000ff"><TT>Numeric</TT></FONT> arrays.  The tests
+	do not do this right now, because <FONT COLOR="#0000ff"><TT>num_settings</TT></FONT>	defaults to <FONT COLOR="#0000ff"><TT>numpy</TT></FONT>, if it exists.
+
+<P>
+</LI>
+<LI>Create makefiles for other platforms.
+
+<P>
+</LI>
+<LI>A few fields (e.g., <FONT COLOR="#0000ff"><TT>u1</TT></FONT>) have data for extra latitude bands,
+	due to the use of ``ghost latitudes'' as part of the
+	implementation of the numerics.  Details are found in the 
+<A NAME="tex2html136"
+  HREF="http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf">QTCM1 manual</A>
+[<A
+ HREF="node9.html#Neelin_etal:2002">4</A>].
+
+<P>
+Though adjusting to this idiosyncracy is not that difficult, 
+	in the future I hope to implement a method of handing
+	fields with ghost latitudes so that they have the same
+	dimensions as the other gridded output variables.  In order
+	to do this, I plan to write a Python method to read the
+	Fortran generated binary restart file.
+
+<P>
+</LI>
+<LI>Change the <FONT COLOR="#0000ff"><TT>set_qtcm_item</TT></FONT> method so that it can 
+	automatically accomodate setting Fortran real variables
+	if integer values are input.
+
+<P>
+</LI>
+<LI>Currently, the <FONT COLOR="#0000ff"><TT>get_item_qtcm</TT></FONT> and 
+	<FONT COLOR="#0000ff"><TT>set_item_qtcm</TT></FONT> methods will not work
+	on integer and character arrays, only scalars and real arrays.
+	Add that missing functionality to those methods.
+
+<P>
+</LI>
+<LI>Currently, the <FONT COLOR="#0000ff"><TT>make_snapshot</TT></FONT> method duplicates the
+	functionality of the pure-Fortran QTCM1 restart file mechanism.
+	However, the restart file mechanism itself does not do a true
+	restart.  A continuous run does not provide the same results
+	as two runs over the same period, joined by the restart file.
+
+<P>
+To see whether saving more variables would do the trick,
+	I altered <FONT COLOR="#0000ff"><TT>make_snapshot</TT></FONT> to store all Python level
+	variables (i.e., <FONT COLOR="#0000ff"><TT>self._qtcm_fields_ids</TT></FONT>).  However,
+	the restart failing described above still continued.  In the
+	future, I hope to figure out exactly how many variables are
+	needed in order to make the restart feature do a true
+	restart.
+
+<P>
+</LI>
+<LI>Add a test of using the <FONT COLOR="#0000ff"><TT>mrestart=1</TT></FONT>	restart option.  Does the <I><I>qtcm.restart</I></I> file need to be
+	in the current working directory or another?
+
+<P>
+</LI>
+<LI>Add a test in the unit test scripts to
+	confirm that the <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT>	attribute setting only has an effect if 
+	<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT>.
+
+<P>
+</LI>
+<LI>Document <FONT COLOR="#0000ff"><TT>tmppreview</TT></FONT> keyword in <FONT COLOR="#0000ff"><TT>plot.plot_ncdf_output</TT></FONT>.
+
+<P>
+</LI>
+<LI>Confirm and document that
+	for netCDF output, time is model time since dd-mm-yyyy.
+
+<P>
+</LI>
+<LI>Add to the <FONT COLOR="#0000ff"><TT>plotm</TT></FONT> method the ability to
+	plot as text onto the figure the
+	runname string and the calling line
+	for the plotm method.
+
+<P>
+</LI>
+<LI>Couple with the
+	<A NAME="tex2html138"
+  HREF="http://maths.ucd.ie/~rca/climt/">CliMT</A>
+	climate modeling toolkit.
+
+<P>
+</LI>
+<LI>Enable Python to set <FONT COLOR="#0000ff"><TT>arr1name</TT></FONT>, etc., which are string
+	variables at the Python level.  I haven't really thought through
+	how <FONT COLOR="#0000ff"><TT>arr1</TT></FONT> variables work with the Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>	instance.
+
+<P>
+</LI>
+<LI>Possible:  In the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> method
+	<FONT COLOR="#0000ff"><TT>__setattr__</TT></FONT>, add a test to raise an exception
+	if the instance tries to set <FONT COLOR="#0000ff"><TT>viscU</TT></FONT>, <FONT COLOR="#0000ff"><TT>viscT</TT></FONT>,
+	or <FONT COLOR="#0000ff"><TT>viscQ</TT></FONT> as attributes.  Also create a method
+	<FONT COLOR="#0000ff"><TT>isotropic_visc</TT></FONT> that will set all viscosity parameters
+	non-dependent on direction.  See Section&nbsp;<A HREF="node7.html#sec:driverinit.diffs">6.4.1</A>
+	for details.
+
+<P>
+</LI>
+<LI>Go through the manual and create HTML-only versions of tables
+	that have table numbers (use a similar construct as in
+	figure environments).
+
+<P>
+</LI>
+<LI>Go through documentation to check that
+	output variable names are capitalized consistently.
+
+<P>
+</LI>
+<LI>Create way to redirect stdout.
+
+<P>
+</LI>
+<LI>Create a step method to run an arbitrary number of timesteps at
+	the atmosphere level.
+</LI>
+</UL>
+
+<P>
+
+<P>
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html552"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html548"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html542"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html550"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html553"
+  HREF="node9.html">Bibliography</A>
+<B> Up:</B> <A NAME="tex2html549"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html543"
+  HREF="node7.html">Developer Notes</A>
+ &nbsp; <B>  <A NAME="tex2html551"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

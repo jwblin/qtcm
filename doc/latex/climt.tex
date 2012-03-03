@@ -1,0 +1,61 @@
+% ==========================================================================
+% CliMT
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+\section{General Tutorial on CliMT}
+
+
+General notes of things I think I may have observed about
+\code{Parameters} objects:
+\begin{itemize}
+\item You can treat a \code{Parameters} instance as a dictionary, where
+	the key is the name of the field, because \code{\_\_getitem\_\_},
+	etc.\ have been defined for the instance.  However, the values,
+	units, and long names of the fields are stored in dictionaries
+	assigned to \code{value}, \code{units}, and \code{long\_name},
+	keyed to the field name (a string).
+\end{itemize}
+
+
+General notes of things I think I may have observed about
+\code{Components} objects:
+\begin{itemize}
+\item All variables and quantities, whether they be physical fields,
+	filenames, or metadata,
+	are stored as attributes in the \code{Components} instance.
+\item \code{Components} have these special attributes:
+        \code{Required},
+        \code{Prognostic},
+	and
+        \code{Diagnostic},
+	which are lists that contain the names of describe whether
+\item Scalar parameters in \code{Component} objects
+	are stored as an instance of the \code{Parameters}
+	class, under the attribute \code{Params}.
+\end{itemize}
+
+
+General notes of things I think I may have observed about
+\code{Federation} objects:
+\begin{itemize}
+\item \code{Federation} objects hold the \code{Components} instances
+	in a list assigned to the attribute \code{list}.
+\item \code{Federation} attributes
+        \code{Required},
+        and
+	\code{Prognostic},
+	are unions of the same attributes of the constituent
+	\code{Components} objects.
+\end{itemize}
+
+
+
+
+
+
+% ===== end of file =====

@@ -1,0 +1,112 @@
+\contentsline {chapter}{\numberline {1}Introduction}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}How to Read This Manual}{7}{section.1.1}
+\contentsline {section}{\numberline {1.2}About the Package}{7}{section.1.2}
+\contentsline {section}{\numberline {1.3}Conventions In This Manual}{8}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Audience}{8}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Typographic Conventions}{9}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Terminology}{9}{subsection.1.3.3}
+\contentsline {section}{\numberline {1.4}Current Version Information and Acknowledgments}{10}{section.1.4}
+\contentsline {section}{\numberline {1.5}Summary of Release History}{12}{section.1.5}
+\contentsline {section}{\numberline {1.6}A Brief Description of The QTCM1}{12}{section.1.6}
+\contentsline {chapter}{\numberline {2}Installation and Configuration}{15}{chapter.2}
+\contentsline {section}{\numberline {2.1}Summary and Conventions}{15}{section.2.1}
+\contentsline {section}{\numberline {2.2}Fortran Compiler}{17}{section.2.2}
+\contentsline {section}{\numberline {2.3}Required Packages}{17}{section.2.3}
+\contentsline {section}{\numberline {2.4}Compiling Extension Modules}{18}{section.2.4}
+\contentsline {section}{\numberline {2.5}Testing the Installation}{20}{section.2.5}
+\contentsline {section}{\numberline {2.6}Model Performance}{21}{section.2.6}
+\contentsline {section}{\numberline {2.7}Installing in Mac OS X}{22}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Introduction}{22}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Platform and Unix Dependencies}{22}{subsection.2.7.2}
+\contentsline {subsection}{\numberline {2.7.3}Fortran Compiler}{23}{subsection.2.7.3}
+\contentsline {subsection}{\numberline {2.7.4}NetCDF Libraries}{24}{subsection.2.7.4}
+\contentsline {subsection}{\numberline {2.7.5}Makefile Configuration}{24}{subsection.2.7.5}
+\contentsline {subsubsection}{NetCDF}{24}{section*.2}
+\contentsline {subsubsection}{Linking Order}{25}{section*.3}
+\contentsline {subsection}{\numberline {2.7.6}Summary of Steps}{25}{subsection.2.7.6}
+\contentsline {section}{\numberline {2.8}Installing in Ubuntu}{27}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Introduction}{27}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}Fortran Compiler}{27}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.3}NetCDF Libraries}{28}{subsection.2.8.3}
+\contentsline {subsection}{\numberline {2.8.4}Makefile Configuration}{28}{subsection.2.8.4}
+\contentsline {subsubsection}{NetCDF}{28}{section*.4}
+\contentsline {subsubsection}{Linking Order}{29}{section*.5}
+\contentsline {subsubsection}{Shared Object PIC}{29}{section*.6}
+\contentsline {subsection}{\numberline {2.8.5}Summary of Steps}{30}{subsection.2.8.5}
+\contentsline {chapter}{\numberline {3}Getting Started With \leavevmode {\color {blue}\texttt {qtcm}}}{33}{chapter.3}
+\contentsline {section}{\numberline {3.1}Your First Model Run}{33}{section.3.1}
+\contentsline {section}{\numberline {3.2}Managing Directories}{34}{section.3.2}
+\contentsline {section}{\numberline {3.3}Model Field Variables}{36}{section.3.3}
+\contentsline {section}{\numberline {3.4}Run Sessions}{37}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}What is a Run Session?}{37}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Changing Variables}{37}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Continuing a Model Run}{37}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Passing Restart Snapshots Between Run Sessions}{38}{subsection.3.4.4}
+\contentsline {section}{\numberline {3.5}Creating Multiple Models}{39}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Model Instances}{39}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Passing Snapshots To Other Models}{39}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}Run Lists}{40}{section.3.6}
+\contentsline {section}{\numberline {3.7}Model Output}{41}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}NetCDF Output}{41}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Visualization}{43}{subsection.3.7.2}
+\contentsline {section}{\numberline {3.8}Documentation}{43}{section.3.8}
+\contentsline {chapter}{\numberline {4}Using \leavevmode {\color {blue}\texttt {qtcm}}}{45}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{45}{section.4.1}
+\contentsline {section}{\numberline {4.2}Model Instances}{45}{section.4.2}
+\contentsline {section}{\numberline {4.3}Initializing a Model Run}{46}{section.4.3}
+\contentsline {section}{\numberline {4.4}The \leavevmode {\color {blue}\texttt {compiled\_form}} Keyword}{47}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Initialization for \leavevmode {\color {blue}\texttt {compiled\_form\kern .16667em =\kern .16667em 'full'}}}{47}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Initialization for \leavevmode {\color {blue}\texttt {compiled\_form\kern .16667em =\kern .16667em 'parts'}}}{48}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Communication Between Python and Fortran-Levels}{50}{subsection.4.4.3}
+\contentsline {subsubsection}{Passing Variables}{50}{section*.7}
+\contentsline {subsubsection}{Calling Compiled QTCM1 Model Subroutines}{52}{section*.8}
+\contentsline {section}{\numberline {4.5}Restart and Continuation Run Sessions}{52}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Restart Runs In the Pure-Fortran QTCM1}{52}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Overview of Restart/Continuation Options In \leavevmode {\color {blue}\texttt {qtcm}}}{52}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Restart/Continuation for \leavevmode {\color {blue}\texttt {compiled\_form\kern .16667em =\kern .16667em 'full'}} Model Instances}{53}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Restart/Continuation for \leavevmode {\color {blue}\texttt {compiled\_form\kern .16667em =\kern .16667em 'parts'}} Model Instances}{53}{subsection.4.5.4}
+\contentsline {subsubsection}{Method\nobreakspace {}\ref {list:continue.from.restart}: From a QTCM1 Restart File}{54}{section*.9}
+\contentsline {subsubsection}{Method\nobreakspace {}\ref {list:continue.from.snapshot}: From a \leavevmode {\color {blue}\texttt {Qtcm}} Instance Snapshot}{54}{section*.10}
+\contentsline {subsubsection}{Method\nobreakspace {}\ref {list:continue.from.instance}: From the Calling \leavevmode {\color {blue}\texttt {Qtcm}} Instance}{54}{section*.11}
+\contentsline {subsection}{\numberline {4.5.5}Snapshots of a \leavevmode {\color {blue}\texttt {Qtcm}} Instance}{56}{subsection.4.5.5}
+\contentsline {section}{\numberline {4.6}Creating and Using Run Lists}{56}{section.4.6}
+\contentsline {section}{\numberline {4.7}Field Variables and the \leavevmode {\color {blue}\texttt {Field}} Class}{58}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Creating Field Variables}{58}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Initial Field Variables}{60}{subsection.4.7.2}
+\contentsline {subsubsection}{Scalars}{60}{section*.12}
+\contentsline {subsubsection}{Arrays}{61}{section*.13}
+\contentsline {subsection}{\numberline {4.7.3}Passing Fields Between the Python and Fortran-Levels}{63}{subsection.4.7.3}
+\contentsline {subsection}{\numberline {4.7.4}Field Variable Shape}{64}{subsection.4.7.4}
+\contentsline {section}{\numberline {4.8}Model Output}{64}{section.4.8}
+\contentsline {section}{\numberline {4.9}Miscellaneous}{65}{section.4.9}
+\contentsline {section}{\numberline {4.10}Cookbook of Ways the Model Can Be Used}{65}{section.4.10}
+\contentsline {chapter}{\numberline {5}Troubleshooting}{71}{chapter.5}
+\contentsline {section}{\numberline {5.1}Error Messages Produced by \leavevmode {\color {blue}\texttt {qtcm}}}{71}{section.5.1}
+\contentsline {section}{\numberline {5.2}Other Errors}{71}{section.5.2}
+\contentsline {chapter}{\numberline {6}Developer Notes}{73}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introduction}{73}{section.6.1}
+\contentsline {section}{\numberline {6.2}Changes to QTCM1 Fortran Files}{73}{section.6.2}
+\contentsline {section}{\numberline {6.3}New Interfaces and Fortran Functionality}{75}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Fortran Module \leavevmode {\color {blue}\texttt {SetbyPy}}}{75}{subsection.6.3.1}
+\contentsline {subsubsection}{Design Description}{75}{section*.14}
+\contentsline {subsubsection}{Module Structure}{76}{section*.15}
+\contentsline {subsection}{\numberline {6.3.2}Fortran Module \leavevmode {\color {blue}\texttt {WrapCall}}}{77}{subsection.6.3.2}
+\contentsline {section}{\numberline {6.4}Python \leavevmode {\color {blue}\texttt {qtcm}} and Pure-Fortran QTCM1 Differences}{78}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}QTCM1 \leavevmode {\color {blue}\texttt {driverinit}}}{78}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}The \leavevmode {\color {blue}\texttt {varinit}} Routine}{79}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}The \leavevmode {\color {blue}\texttt {qtcm}} Method of \leavevmode {\color {blue}\texttt {Qtcm}}}{80}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Miscellaneous Differences}{80}{subsection.6.4.4}
+\contentsline {section}{\numberline {6.5}Considerations When Adding Fortran Code}{80}{section.6.5}
+\contentsline {section}{\numberline {6.6}Creating New Standard Extension Modules}{81}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Makefile Rules}{81}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}Using \leavevmode {\color {blue}\texttt {f2py}}}{82}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Two Examples}{83}{subsection.6.6.3}
+\contentsline {section}{\numberline {6.7}Attributes and Methods in \leavevmode {\color {blue}\texttt {Qtcm}} Instances}{83}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Public \leavevmode {\color {blue}\texttt {num\_settings}} Submodule Attributes/Methods}{84}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Private \leavevmode {\color {blue}\texttt {qtcm}} Submodule Attributes}{84}{subsection.6.7.2}
+\contentsline {subsection}{\numberline {6.7.3}Private \leavevmode {\color {blue}\texttt {Qtcm}} Attributes}{84}{subsection.6.7.3}
+\contentsline {section}{\numberline {6.8}Creating Documentation}{85}{section.6.8}
+\contentsline {chapter}{\numberline {7}Future Work}{87}{chapter.7}
+\contentsline {chapter}{\numberline {A}Field Settings in \leavevmode {\color {blue}\texttt {defaults}}}{93}{appendix.A}
+\contentsline {section}{\numberline {A.1}Scalar Field Variables}{93}{section.A.1}
+\contentsline {section}{\numberline {A.2}Array Field Variables}{95}{section.A.2}

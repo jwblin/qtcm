@@ -1,0 +1,4 @@
+open alb.ctl
+q file
+d alb
+quit # (End of session: 16Jul2001, 13:04:26)

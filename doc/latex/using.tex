@@ -1,0 +1,1564 @@
+% ==========================================================================
+% Using QTCM
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+%---------------------------------------------------------------------
+\section{Introduction}
+
+Now that you've successfully run your first model instances, in
+this chapter I provide detailed explanations regarding the features
+of \mods{qtcm}.  I present these explanations in a documentary
+rather than didactic fashion; my goal is to document how the features
+work.  More details are given in the code docstrings.  At the end
+of the chapter, in Section~\ref{sec:cookbook}, I provide a few
+cookbook ideas/examples of ways to use the model.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Model Instances}  \label{sec:model.instances}
+
+An instance of a \class{Qtcm} model is created in \mods{qtcm} the same way
+you create an instance of any class.
+For instance, to instantiate two \class{Qtcm}
+models, \vars{model1} and \vars{model2}, I type the following:
+
+\begin{codeblock}
+\codeblockfont{%
+from qtcm import Qtcm \\
+model1 = Qtcm(compiled\_form\thinspace=\thinspace'full') \\
+model2 = Qtcm(compiled\_form\thinspace=\thinspace'parts')}
+\end{codeblock}
+
+In the above example, \vars{model1} uses the compiled QTCM1 model
+that runs the model (essentially) using the Fortran driver,
+while \vars{model2} uses the compiled QTCM1 model where execution
+order and content all the way down to the atmospheric timestep level
+is controlled by Python run lists.  (Section~\ref{sec:compiledform}
+has more details about the difference between compiled forms.)
+
+For each instance of \class{Qtcm}, copies of all needed extension
+modules (e.g., \fn{.so} files) are copied to a temporary directory
+that is automatically created by Python.  The full path name of
+that directory is saved in the instance attribute \vars{sodir}.
+These extension modules are then associated with the specific instance 
+through private instance attributes,
+and thus every instance of \class{Qtcm} has its own separate variable
+and name space on both the Fortran and Python sides.\footnote%
+	{The private instance attribute is \vars{\_\_qtcm}.
+	See Section~\ref{sec:Qtcm.private.attrib} for details about 
+	private \class{Qtcm} instance attributes.}
+The temporary directory and all of its contents are deleted when the 
+model instance is deleted.
+
+On instantiation, \class{Qtcm} instances set all scalar field
+variables to their default values as given in the submodule
+\mods{defaults} (and listed in Section~\ref{sec:defaults.scalar}),
+and assign the fields as instance attributes.  The instance attribute
+\vars{init\_with\_instance\_state} is set to True by default, unless
+overridden on instantiation.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Initializing a Model Run}
+
+In the pure-Fortran QTCM1, there are three broad
+classes of initialized variables:
+\begin{enumerate}
+\item Those that are read-in using a namelist, 
+\item Those that the are read-in from a restart file, and
+\item Those that are set by assignment in the Fortran code.  
+\end{enumerate}
+These variables are a combination of scalars and arrays.
+
+For \mods{qtcm}, interfaces were built so that all classes of
+initialized variables that could be user-controlled are accessible
+and changeable at the Python-level.  For \mods{qtcm},
+the set of variables that could be changed is also expanded, to
+include not just the first and second classes of pure-Fortran
+QTCM1 initialized variables.  This was done to make \mods{qtcm}
+more flexible.  All variables that can be passed between the
+compiled QTCM1 model and Python model levels are called
+field variables, and are described in detail in
+Section~\ref{sec:field.variables}.
+
+As it happens, all the namelist-set variables are scalars.  In the
+pure-Fortran QTCM1, those variables are given default values prior
+to reading in of the namelist.  To duplicate this functionality,
+on model instantiation, all scalar fields are set to their default
+values as given in the submodule \mods{defaults} and listed in
+Section~\ref{sec:defaults.scalar}.  Most of the default values in
+\mods{defaults} are the same as in the pure-Fortran QTCM1, but
+there are a few differences.\footnote%
+	{One difference being \vars{mrestart}, which in \vars{qtcm} 
+	will have the value of 0 in contrast to the pure-Fortran 
+	QTCM1 where the default is the 1.}
+This setting of scalar defaults is the same for both
+\vars{compiled\_form\thinspace=\thinspace'full'} and
+\vars{compiled\_form\thinspace=\thinspace'parts'} instances.
+Of course, all
+\mods{qtcm} fields are user-controllable, both via keyword input
+parameters at model instantiation as well as through direct
+manipulation of the instance attribute that stores the field variable.
+
+The pure-Fortran QTCM1 initialized prognostic variables and
+right-hand sides are set in the Fortran subroutine \mods{varinit}.
+Their they are read-in from a restart file or, as default,
+set by assignment.
+In \mods{qtcm}, the same variables are initialized by a \class{Qtcm}
+instance method of the same name, \mods{varinit}, for the case when
+\vars{compiled\_form\thinspace=\thinspace'parts'}.  For the case
+of \vars{compiled\_form\thinspace=\thinspace'full'}, the compiled
+QTCM1 subroutine that is the same as in the pure-Fortran case is
+used, and that routine is inaccessible at the Python level.
+See Section~\ref{sec:snapshots}'s listing of snapshot variables,
+which also includes the prognostic variables and right-hand sides that
+are set in \mods{varinit} (both Fortran and Python).
+
+
+
+
+%---------------------------------------------------------------------
+\section{The \vars{compiled\_form} Keyword}  \label{sec:compiledform}
+
+The \mods{qtcm} package is a Python wrap of the Fortran routines
+that make up QTCM1.  The wrapping layer adds flexibility and
+functionality, but at the cost of speed.  Thus, I created two
+types of extension modules from the Fortran QTCM1 code, one
+which permits very little control over the compiled Fortran
+\emph{routines} at the Python level, and one that allows the Python-level
+to control model execution in the compiled QTCM1 model
+all the way down to the atmospheric timestep level.\footnote%
+	{That control is via run lists, which are described in
+	Section~\ref{sec:runlists}.}
+The former extension module corresponds to 
+\vars{compiled\_form\thinspace=\thinspace'full'} and
+the latter extension module to
+\vars{compiled\_form\thinspace=\thinspace'parts'}.
+
+For \vars{compiled\_form\thinspace=\thinspace'full'},
+the compiled portion of the model encompasses (nearly) the
+entire QTCM1 model as a whole.  Thus, the only compiled QTCM1 model
+modules or subroutines that Python should interact with is
+the \mods{driver} routine (which executes the entire model) and
+the \mods{setbypy} module (which enables communication between the
+compiled model and the Python-level of model fields.\footnote%
+	{The \mods{setbypy} Python module is the wrap of the
+	Fortran QTCM1 \mods{SetByPy} module.}
+
+For \vars{compiled\_form\thinspace=\thinspace'parts'}, the compiled
+portion of the model does not encompasses the model as a whole, but
+rather is broken up into separate units (as appropriate) all the
+way down to an atmosphere timestep.  Thus, compiled QTCM1 model
+modules/subroutines that are accessible at the Python-level include
+those that are executed within an atmosphere timestep on up.
+
+Because the difference in compiled forms fundamentally affects how
+the \class{Qtcm} instance facilitates Python-Fortran communication,
+this attribute must be set on instantiation via a keyword input
+parameter.
+
+In the rest of this section, to avoid being verbose, when I
+write \vars{'full'}, I mean the situation where
+\vars{compiled\_form\thinspace=\thinspace'full'}.
+Likewise, when I
+write \vars{'parts'}, I mean the situation where
+\vars{compiled\_form\thinspace=\thinspace'parts'}.
+
+
+	\subsection{Initialization for 
+			\vars{compiled\_form\thinspace=\thinspace'full'}}
+				\label{sec:init.compiledform.full}
+
+For a model run of this case, the \class{Qtcm} instance will
+initialize the model using the Fortran \mods{varinit} subroutine
+in the compiled QTCM1 model.  This subroutine does the following:
+
+\begin{itemize}
+\item If \vars{mrestart\thinspace=\thinspace1}, 
+	the restart file is used to initialize all prognostic
+	variables.  In terms of start date, the following rules are
+	used:
+	\begin{enumerate}
+	\item Variable \vars{dateofmodel} is read from the restart file.
+	\item If \vars{day0}, \vars{month0}, and \vars{year0}
+		are negative, or otherwise
+		invalid (e.g., \vars{month0} greater than 12), the invalid
+		value is replaced with the
+		day, month, and/or year of the day \emph{after} 
+		that given by \vars{dateofmodel}.
+		If the value of \vars{day0}, \vars{month0}, or \vars{year0}
+		is not invalid in this sense, it is not replaced.
+	\end{enumerate}
+	Thus, if the restart file gives 
+	\vars{dateofmodel} equal to 101102
+	(year 10, month 11, day 2), and 
+	\vars{day0\thinspace=\thinspace-1}, 
+	\vars{month0\thinspace=\thinspace-1}, 
+	\vars{year0\thinspace=\thinspace-1},
+	and 
+	\vars{mrestart\thinspace=\thinspace1}, 
+	the model will start running from year 10, month 11, day 3.
+	If \vars{dateofmodel} equals to 101102, and 
+	\vars{day0\thinspace=\thinspace-1}, 
+	\vars{month0\thinspace=\thinspace3}, 
+	\vars{year0\thinspace=\thinspace-1},
+	the model will start running from year 10, month 3, day 3.
+
+\item If \vars{mrestart\thinspace=\thinspace0}, 
+	all prognostic variables and right-hand sides are set to an
+	initial value (which for most of those variables is zero).
+	In terms of start date, \vars{day0} is set to 1 (and thus 
+	the value of \vars{day0} previously input is ignored), and
+	both \vars{month0} and \vars{year0}
+	are set to 1 
+	if their previously input values are invalid (where
+	invalid means less than
+	1, or, for \vars{month0}, greater than 12).
+	Otherwise, \vars{month0} and \vars{year0} are left unchanged.
+	Variable \vars{dateofmodel} has the value it had when the variable
+	was declared (which is determined by the compiler and usually
+	is zero; \vars{dateofmodel} will not be properly set until
+	subroutine \mods{TimeManager} is called.
+
+	Thus, if 
+	\vars{day0\thinspace=\thinspace-1},
+	\vars{month0\thinspace=\thinspace-1}, 
+	\vars{year0\thinspace=\thinspace-1} is input into the model
+	(say from a namelist) and 
+	\vars{mrestart\thinspace=\thinspace0},
+	the model will start running from year 1, month 1, day 1,
+	and \vars{dateofmodel} at the exit of subroutine 
+	\mods{varinit} will equal its compiler-set default.
+	If 
+	\vars{day0\thinspace=\thinspace14}, 
+	\vars{month0\thinspace=\thinspace3}, 
+	\vars{year0\thinspace=\thinspace11}, and 
+	\vars{mrestart\thinspace=\thinspace0} on input into the
+	model,
+	the model will start running from year 11, month 3, day 1,
+	and \vars{dateofmodel} at the exit of subroutine 
+	\mods{varinit} will equal its compiler-set default.
+
+	Note that \vars{dateofmodel}
+	can thus be inconsistent with 
+	\vars{month0} and \vars{year0} at the
+	exit of subroutine \mods{varinit}.
+\end{itemize}
+
+This behavior with respect to initializing
+the start date is different than in QTCM1 versions 1.0 and 2.1.
+Please see the source code from those earlier QTCM1 versions for
+details.
+
+
+
+
+	\subsection{Initialization for 
+			\vars{compiled\_form\thinspace=\thinspace'parts'}}
+				\label{sec:init.compiledform.parts}
+
+For \vars{'parts'} model, the methodology of how initialized
+prognostic variables, right-hand sides, and start date related
+variables are set is controlled by the \class{Qtcm} instance
+attribute/flag \vars{init\_with\_instance\_state}.  The initialization
+is (mostly) executed in the Python \vars{varinit} method in the
+following way:
+
+\begin{itemize}
+\item If \vars{init\_with\_instance\_state} is False:
+The method as described for
+initialization for the 
+\vars{'full'} case is generally
+followed, with the exception that dateofmodel is set
+to match \vars{day0}, \vars{month0}, \vars{year0}, prior to exit of 
+\mods{varinit}.
+
+\item If \vars{init\_with\_instance\_state} is True:
+the model object will initialize the model based on the current
+state of the model instance.  This enables you to set a model run
+session's initial conditions based upon the state of the prognostic
+variables and parameters stored at the Python level, which is
+accessible at runtime.
+\end{itemize}
+
+
+Since the \vars{init\_with\_instance\_state\thinspace=\thinspace{False}}
+case is mainly described by the initialization method for the
+\vars{'full'} case, I refer the
+reader to Section~\ref{sec:init.compiledform.full}.
+For the case of \vars{init\_with\_instance\_state} is True, however,
+the task is more complicated.  Specifically, for that case,
+initialization includes the following:
+
+\begin{enumerate}
+\item If not currently defined,
+	variable \vars{dateofmodel} is set to a default value of 0,
+	which is specified in the module defaults.
+
+\item The \vars{mrestart} flag is ignored for variable initialization.
+
+\item All prognostic variables and right-hand sides
+        are set to an
+        initial value (which for most of those variables is zero),
+	unless the variable is defined at the Python level, in which
+	case the inital value is set to the Python level defined value.
+
+\item If \vars{dateofmodel} is greater than 0, 
+	\vars{day0}, \vars{month0}, and \vars{year0} are overwritten
+        with values derived from \vars{dateofmodel} 
+	in order to set the run to start
+	the day \emph{after} \vars{dateofmodel}.
+
+\item If \vars{dateofmodel} is less than or equal to 0, \vars{day0},
+	\vars{month0}, and \vars{year0} are set to their respective
+	instance attribute values, if valid.  For invalid instance
+	attribute values, the invalid \vars{day0}, \vars{month0},
+	and/or \vars{year0} is set to 1.
+
+\item Variable \vars{dateofmodel} is recalculated
+	and overwritten to match 
+	\vars{day0}, \vars{month0}, \vars{year0}, prior to exit of 
+	\mods{varinit}.
+\end{enumerate}
+
+As a result, for \vars{init\_with\_instance\_state} is True, the
+way you indicate to the model that a run session is a brand-new run
+is by setting, before the \mods{run\_session} method call,
+\vars{dateofmodel} to a value less than or equal to 0, and \vars{day0},
+\vars{model0}, and \vars{year0} to the day you want the model to
+begin the run session.  To indicate to the model you wish to continue
+a run, set \vars{dateofmodel} to the day \emph{before} you want the
+model to start running from.
+
+Examples:
+\begin{itemize}
+\item If \vars{day0\thinspace=\thinspace-1}, 
+	\vars{month0\thinspace=\thinspace-1}, 
+	\vars{year0\thinspace=\thinspace-1}, and
+	\vars{dateofmodel\thinspace=\thinspace0} is input into 
+	the model the model will start running from year 1, month 1, day 1,
+	and 
+	variable \vars{dateofmodel} at the exit of 
+	subroutine \mods{varinit}
+	will equal 10101.
+
+\item If \vars{day0\thinspace=\thinspace14},
+	\vars{month0\thinspace=\thinspace3}, 
+	\vars{year0\thinspace=\thinspace11},
+	and \vars{dateofmodel\thinspace=\thinspace0} is input into the
+	model, the model will start running from year 11, month 3, day 14,
+	and 
+	variable \vars{dateofmodel} at the exit of 
+	subroutine \mods{varinit} will equal
+	110314.
+
+\item If \vars{day0\thinspace=\thinspace14},
+	\vars{month0\thinspace=\thinspace3}, 
+	\vars{year0\thinspace=\thinspace11},
+	and \vars{dateofmodel\thinspace=\thinspace341023} is input into the
+	model, the model will start running from year 34, month 10, day 24,
+	and at the exit of subroutine 
+	\mods{varinit}, \vars{dateofmodel} will equal
+	341024, with \vars{day0\thinspace=\thinspace24},
+	\vars{month0\thinspace=\thinspace10}, and
+	\vars{year0\thinspace=\thinspace34}.
+\end{itemize}
+
+
+	\subsection{Communication Between Python and Fortran-Levels}
+				\label{sec:comm.py.fort.compiledform}
+
+After initialization, the second major difference between a
+\vars{'full'} and \vars{'parts'} model is how and when communication
+between the Python and Fortran levels can occur.  For the \vars{'full'}
+case, except for the passing in and out of variables before and after
+a run session, all variable passing and subroutine calling happens in
+the compiled QTCM1 model, with no control at the Python level.
+For the \vars{'parts'} case, variables can be passed between the
+Python and Fortran-levels at all levels down to the atmospheric
+timestep, and many Fortran QTCM1 subroutines can be called from the
+Python-level.  
+
+
+		\subsubsection{Passing Variables}
+
+For all \vars{compiled\_form} cases, variables are passed back and
+forth between the Python \class{Qtcm} instance level and the
+compiled QTCM1 model Fortran-level using the \class{Qtcm}
+instance methods \mods{get\_qtcm1\_item} and \mods{set\_qtcm1\_item}:\footnote%
+	{All Fortran routines used to pass variables back and forth are
+	defined in the \mods{setbypy} module of the \fn{.so} extension
+	module stored in the \class{Qtcm} instance variable \vars{\_\_qtcm}.
+	All Fortran wrappers that enable Python to call compiled QTCM1 model
+	subroutines are defined in the \mods{wrapcall} module stored in
+	the \class{Qtcm} instance variable \vars{\_\_qtcm}.
+	These modules are described in detail in 
+	Sections~\ref{sec:setbypy} and~\ref{sec:wrapcall}, respectively.}
+
+\begin{itemize}
+\item \mods{get\_qtcm1\_item}(\dumarg{key}):
+	Returns the value of the field variable given by the string
+	\dumarg{key}.  If the compiled QTCM1 model variable given by
+	\dumarg{key} is unreadable, the
+        custom exception 
+	\vars{FieldNotReadableFromCompiledModel} is thrown.
+	The value returned is a copy of the value on the Fortran
+	side, not a reference to the variable in memory.
+
+\item \mods{set\_qtcm1\_item}:
+	Sets the value of a field variable
+	in the compiled QTCM1 model \emph{and at the Python-level,}
+	automatically overriding any previous value at both levels.
+	Thus, calling this method will change/create the \class{Qtcm}
+	instance attribute corresponding to the field variable.
+        When the compiled QTCM1 model variable is set, a copy of the
+        Python value is passed to the Fortran model; the
+	variable is \emph{not passed by reference.}
+	This value comes from the \mods{set\_qtcm1\_item} calling
+	parameter list, \emph{not} from the \class{Qtcm}
+        instance attribute corresponding to the field variable.
+\end{itemize}
+
+The \mods{set\_qtcm1\_item} method has two calling forms, one with
+one argument and the other with two arguments:
+\begin{itemize}
+\item One argument:  The method is called
+	as \mods{set\_qtcm1\_item}(\dumarg{arg}), where \dumarg{arg} 
+	is either a string giving the name of the field variable or 
+	a \class{Field} instance.
+
+\item Two arguments:  The method is called as
+	\mods{set\_qtcm1\_item}(\dumarg{key}, \dumarg{value}), where
+	\dumarg{key} is the string giving the name of the field variable
+	and \dumarg{value} is the value to set the model field variable to
+	(note \dumarg{value} can be a \class{Field} instance).
+\end{itemize}
+In either calling form, if no value given, the default value as defined
+in module \mods{defaults} is used.
+
+Some compiled QTCM1 model variables are not in a state where they
+can be set.  An example is a compiled QTCM1 model pointer variable,
+prior to the pointer being associated with a target (an attempt
+to set would yield a bus error).  In such cases, the
+\mods{set\_qtcm1\_item} method will throw a
+\vars{FieldNotReadableFromCompiledModel} exception, nothing will
+be set in the compiled QTCM1 model, and the Python counterpart
+field variable (if it previously existed) would be left unchanged.\footnote%
+	{We handle this situation in this way to enable the
+	\class{Qtcm} instance to store variables
+	even if the compiled model is not yet ready to accept them.}
+
+Examples, typed in at a Python prompt, and
+assuming that \vars{model} is a \class{Qtcm} instance:
+\begin{itemize}
+\item \cmd{dtvalue\thinspace=\thinspace{model.get\_qtcm1\_item('dt')}}:
+	Retrieves the value of field variable \vars{dt} (timestep)
+	from the compiled QTCM1 Fortran model and sets it to the
+	Python variable \vars{dtvalue}.
+
+\item \cmd{model.set\_qtcm1\_item('dt')}:
+	Sets the value of field variable \vars{dt}
+	in the compiled QTCM1 Fortran model to the default
+	value (as given in \mods{defaults}),
+	and sets the value of Python attribute \vars{model.dt} also to 
+	that default value.  
+	Remember that \vars{model.dt} is a \class{Field}
+	instance.
+
+\item \cmd{model.set\_qtcm1\_item('dt', 2000.)}:
+	Sets the value of field variable \vars{dt}
+	in the compiled QTCM1 Fortran model to 2000 (as a real),
+	and sets the value of Python attribute \vars{model.dt} also to 2000.
+\end{itemize}
+
+
+		\subsubsection{Calling Compiled QTCM1 Model Subroutines}
+
+All compiled QTCM1 model subroutines that can be called
+(except \mods{driver} and \mods{varptrinit}) are in the
+\mods{setbypy} or \mods{wrapcall} modules
+of the \class{Qtcm} instance private attribute \vars{\_\_qtcm}.
+(On \class{Qtcm} instance instantiation, \vars{\_\_qtcm} is set
+to the \fn{.so} extension module that is the compiled QTCM1 Fortran model.)
+Thus, to call \mods{wmconvct} in \mods{wrapcall} at the Python-level,
+just type \cmd{model.\_\_qtcm.wrapcall.wmconvct()} (where \vars{model}
+is a \class{Qtcm} instance).
+For \mods{driver} and \mods{varptrinit}, these subroutines are not
+contained in a \vars{\_\_qtcm} module, and thus can be called
+directly (e.g., just type \cmd{model.\_\_qtcm.driver()}).
+See Sections~\ref{sec:setbypy} and~\ref{sec:wrapcall} for more information
+on the \mods{setbypy} and \mods{wrapcall} modules.
+
+For the \vars{'full'} case, the only compiled QTCM1 model
+subroutine you can usefully call during a run session is \mods{driver}.
+For the \vars{'parts'} case, while you can essentially call any subroutine
+given in a run list, you usually will not directly call a compiled QTCM1
+model subroutine but will instead call it through including it in a
+run list.  For example, if you have the following run list in a
+\vars{'parts'} model:
+\begin{codeblock}
+\codeblockfont{%
+[ 'qtcminit', '\_\_qtcm.wrapcall.woutpinit' ]}
+\end{codeblock}
+Running this list using the \class{Qtcm} instance method
+\mods{run\_list} will result in \class{Qtcm} instance method
+\mods{qtcminit} first being run, 
+then the compiled QTCM1 Fortran model subroutine
+\mods{woutpinit} in Fortran module \mods{wrapcall} being run.
+See Section~\ref{sec:runlists} and
+Table~\ref{tab:stnd.runlists} for a discussion and list of the
+standard run lists that control routine execution content and order
+in the \vars{'parts'} case.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Restart and Continuation Run Sessions}
+				\label{sec:contination.run.sessions}
+
+
+	\subsection{Restart Runs In the Pure-Fortran QTCM1}
+					\label{sec:puref90.restart}
+
+To enable restart of a model run, the pure-Fortran QTCM1 model
+writes out a restart file with the state of the prognostic variables
+and select right-hand sides at that point in the run (for a list
+of the variables, see Section~\ref{sec:snapshots}).  This binary
+file can then be read in by later model runs.  The Fortran
+\vars{mrestart} flag is passed in via a namelist; if \vars{mrestart}
+is 1, the run uses the restart file (named \fn{qtcm.restart}).
+
+One of the problems with using the restart file to do a continuation
+run is that the continuation run will not be perfect.  In other words,
+a 15~day run followed by a 25~day run based on the restart file 
+generated at the end of the 15~day run will \emph{not} give the
+exact same output as a continuous 40~day run.
+
+
+	\subsection{Overview of Restart/Continuation Options In \mods{qtcm}}
+					\label{sec:restart.options.list}
+
+For a \class{Qtcm} instance, in contrast to the pure-Fortran QTCM1,
+more than one method of continuation is available.
+Thus, for a continuation run, you need to tell the model
+``continue from what?''
+The \class{Qtcm} class provides three choices for restart/continuing
+a run:
+\begin{enumerate} 
+\item From a restart file:  Move/rename a QTCM1 restart file
+        to the current working directory to \fn{qtcm.restart}.
+	\label{list:continue.from.restart}
+
+\item From a snapshot from another run session
+	(see Sections~\ref{sec:snapshot.intro} and~\ref{sec:snapshots}).
+	\label{list:continue.from.snapshot}
+
+\item From the values of the \class{Qtcm} instance you will be
+	calling \mods{run\_session} from.
+	\label{list:continue.from.instance}
+\end{enumerate}
+
+Restart/continuation methods~\ref{list:continue.from.restart} 
+and~\ref{list:continue.from.snapshot} both suffer from the
+same problem as the pure-Fortran QTCM1 restart process:
+They do not produce perfect restarts
+(see Section~{sec:puref90.restart} for details).
+In this section, I discuss the restart/continuation options
+for each \vars{compiled\_form} option.
+
+Methods~\ref{list:continue.from.restart}
+and~\ref{list:continue.from.snapshot} are best used when making a
+run session from a newly instantiated \class{Qtcm} instance.
+Method~\ref{list:continue.from.instance} is best used when executing
+a run session using a \class{Qtcm} instance that has already gone
+through at least one run session.  Regardless of which method you
+use, however, please note that anytime you execute a run session
+using a \class{Qtcm} instance that already has made a previous run
+session, some variables \emph{cannot be updated} between run sessions.
+This feature is most noticeable with the output filename, and occurs
+because the name persists in the compiled QTCM model, and is stored
+in the extension module (\fn{.so} files in \vars{sodir}) associated
+with the instance.  If you wish to control all variables possible
+from the Python level (including output filename), you need do the
+run session from a new model instance.
+
+
+	\subsection{Restart/Continuation for 
+		\vars{compiled\_form\thinspace=\thinspace'full'} 
+		Model Instances}
+
+The only option for restart when using
+\vars{compiled\_form\thinspace=\thinspace'full'} model instances
+is method~\ref{list:continue.from.restart}, to use a QTCM1 restart
+file.\footnote%
+	{The \vars{cont} keyword parameter in \mods{run\_session}
+	and the value of the \vars{init\_with\_instance\_state}
+	attribute have no effect if
+	\vars{compiled\_form\thinspace=\thinspace'full'}.  With
+	\vars{'full'}, the call to initialize variables all happens
+	at the Fortran level (via the Fortran \mods{varinit}, not
+	the Python \mods{varinit}), with no reference to the Python field
+	states (or even existing Fortran field states, if present).}
+To use this option, the value of the \vars{mrestart} 
+attribute must equal 1, the restart file must be named
+\fn{qtcm.restart}, and the restart file must be in the 
+current working directory.
+As with the pure-Fortran QTCM1 restart process, this method
+does not produce perfect restarts.
+
+
+
+	\subsection{Restart/Continuation for 
+		\vars{compiled\_form\thinspace=\thinspace'parts'} 
+		Model Instances}
+
+For the \vars{compiled\_form\thinspace=\thinspace'parts'} case,
+all three restart/continuation methods
+described in Section~\ref{sec:restart.options.list} are
+available.
+
+
+		\subsubsection{Method~\ref{list:continue.from.restart}:
+			From a QTCM1 Restart File}
+
+To use the QTCM1 restart file mechanism, not only must the
+\vars{mrestart} attribute have a value to 1, but the
+\vars{init\_with\_instance\_state} flag also has to be \vars{False},
+otherwise the \vars{mrestart} attribute value will be ignored.  
+As with the pure-Fortran QTCM1 restart process, this method does not
+produce perfect restarts.
+
+
+		\subsubsection{Method~\ref{list:continue.from.snapshot}:
+			From a \class{Qtcm} Instance Snapshot}
+
+You can take snapshots of the model state of a \class{Qtcm} instance
+by the \mods{make\_snapshot} instance method.  This snapshot saves
+a copy of all the variables saved to a QTCM1 restart file (see
+Section~\ref{sec:snapshots} for the full list of fields), which
+then can be passed to other \class{Qtcm} instances for use in other
+run sessions.
+
+The key difference between this method and 
+method~\ref{list:continue.from.instance} (described below)
+is that \mods{run\_session} calls using the snapshot are done
+\emph{without} the \vars{cont} keyword input parameter
+(by default, \vars{cont} is False).  If the \vars{cont} keyword
+is not False, it says the run session is a continuation run
+that uses the state of the compiled QTCM1 model for all variables
+that are not specified at, and read-in from,
+the Python level.  If the \vars{cont} keyword
+is False, the run session initializes as if it were a new run.
+
+See Section~\ref{sec:snapshot.intro} for details and
+an example of using snapshots to initialize a run session.
+Note that as with the pure-Fortran QTCM1 restart process, this method 
+does not produce perfect restarts.
+
+
+		\subsubsection{Method~\ref{list:continue.from.instance}:
+			From the Calling \class{Qtcm} Instance}
+
+This method is used when you want to make a run session that is a
+``true'' continuation run, i.e., one that uses the current state
+of the compiled QTCM1 model for all variables that are not read-in
+from the Python level (remember that \class{Qtcm} instances hold a
+subset of the variables defined at the Fortran level).  
+The key reason to use this method for a continuation run session
+is that the continuation is byte-for-byte the same (if no fields
+are changed) as if the run just went straight on through.  Thus,
+the continuation would be perfect: A 15~day run followed by a 25~day
+run using the same \class{Qtcm} instance with the \vars{cont} keyword
+will give the exact same output as a continuous 40~day run.  This
+is not the case when making a new instance and passing a restart
+file or a snapshot, because a separate extension module is used for
+those new instances.
+
+Control of this method is accomplished through the \vars{cont}
+keyword input parameter to the \mods{run\_session} method and the
+\vars{init\_with\_instance\_state} attribute of a
+\class{Qtcm} instance:
+
+\begin{itemize}
+\item \vars{cont}: If set to False, the run session is not a
+	continuation of the previous run, but a new run session.
+	If set to True, the run session is a continuation of the
+	previous run session.  If set to an integer greater than
+	zero, the run session is a continuation just like
+	\vars{cont\thinspace=\thinspace{True}}, but the value
+	\vars{cont} is set to is used for \vars{lastday} and replaces
+	\vars{lastday.value} in the \class{Qtcm} instance.
+
+\item \vars{init\_with\_instance\_state}:
+	If True, for a \mods{run\_session} call using the
+	\vars{cont} keyword, whatever the field values are in the Python
+	instance are used in the run session.
+	If False, model variables are set and initialized as described in
+	Section~\ref{sec:init.compiledform.parts}.  In that case,
+	previous compiled QTCM1 model values will likely be overwritten.
+	Thus, if you want a continuation run that uses the state of
+	all field variables except for those you explicitly change at
+	the Python-level, make sure \vars{init\_with\_instance\_state}
+	is True.
+\end{itemize}
+
+(Note that the \vars{cont} keyword has no effect if \vars{compiled\_form}
+is \vars{'full'}.  The default value of \vars{cont} in a
+\mods{run\_session} call is False.  The value of keyword \vars{cont}
+is stored as private instance attribute \vars{\_cont}, in case you
+really need to access it elsewhere; see
+Section~\ref{sec:Qtcm.private.attrib} for more details).
+
+The example described in Section~\ref{sec:continuation.intro} is
+an example of method~\ref{list:continue.from.instance} in the list
+above: The second run session is continued from the state of
+\vars{model}, with the values of \vars{model}'s instance variables
+overriding any values in the compiled QTCM1 model in initializing
+the second run session.
+
+This method has a few caveats worthy of note:
+\begin{itemize}
+\item The \vars{init\_with\_instance\_state} attribute value
+	will have no effect unless the instance prognostic variables
+	are set, i.e., unless a previous run session has been done.
+	Another way to put it is for an initial run session right
+	after a \class{Qtcm} instance is created, \mods{varinit}
+	will use the same initial values for prognostic variables
+	(defined in \mods{defaults} module variable
+	\vars{init\_prognostic\_dict})\footnote%
+		{\vars{init\_prognostic\_dict} is the dictionary giving
+		the default initial values of each prognostic variable
+		and right-hand side (as defined by the restart file 
+		specification).}
+	as it would with for both
+	\vars{init\_with\_instance\_state} set to True or False).
+
+\item Continuation run sessions using this method have to continue
+	with the next day from wherever the last run session left
+	off, contiguously.\footnote%
+		{For continuation run sessions, you keep the 
+		same extension module (the compiled \fn{.so} library),
+		and all the values that define the state where it
+		left off.}
+	If you want to do a non-contiguous run,
+	create a new \class{Qtcm} instance initialized with a
+	snapshot instead of the continuation method describe in
+	this section.
+	will use restart rules to run a new model.  
+
+\item When making a continuation run session using this method,
+	you cannot change some variables, for instance,
+	\vars{outdir} and any of the date related
+	variables.  In fact, the only thing you should change for
+	your continuation run session are the prognostic and
+	diagnostic variables and \vars{lastday}.  This is because
+	some variables cannot be updated between run sessions.
+	As noted in Section~\ref{sec:restart.options.list},
+	if you wish to control all variables possible
+	from the Python level (including output filename), you need 
+	to execute the run session from a new model instance.
+\end{itemize}
+
+
+	\subsection{Snapshots of a \class{Qtcm} Instance}
+				\label{sec:snapshots}
+
+The snapshot dictionary (briefly described in
+Section~\ref{sec:snapshot.intro}), saved as the \class{Qtcm} instance
+attribute \vars{snapshot}, and generated by the method
+\mods{make\_snapshot}, saves the current state of the following
+instance field variables:
+
+\begin{center}
+\input{snapshot_vars.tex}
+\end{center}
+
+These are the same variables saved to a QTCM1 restart file, and so
+a snapshot duplicates the restart functionality in the Python
+environment, but with more flexibility.  Since the \vars{snapshot}
+dictionary is a Python variable like any other, you can manipulate
+it and alter it to fit any condition you wish.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Creating and Using Run Lists}  \label{sec:runlists}
+
+Section~\ref{sec:runlist.intro} provides an introduction to the
+role and use of run lists.  A run list is a list of methods, Fortran
+subroutines, and other run lists that can be executed by the
+\class{Qtcm} instance \mods{run\_list} method.  Run lists are stored
+in the \class{Qtcm} instance attribute \vars{runlists}, which is a
+dictionary of run lists.  The names of run lists should not be
+preceeded by two underscores (though elements of a run list may be
+very private variables), nor should names of run lists be the same
+as any instance attribute.  Run lists are not available for
+\vars{compiled\_form\thinspace=\thinspace'full'}.
+
+The \mods{run\_list} method takes a single input parameter, a list,
+and runs through that list of elements that specify other run lists
+or instance method names to execute.  Methods with private attribute
+names are automatically mangled as needed to become executable by
+the method.  Note that if an item in the input run list is an
+instance method, it should be the entire name (not including the
+instance name) of the callable method, separated by periods as
+appropriate.
+
+Elements in a run list are either strings or 1-element dictionaries.
+Consider the following example, where \vars{model} is a \class{Qtcm}
+instance, and \mods{run\_list} is called using \vars{mylist} as
+input:
+
+\begin{codeblock}
+\codeblockfont{%
+model = Qtcm(\ldots) \\
+mylist = [ \{'varinit':None\}, \\
+\hspace*{13ex}'init\_model', \\
+\hspace*{13ex}'\_\_qtcm.driver', \\
+\hspace*{13ex}\{'set\_qtcm1\_item': ['outdir', '/home/jlin']\} ]
+model.run\_list(mylist)}
+\end{codeblock}
+
+The first element in \vars{mylist} refers to a method that requires
+no positional input parameters be passed in (as shown by the None).
+The second and third elements in \vars{mylist} also refers to methods
+that require no positional input parameters be passed in.  The last
+element in \vars{mylist} refers to a method with two input parameters.
+Note that while I use the term ``method'' to describe the elements,
+the strings/keys do not have to be only Python instance methods.
+The second element, for instance, refers to another run list, and
+the third element refers to a compiled QTCM1 model subroutine (note
+the \vars{\_\_qtcm} attribute).
+
+When the \mods{run\_list} method is called, the items in the input
+run list are called in the order given in the list.  For each
+element,  the \mods{run\_list} method first checks if the string
+or dictionary key name corresponds to the key of an entry in the
+\class{Qtcm} instance attribute \vars{runlists}.  If so, \mods{run\_list}
+is called using that run list (i.e., it is a ``recursive'' call).
+If the string or dictionary key name does not refer to another run
+list, the \mods{run\_list} method checks if the string or dictionary
+key name is a method of the \class{Qtcm} instance, and if so the
+method is called.  Any other value throws an exception.
+
+If input parameters for a method are of class \class{Field}, the
+\mods{run\_list} method first tries to pass the parameters into the
+method as is, i.e., as Field object(s).  If that fails, the
+\mods{run\_list } method  passes its parameters in as the \vars{value}
+attribute of the \class{Field} object.
+
+If you want a variable that is being passed into a run list to be
+continuously updated, you have to set the parameter in the run list
+to a \class{Field} instance that is a \class{Qtcm} instance attribute,
+not just to the value of the field variable (or to a non-\class{Field}
+object).  Otherwise, subsequent calls to that run list element will
+not use the updated values as input parameters.
+
+For instance, if you had a run list element:
+\begin{codeblock}
+\codeblockfont{%
+\{'\_\_qtcm.timemanager':[model.coupling\_day,]\}}
+\end{codeblock}
+and \vars{model.coupling\_day} were an integer (it's not by default,
+but pretend it was), then \mods{run\_list} calling
+\mods{\_\_qtcm.timemanager} will pass in a scalar integer rather
+than a binding to the variable \vars{model.coupling\_day}.  In such
+a situation, if the variable \vars{model.coupling\_day} were updated
+in time, the \mods{run\_list} call of \mods{\_\_qtcm.timemanager}
+would not be updated in time.  This happens because when the
+dictionary that is the run list element is created, the value of
+list element(s) attached to the dictionary element is set to the
+scalar value of \vars{model.coupling\_day} at that instant.
+
+You can get around this feature by setting \class{Qtcm} instance
+attributes that will change with model execution to \class{Field}
+instances, and then referring to those attributes in the parameter
+list in the run list element.  In that case:
+\begin{codeblock}
+\codeblockfont{%
+\{'\_\_qtcm.timemanager':[model.coupling\_day,]\}}
+\end{codeblock}
+will use the current value of \vars{model.coupling\_day} anytime
+\vars{\_\_qtcm.timemanager} is called by \mods{run\_list}, if
+\vars{model.coupling\_day} is a \class{Field} object.
+
+When \mods{run\_list}, encounters a calling input parameter that
+is a \class{Field} object, it will first try to pass the entire
+\class{Field} object to the method/routine being called.  If that
+raises an exception, it will then try to pass just the value of the
+entire \class{Field} object.  This is done to enable \mods{run\_list}
+to be used for both pure-Python and compiled QTCM Fortran model
+routines.  Fortran cannot handle \class{Field} objects as input
+parameters, only values.
+
+Table~\ref{tab:stnd.runlists} shows all standard run lists
+stored in the \vars{runlists} attribute upon instantiation
+of a \class{Qtcm} instance.
+
+\begin{htmlonly}
+\begin{table}[htp]
+\begin{center}
+\fbox{Empty placeholder block for table that would have gone here.}
+\end{center}
+\caption{Standard run lists stored in the \vars{runlists} 
+	attribute upon instantiation of a \class{Qtcm} instance.
+	The run list and list element names are stored as strings.
+	\emphpara{This table is improperly reproduced in the
+	HTML conversion.  Please see the PDF version for the table.}}
+\label{tab:stnd.runlists}
+\end{table}
+\end{htmlonly}
+
+\begin{latexonly}
+\begin{table}[htp]
+\input{runlists}
+\caption{Standard run lists stored in the \vars{runlists} 
+	attribute upon instantiation of a \class{Qtcm} instance.
+	The run list and list element names are stored as strings.}
+\label{tab:stnd.runlists}
+\end{table}
+\end{latexonly}
+
+Of course, feel free to change the contents of any of the run lists
+after instantiation, or to add additional run lists to the
+\vars{runlists} attribute dictionary.  The ability to alter run
+lists at runtime gives the \mods{qtcm} package much of its flexibility.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Field Variables and the \class{Field} Class}
+						\label{sec:field.variables}
+
+The term ``field'' variable refers to QTCM1 model variables that 
+are accessible at both the compiled Fortran QTCM1 model-level as
+well as the Python \class{Qtcm} instance-level.
+Field variables are all instances of the \class{Field} class
+(though non-field variables can also be instances of \class{Field}).
+
+Section~\ref{sec:field.variables.intro} gives a brief introduction to
+the attributes and methods in a \class{Field} instance.
+A nitty gritty description of the class is found in its docstrings.
+
+	\subsection{Creating Field Variables}
+
+To create a \class{Field} instance whose value is set to the
+default, instantiate with the field id as the only positional
+input argument.  Thus:
+
+\begin{codeblock}
+\codeblockfont{foo = Field('lastday')}
+\end{codeblock}
+
+will return \vars{foo} as a \class{Field} instance with \vars{foo.value}
+set to the value listed in Section~\ref{sec:defaults.scalar}.
+The value of all \class{Field} instances upon creation are specified
+in the \mods{defaults} submodule of package \mods{qtcm}, and listed
+in Sections~\ref{sec:defaults.scalar} and~\ref{sec:defaults.array}.
+
+To create \class{Field} instances whose attributes are set different
+from their defaults, you can specify the different settings in the
+instantiation parameter list, or change the attributes once the
+instance is created.  See the \class{Field} docstring for details.
+
+
+	\subsection{Initial Field Variables}  \label{sec:initial.variables}
+
+Field variables include both model parameters that do not change
+for a \class{Qtcm} instance as well as prognostic variables that
+do change during model integration.  As a result, many field variables
+have values different from the default values listed in
+Sections~\ref{sec:defaults.scalar} and~\ref{sec:defaults.array}.
+In this section, I list the \emph{initial} values of all field
+variables.  The ``initial'' values are the settings for \class{Qtcm}
+field variables execution of the \mods{run\_session} method, but
+prior to cycling through an atmosphere-ocean coupling timestep.
+This is in contrast to ``default'' values, which the field variables
+are given on instantiation, if no other value is specified.
+Numerical values are rounded as per the conventions
+of Python's \vars{\%g} format code.
+
+
+		\subsubsection{Scalars}
+
+For the fields that give the input/output directory names, and the
+run name, the entry ``value varies'' is provided in the ``Value''
+column.
+
+\input{init_scalars}
+
+		\subsubsection{Arrays}
+
+\input{init_arrays}
+
+
+	\subsection{Passing Fields Between the Python and Fortran-Levels}
+
+Section~\ref{sec:comm.py.fort.compiledform} discusses the differences
+between how the \vars{'full'} and \vars{'parts'} compiled forms
+pass field variables between the Python and Fortran-levels.  That
+discussion gives a detailed description of the methods used for
+passing fields to and from the Python and Fortran-levels (i.e., the
+\mods{get\_qtcm1\_item} and \mods{set\_qtcm1\_item} methods).
+
+Please note the following regarding field variables as you pass them 
+back and forth between the Python and Fortran-levels:
+\begin{itemize}
+\item Field variables with ghost latitudes, such as \vars{u1}, on
+	the Python end are always the full variables (i.e., including
+	the ghost latitudes).  On the Fortran end, variables like
+	\vars{u1} also always have the ghost latitudes while in the
+	model, but when stored as restart files, do not have the
+	ghost latitudes; the end points are not saved in restart
+	files or written to the netCDF output files.
+	See the
+	\latexhtml{%
+\htmladdnormallinkfoot{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/$\sim$csi/qtcm\_man/v2.3/qtcm\_manv2.3.pdf}}%
+{\htmladdnormallink{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf}}
+	\cite{Neelin/etal:2002}
+	for details about ghost latitudes.
+
+\item You should assume there is only a full synchronizing between 
+	compiled QTCM1 model and Python model field variables
+	at the beginning and end of a run session.  
+
+\item If you have a variable at the Python-level, but at the
+	compiled QTCM1 Fortran model-level the variable is not
+	readable, if you try to call \mods{set\_qtcm1\_item} on the
+	variable, nothing is done, and the Python-level value is
+	left alone.  If you have a compiled QTCM1 model variable,
+	but no Python-level equivalent, if you call \mods{set\_qtcm1\_item}
+	on the variable, the Python-level variable (as an attribute)
+	is created.
+
+\item To be precise, only compiled QTCM1 model variables can be
+	passed pass back and forth between the Python and Fortran-levels;
+	there are many \class{Qtcm} instance attributes that do not
+	have any counterparts at the Fortran-level.\footnote%
+		{I use the term ``field variables'' to refer to 
+		compiled QTCM1 model variables that can be passed
+		back and forth to the Python level.}
+
+\item Although \vars{dayofmodel} is described in module \mods{setbypy}
+	as an option for the \mods{get\_qtcm1\_item} and
+	\mods{set\_qtcm1\_item} methods to operate on, in reality
+	those methods cannot operate on \vars{dayofmodel}, but
+	\vars{dayofmodel} is not defined in \mods{defaults}.\footnote%
+		{All field variables must be defined in \mods{defaults} in
+		order for the proper Fortran routine to be called
+		according to the variable's type.}
+\end{itemize}
+
+
+	\subsection{Field Variable Shape}   \label{sec:field.var.shape}
+
+Normally, Python arrays have a different dimension order than Fortran
+arrays.  While Fortran arrays are dimensioned (col, row, slice),
+with adjacent columns being contiguous, then rows, and then slices, Python
+arrays are dimensioned (slice, row, col), with adjacent columns being
+contiguous, then rows, and then slices.  Based on this, you would
+think that everytime you passed an array between the Python and
+Fortran-levels you would need to transpose the array.
+
+Thankfully, we don't have to do this because \mods{f2py} handles
+array dimension order transparently so we can refer to each element
+the same way whether we're in Python or Fortran.  Thus, the array
+\vars{Qc} in Fortran is dimensioned (longitude, latitude), (64,42)
+by default, and the Python \class{Qtcm} instance attribute \vars{Qc}
+has a \vars{value} attribute also dimensioned (longitude, latitude),
+(64,42) by default.  And at both the Fortran and Python-levels, the
+first longtude, second latitude element is referred to as \vars{Qc(1,2)}.
+
+In contrast, however, netCDF output saved by the compiled QTCM1 model
+and read into Python (using the \mods{Scientific} package) is
+\emph{not} in Fortran array order.  Arrays read from netCDF output
+into Python are in Python array order, and are dimensioned
+(latitude, longitude) or (time, latitude, longitude).  The \class{Qtcm}
+routines that manipulate netCDF data (e.g., \mods{plotm}), however,
+automatically adjust for this, so you only need to be aware of this
+when reading in output for your own analysis
+(see Section~\ref{sec:model.output}).
+
+
+
+
+%---------------------------------------------------------------------
+\section{Model Output}			\label{sec:model.output}
+
+Section~\ref{sec:output.intro} gives an overview of how to
+use \mods{qtcm} model output to netCDF files.
+
+All netCDF array output is dimensioned (time, latitude, longitude)
+when read into Python using the \mods{Scientific} package.  This
+differs from the way \class{Qtcm} saves field variables, which
+follows Fortran convention (longitude, latitude).  Thus, the shapes
+in Section~\ref{sec:initial.variables}, Appendix~\ref{app:defaults.values},
+etc., are not the shapes of arrays read from the netCDF output.
+See Section~\ref{sec:field.var.shape} for a discussion of why
+there is this discrepancy.
+
+Because netCDF files allow you to specify an ``unlimited'' dimension,
+it is possible to close a netCDF file, reopen it, and add more
+slices of data to the file.  Thus, continuous \class{Qtcm} run
+sessions (i.e., those that use the \vars{cont} keyword input parameter
+in the \mods{run\_session} method) will automatically append output
+to the netCDF output files.
+
+Field variables with ghost latitudes, such as \vars{u1}, on the
+Python and Fortran ends are always the full variables (i.e., including
+the ghost latitudes).  The ghost latitudes are not written to the
+netCDF output files, however.
+See the \latexhtml{%
+\htmladdnormallinkfoot{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/$\sim$csi/qtcm\_man/v2.3/qtcm\_manv2.3.pdf}}%
+{\htmladdnormallink{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf}}
+	\cite{Neelin/etal:2002}
+for details about ghost latitude structure.
+
+\class{Qtcm} instances have a few built-in tools to visualization
+model output.  These are briefly described in Section~\ref{sec:viz.intro}.
+Note that the \mods{plotm} method is linked to a specific \class{Qtcm}
+instance.  Do not use \mods{plotm} outside of the instance it is
+linked to.  It must also be used only after a successful run session
+(i.e., not in the middle of a run session).
+
+
+
+
+%---------------------------------------------------------------------
+\section{Miscellaneous}
+
+A few miscellaneous items/issues about the model:
+\begin{itemize}
+\item The land model runs at same timestep as the atmosphere.
+
+\item If the land model runs less often than 
+	\mods{sflux} in \mods{physics1}, 
+	the calculation of evaporation over the land 
+	needs to be fixed in sflux.
+
+\item The units of some field variables are not what you would expect.
+	For instance, \vars{Qc} is in energy units, i.e., K, and not
+	mm/day.
+	See the
+	\latexhtml{%
+\htmladdnormallinkfoot{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/$\sim$csi/qtcm\_man/v2.3/qtcm\_manv2.3.pdf}}%
+{\htmladdnormallink{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf}}
+	\cite{Neelin/etal:2002}
+	for details.
+\end{itemize}
+
+
+
+
+%---------------------------------------------------------------------
+\section{Cookbook of Ways the Model Can Be Used}  \label{sec:cookbook}
+
+This cookbook of a few ways to use the model is arranged by science
+tasks, i.e., certain types of runs we want to do.  For some of the
+examples below, I assume that the dictionary
+\vars{inputs} is initially defined as given in
+Figure~\ref{fig:defn.of.inputs}.  All examples assume that
+\cmd{from qtcm import Qtcm} has already been executed.
+
+
+%--- Two versions, one for PDF and the other for HTML:
+\begin{latexonly}
+\begin{figure}[tp]
+\begin{codeblock}
+\codeblockfont{%
+inputs = \{\} \\
+inputs['runname'] = 'test' \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['init\_with\_instance\_state'] = True \\
+inputs['compiled\_form'] = 'parts'}
+\end{codeblock}
+
+\caption{The initial definition of the \vars{inputs} dictionary for 
+	examples given in Section~\ref{sec:cookbook}.  These settings
+	imply that a run session will start on November 1, Year 1,
+	last for 30 days, and will be an aquaplanet run.}
+\label{fig:defn.of.inputs}
+\end{figure}
+\end{latexonly}
+
+\begin{htmlonly}
+\label{fig:defn.of.inputs}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+inputs = \{\} \\
+inputs['runname'] = 'test' \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['init\_with\_instance\_state'] = True \\
+inputs['compiled\_form'] = 'parts'}
+	}
+
+\htmlfigcaption{Figure~\ref{fig:defn.of.inputs}:
+	The initial definition of the \vars{inputs} dictionary for 
+	examples given in Section~\ref{sec:cookbook}.  These settings
+	imply that a run session will start on November 1, Year 1,
+	last for 30 days, and will be an aquaplanet run.}
+\end{center}
+\end{htmlonly}
+
+
+
+\begin{description}
+\item[Plain model run:]
+	Here I just want to make a single model run.
+	Tasks:  Instantiate a fresh model and execute a run session.
+	The code to run the model is just:
+	\begin{codeblock}
+	\codeblockfont{%
+inputs['init\_with\_instance\_state'] = False \\
+model = Qtcm(**inputs) \\
+model.run\_session()}
+	\end{codeblock}
+	where \vars{inputs} is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.
+
+
+\item[Explore parameter space with a set of models:]
+	Here I want to create an entire suite of separate models,
+	in order to determine the sensitivity of the model to changing
+	a parameter.
+	To do this, I
+	instantiate multiple fresh models, 
+	and execute a run session for each instance, all within
+	a \vars{for} loop:
+
+
+%--- Two versions, because LaTeX2HTML does not correctly typeset
+%    the hspace command:
+\begin{latexonly}
+	\begin{codeblock}
+	\codeblockfont{%
+import os \\
+inputs['init\_with\_instance\_state'] = False \\
+for i in xrange(0,1002,10): \\
+\hspace*{5ex}iname = 'ziml-' + str(i) + 'm' \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = Qtcm(**inputs) \\
+\hspace*{5ex}model.ziml.value = float(i)  \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}
+	\end{codeblock}
+\end{latexonly}
+
+\begin{htmlonly}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+import os \\
+inputs['init\_with\_instance\_state'] = False \\
+for i in xrange(0,1002,10): \\
+\hspace*{5ex}iname = 'ziml-' + str(i) + 'm' \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = Qtcm(**inputs) \\
+\hspace*{5ex}model.ziml.value = float(i)  \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}
+	}
+\end{center}
+\end{htmlonly}
+
+
+	The loop explores mixed-layer depth \vars{ziml} from 0~m to
+        1000~m, in 10~m intervals.  I create the \vars{outdir}
+	directory before every model call, since the compiled QTCM1 model
+	requires the output directory exist, specifying the run name
+	and output directory as the string \vars{iname}.
+	The output directories are assumed to all be in the \fn{proc}
+	sub-directory of the current working directory.
+	\vars{inputs} is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.
+
+
+\item[Conditionally explore parameter space:]
+	Here I want to 
+	conditionally explore the parameter space, on the basis of
+	some mathematical criteria.
+	To do this, I
+	instantiate a model, evaluate results using
+	that criteria, and run another fresh model depending on
+	the results (passing the previous model state via a snapshot),
+	all within a \vars{while} loop.
+	Note that this type of investigation is very difficult to 
+	automate if all you can use are shell scripts and
+	Fortran.
+	See Figure~\ref{fig:conditional.test.eg} for a detailed
+	example.
+
+
+\item[With interactive adjustments at run time:]
+	The example in Figure~\ref{sec:continuation.intro}
+	illustrates this type of run.  In this example,
+	I instantiate a fresh model, execute a run session, analyze the
+	output, change variables in the model instance, and then
+	execute a continuation run session.
+
+
+\item[Test alternative parameterizations:]
+	I've already described how we can use run lists to arbitrarily
+	change model execution order and content at run time.
+	We can take advantage of Python's inheritance
+	abilities, along with run lists, to simplify this.
+	Figure~\ref{fig:alt.param.inherit.eg} provides an example of
+	this use.
+
+	Of course, you can use pre-processor directives and shell
+	scripts to accomplish the same functionality seen in
+	Figure~\ref{fig:alt.param.inherit.eg} using just Fortran.
+	The Python solution, however, shortcuts the compile/linking
+	step, and enables you to easily do run time swapping between
+	subroutine choices based upon run time calculated
+	tests (see Figure~\ref{fig:conditional.test.eg} for an
+	example of such tests).
+\end{description}
+
+
+
+
+% --- Two versions of this block, one for display in PDF and the other
+%     for display in HTML:
+\begin{latexonly}
+\begin{figure}[p]
+	\begin{codeblock}
+	\codeblockfont{%
+\small
+import os \\
+import numpy as N \\
+maxu1 = 0.0 \\
+while maxu1 < 10.0: \\
+\hspace*{5ex}iziml = 0.1 * maxu1 \\
+\hspace*{5ex}iname = 'ziml-' + str(iziml) + 'm' \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = Qtcm(**inputs) \\
+\hspace*{5ex}try: \\
+\hspace*{10ex}model.sync\_set\_py\_values\_to\_snapshot(snapshot=mysnapshot) \\
+\hspace*{10ex}model.init\_with\_instance\_state = True \\
+\hspace*{5ex}except: \\
+\hspace*{10ex}model.init\_with\_instance\_state = False \\
+\hspace*{5ex}model.ziml.value = iziml  \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}maxu1 = N.max(N.abs(model.u1.value)) \\
+\hspace*{5ex}mysnapshot = model.snapshot \\
+\hspace*{5ex}del model}
+	\end{codeblock}
+
+\caption{This code explores different values of
+	mixed-layer depth \vars{ziml} for 30~day runs,
+	as a function of maximum \vars{u1} magnitude,
+	until it finds a case where the maximum \vars{u1} is
+	greater than 10~m/s.  (The relationship between
+	\vars{ziml} and the maximum of the speed of
+	\vars{u1}, where 
+	\vars{ziml\thinspace=\thinspace0.1\thinspace*\thinspace{maxu1}}, 
+	is made up.)
+	With each iteration, the new run uses the snapshot from
+	a previous run to initialize (as well as the new value
+	of \vars{ziml}); the \vars{try} statement is used to
+	ensure the model works even if \vars{mysnapshot} is not
+	defined (which is the case the first time around).
+	The \vars{inputs} dictionary is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.}
+\label{fig:conditional.test.eg}
+\end{figure}
+\end{latexonly}
+
+\begin{htmlonly}
+\label{fig:conditional.test.eg}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+import os \\
+import numpy as N \\
+maxu1 = 0.0 \\
+while maxu1 < 10.0: \\
+\hspace*{5ex}iziml = 0.1 * maxu1 \\
+\hspace*{5ex}iname = 'ziml-' + str(iziml) + 'm' \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = Qtcm(**inputs) \\
+\hspace*{5ex}try: \\
+\hspace*{10ex}model.sync\_set\_py\_values\_to\_snapshot(snapshot=mysnapshot) \\
+\hspace*{10ex}model.init\_with\_instance\_state = True \\
+\hspace*{5ex}except: \\
+\hspace*{10ex}model.init\_with\_instance\_state = False \\
+\hspace*{5ex}model.ziml.value = iziml  \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}maxu1 = N.max(N.abs(model.u1.value)) \\
+\hspace*{5ex}mysnapshot = model.snapshot \\
+\hspace*{5ex}del model}
+	}
+
+\htmlfigcaption{Figure \ref{fig:conditional.test.eg}:
+	This code explores different values of
+	mixed-layer depth \vars{ziml} for 30~day runs,
+	as a function of maximum \vars{u1} magnitude,
+	until it finds a case where the maximum \vars{u1} is
+	greater than 10~m/s.  (The relationship between
+	\vars{ziml} and the maximum of the speed of
+	\vars{u1}, where 
+	\vars{ziml\thinspace=\thinspace0.1\thinspace*\thinspace{maxu1}}, 
+	is made up.)
+	With each iteration, the new run uses the snapshot from
+	a previous run to initialize (as well as the new value
+	of \vars{ziml}); the \vars{try} statement is used to
+	ensure the model works even if \vars{mysnapshot} is not
+	defined (which is the case the first time around).
+	The \vars{inputs} dictionary is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.}
+\end{center}
+\end{htmlonly}
+
+
+% --- Two versions of this block, one for display in PDF and the other
+%     for display in HTML:
+\begin{latexonly}
+\begin{figure}[p]
+\begin{center}
+	\begin{codeblock}
+	\codeblockfont{%
+\small
+import os \\
+\\
+class NewQtcm(Qtcm): \\
+\hspace*{5ex}def cloud0(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}def cloud1(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}def cloud2(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}[\ldots] \\
+\\
+inputs['init\_with\_instance\_state'] = False \\
+for i in xrange(10): \\
+\hspace*{5ex}iname = 'cloudroutine-' + str(i)  \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = NewQtcm(**inputs) \\
+\hspace*{5ex}model.runlists['atm\_physics1'][1] = 'cloud' + str(i) \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}
+	\end{codeblock}
+\end{center}
+
+\caption{Let's say we have 9 different cloud physics schemes we wish
+	to try out in 9 different runs.  The easiest way to do this
+	is to create a new class \class{NewQtcm} that
+	inherits everything from \class{Qtcm}, and to which we'll
+	add the additional cloud schemes (\vars{cloud0}, \vars{cloud1},
+	etc.).
+	In the \vars{for} loop, I change the cloud model
+	run list entry in the run list that governs
+	atmospheric physics at one instant to whatever the cloud
+	model is at this point in the loop.
+	The \vars{inputs} dictionary is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.
+	Of course, we could do the same thing by running the 9
+	models separately, but this set-up makes it easy to do
+	hypothesis testing with these 9 models.  For instance, we
+	can create a test by which we will choose which of the 9
+	models to use:  Within this framework, the selection of
+	those models can be altered by changing a string.}
+\label{fig:alt.param.inherit.eg}
+\end{figure}
+\end{latexonly}
+
+\begin{htmlonly}
+\label{fig:alt.param.inherit.eg}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+import os \\
+\\
+class NewQtcm(Qtcm): \\
+\hspace*{5ex}def cloud0(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}def cloud1(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}def cloud2(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}[\ldots] \\
+\\
+inputs['init\_with\_instance\_state'] = False \\
+for i in xrange(10): \\
+\hspace*{5ex}iname = 'cloudroutine-' + str(i)  \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = NewQtcm(**inputs) \\
+\hspace*{5ex}model.runlists['atm\_physics1'][1] = 'cloud' + str(i) \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}
+	}
+
+\htmlfigcaption{Figure \ref{fig:alt.param.inherit.eg}:
+	Let's say we have 9 different cloud physics schemes we wish
+	to try out in 9 different runs.  The easiest way to do this
+	is to create a new class \class{NewQtcm} that
+	inherits everything from \class{Qtcm}, and to which we'll
+	add the additional cloud schemes (\vars{cloud0}, \vars{cloud1},
+	etc.).
+	In the \vars{for} loop, I change the cloud model
+	run list entry in the run list that governs
+	atmospheric physics at one instant to whatever the cloud
+	model is at this point in the loop.
+	The \vars{inputs} dictionary is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.
+	Of course, we could do the same thing by running the 9
+	models separately, but this set-up makes it easy to do
+	hypothesis testing with these 9 models.  For instance, we
+	can create a test by which we will choose which of the 9
+	models to use:  Within this framework, the selection of
+	those models can be altered by changing a string.}
+\end{center}
+\end{htmlonly}
+
+
+
+
+% ===== end of file =====

@@ -1,0 +1,178 @@
+# QTCM standard makefile
+# Version for Mac OSX --- Rev. by Johnny Lin
+
+#
+# Macro definitions
+#
+# CPLMEAN ..... Compute mean flux values for coupling with an ocean.
+# LINEAR_T1C .. Use the linear moisture closure.
+# YEAR360 ..... A year has 360 instead of the 365 days (no leap years).
+# NETCDFOUT.... Write output in netCDF instead of Grads sequential binary
+# SPONGES ..... Activate sponge code (parameters have to be set in the code).
+# DELTA_CO2 .... Activate radiation code for changed CO2 level (default: 330 ppm).
+# NO_ABL ...... Old version 2.2 surface fluxes: Estimates without Atm. Boundary Layer
+# MXL_OCEAN..... Use mixed layer ocean 
+# BLEND_SST..... Use readsst in mask regions and mixed layer ocean outside
+# TOPO......... Turn on topography effects due to induced divergence.
+# CHIWIND...... Diagnose velocity potential using irrational winds
+# ENSEMB_INI... Create initial condition files for ensemble runs.
+# OBSCLD....... Use ISCCP observed cloud cover climatology
+
+# NOTE: always use YEAR360 when using MXL_OCEAN or BLEND_SST
+
+# Permanent macro definition cat be set here in DEFS1:  Always compile
+# version that gives netCDF output
+#
+DEFS1=-DNETCDFOUT
+
+#Additional macro definitions can be set on the command line using DEFS
+# e.g.: make DEFS="-DOBSCLD -DCO2"
+#
+DEFINES= $(DEFS1) $(DEFS)
+
+
+#FC=f90
+#FC=ifc  # Intel Linux (Intel's ifc)
+#FC=lf95  # Intel Linux (Lahey-Fujitsu)
+FC=g95  # Mac OSX (gfortran, which preprocesses like the Lahey-Fujitsu)
+#FC=xlf90 # IBM AIX
+
+
+# Make rules. 
+# These rules should be standard but Fortran90
+# is not  well supported by "make" on some machines.
+# We specify the valid extension so that e.g., Sun's make
+# does not confuse module files as Modula-2 sources
+#
+.SUFFIXES: 
+.SUFFIXES: .f90 .f .F90 .o .F
+#.f90.o:
+#	$(FC) $(FFLAGS) -c $<
+.f90:
+	$(FC) $(FFLAGS) -o $@ $< $(LDFLAGS)
+.f:
+	$(FC) $(FFLAGS) -o $@ $< $(LDFLAGS)
+
+# Rule for IBM AIX xlf compiler:
+# (xlf insists on .F extension) 
+#.f90.o:
+#	mv $< $*.F
+#	$(FC) $(FFLAGS) -c $*.F
+#	mv $*.F $*.f90
+#.F.o:
+#	$(FC) $(FFLAGS) -c $*.F
+#	mv $*.F $*.f90
+
+# Rule for Lahey/Fujitsu compilers:
+# (Preprocessor only with .F90 extension)
+.f90.o:
+	mv $< $*.F90
+	$(FC) $(FFLAGS) -c $*.F90
+
+.F90.o:
+	$(FC) $(FFLAGS) -c $*.F90
+#	mv $*.F90 $*.f90  # uncomment to switch back to .f90 extension
+
+
+#
+# Preprocessor switch
+#
+#FPPON= -eP      # Crays
+#FPPON= -ftpp    # SGI 
+#FPPON= -fpp     # Suns, Intel Linux
+#FPPON= -cpp     # Alpha
+#FPPON=          # The Mac OSX g95 compiler preprocesses .F90 by default
+
+#
+# Compiler flags
+#
+FFLAGSM = -O                              # Alpha/ AIX 
+#FFLAGSM = -O -Vaxlib -axM                 # Linux Intel, AMD-Athlon
+#FFLAGSM = -O -Vaxlib -axW                 # Linux Intel, Pentium-4
+#FFLAGSM = -K fast  -A m -f w              # Linux/Fujitsu F95
+#QTFFLAG = -O2,inlinefrom=utilities.f90    # Crays for qtcm.o
+#PARALLEL =  # -autopar -reduction          # Suns parallelization
+#FFLAGSM = -fast $(PARALLEL)               # Suns          
+
+FFLAGS = $(FPPON) $(DEFINES) $(FFLAGSM) $(NCINC)
+
+
+#
+# NetCDF library and include dirs, QTCM library
+#
+NCINC=-I/Users/jlin/extra/netcdf/include
+NCLIB=-L/Users/jlin/extra/netcdf/lib -lnetcdf
+QTCMFULLLIB=-L. -lqtcmfull
+
+
+#
+# Object files
+#
+QTCMFULLOBJS = qtcmpar.o qtcmmod.o calendar.o timemanager.o \
+           bndry.o landutil.o sland1.o utilities.o  \
+           clradmod.o clradutil.o cplmean.o \
+           bartrsavemod.o qtcmutil.o \
+           qtcminit.o varinit.o varptrinit.o parinit.o bndinit.o \
+           mconvct.o cloud.o \
+           physics1.o outrestart.o qtcm.o \
+           fatdpkg.o getbnd.o \
+           oceanutil.o ocean.o oceaninit.o \
+           sflux.o sfluxutil.o \
+           output.o varmean.o outpinit.o outpall.o \
+           abl.o
+
+QTCMPARTSOBJS = qtcmpar.o qtcmmod.o calendar.o \
+           bndry.o landutil.o utilities.o  \
+           clradmod.o clradutil.o cplmean.o bndinit.o \
+           sflux.o sfluxutil.o \
+           bartrsavemod.o qtcmutil.o \
+           mconvct.o cloud.o \
+           fatdpkg.o \
+           oceanutil.o ocean.o oceaninit.o \
+           output.o \
+           abl.o
+
+
+#
+# Code rules
+#
+_qtcm_full_365.so: libqtcmfull.a setbypy.o driver.o
+	f2py --fcompiler=$(FC) -c -m _qtcm_full_365 \
+driver.F90 setbypy.F90 libqtcmfull.a \
+/Users/jlin/extra/netcdf/lib/libnetcdf.a
+	mv _qtcm_full_365.so ../lib
+
+_qtcm_parts_365.so: libqtcmparts.a setbypy.o qtcminit.o \
+outpinit.o varinit.o varptrinit.o parinit.o \
+physics1.o \
+getbnd.o sland1.o varmean.o wrapcall.o \
+timemanager.o qtcm.o outpall.o outrestart.o
+	f2py --fcompiler=$(FC) -c -m _qtcm_parts_365 \
+outrestart.F90 outpall.F90 \
+qtcm.F90 \
+varinit.F90 varptrinit.F90 parinit.F90 \
+physics1.F90 \
+timemanager.F90 qtcminit.F90 \
+getbnd.F90 sland1.F90 varmean.F90 wrapcall.F90 \
+outpinit.F90 setbypy.F90 libqtcmparts.a \
+/Users/jlin/extra/netcdf/lib/libnetcdf.a
+	mv _qtcm_parts_365.so ../lib
+
+libqtcmfull.a: $(QTCMFULLOBJS)
+	touch libqtcmfull.a
+	\rm libqtcmfull.a
+	ar rv libqtcmfull.a $(QTCMFULLOBJS)
+
+libqtcmparts.a: $(QTCMPARTSOBJS)
+	touch libqtcmparts.a
+	\rm libqtcmparts.a
+	ar rv libqtcmparts.a $(QTCMPARTSOBJS)
+
+
+#
+# Uncomment the next 2 lines to create a new parameter file
+#qtcmpar.f90: par
+#	./par
+
+clean:
+	rm -f work.??? work.?? *.o qtcm *.d core *.mod aveflux par 

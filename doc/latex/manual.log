@@ -1,0 +1,1165 @@
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2008.7.29)  12 SEP 2008 14:23
+entering extended mode
+**manual.tex
+(./manual.tex
+LaTeX2e <2003/12/01>
+Babel <v3.8d> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
+stonian, finnish, greek, icelandic, irish, italian, latin, magyar, norsk, polis
+h, portuges, romanian, russian, serbian, slovak, slovene, spanish, swedish, tur
+kish, ukrainian, nohyphenation, loaded.
+(/sw/share/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2004/02/16 v1.4f Standard LaTeX document class
+(/sw/share/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2004/02/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/sw/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+
+(/sw/share/texmf-dist/tex/latex/graphics/color.cfg
+File: color.cfg 2005/02/03 v1.3 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 125.
+
+(/sw/share/texmf-dist/tex/latex/graphics/pdftex.def
+File: pdftex.def 2002/06/19 v0.03k graphics/color for pdftex
+\Gread@gobject=\count88
+))
+(/sw/share/texmf-local/tex/latex/html/html.sty
+(/sw/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2003/11/30 v6.74m Hypertext links for LaTeX
+
+(/sw/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\@linkdim=\dimen103
+\Hy@linkcounter=\count89
+\Hy@pagecounter=\count90
+
+(/sw/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2003/11/30 v6.74m Hyperref: PDFDocEncoding definition (HO)
+)
+(/sw/share/texmf-dist/tex/latex/hyperref/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive and teTeX
+)
+Package hyperref Info: Hyper figures OFF on input line 1880.
+Package hyperref Info: Link nesting OFF on input line 1885.
+Package hyperref Info: Hyper index ON on input line 1888.
+Package hyperref Info: Plain pages ON on input line 1893.
+Package hyperref Info: Backreferencing OFF on input line 1900.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 2004.
+(/sw/share/texmf-local/tex/latex/html/url.sty
+Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
+ names
+)
+LaTeX Info: Redefining \url on input line 2143.
+\Fld@menulength=\count91
+\Field@Width=\dimen104
+\Fld@charsize=\dimen105
+\Choice@toks=\toks15
+\Field@toks=\toks16
+Package hyperref Info: Hyper figures OFF on input line 2618.
+Package hyperref Info: Link nesting OFF on input line 2623.
+Package hyperref Info: Hyper index ON on input line 2626.
+Package hyperref Info: backreferencing OFF on input line 2633.
+Package hyperref Info: Link coloring OFF on input line 2638.
+\c@Item=\count92
+\c@Hfootnote=\count93
+)
+*hyperref using default driver hpdftex*
+(/sw/share/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2003/11/30 v6.74m Hyperref driver for pdfTeX
+
+(/sw/share/texmf-dist/tex/latex/psnfss/pifont.sty
+Package: pifont 2004/09/15 PSNFSS-v9.2 Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
+
+(/sw/share/texmf-dist/tex/latex/psnfss/upzd.fd
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 64.
+
+(/sw/share/texmf-dist/tex/latex/psnfss/upsy.fd
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+\Fld@listcount=\count94
+\@outlinefile=\write3
+)
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count95
+\c@lchapter=\count96
+\c@lsection=\count97
+\c@lsubsection=\count98
+\c@lsubsubsection=\count99
+\c@lparagraph=\count100
+\c@lsubparagraph=\count101
+\c@lsubsubparagraph=\count102
+\ptrfile=\write4
+)
+(/sw/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/sw/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+
+(/sw/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/sw/share/texmf-dist/tex/latex/graphics/graphics.cfg
+File: graphics.cfg 2005/02/03 v1.3 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 80.
+)
+\Gin@req@height=\dimen106
+\Gin@req@width=\dimen107
+)
+(/sw/share/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2004/02/22 v1.99f Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+
+(/sw/share/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 311.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 312.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 313.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 314.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 315.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 316.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 317.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 318.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 319.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 320.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 321.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 322.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 323.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
+)
+(/sw/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2002/07/08 v3.2 Page Geometry
+\Gm@cnth=\count103
+\Gm@cntv=\count104
+\c@Gm@tempcnt=\count105
+\Gm@bindingoffset=\dimen108
+\Gm@wd@mp=\dimen109
+\Gm@odd@mp=\dimen110
+\Gm@even@mp=\dimen111
+\Gm@dimlist=\toks17
+
+(/sw/share/texmf-dist/tex/latex/geometry/geometry.cfg)) (./bibnames.sty)
+(/sw/share/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip43
+\LTright=\skip44
+\LTpre=\skip45
+\LTpost=\skip46
+\LTchunksize=\count106
+\LTcapwidth=\dimen112
+\LT@head=\box26
+\LT@firsthead=\box27
+\LT@foot=\box28
+\LT@lastfoot=\box29
+\LT@cols=\count107
+\LT@rows=\count108
+\c@LT@tables=\count109
+\c@LT@chunks=\count110
+\LT@p@ftn=\toks18
+)
+(/sw/share/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen113
+)
+Package color Info: Redefining color green on input line 65.
+\tabletitlewidth=\skip47
+\tablebodywidth=\skip48
+\infotitle=\skip49
+\infotext=\skip50
+\remainder=\skip51
+\enumlabel=\skip52
+ (./manual.aux)
+\openout1 = `manual.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 205.
+LaTeX Font Info:    ... okay on input line 205.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 205.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 205.
+
+
+(/sw/share/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 205.
+
+(/sw/share/texmf-dist/tex/context/base/supp-pdf.tex
+(/sw/share/texmf-dist/tex/context/base/supp-mis.tex
+loading : Context Support Macros / Miscellaneous (2004.10.26)
+\protectiondepth=\count111
+\scratchcounter=\count112
+\scratchtoks=\toks19
+\scratchdimen=\dimen114
+\scratchskip=\skip53
+\scratchmuskip=\muskip10
+\scratchbox=\box30
+\scratchread=\read1
+\scratchwrite=\write5
+\zeropoint=\dimen115
+\onepoint=\dimen116
+\onebasepoint=\dimen117
+\minusone=\count113
+\thousandpoint=\dimen118
+\onerealpoint=\dimen119
+\emptytoks=\toks20
+\nextbox=\box31
+\nextdepth=\dimen120
+\everyline=\toks21
+\!!counta=\count114
+\!!countb=\count115
+\recursecounter=\count116
+)
+loading : Context Support Macros / PDF (2004.03.26)
+\nofMPsegments=\count117
+\nofMParguments=\count118
+\MPscratchCnt=\count119
+\MPscratchDim=\dimen121
+\MPnumerator=\count120
+\everyMPtoPDFconversion=\toks22
+)
+Package hyperref Info: Link coloring OFF on input line 205.
+ (/sw/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2003/12/03 v2.21 Cross-referencing by name of section
+\c@section@level=\count121
+)
+LaTeX Info: Redefining \ref on input line 205.
+LaTeX Info: Redefining \pageref on input line 205.
+ (./manual.out)
+(./manual.out)
+\openout3 = `manual.out'.
+
+-------------------- Geometry parameters
+paper: letterpaper
+landscape: --
+twocolumn: --
+twoside: true
+asymmetric: --
+h-parts: 90.3375pt, 433.62001pt, 90.3375pt
+v-parts: 90.3375pt, 614.295pt, 90.3375pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: --
+includefoot: --
+includemp: --
+driver: pdftex
+-------------------- Page layout dimensions and switches
+\paperwidth  614.295pt
+\paperheight 794.96999pt
+\textwidth  433.62001pt
+\textheight 614.295pt
+\oddsidemargin  18.0675pt
+\evensidemargin 18.0675pt
+\topmargin  -13.80629pt
+\headheight 12.0pt
+\headsep    19.8738pt
+\footskip   30.0pt
+\marginparwidth 98.0pt
+\marginparsep   7.0pt
+\columnsep  10.0pt
+\skip\footins  10.8pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+\@twosidetrue \@mparswitchtrue 
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 217.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 217.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 217.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 217.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 217.
+ [1
+
+
+{/sw/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+[2
+
+] (./manual.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 2.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 36.
+ [3] [4])
+\tf@toc=\write6
+\openout6 = `manual.toc'.
+
+ [5] [6
+
+]
+Chapter 1.
+(./intro.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 40.
+
+Overfull \hbox (2.38797pt too wide) in paragraph at lines 37--49
+\OT1/cmr/m/n/12 The single-baroclinic mode Neelin-Zeng Quasi-Equilibrium Trop-i
+-cal Cir-cu-la-tion Model
+ []
+
+[7] [8]
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <12> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 153.
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--158
+[][]\OT1/cmtt/m/n/12 module, method, and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+[][]\OT1/cmtt/m/n/12 variable and
+ []
+
+[9] (./pkg_version_date.tex) (./pkg_author.tex) [10] [11]
+<figs/a1b1.pdf, id=643, 614.295pt x 794.97pt>
+File: figs/a1b1.pdf Graphic file (type pdf)
+ <use figs/a1b1.pdf>
+<figs/V1.pdf, id=645, 614.295pt x 794.97pt>
+File: figs/V1.pdf Graphic file (type pdf)
+ <use figs/V1.pdf> [12] [13 <./figs/a1b1.pdf> <./figs/V1.pdf>]) [14]
+Chapter 2.
+(./install_sum.tex (./pkg_distro_dirname.tex) (./pkg_distro_dirname.tex)
+[15
+
+] (./pkg_distro_dirname.tex)
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 74--79
+[][] 
+ []
+
+(./pkg_distro_dirname.tex) (./pkg_distro_dirname.tex)
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 105--108
+[][] 
+ []
+
+) (./install_fort.tex [16]) (./install_pkgs.tex
+Overfull \hbox (6.03316pt too wide) in paragraph at lines 19--22
+[][]\OT1/cmtt/m/n/12 matplotlib[][][][]\OT1/cmr/m/n/12 : Sci-en-tific plot-ting
+ pack-age, us-ing Matlab-like syn-tax. The []\OT1/cmtt/m/n/12 basemap[]
+ []
+
+[17]) (./compile_so.tex [18] (./pkg_distro_dirname.tex)
+Overfull \hbox (73.42897pt too wide) in paragraph at lines 70--74
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 86--90
+[][] 
+ []
+
+) (./test_qtcm.tex [19] (./pkg_distro_dirname.tex) (./pkg_distro_dirname.tex)
+Overfull \hbox (73.42897pt too wide) in paragraph at lines 51--55
+[][] 
+ []
+
+(./pkg_distro_dirname.tex) [20]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 81--84
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 86--89
+[][] 
+ []
+
+(./pkg_distro_dirname.tex)
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
+
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 102--109
+[][] 
+ []
+
+) (./perform.tex [21]) (./qtcm_in_macosx.tex [22]
+
+LaTeX Warning: Reference `sec:osx.summary' on page 23 undefined on input line 1
+01.
+
+[23]
+
+LaTeX Warning: Reference `sec:osx.summary' on page 24 undefined on input line 1
+26.
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 148--153
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 180--184
+[][] 
+ []
+
+[24]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 194--197
+[][] 
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 222
+.
+(/sw/share/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 219--223
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 276--281
+[][] 
+ []
+
+[25]
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 290--292
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 298--302
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 314--317
+[][] 
+ []
+
+
+Overfull \hbox (17.31256pt too wide) in paragraph at lines 319--326
+\OT1/cmr/m/n/12 8.57 that was al-ready in-stalled in \OT1/cmss/m/sl/12 /usr/loc
+al \OT1/cmr/m/n/12 (via my Mac-TeX in-stall). L[]T[]X2HTML
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 331--342
+[][] 
+ []
+
+[26]) (./qtcm_in_ubuntu.tex
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 52--56
+[][] 
+ []
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <10> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 74.
+
+
+Overfull \hbox (30.38475pt too wide) in paragraph at lines 74--74
+[][] 
+ []
+
+[27]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 121--132
+[][] 
+ []
+
+[28]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 174--178
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 188--191
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 213--217
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 248--251
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 254--257
+[][] 
+ []
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+[][]\OT1/cmtt/m/n/12 ld: /usr/local/lib/libnetcdf.a(fort-attio.o): relocation
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+\OT1/cmtt/m/n/12 R[]X86[]64[]32 against `a local symbol' can not be used
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+\OT1/cmtt/m/n/12 when making a shared object; recompile with -fPIC
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 264--267
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 289--299
+[][] 
+ []
+
+[30]
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 337--342
+[][] 
+ []
+
+) [31] [32
+
+]
+Chapter 3.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 245.
+(./started.tex
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 35.
+
+LaTeX Font Info:    No file OMScmtt.fd. on input line 35.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 35.
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 22--36
+[][] 
+ []
+
+
+Overfull \hbox (16.51402pt too wide) in paragraph at lines 80--86
+\OT1/cmr/m/n/12 mean and in-stan-ta-neous out-put files to the di-rec-tory give
+n in []\OT1/cmtt/m/n/12 model.outdir.value[]\OT1/cmr/m/n/12 ,
+ []
+
+[33]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 147--169
+[][] 
+ []
+
+[34] [35]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 246--254
+[][] 
+ []
+
+[36]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 290--293
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 326--329
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 366--367
+
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 353--367
+[][] 
+ []
+
+[37] [38]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 464--468
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 475--480
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 499--504
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 518--526
+[][] 
+ []
+
+[39] (./qtcminit_runlist.tex)
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 551--554
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 581--584
+[][] 
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
+
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 648--666
+[][] 
+ []
+
+[41] [42]) [43] [44
+
+]
+Chapter 4.
+(./using.tex
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 32--37
+[][] 
+ []
+
+[45]
+Overfull \hbox (8.39009pt too wide) in paragraph at lines 112--125
+\OT1/cmr/m/n/12 stance method of the same name, []\OT1/cmtt/m/n/12 varinit[]\OT
+1/cmr/m/n/12 , for the case when []\OT1/cmtt/m/n/12 compiled[]form='parts'[]\OT
+1/cmr/m/n/12 .
+ []
+
+[46]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 130.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 178.
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 178.
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 178.
+
+[47]
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 266.
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 266.
+
+[48] [49] [50] [51]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 508--511
+[][] 
+ []
+
+[52]
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 598.
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 598.
+
+
+Overfull \hbox (3.1614pt too wide) in paragraph at lines 623--623
+[]\OT1/cmr/bx/n/14.4 Restart/Continuation for []\OT1/cmtt/m/n/14.4 compiled[]fo
+rm='parts'[] \OT1/cmr/bx/n/14.4 Model
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 623.
+
+
+Package hyperref Warning: Token not allowed in a PDFDocEncoded string:
+(hyperref)                \kern 1.95836pt
+(hyperref)                removed on input line 623.
+
+[53] [54] [55] (./snapshot_vars.tex) [56]
+Underfull \hbox (badness 10000) in paragraph at lines 830--831
+| \OMS/cmtt/m/n/12 f\OT1/cmtt/m/n/12 'set[]qtcm1[]item': ['outdir', '/home/jlin
+']\OMS/cmtt/m/n/12 g \OT1/cmtt/m/n/12 ]
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 823--831
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 869--872
+[][] 
+ []
+
+[57]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 888--891
+[][] 
+ []
+
+(./runlists.tex
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]\OT1/cmr/m/n/12 atm[]physics1 (cal-cu-late at-mo-
+ []
+
+
+Underfull \hbox (badness 4752) in paragraph at lines 27--27
+[]\OT1/cmr/m/n/12 atm[]step (cal-cu-late the en-tire
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 27--27
+\OT1/cmr/m/n/12 at-mo-sphere at one at-mo-sphere
+ []
+
+
+Underfull \hbox (badness 1715) in paragraph at lines 36--36
+[]\OT1/cmr/m/n/12 init[]model (ini-tial-ize the en-tire
+ []
+
+
+Underfull \hbox (badness 6493) in paragraph at lines 40--40
+[]\OT1/cmr/m/n/12 qtcminit (ini-tial-ize the at-mo-
+ []
+
+
+Underfull \hbox (badness 7273) in paragraph at lines 40--40
+\OT1/cmr/m/n/12 sphere por-tion of the en-tire
+ []
+
+)
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 961--963
+[][] 
+ []
+
+[58] [59] (./init_scalars.tex
+Underfull \hbox (badness 7595) in paragraph at lines 27--28
+[]|\OT1/cmr/m/n/12 Barotropic timestep ev-ery mt0
+ []
+
+[60]) (./init_arrays.tex
+Underfull \hbox (badness 1158) in paragraph at lines 25--26
+[]|\OT1/cmr/m/n/12 Surface type; ocean or
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+[]|\OT1/cmr/m/n/12 Barotropic merid-ional
+ []
+
+[61] [62]) [63] [64]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 1185--1197
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 1239--1244
+[][] 
+ []
+
+[65]
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 1262--1276
+[][] 
+ []
+
+[66]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 1360--1384
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1484--1485
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1484--1485
+
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 1460--1485
+[][] 
+ []
+
+) [67] [68] [69] [70
+
+]
+Chapter 5.
+(./trouble.tex
+Overfull \hbox (1.01952pt too wide) in paragraph at lines 26--33
+[]\OT1/cmr/m/n/12 Fortran mod-ule []\OT1/cmtt/m/n/12 SetByPy[]\OT1/cmr/m/n/12 '
+s sub-
+ []
+
+[71]
+Overfull \hbox (3.12924pt too wide) in paragraph at lines 69--75
+[]\OT1/cmr/m/n/12 You change an
+ []
+
+) [72]
+Chapter 6.
+(./devnotes.tex
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 45--48
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 50--53
+[][] 
+ []
+
+[73
+
+]
+Overfull \hbox (3.7047pt too wide) in paragraph at lines 85--88
+[]\OT1/cmr/m/n/12 The or-der of sub-rou-tine []\OT1/cmtt/m/n/12 qtcminit[] \OT1
+/cmr/m/n/12 is changed. The orig-i-nal pure-Fortran QTCM1
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 89--96
+[][] 
+ []
+
+
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 100--107
+[][] 
+ []
+
+[74]
+Overfull \hbox (0.43799pt too wide) in paragraph at lines 153--161
+\OT1/cmr/m/n/12 This mod-ule de-fines func-tions and sub-rou-tines used to read
+ vari-ables from the Fortran-
+ []
+
+
+Overfull \hbox (4.35548pt too wide) in paragraph at lines 153--161
+\OT1/cmr/m/n/12 val-ues. These rou-tines are used by []\OT1/cmtt/m/n/12 Qtcm[] 
+\OT1/cmr/m/n/12 meth-ods []\OT1/cmtt/m/n/12 get[]qtcm1[]item[] \OT1/cmr/m/n/12 
+and []\OT1/cmtt/m/n/12 set[]qtcm1[]item[]
+ []
+
+
+Overfull \hbox (30.38475pt too wide) in paragraph at lines 176--176
+[][] 
+ []
+
+[75]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 214--219
+[][] 
+ []
+
+[76]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 320--325
+[][] 
+ []
+
+[77]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 355--362
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 411--424
+[][] 
+ []
+
+
+Underfull \vbox (badness 1622) has occurred while \output is active []
+
+ [78]
+[79] [80] [81]
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 663--667
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 671--676
+[][] 
+ []
+
+
+Overfull \hbox (33.00955pt too wide) in paragraph at lines 694--700
+[][] 
+ []
+
+[82] [83]
+Overfull \hbox (9.90431pt too wide) in paragraph at lines 775--783
+[][]\OT1/cmtt/m/n/12 typecodes[]\OT1/cmr/m/n/12 : This dic-tio-nary is the same
+ as the NumPy (or Nu-meric and []\OT1/cmtt/m/n/12 numarray[]\OT1/cmr/m/n/12 )
+ []
+
+[84]
+Overfull \hbox (55.33423pt too wide) in paragraph at lines 876--879
+[][] 
+ []
+
+) [85] [86
+
+]
+Chapter 7.
+(./future.tex
+Overfull \hbox (4.50334pt too wide) in paragraph at lines 55--66
+[]\OT1/cmr/m/n/12 Throughout the []\OT1/cmtt/m/n/12 qtcm[] \OT1/cmr/m/n/12 pack
+-age I use the con-di-tion []\OT1/cmtt/m/n/12 N.rank([]\OT1/cmr/m/it/12 arg[]\O
+T1/cmtt/m/n/12 )=0[] \OT1/cmr/m/n/12 to test whether
+ []
+
+[87]
+Overfull \hbox (3.09601pt too wide) in paragraph at lines 107--114
+[]\OT1/cmr/m/n/12 To see whether sav-ing more vari-ables would do the trick, I 
+al-tered []\OT1/cmtt/m/n/12 make[]snapshot[]
+ []
+
+
+Overfull \hbox (3.07056pt too wide) in paragraph at lines 119--123
+[]\OT1/cmr/m/n/12 Add a test in the unit test scripts to con-firm that the []\O
+T1/cmtt/m/n/12 init[]with[]instance[]state[]
+ []
+
+[88])
+Underfull \vbox (badness 2096) has occurred while \output is active []
+
+ [89]
+(./manual.bbl (./bibnames.sty) [90
+
+]) [91] [92
+
+]
+Appendix A.
+(./defaults.tex (./defaults_scalars.tex
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+[]|\OT1/cmr/m/n/12 Boundary data other
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--22
+[]|\OT1/cmr/m/n/12 Atmosphere-ocean cou-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+[]|\OT1/cmr/m/n/12 =1: restart us-ing
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 28--29
+[]|\OT1/cmr/m/n/12 Number of at-mo-sphere
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--33
+[]|\OT1/cmr/m/n/12 Monthly in-stan-ta-neous
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+[]|\OT1/cmr/m/n/12 Temperature dif-fu-sion
+ []
+
+
+Underfull \hbox (badness 4391) in paragraph at lines 41--42
+[]|\OT1/cmr/m/n/12 Humidity dif-fu-sion pa-
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 42--43
+[]|\OT1/cmr/m/n/12 Viscocity pa-ram-e-ter for
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 43--44
+[]|\OT1/cmr/m/n/12 Viscocity pa-ram-e-ter for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+[]|\OT1/cmr/m/n/12 Temperature dif-fu-sion
+ []
+
+
+Underfull \hbox (badness 4391) in paragraph at lines 45--46
+[]|\OT1/cmr/m/n/12 Humidity dif-fu-sion pa-
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 46--47
+[]|\OT1/cmr/m/n/12 Viscocity pa-ram-e-ter for
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 47--48
+[]|\OT1/cmr/m/n/12 Viscocity pa-ram-e-ter for
+ []
+
+[93] [94]) (./defaults_arrays.tex
+Underfull \hbox (badness 1596) in paragraph at lines 45--46
+[]|\OT1/cmr/m/n/12 Current time step baro-clinic
+ []
+
+[95])) [96] (./manual.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4540 strings out of 94500
+ 61545 string characters out of 1176114
+ 124993 words of memory out of 1500000
+ 7162 multiletter control sequences out of 10000+50000
+ 18893 words of font info for 67 fonts, out of 1200000 for 2000
+ 580 hyphenation exceptions out of 8191
+ 34i,11n,38p,1251b,386s stack positions out of 5000i,500n,6000p,200000b,5000s
+PDF statistics:
+ 1504 PDF objects out of 65536
+ 395 named destinations out of 20000
+ 823 words of extra memory for PDF output out of 65536
+
+! pdfTeX warning (dest): name{Hfootnote.40} has been referenced but does not ex
+ist, replaced by a fixed one
+
+</sw/share/texmf-dist/fonts/type1/bluesky/cm/cmbxti10.pfb></sw/share/texmf-dist
+/fonts/type1/bluesky/cm/cmsltt10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/
+cm/cmtt8.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmssi10.pfb> </sw/var
+/lib/texmf/fonts/pk/ljfour/jknappen/tc/tctt1200.600pk></sw/share/texmf-dist/fon
+ts/type1/bluesky/cm/cmtt10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmt
+i8.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmex10.pfb></sw/share/texmf
+-dist/fonts/type1/bluesky/cm/cmmi8.pfb></sw/share/texmf-dist/fonts/type1/bluesk
+y/cm/cmsy8.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmmi12.pfb></sw/sha
+re/texmf-dist/fonts/type1/bluesky/cm/cmssi12.pfb></sw/share/texmf-dist/fonts/ty
+pe1/bluesky/cm/cmti12.pfb> </sw/var/lib/texmf/fonts/pk/ljfour/jknappen/tc/tcrm1
+200.600pk></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></sw/share/te
+xmf-dist/fonts/type1/bluesky/cm/cmr7.pfb></sw/share/texmf-dist/fonts/type1/blue
+sky/cm/cmsl12.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></sw/
+share/texmf-dist/fonts/type1/bluesky/cm/cmr8.pfb></sw/share/texmf-dist/fonts/ty
+pe1/bluesky/cm/cmr10.pfb></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmr12.pfb
+></sw/share/texmf-dist/fonts/type1/bluesky/cm/cmr17.pfb></sw/share/texmf-dist/f
+onts/type1/bluesky/cm/cmtt12.pfb>
+Output written on manual.pdf (96 pages, 689361 bytes).

@@ -1,0 +1,799 @@
+% ==========================================================================
+% Getting Started With qtcm
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+%---------------------------------------------------------------------
+\section{Your First Model Run}
+
+Figure~\ref{fig:my.first.run} shows an example of a script to make
+a 30 day seasonal, aquaplanet model run, with run name ``test'',
+starting from November 1, Year 1.
+
+
+%--- Two versions, one for PDF, one for HTML:
+\begin{latexonly}
+\begin{figure}[htp]
+\begin{center}
+\begin{codeblock}
+\codeblockfont{%
+from qtcm import Qtcm \\
+inputs = \{\} \\
+inputs['runname'] = 'test' \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}
+\end{codeblock}
+\end{center}
+\caption{An example of a simple \mods{qtcm} run.}
+\label{fig:my.first.run}
+\end{figure}
+\end{latexonly}
+
+\begin{htmlonly}
+\label{fig:my.first.run}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+from qtcm import Qtcm \\
+inputs = \{\} \\
+inputs['runname'] = 'test' \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}
+	}
+
+\htmlfigcaption{Figure~\ref{fig:my.first.run}:
+	An example of a simple \mods{qtcm} run.}
+\end{center}
+\end{htmlonly}
+
+
+
+The class describing the QTCM1 model is \class{Qtcm}.  An instance
+of \class{Qtcm}, in this example \vars{model}, is created the same
+way you create an instance of any class.  When instantiating an
+instance of \class{Qtcm}, keyword parameters can be used to override
+any default settings.  In the example above, the dictionary
+\vars{inputs} specifying all keyword parameters is passed in on the
+instantiation of \vars{model}.
+
+The keyword parameter settings in
+Figure~\ref{fig:my.first.run} have the following meanings:
+\begin{itemize}
+\item \vars{runname}:  This string (``test'') is used in the
+	output filename.  QTCM1 writes mean and instantaneous
+	output files to the directory given in \vars{model.outdir.value},
+	with filenames 
+	\fn{qm\_}\dumarg{runname}\fn{.nc} for mean output and
+	\fn{qi\_}\dumarg{runname}\fn{.nc} for instantaneous output.
+
+\item \vars{landon}: When set to ``0'', the land is turned off and
+	the run is an aquaplanet run.  When set to ``1'', the land
+	model is turned on.
+
+\item \vars{year0}:  The year the run starts on.
+
+\item \vars{month0}:  The month the run starts on (11 = November).
+
+\item \vars{day0}: The day of the month the run starts on.
+
+\item \vars{lastday}:  The model runs from day 1 to \vars{lastday}.
+
+\item \vars{mrestart}:  When set to ``0'', the run starts from
+	default initial conditions
+	(see Section~\ref{sec:initial.variables} for a table of
+	those values).
+	When set to ``1'', the run starts from a restart file.
+
+\item \vars{compiled\_form}:  This keyword sets what form the
+	compiled QTCM1 model has, and its value is saved to
+	the instance's \vars{compiled\_form} attribute.
+	It is a string and can be set either to
+	``parts'' or ``full''.  Most of the time, you will want
+	to set it to \vars{'parts'}.
+	This keyword is the only one
+	that must be specified on instantiation; the model instance
+	will at least instantiate
+	using only the default settings for all the other keyword
+	parameters (given in Appendix~\ref{app:defaults.values}).
+	See Section~\ref{sec:compiledform} for details about
+	what the \vars{compiled\_form} attribute controls.
+\end{itemize}
+
+By default, the \vars{SSTmode} attribute, which controls whether the
+model will use climatological sea-surface temperatures (SST) 
+or real SSTs, is set to the \vars{value} ``seasonal'', thus giving a
+run with seasonal forcing at the lower-boundary over the ocean.
+
+This example assumes that the boundary condition files, sea surface
+temperature files, and the model output directories are as specified
+in submodule \mods{defaults}.  Those values are described in
+Section~\ref{sec:defaults.scalar}.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Managing Directories}
+
+Most of the time, your boundary condition files and output files
+will not be in the locations specified in
+Section~\ref{sec:defaults.scalar}, or in the directory your
+Python script resides.  The easiest way to tell your \class{Qtcm} 
+instance where your input/output files are is to pass them in
+as keyword parameters on instantiation.
+
+
+%--- Two versions, one for PDF, one for HTML:
+\begin{latexonly}
+\begin{figure}[htp]
+\begin{codeblock}
+\codeblockfont{%
+\small
+from qtcm import Qtcm \\
+rundirname = 'test' \\
+dirbasepath = os.path.join(os.getcwd(), rundirname) \\
+inputs = \{\} \\
+inputs['bnddir'] = os.path.join( os.getcwd(), 'bnddir', \\
+\hspace*{40ex}'r64x42' ) \\
+inputs['SSTdir'] = os.path.join( os.getcwd(), 'bnddir', \\
+\hspace*{40ex}'r64x42', 'SST\_Reynolds' ) \\
+inputs['outdir'] = dirbasepath \\
+inputs['runname'] = rundirname \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}
+\end{codeblock}
+
+\caption{An example \mods{qtcm} run showing detailed description of
+	input and output directories.}
+\label{fig:manage.dir.example}
+\end{figure}
+\end{latexonly}
+
+\begin{htmlonly}
+\label{fig:manage.dir.example}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+from qtcm import Qtcm \\
+rundirname = 'test' \\
+dirbasepath = os.path.join(os.getcwd(), rundirname) \\
+inputs = \{\} \\
+inputs['bnddir'] = os.path.join( os.getcwd(), 'bnddir', \\
+\hspace*{40ex}'r64x42' ) \\
+inputs['SSTdir'] = os.path.join( os.getcwd(), 'bnddir', \\
+\hspace*{40ex}'r64x42', 'SST\_Reynolds' ) \\
+inputs['outdir'] = dirbasepath \\
+inputs['runname'] = rundirname \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}
+	}
+
+\htmlfigcaption{Figure~\ref{fig:manage.dir.example}:
+	An example \mods{qtcm} run showing detailed description of
+        input and output directories.}
+\end{center}
+\end{htmlonly}
+
+
+Figure~\ref{fig:manage.dir.example} shows an example run where those
+directories are explicitly specified; in all other aspects, the run
+is identical to the one in Figure~\ref{fig:my.first.run}.
+In Figure~\ref{fig:manage.dir.example}, output from the model is
+directed to the directory described by string variable
+\vars{dirbasepath}.  \vars{dirbasepath} is created by joining the
+current working directory with the run name given in string variable
+\vars{rundirname}.\footnote%
+	{The Python \mods{os} module enables platform-independent
+	handling of files and directories.  The \mods{os.path.join}
+	function resolves paths without the programmer needing to know
+	all the possible directory separation characters; the function
+	chooses the correct separation character at runtime.  The
+	\mods{os.getcwd} function returns the current working directory.}
+Setting keyword parameter \vars{outdir} to \vars{dirbasepath} sends
+output to \vars{dirbasepath}.  
+Keywords \vars{bnddir} and \vars{SSTdir} specify the directories
+where non-SST and SST boundary condition files, respectively, are
+found.
+
+Interestingly, the default version of QTCM1 does \emph{not} send
+all output from the model to \vars{outdir}.  The restart file
+\fn{qtcm\_}\dumarg{yyyymmdd}\fn{.restart} (where \dumarg{yyyymmdd}
+is the year, month, and day of the model date when the restart
+file was written) is written into the current working directory,
+not the output directory.  Thus, if you do multiple runs, you'll
+have to manually deal with the restart files that will proliferate.
+
+Neither the QTCM1 model nor the \class{Qtcm} object
+create the directories specified in \mods{bnddir}, \mods{SSTdir},
+and \mods{outdir}.  Failure to do so will create an error.  I use
+Python's file management tools to make sure the output directory
+is created, and any old output files are deleted.  Here's an example
+that does that, using the \vars{dirbasepath} and \vars{rundirname}
+variables from Figure~\ref{fig:manage.dir.example}:
+
+\begin{codeblock}
+\codeblockfont{%
+\small
+if not os.path.exists(dirbasepath):  os.makedirs(dirbasepath) \\
+qi\_file = os.path.join( dirbasepath, 'qi\_'+rundirname+'.nc' ) \\
+qm\_file = os.path.join( dirbasepath, 'qm\_'+rundirname+'.nc' ) \\
+if os.path.exists(qi\_file):   os.remove(qi\_file) \\
+if os.path.exists(qm\_file):   os.remove(qm\_file)}
+\end{codeblock}
+
+
+
+
+%---------------------------------------------------------------------
+\section{Model Field Variables}   \label{sec:field.variables.intro}
+
+The term ``field'' variable refers to QTCM1 model variables that 
+are accessible at both the compiled Fortran QTCM1 model-level as
+well as the Python \class{Qtcm} instance-level.
+Field variables are all instances of the \class{Field} class,
+and are stored as attributes of the \class{Qtcm} instance.\footnote%
+	{Note non-field variables can also be instances of \class{Field},
+	and that \class{Qtcm} instances have other attributes that are
+	not equal to \class{Field} instances.}
+
+\class{Field} class instances have the following attributes:
+\begin{itemize}
+\item \vars{id}:  A string naming the field (e.g., ``Qc'', ``mrestart'').
+	This string should contain no whitespace.
+\item \vars{value}:  The value of the field.  Can be of any type, though
+	typically is either a string or numeric scalar or a numeric array.
+\item \vars{units}:  A string giving the units of the field.
+\item \vars{long\_name}:  A string giving a description of the field.
+\end{itemize}
+
+\class{Field} instances also have methods to return the rank 
+and typecode of \vars{value}.
+
+Remember, if you want to access the value of a \class{Field} object,
+make sure you access that object's \vars{value} attribute.  
+Thus, for example,
+to assign a variable \vars{foo} to the
+\vars{lastday} value for a given
+\class{Qtcm} instance \vars{model}, type the following:
+\begin{codeblock}
+\codeblockfont{%
+foo = model.lastday.value}
+\end{codeblock}
+
+For scalars, this assignment sets \vars{foo} by value (i.e., a copy
+of the value of attribute \vars{model.lastday} is set to \vars{foo}).
+In general, however, Python assigns variables by reference.  Use
+the \mods{copy} module if you truly want a copy of a field variable's
+value (such as an array), rather than an alias.  For more details
+about field variables, see Section~\ref{sec:field.variables}.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Run Sessions}
+
+	\subsection{What is a Run Session?}
+
+A run session is a unit of simulation where the model is run from
+day 1 of simulation to the day specified by the \vars{lastday}
+attribute of a \class{Qtcm} instance.  A run session is a
+``complete'' model run, at the beginning of which all compiled QTCM1
+model variables are set to the values given at the Python-level,
+and at the end of which restart files are written, the values
+at the Python-level are overwritten by the values in the Fortran
+model, and a Python-accessible snapshot is taken of the 
+model variables that were written to the restart file.
+
+
+	\subsection{Changing Variables}
+
+Between run sessions, changing any field variable is as easy
+as a Python assignment.  For instance, to change the atmosphere
+mixed layer depth to 100~m, just type:
+\begin{codeblock}
+\codeblockfont{%
+model.ziml.value = 100.0}
+\end{codeblock}
+
+When changing arrays, be careful to try to match the shape of the 
+array.\footnote%
+	{At the very least, match the rank of the array, which is required
+	for the routines in \mods{setbypy} to properly choose which
+	Fortran subroutine to use in reading the Python value.
+	I haven't tested if only the rank is needed, however,
+	for the passing to work, for a continuation run (my hunch is
+	it won't).}
+You can use the NumPy \mods{shape} function on a NumPy array to
+check its shape.
+
+
+	\subsection{Continuing a Model Run}  \label{sec:continuation.intro}
+
+Figure~\ref{fig:continuation.example} shows an example of two run
+sessions, where the second run session is a continuation of the
+first.
+
+
+%--- Two versions, one for PDF, one for HTML:
+\begin{latexonly}
+\begin{figure}[htp]
+\begin{codeblock}
+\codeblockfont{%
+\small
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 10 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\ \\
+model = Qtcm(**inputs) \\
+model.run\_session() \\
+model.u1.value = model.u1.value * 2.0 \\
+model.init\_with\_instance\_state = True \\
+model.run\_session(cont=30)}
+\end{codeblock}
+
+\caption{An example of two \mods{qtcm} run sessions where the second
+	run session is a continuation of the first.  Assume 
+	\vars{inputs} is a dictionary, and that earlier in the
+	script the run name and
+	all input and output directory names were added
+	to the dictionary.}
+\label{fig:continuation.example}
+\end{figure}
+\end{latexonly}
+
+\begin{htmlonly}
+\label{fig:continuation.example}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 10 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\ \\
+model = Qtcm(**inputs) \\
+model.run\_session() \\
+model.u1.value = model.u1.value * 2.0 \\
+model.init\_with\_instance\_state = True \\
+model.run\_session(cont=30)}
+	}
+
+\htmlfigcaption{Figure~\ref{fig:continuation.example}:
+	An example of two \mods{qtcm} run sessions where the second
+	run session is a continuation of the first.  Assume 
+	\vars{inputs} is a dictionary, and that earlier in the
+	script the run name and
+	all input and output directory names were added
+	to the dictionary.}
+\end{center}
+\end{htmlonly}
+
+
+The first run session runs from day 1 to day 10.  The second
+run session runs the model for another 30 days.  
+Setting the \vars{init\_with\_instance\_state} of
+\vars{model} to \vars{True} tells the model to use the
+the values of the instance attributes 
+(for prognostic variables, right-hand sides, and start date) 
+are currently stored \vars{model}
+as the initial values for the run\_session.\footnote%
+	{Unless overridden, by default, 
+	\vars{init\_with\_instance\_state} is set
+	to True on \class{Qtcm} instance instantiation.}
+The \vars{cont}
+keyword in the second \mods{run\_session} call specifies a
+continuation run, and the value gives the number of additional
+days to run the model.
+
+The set of runs described above would produce the exact same
+results as if you had gone into the Fortran model after 10 days,
+doubled the first baroclinic mode zonal velocity, and continued
+the run for another 30 days.  With the Python example above, however,
+you didn't need to know you were going to do that ahead of starting
+the model run (which is what a compiled model requires you to do).
+Section~\ref{sec:contination.run.sessions} describes continuation
+runs in detail.
+
+
+	\subsection{Passing Restart Snapshots Between Run Sessions}
+					\label{sec:snapshot.intro}
+
+The pure-Fortran QTCM1 uses a restart file to enable continuation
+runs.  A \class{Qtcm} instance can also make use of that option,
+through setting the \vars{mrestart} attribute value
+(see Section~\ref{sec:contination.run.sessions} and
+Neelin et al.\ \cite{Neelin/etal:2002} for details).  
+It's easier, however, instead of using a restart file, to pass 
+along a ``snapshot'' dictionary.
+
+The \class{Qtcm} instance method \mods{make\_snapshot} copies the
+variables that would be written out to a restart file into a
+dictionary that is saves as the instance attribute \vars{snapshot}.
+This snapshot can be saved separately, for later recall.  Note that
+snapshots are automatically made at the end of a run session.
+
+The following example shows a model \mods{run\_session} call,
+following which the snapshot is saved to the variable
+\vars{snapshot}:\footnote%
+	{Remember Python assignment defaults to assignment by
+	reference, so in this example the variable \vars{mysnapshot}
+	is a pointer to the \vars{model.snapshot} attribute.
+	(However, note that \vars{model.snapshot} itself is not a
+	reference, but a distinct copy of those variables; to do
+	otherwise would result in a non-static snapshot.)
+	If the \vars{model.snapshot} attribute is dereferenced,
+	then \vars{mysnapshot} will become the sole pointer to the
+	dictionary.}
+
+\begin{codeblock}
+\codeblockfont{%
+model.run\_session() \\
+mysnapshot = model.snapshot}
+\end{codeblock}
+
+After taking the snapshot, you might continue the run a while, and
+then decide to return to the snapshot you saved.  To do so, use
+the \mods{sync\_set\_py\_values\_to\_snapshot}
+method to reset the model instance values to
+\vars{mysnapshot} before your next run session:
+\begin{codeblock}
+\codeblockfont{%
+model.sync\_set\_py\_values\_to\_snapshot(snapshot=mysnapshot) \\
+model.init\_with\_instance\_state = True \\
+model.run\_session()}
+\end{codeblock}
+
+See Section~\ref{sec:snapshots} for details regarding the use of
+snapshots, as well as for a list of what variables are saved in
+a snapshot.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Creating Multiple Models}
+
+	\subsection{Model Instances}
+
+Creating a new QTCM1 model is as simple as creating another
+\class{Qtcm} instance.
+For instance, to instantiate two QTCM1
+models, \vars{model1} and \vars{model2}, type the following:
+
+\begin{codeblock}
+\codeblockfont{%
+from qtcm import Qtcm \\
+model1 = Qtcm(compiled\_form='parts') \\
+model2 = Qtcm(compiled\_form='parts')}
+\end{codeblock}
+
+\vars{model1} and \vars{model2} do \emph{not} share any variables
+in common, including the extension modules holding the Fortran
+code.  In creating the instances, a copy of the extension modules
+are saved in temporary directories.
+
+
+	\subsection{Passing Snapshots To Other Models}
+
+The snapshots described in Section~\ref{sec:snapshot.intro}
+can also be passed around to other model instances,
+enabling you to easily branch a model run:
+
+\begin{codeblock}
+\codeblockfont{%
+model.run\_session() \\
+mysnapshot = model.snapshot \\
+model1.sync\_set\_py\_values\_to\_snapshot(snapshot=mysnapshot) \\
+model2.sync\_set\_py\_values\_to\_snapshot(snapshot=mysnapshot) \\
+model1.run\_session() \\
+model2.run\_session()}
+\end{codeblock}
+
+The state of \vars{model} after its run session is used to start
+\vars{model1} and \vars{model2}.  This is an easy way to save time
+in spinning-up multiple models.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Run Lists}		\label{sec:runlist.intro}
+
+This feature of \class{Qtcm} objects is what really gives 
+\class{Qtcm} model instances their flexibility.
+A run list is a list of strings and dictionaries that specify
+what routines to run in order to execute a particular part of
+the model.  Each element of the run list specifies the method
+or subroutine to execute, and the order of the elements specifies
+their execution order.
+
+For instance, the standard run list for initializing the the
+atmospheric portion of the model is named ``qtcminit'', and
+equals the following list:
+
+\begin{latexonly}
+\begin{codeblock}
+\codeblockfont{%
+\parbox{46ex}{\input{qtcminit_runlist}}}
+\end{codeblock}
+\end{latexonly}
+
+\begin{htmlonly}
+\begin{quotation}
+\input{qtcminit_runlist}
+\end{quotation}
+\end{htmlonly}
+
+This list is stored as an entry in the \vars{runlists} dictionary
+(with key \vars{'qtcminit'}).
+\vars{runlists} is an attribute of a \class{Qtcm} instance.
+Table~\ref{tab:stnd.runlists} lists all standard run lists.
+
+When the run list element in the list is a string, the string gives the
+name of the routine to execute.  The routine has no parameter
+list.  The routine can be a
+compiled QTCM1 model subroutine for which an interface has been
+written (e.g., \mods{\_\_qtcm.wrapcall.wparinit}), 
+a method of the of the Python model instance 
+(e.g., \mods{varinit}), or another run list
+(e.g., \vars{atm\_physics1}).
+
+When the run list element is a 1-element dictionary, the key of
+the dictionary element is the name of the routine, and the value
+of the dictionary element is a list specifying input parameters
+to be passed to the routine on call.  Thus, the element:
+\begin{codeblock}
+\codeblockfont{%
+{\{'\_\_qtcm.wrapcall.wtimemanager': [1]\}}}
+\end{codeblock}
+calls the \mods{\_\_qtcm.wrapcall.wtimemanager} routine, passing in
+one input parameter, which in this case is the value 1.
+
+If you want to change the order of the run list, just change the
+order of the list.  To add or remove routines to be executed, just
+add and remove their names from the run list.
+Python provides a number of methods to manipulate
+lists (e.g., \mods{append}).  Since lists are dynamic data types
+in Python, you do not have to do any recompiling to implement
+the change.
+
+The \vars{compiled\_form} attribute must be set to \vars{'parts'}
+in the \class{Qtcm} instance in order to take advantage of the run
+lists feature of the class.  Run lists are not available for
+\vars{compiled\_form\thinspace=\thinspace'full'}, because subroutine
+calls are hardwired in the compiled QTCM1 model Fortran code in
+that case.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Model Output}			\label{sec:output.intro}
+
+	\subsection{NetCDF Output}
+
+Model output is written to netCDF files in the directory
+specified by the \class{Qtcm} instance attribute \vars{outdir}.
+Mean values are written to an output file beginning with
+\fn{qm\_}, and instantaneous values are written to an output
+file beginning with \fn{qi\_}.
+
+The frequency of mean output is controlled by \vars{ntout}, and the
+frequency of instantaneous output is controlled by \vars{ntouti}.
+\vars{ntout.value} gives the number of days over which to average
+(and if equals \vars{-30}, monthly means are calculated).
+\vars{ntouti.value} gives the frequency in days that instantaneous
+values are output (monthly if it equals \vars{-30}).  (See
+Section~\ref{sec:initial.variables} for a description of other
+output-control variables, and see the QTCM1 manual \cite{Neelin/etal:2002}
+for a detailed description of how these variables control output.)
+
+Figure~\ref{fig:netcdf.read} gives an example of a block of code
+to read netCDF output, where \vars{datafn} is the netCDF filename, and
+\vars{id} is the string name of the field variable (e.g.,
+\vars{'u1'}, \vars{'T1'}, etc.).
+(Note that the netCDF identifier for field variables is the same as
+the name in \class{Qtcm}, except for the variables given in
+Table~\ref{tab:qtcm.netcdf.ids}.)
+
+In the code in Figure~\ref{fig:netcdf.read},
+the array value is read into \vars{data}, and the longitude values, 
+latitude values, and time values are read into variables
+\vars{lon}, \vars{lat}, and \vars{time}, respectively.
+As netCDF files also hold metadata, a description and the units
+of the variable given by \vars{id}, and each dimension, are read
+into variables ending in \vars{\_name} and \vars{\_units},
+respectively.
+
+
+%--- Two versions, one for PDF, one for HTML:
+\begin{latexonly}
+\begin{figure}[htp]
+\begin{codeblock}
+\codeblockfont{%
+import numpy as N \\
+import Scientific as S \\ \\
+fileobj = S.NetCDFFile(datafn, mode='r') \\ \\
+data = N.array(fileobj.variables[id].getValue()) \\
+data\_name = fileobj.variables[id].long\_name \\
+data\_units = fileobj.variables[id].units \\ \\
+lat = N.array(fileobj.variables['lat'].getValue()) \\
+lat\_name = fileobj.variables['lat'].long\_name \\
+lat\_units = fileobj.variables['lat'].units \\ \\
+lon = N.array(fileobj.variables['lon'].getValue()) \\
+lon\_name = fileobj.variables['lon'].long\_name \\
+lon\_units = fileobj.variables['lon'].units \\ \\
+time = N.array(fileobj.variables['time'].getValue()) \\
+time\_name = fileobj.variables['time'].long\_name \\
+time\_units = fileobj.variables['time'].units \\ \\
+fileobj.close()}
+\end{codeblock}
+
+\caption{Example of Python code to read netCDF output.
+	See text for description.}
+\label{fig:netcdf.read}
+\end{figure}
+\end{latexonly}
+
+\begin{htmlonly}
+\label{fig:netcdf.read}
+\begin{center}
+\htmlfigcaption{%
+	\codeblockfont{%
+import numpy as N \\
+import Scientific as S \\ \\
+fileobj = S.NetCDFFile(datafn, mode='r') \\ \\
+data = N.array(fileobj.variables[id].getValue()) \\
+data\_name = fileobj.variables[id].long\_name \\
+data\_units = fileobj.variables[id].units \\ \\
+lat = N.array(fileobj.variables['lat'].getValue()) \\
+lat\_name = fileobj.variables['lat'].long\_name \\
+lat\_units = fileobj.variables['lat'].units \\ \\
+lon = N.array(fileobj.variables['lon'].getValue()) \\
+lon\_name = fileobj.variables['lon'].long\_name \\
+lon\_units = fileobj.variables['lon'].units \\ \\
+time = N.array(fileobj.variables['time'].getValue()) \\
+time\_name = fileobj.variables['time'].long\_name \\
+time\_units = fileobj.variables['time'].units \\ \\
+fileobj.close()}
+	}
+
+\htmlfigcaption{Figure~\ref{fig:netcdf.read}:
+	Example of Python code to read netCDF output.
+	See text for description.}
+\end{center}
+\end{htmlonly}
+
+
+
+
+
+\begin{table}[tp]
+\begin{center}
+\begin{tabular}{l|l}
+\textbf{\class{Qtcm} Attribute Name} & \textbf{NetCDF Output Name} \\
+\hline
+\vars{'Qc'}                & \vars{'Prec'} \\
+\vars{'FLWut'}             & \vars{'OLR'} \\
+\vars{'STYPE'}             & \vars{'stype'}
+\end{tabular}
+\end{center}
+\caption{NetCDF output names for \class{Qtcm} field variables that
+	are different from the \class{Qtcm} and compiled QTCM1 model
+	variable names.  The netCDF names are case-sensitive.}
+\label{tab:qtcm.netcdf.ids}
+\end{table}
+
+
+\emphpara{NB:}  All netCDF array output is dimensioned (time, latitude,
+longitude) when read into Python using the \mods{Scientific} package.
+This differs from the way \class{Qtcm} saves field variables, which
+follows Fortran convention (longitude, latitude).  Please be careful
+when relating the two types of arrays.
+Section~\ref{sec:field.var.shape} for a discussion of why there is
+this discrepancy.
+
+
+	\subsection{Visualization}	\label{sec:viz.intro}
+
+The \mods{plotm} method of \class{Qtcm} instances creates line
+plots or contour plots, as appropriate, of model output of
+average fields of run session(s) associated with the instance.
+Some examples, assuming \vars{model} is an instance of \class{Qtcm}
+and has already executed a run session:
+\begin{itemize}
+\item \cmd{model.plotm('Qc', lat=1.875)}:
+	A time vs.\ longitude contour
+          plot is made for the full range of time and longitude,
+          at the latitude 1.875 deg N, for mean precipitation.
+
+\item \cmd{model.plotm('Qc', time=10)}:
+	A latitude vs.\ longitude contour plot of precipitation
+	is made for the full spatial domain at day 10 of the model run.
+
+\item \cmd{model.plotm('Evap', lat=1.875, lon=[100,200])}:  A contour
+	plot of time vs.\ longitude of evaporation is made for the
+          longitude points between 100 and 200 degrees E, at the
+          latitude 1.875 deg N.  
+
+\item \cmd{model.plotm('cl1', lat=1.875, lon=[100,200], time=20)}:
+          A deep cloud amount vs.\ longitude line plot is made for
+          the longitude points between 100 and 200 degrees east,
+          at the latitude 1.875 deg N, at day 20 of the model run.
+\end{itemize}
+
+In these examples, the number of days over which the mean is taken
+equals \vars{model.ntout.value}.
+Also, the \mods{plotm} method automatically takes into account the
+\class{Qtcm}/netCDF variable differences described in
+Table~\ref{tab:qtcm.netcdf.ids}.
+
+
+
+%---------------------------------------------------------------------
+\section{Documentation}
+
+Section~\ref{sec:ver} gives the online locations of the
+transparent copies of this manual.  
+Model formulation is fully described in
+Neelin \& Zeng \cite{Neelin/Zeng:2000} and model
+results are described in Zeng et~al.\ \cite{Zeng/etal:2000}
+(\cite{Neelin/Zeng:2000} is based upon v2.0 of QTCM1
+and \cite{Zeng/etal:2000} is based on QTCM1 v2.1).
+Additional documentation you'll find useful include:
+
+\begin{itemize}
+\item \latexhtml{%
+\htmladdnormallinkfoot{The \mods{qtcm} Package API Documentation}%
+        {http://www.johnny-lin.com/py\_pkgs/qtcm/doc/html-api/}}%
+{\htmladdnormallink{The \mods{qtcm} Package API Documentation}%
+        {http://www.johnny-lin.com/py_pkgs/qtcm/doc/html-api/}}
+
+\item \latexhtml{%
+\htmladdnormallinkfoot{The Pure-Fortran QTCM1 Manual}%
+        {http://www.atmos.ucla.edu/$\sim$csi/qtcm\_man/v2.3/qtcm\_manv2.3.pdf}}%
+{\htmladdnormallink{The Pure-Fortran QTCM1 Manual}%
+        {http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf}}
+\cite{Neelin/etal:2002}
+
+\end{itemize}
+
+
+
+% ===== end of file =====

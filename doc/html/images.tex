@@ -1,0 +1,936 @@
+\batchmode
+
+
+\documentclass[12pt]{book}
+\RequirePackage{ifthen}
+
+
+\usepackage{color}
+\usepackage{html}
+\usepackage{graphicx}
+\usepackage{textcomp}
+
+
+\usepackage[letterpaper,margin=1.25in]{geometry}
+\usepackage{bibnames}
+\usepackage{longtable}
+\usepackage{multirow}
+
+
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{BLUE}{rgb}{0,0,1}
+\definecolor{green}{rgb}{0,0.6,0}
+\definecolor{Green}{rgb}{0,0.6,0}
+\definecolor{GREEN}{rgb}{0,0.6,0}
+
+
+
+%
+\newenvironment{codeblock}%
+	{\begin{quotation}\begin{minipage}[t]{0.9\textwidth}}%
+	{\end{minipage}\end{quotation}} 
+	%{\begin{flushleft}}%%
+\providecommand{\codeblockfont}[1]{\textcolor{blue}{\texttt{#1}}} 
+
+%
+\providecommand{\emphpara}[1]{\textbf{#1}}%
+\providecommand{\booktitle}[1]{\textit{#1}}%
+\providecommand{\paratitle}[1]{\textit{#1}}%
+\providecommand{\emphdate}[1]{\textbf{#1}} 
+
+%
+\providecommand{\code}[1]{\textcolor{blue}{\texttt{#1}}}%
+\providecommand{\cmd}[1]{\textcolor{blue}{\texttt{#1}}}%
+\providecommand{\dumarg}[1]{\textit{#1}}%
+\providecommand{\codearg}[1]{\textit{#1}}%
+\providecommand{\fn}[1]{\textsf{\textit{#1}}}%
+\providecommand{\screen}[1]{\textcolor{green}{\texttt{#1}}}%
+\providecommand{\vars}[1]{\textcolor{blue}{\texttt{#1}}}%
+\providecommand{\class}[1]{\textcolor{blue}{\texttt{#1}}}%
+\providecommand{\mods}[1]{\textcolor{blue}{\texttt{#1}}} 
+
+
+
+\newlength{\tabletitlewidth} 
+
+\settowidth{\tabletitlewidth}{file and directory names} 
+
+
+
+\newlength{\tablebodywidth} 
+
+\setlength{\tablebodywidth}{0.9\textwidth} 
+
+\addtolength{\tablebodywidth}{-4ex} 
+
+\addtolength{\tablebodywidth}{-\tabletitlewidth} 
+
+%
+\providecommand{\tabletabulardims}%
+	{p{\tabletitlewidth}@{\hspace{4ex}}p{\tablebodywidth}} 
+
+%
+\providecommand{\tableitemlinespace}{\baselineskip} 
+
+\newlength{\infotitle} 
+
+\newlength{\infotext} 
+
+
+
+\newlength{\remainder}         % length to describe the residual of the
+                              
+\newlength{\enumlabel}         % length to describe figure sub-label width
+                              
+%
+\providecommand{\htmlfigcaption}[1]{\parbox[c]{70ex}{\footnotesize{#1}}} 
+
+%
+\providecommand{\rute}{\textit{Rute User's}}%
+\providecommand{\linuxnut}{\textit{Linux in a Nutshell}}%
+\providecommand{\pynut}{\textit{Python in a Nutshell}} 
+
+%
+\providecommand{\aonehat}{\ensuremath{\widehat{a_1}}}%
+\providecommand{\bonehat}{\ensuremath{\widehat{b_1}}}%
+\providecommand{\D}{\ensuremath{\mathcal{D}}} 
+
+
+
+
+
+
+\pagecolor[gray]{.7}
+
+\usepackage[latin1]{inputenc}
+
+
+
+\makeatletter
+\AtBeginDocument{\makeatletter
+\input /Users/jlin/work/prog/python/qtcm/doc/latex/manual.aux
+\makeatother
+}
+
+\makeatletter
+\count@=\the\catcode`\_ \catcode`\_=8 
+\newenvironment{tex2html_wrap}{}{}%
+\catcode`\<=12\catcode`\_=\count@
+\newcommand{\providedcommand}[1]{\expandafter\providecommand\csname #1\endcsname}%
+\newcommand{\renewedcommand}[1]{\expandafter\providecommand\csname #1\endcsname{}%
+  \expandafter\renewcommand\csname #1\endcsname}%
+\newcommand{\newedenvironment}[1]{\newenvironment{#1}{}{}\renewenvironment{#1}}%
+\let\newedcommand\renewedcommand
+\let\renewedenvironment\newedenvironment
+\makeatother
+\let\mathon=$
+\let\mathoff=$
+\ifx\AtBeginDocument\undefined \newcommand{\AtBeginDocument}[1]{}\fi
+\newbox\sizebox
+\setlength{\hoffset}{0pt}\setlength{\voffset}{0pt}
+\addtolength{\textheight}{\footskip}\setlength{\footskip}{0pt}
+\addtolength{\textheight}{\topmargin}\setlength{\topmargin}{0pt}
+\addtolength{\textheight}{\headheight}\setlength{\headheight}{0pt}
+\addtolength{\textheight}{\headsep}\setlength{\headsep}{0pt}
+\setlength{\textwidth}{349pt}
+\newwrite\lthtmlwrite
+\makeatletter
+\let\realnormalsize=\normalsize
+\global\topskip=2sp
+\def\preveqno{}\let\real@float=\@float \let\realend@float=\end@float
+\def\@float{\let\@savefreelist\@freelist\real@float}
+\def\liih@math{\ifmmode$\else\bad@math\fi}
+\def\end@float{\realend@float\global\let\@freelist\@savefreelist}
+\let\real@dbflt=\@dbflt \let\end@dblfloat=\end@float
+\let\@largefloatcheck=\relax
+\let\if@boxedmulticols=\iftrue
+\def\@dbflt{\let\@savefreelist\@freelist\real@dbflt}
+\def\adjustnormalsize{\def\normalsize{\mathsurround=0pt \realnormalsize
+ \parindent=0pt\abovedisplayskip=0pt\belowdisplayskip=0pt}%
+ \def\phantompar{\csname par\endcsname}\normalsize}%
+\def\lthtmltypeout#1{{\let\protect\string \immediate\write\lthtmlwrite{#1}}}%
+\newcommand\lthtmlhboxmathA{\adjustnormalsize\setbox\sizebox=\hbox\bgroup\kern.05em }%
+\newcommand\lthtmlhboxmathB{\adjustnormalsize\setbox\sizebox=\hbox to\hsize\bgroup\hfill }%
+\newcommand\lthtmlvboxmathA{\adjustnormalsize\setbox\sizebox=\vbox\bgroup %
+ \let\ifinner=\iffalse \let\)\liih@math }%
+\newcommand\lthtmlboxmathZ{\@next\next\@currlist{}{\def\next{\voidb@x}}%
+ \expandafter\box\next\egroup}%
+\newcommand\lthtmlmathtype[1]{\gdef\lthtmlmathenv{#1}}%
+\newcommand\lthtmllogmath{\dimen0\ht\sizebox \advance\dimen0\dp\sizebox
+  \ifdim\dimen0>.95\vsize
+   \lthtmltypeout{%
+*** image for \lthtmlmathenv\space is too tall at \the\dimen0, reducing to .95 vsize ***}%
+   \ht\sizebox.95\vsize \dp\sizebox\z@ \fi
+  \lthtmltypeout{l2hSize %
+:\lthtmlmathenv:\the\ht\sizebox::\the\dp\sizebox::\the\wd\sizebox.\preveqno}}%
+\newcommand\lthtmlfigureA[1]{\let\@savefreelist\@freelist
+       \lthtmlmathtype{#1}\lthtmlvboxmathA}%
+\newcommand\lthtmlpictureA{\bgroup\catcode`\_=8 \lthtmlpictureB}%
+\newcommand\lthtmlpictureB[1]{\lthtmlmathtype{#1}\egroup
+       \let\@savefreelist\@freelist \lthtmlhboxmathB}%
+\newcommand\lthtmlpictureZ[1]{\hfill\lthtmlfigureZ}%
+\newcommand\lthtmlfigureZ{\lthtmlboxmathZ\lthtmllogmath\copy\sizebox
+       \global\let\@freelist\@savefreelist}%
+\newcommand\lthtmldisplayA{\bgroup\catcode`\_=8 \lthtmldisplayAi}%
+\newcommand\lthtmldisplayAi[1]{\lthtmlmathtype{#1}\egroup\lthtmlvboxmathA}%
+\newcommand\lthtmldisplayB[1]{\edef\preveqno{(\theequation)}%
+  \lthtmldisplayA{#1}\let\@eqnnum\relax}%
+\newcommand\lthtmldisplayZ{\lthtmlboxmathZ\lthtmllogmath\lthtmlsetmath}%
+\newcommand\lthtmlinlinemathA{\bgroup\catcode`\_=8 \lthtmlinlinemathB}
+\newcommand\lthtmlinlinemathB[1]{\lthtmlmathtype{#1}\egroup\lthtmlhboxmathA
+  \vrule height1.5ex width0pt }%
+\newcommand\lthtmlinlineA{\bgroup\catcode`\_=8 \lthtmlinlineB}%
+\newcommand\lthtmlinlineB[1]{\lthtmlmathtype{#1}\egroup\lthtmlhboxmathA}%
+\newcommand\lthtmlinlineZ{\egroup\expandafter\ifdim\dp\sizebox>0pt %
+  \expandafter\centerinlinemath\fi\lthtmllogmath\lthtmlsetinline}
+\newcommand\lthtmlinlinemathZ{\egroup\expandafter\ifdim\dp\sizebox>0pt %
+  \expandafter\centerinlinemath\fi\lthtmllogmath\lthtmlsetmath}
+\newcommand\lthtmlindisplaymathZ{\egroup %
+  \centerinlinemath\lthtmllogmath\lthtmlsetmath}
+\def\lthtmlsetinline{\hbox{\vrule width.1em \vtop{\vbox{%
+  \kern.1em\copy\sizebox}\ifdim\dp\sizebox>0pt\kern.1em\else\kern.3pt\fi
+  \ifdim\hsize>\wd\sizebox \hrule depth1pt\fi}}}
+\def\lthtmlsetmath{\hbox{\vrule width.1em\kern-.05em\vtop{\vbox{%
+  \kern.1em\kern0.8 pt\hbox{\hglue.17em\copy\sizebox\hglue0.8 pt}}\kern.3pt%
+  \ifdim\dp\sizebox>0pt\kern.1em\fi \kern0.8 pt%
+  \ifdim\hsize>\wd\sizebox \hrule depth1pt\fi}}}
+\def\centerinlinemath{%
+  \dimen1=\ifdim\ht\sizebox<\dp\sizebox \dp\sizebox\else\ht\sizebox\fi
+  \advance\dimen1by.5pt \vrule width0pt height\dimen1 depth\dimen1 
+ \dp\sizebox=\dimen1\ht\sizebox=\dimen1\relax}
+
+\def\lthtmlcheckvsize{\ifdim\ht\sizebox<\vsize 
+  \ifdim\wd\sizebox<\hsize\expandafter\hfill\fi \expandafter\vfill
+  \else\expandafter\vss\fi}%
+\providecommand{\selectlanguage}[1]{}%
+\makeatletter \tracingstats = 1 
+
+
+\begin{document}
+\pagestyle{empty}\thispagestyle{empty}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength hsize=\the\hsize}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength vsize=\the\vsize}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength hoffset=\the\hoffset}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength voffset=\the\voffset}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength topmargin=\the\topmargin}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength topskip=\the\topskip}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength headheight=\the\headheight}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength headsep=\the\headsep}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength parskip=\the\parskip}\lthtmltypeout{}%
+\lthtmltypeout{latex2htmlLength oddsidemargin=\the\oddsidemargin}\lthtmltypeout{}%
+\makeatletter
+\if@twoside\lthtmltypeout{latex2htmlLength evensidemargin=\the\evensidemargin}%
+\else\lthtmltypeout{latex2htmlLength evensidemargin=\the\oddsidemargin}\fi%
+\lthtmltypeout{}%
+\makeatother
+\setcounter{page}{1}
+\onecolumn
+
+% !!! IMAGES START HERE !!!
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16007}%
+$a_1$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16009}%
+$b_1$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16011}%
+$V_1$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline435}%
+$\sim$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+{\newpage\clearpage
+\lthtmlinlineA{tex2html_nomath_inline916}%
+\textregistered%
+\lthtmlinlineZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{section}
+\stepcounter{section}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline824}%
+$V_0$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline832}%
+$5.625^{\circ}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline834}%
+$3.75^{\circ}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16170}%
+
+% latex2html id marker 16170
+$\textstyle \parbox{70ex}{\footnotesize{Figure \ref{fig:qtcm.basis}:  
+	Vertical profiles of basis functions for
+   	(a) temperature $a_1$\  (solid) and humidity $b_1$\  (dashed) and
+   	(b) baroclinic component of
+   	horizontal velocity $V_1$.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath622}%
+\begin{displaymath}
+   \partial_t \mathbf{v}_1 
+      + \ensuremath{\mathcal{D}}_{V1} (\mathbf{v}_0 , \mathbf{v}_1)
+      + f \mathbf{k} \times \mathbf{v}_1
+      =
+   - \kappa \nabla T_1 
+      - \epsilon_1 \mathbf{v}_1 
+      - \epsilon_{01} \mathbf{v}_0
+   
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath634}%
+\begin{displaymath}
+   \partial_t \zeta_0 
+      + \mathrm{curl}_z (\ensuremath{\mathcal{D}}_{V0} (\mathbf{v}_0 , \mathbf{v}_1))
+      + \beta v_0
+      =
+   - \mathrm{curl}_z (\epsilon_0 \mathbf{v}_0)
+      - \mathrm{curl}_z (\epsilon_{10} \mathbf{v}_1)
+   
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath646}%
+\begin{displaymath}
+   \ensuremath{\widehat{a_1}}(\partial_t + \ensuremath{\mathcal{D}}_{T1}) T_1 
+      + M_{S1} \nabla \cdot {\bf v}_1 
+      =
+   \langle Q_c \rangle
+      + (g/p_T) (-R^\uparrow_t -R^\downarrow_s + R^\uparrow_s + S_t - S_s + H)
+   
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath652}%
+\begin{displaymath}
+   \ensuremath{\widehat{b_1}}(\partial_t + \ensuremath{\mathcal{D}}_{q1}) q_1 
+      - M_{q1} \nabla \cdot {\bf v}_1 
+      =
+   \langle Q_q \rangle
+      + (g/p_T) E
+   
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath662}%
+\begin{displaymath}
+  -\langle Q_q \rangle = \langle Q_c \rangle 
+                              = \epsilon^\ast_c (q_1 - T_1)
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline842}%
+$Q_c$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline844}%
+$\epsilon^\ast_c$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath665}%
+\begin{displaymath}
+   \epsilon^\ast_c 
+      \equiv 
+   \ensuremath{\widehat{a_1}}\ensuremath{\widehat{b_1}}(\ensuremath{\widehat{a_1}}+ \ensuremath{\widehat{b_1}})^{-1} \tau_c^{-1} 
+      \mathcal{H}( \mathit{C}_{\mathrm{1}} )
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline846}%
+$\mathcal{H}( \mathit{C}_{\mathrm{1}} )$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline848}%
+$C_{1} \leq 0$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline850}%
+$C_{1} > 0$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline852}%
+$C_{1}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline854}%
+$H$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline856}%
+$E$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath678}%
+\begin{displaymath}
+   H
+      =
+   \rho_a C_D \mathrm{V}_s (T_s - (T_{rs} + a_{1s} T_1))
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmldisplayA{displaymath683}%
+\begin{displaymath}
+   E
+      =
+   \rho_a C_D \mathrm{V}_s (q_\mathit{sat} (T_s) 
+      - (q_{rs} + b_{1s} q_1))
+\end{displaymath}%
+\lthtmldisplayZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline858}%
+$R$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline860}%
+$S$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline862}%
+$\ensuremath{\mathcal{D}}_{V1}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline864}%
+$\ensuremath{\mathcal{D}}_{V0}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline868}%
+$V_1 (p)$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline870}%
+$\ensuremath{\mathcal{D}}_{T1}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline872}%
+$\ensuremath{\mathcal{D}}_{q1}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline874}%
+$\langle X \rangle$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline876}%
+$\widehat{X}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsection}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline2561}%
+$\,\!$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsection}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline3258}%
+$\backslash$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{chapter}
+\stepcounter{section}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16320}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+from qtcm import Qtcm \\
+inputs = \{\} \\
+inputs['runname'] = 'test' \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16321}%
+
+% latex2html id marker 16321
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\ref{fig:my.first.run}:
+	An example of a simple \textcolor{blue}{\texttt{qtcm}} run.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{section}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16323}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+from qtcm import Qtcm \\
+rundirname = 'test' \\
+dirbasepath = os.path.join(os.getcwd(), rundirname) \\
+inputs = \{\} \\
+inputs['bnddir'] = os.path.join( os.getcwd(), 'bnddir', \\
+\hspace*{40ex}'r64x42' ) \\
+inputs['SSTdir'] = os.path.join( os.getcwd(), 'bnddir', \\
+\hspace*{40ex}'r64x42', 'SST\_Reynolds' ) \\
+inputs['outdir'] = dirbasepath \\
+inputs['runname'] = rundirname \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16324}%
+
+% latex2html id marker 16324
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\ref{fig:manage.dir.example}:
+	An example \textcolor{blue}{\texttt{qtcm}} run showing detailed description of
+        input and output directories.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16339}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 10 \\
+inputs['mrestart'] = 0 \\
+inputs['compiled\_form'] = 'parts' \\\\
+model = Qtcm(**inputs) \\
+model.run\_session() \\
+model.u1.value = model.u1.value * 2.0 \\
+model.init\_with\_instance\_state = True \\
+model.run\_session(cont=30)}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16340}%
+
+% latex2html id marker 16340
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\ref{fig:continuation.example}:
+	An example of two \textcolor{blue}{\texttt{qtcm}} run sessions where the second
+	run session is a continuation of the first.  Assume 
+	\textcolor{blue}{\texttt{inputs}} is a dictionary, and that earlier in the
+	script the run name and
+	all input and output directory names were added
+	to the dictionary.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16357}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+import numpy as N \\
+import Scientific as S \\\\
+fileobj = S.NetCDFFile(datafn, mode='r') \\\\
+data = N.array(fileobj.variables[id].getValue()) \\
+data\_name = fileobj.variables[id].long\_name \\
+data\_units = fileobj.variables[id].units \\\\
+lat = N.array(fileobj.variables['lat'].getValue()) \\
+lat\_name = fileobj.variables['lat'].long\_name \\
+lat\_units = fileobj.variables['lat'].units \\\\
+lon = N.array(fileobj.variables['lon'].getValue()) \\
+lon\_name = fileobj.variables['lon'].long\_name \\
+lon\_units = fileobj.variables['lon'].units \\\\
+time = N.array(fileobj.variables['time'].getValue()) \\
+time\_name = fileobj.variables['time'].long\_name \\
+time\_units = fileobj.variables['time'].units \\\\
+fileobj.close()}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16358}%
+
+% latex2html id marker 16358
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\ref{fig:netcdf.read}:
+	Example of Python code to read netCDF output.
+	See text for description.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsection}
+\stepcounter{section}
+{\newpage\clearpage
+\lthtmlfigureA{table7217}%
+\begin{table}\begin{center}
+\fbox{Empty placeholder block for table that would have gone here.}
+\end{center}
+
+\end{table}%
+\lthtmlfigureZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline7978}%
+$<$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline7982}%
+$^2$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{subsubsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16907}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+inputs = \{\} \\
+inputs['runname'] = 'test' \\
+inputs['landon'] = 0 \\
+inputs['year0'] = 1 \\
+inputs['month0'] = 11 \\
+inputs['day0'] = 1 \\
+inputs['lastday'] = 30 \\
+inputs['mrestart'] = 0 \\
+inputs['init\_with\_instance\_state'] = True \\
+inputs['compiled\_form'] = 'parts'}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16908}%
+
+% latex2html id marker 16908
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\ref{fig:defn.of.inputs}:
+	The initial definition of the \textcolor{blue}{\texttt{inputs}} dictionary for 
+	examples given in Section~\ref{sec:cookbook}.  These settings
+	imply that a run session will start on November 1, Year 1,
+	last for 30 days, and will be an aquaplanet run.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16915}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+import os \\
+inputs['init\_with\_instance\_state'] = False \\
+for i in xrange(0,1002,10): \\
+\hspace*{5ex}iname = 'ziml-' + str(i) + 'm' \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = Qtcm(**inputs) \\
+\hspace*{5ex}model.ziml.value = float(i)  \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16916}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+import os \\
+import numpy as N \\
+maxu1 = 0.0 \\
+while maxu1 < 10.0: \\
+\hspace*{5ex}iziml = 0.1 * maxu1 \\
+\hspace*{5ex}iname = 'ziml-' + str(iziml) + 'm' \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = Qtcm(**inputs) \\
+\hspace*{5ex}try: \\
+\hspace*{10ex}model.sync\_set\_py\_values\_to\_snapshot(snapshot=mysnapshot) \\
+\hspace*{10ex}model.init\_with\_instance\_state = True \\
+\hspace*{5ex}except: \\
+\hspace*{10ex}model.init\_with\_instance\_state = False \\
+\hspace*{5ex}model.ziml.value = iziml  \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}maxu1 = N.max(N.abs(model.u1.value)) \\
+\hspace*{5ex}mysnapshot = model.snapshot \\
+\hspace*{5ex}del model}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16917}%
+
+% latex2html id marker 16917
+$\textstyle \parbox{70ex}{\footnotesize{Figure \ref{fig:conditional.test.eg}:
+	This code explores different values of
+	mixed-layer depth \textcolor{blue}{\texttt{ziml}} for 30~day runs,
+	as a function of maximum \textcolor{blue}{\texttt{u1}} magnitude,
+	until it finds a case where the maximum \textcolor{blue}{\texttt{u1}} is
+	greater than 10~m/s.  (The relationship between
+	\textcolor{blue}{\texttt{ziml}} and the maximum of the speed of
+	\textcolor{blue}{\texttt{u1}}, where 
+	\textcolor{blue}{\texttt{ziml\thinspace=\thinspace0.1\thinspace*\thinspace{maxu1}}}, 
+	is made up.)
+	With each iteration, the new run uses the snapshot from
+	a previous run to initialize (as well as the new value
+	of \textcolor{blue}{\texttt{ziml}}); the \textcolor{blue}{\texttt{try}} statement is used to
+	ensure the model works even if \textcolor{blue}{\texttt{mysnapshot}} is not
+	defined (which is the case the first time around).
+	The \textcolor{blue}{\texttt{inputs}} dictionary is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16918}%
+$\textstyle \parbox{70ex}{\footnotesize{%
+	\textcolor{blue}{\texttt{%
+import os \\
+\\
+class NewQtcm(Qtcm): \\
+\hspace*{5ex}def cloud0(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}def cloud1(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}def cloud2(self):\\
+\hspace*{10ex}[\ldots] \\
+\hspace*{5ex}[\ldots] \\
+\\
+inputs['init\_with\_instance\_state'] = False \\
+for i in xrange(10): \\
+\hspace*{5ex}iname = 'cloudroutine-' + str(i)  \\
+\hspace*{5ex}ipath = os.path.join('proc', iname) \\
+\hspace*{5ex}os.makedirs(ipath) \\
+\hspace*{5ex}model = NewQtcm(**inputs) \\
+\hspace*{5ex}model.runlists['atm\_physics1'][1] = 'cloud' + str(i) \\
+\hspace*{5ex}model.runname.value = iname \\
+\hspace*{5ex}model.outdir.value = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}}
+	}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+{\newpage\clearpage
+\lthtmlinlinemathA{tex2html_wrap_inline16919}%
+
+% latex2html id marker 16919
+$\textstyle \parbox{70ex}{\footnotesize{Figure \ref{fig:alt.param.inherit.eg}:
+	Let's say we have 9 different cloud physics schemes we wish
+	to try out in 9 different runs.  The easiest way to do this
+	is to create a new class \textcolor{blue}{\texttt{NewQtcm}} that
+	inherits everything from \textcolor{blue}{\texttt{Qtcm}}, and to which we'll
+	add the additional cloud schemes (\textcolor{blue}{\texttt{cloud0}}, \textcolor{blue}{\texttt{cloud1}},
+	etc.).
+	In the \textcolor{blue}{\texttt{for}} loop, I change the cloud model
+	run list entry in the run list that governs
+	atmospheric physics at one instant to whatever the cloud
+	model is at this point in the loop.
+	The \textcolor{blue}{\texttt{inputs}} dictionary is initialized with the code in
+	Figure~\ref{fig:defn.of.inputs}.
+	Of course, we could do the same thing by running the 9
+	models separately, but this set-up makes it easy to do
+	hypothesis testing with these 9 models.  For instance, we
+	can create a test by which we will choose which of the 9
+	models to use:  Within this framework, the selection of
+	those models can be altered by changing a string.}}$%
+\lthtmlinlinemathZ
+\lthtmlcheckvsize\clearpage}
+
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsubsection}
+\stepcounter{subsubsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{subsection}
+\stepcounter{section}
+\stepcounter{chapter}
+{\newpage\clearpage
+\lthtmlfigureA{center17036}%
+\begin{center}\vbox{\input{bibnames.sty}
+}\end{center}%
+\lthtmlfigureZ
+\lthtmlcheckvsize\clearpage}
+
+\appendix
+\stepcounter{chapter}
+\stepcounter{section}
+\stepcounter{section}
+
+\end{document}

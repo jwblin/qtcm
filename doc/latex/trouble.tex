@@ -1,0 +1,127 @@
+% ==========================================================================
+% Troubleshooting
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+\section{Error Messages Produced by \mods{qtcm}}
+
+\begin{description}
+\item[\screen{Error-Value too long in SetbyPy module getitem\_str for}
+	\dumarg{key}:]
+	This message is produced by the Fortran
+	subroutine \mods{getitem\_str}
+	in the module \mods{SetbyPy} in the compiled QTCM1 Fortran code.
+	The code is in the file \fn{setbypy.F90}.  This error occurs when
+	the Fortran variable whose name is given by the string \dumarg{key}
+	has a value that is greater than the local parameter
+	\vars{maxitemlen} in \mods{getitem\_str}.  To fix this, you have
+	to go into \fn{setbypy.F90} and change the value of
+	\vars{maxitemlen}.
+
+\item[\screen{Error-real\_rank1\_array should be deallocated}:]
+	Fortran module \mods{SetByPy}'s subroutine
+	\mods{getitem\_real\_array} generates this message
+	(or a similar message for other ranks) if the Fortran
+	variable for the input \dumarg{key} are allocated on entry
+	to the routine.  This may indicate the user has written another
+	Fortran routine to access the \mods{real\_rank1\_array} variable
+	outside of the standard interfaces..
+
+\item[\screen{Error-Bad call to SetbyPy module \ldots}:]
+	Often times, this error occurs because a get or set routine
+	in \mods{SetByPy} tried to act on a variable for which the
+	corresponding input \dumarg{key} is not defined.  The solution
+	is to add that case in the if/then construct for the get and set
+	routines in \mods{SetByPy} and rebuild the extension modules.
+\end{description}
+
+
+\section{Other Errors}
+
+\begin{description}
+\item[Python cannot find some packages:]
+	This error often happens when the version of Python in which
+	you have installed all your packages is not the version that
+	is called at the Unix command line by typing in \cmd{python}.
+	To get around this, 
+        define a Unix alias
+        that maps \cmd{python2.4} (or whichever version of Python
+	has all your packages installed) to \cmd{python}.  If you
+	have multiple Python's installed on your system, you might
+	have to use a more specific name for the Python executable.
+	As a result, you may have to change the test scripts in
+	\fn{test} in the \mods{qtcm} distribution directory.
+
+\item[\mods{get\_qtcm1\_item} and compiled QTCM1 model pointer
+	variables:]
+	If you try to use the \mods{get\_qtcm1\_item} method on a compiled
+	QTCM1 model pointer variable 
+	(i.e., \vars{u1}, \vars{v1}, \vars{q1}, \vars{T1}),
+	 before the compiled
+	model \mods{varinit} subroutine is run, you'll get a bus error
+	with no additional message.
+
+\item[Mismatch between Python and Fortran array field variables:]
+	You change an array field variable on the Python side, but
+	it seems like the wrong elements are changed on the Fortran
+	side.  Or you type in the same index address for accessing a
+	\mods{qtcm} netCDF output array as well as its \class{Qtcm}
+	instance attribute counterpart, and find you get different
+	answers.  Some possible reasons and fixes:
+
+	\begin{itemize}
+	\item This will occur if you haven't accounted for the
+		difference in how field variables are saved at the
+		Python-level, Fortran-level, and in a netCDF file.
+		All netCDF array output is dimensioned (time,
+		latitude, longitude) when read into Python using
+		the \mods{Scientific} package.  This differs from
+		the way \class{Qtcm} saves field variables, \emph{both}
+		at the Python- and Fortran-levels, which follows
+		Fortran convention (longitude, latitude).
+
+		Note that the way \class{Qtcm} saves field variables
+		at the Python- and Fortran-levels is different than
+		the default way Python and Fortran save arrays.
+		Section~\ref{sec:field.var.shape} for more information.
+
+	\item You may have forgotten that array indices in Python start at
+		0, while indices in Fortran (generally) start at 1.
+		Also, ranges in Python are exclusive at the upper-bound,
+		while ranges in Fortran are inclusive at the upper-bound.
+		(Both Python and Fortran array indice ranges are inclusive
+		at the lower-bound.)
+
+	\item You may have forgotten some field variables have
+		ghost latitudes, and thus there are extra latitude bands
+		when the array is stored as a Python or Fortran field
+		variable, but there are \emph{no} extra latitude bands
+		when the array is stored as netCDF output (the QTCM1
+		output routines strip off the ghost latitudes when
+		writing those field variables out).
+	        See the
+        \latexhtml{%
+\htmladdnormallinkfoot{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/$\sim$csi/qtcm\_man/v2.3/qtcm\_manv2.3.pdf}}%
+{\htmladdnormallink{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf}}
+        \cite{Neelin/etal:2002}
+        for details about ghost latitudes.
+
+		The safest and easiest way to tell whether the variable has a
+		ghost latitudes is to look at its shape.
+		A call to the \class{Qtcm} instance
+		method \mods{get\_qtcm1\_item} will give you the array,
+		and the use of NumPy's \mods{shape} function will give you
+		the shape.
+	\end{itemize}
+\end{description}
+
+
+
+
+% ===== end of file =====

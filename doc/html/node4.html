@@ -1,0 +1,855 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Getting Started With qtcm</TITLE>
+<META NAME="description" CONTENT="Getting Started With qtcm">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html435"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html431"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html425"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html433"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html436"
+  HREF="node5.html">Using qtcm</A>
+<B> Up:</B> <A NAME="tex2html432"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html426"
+  HREF="node3.html">Installation and Configuration</A>
+ &nbsp; <B>  <A NAME="tex2html434"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html437"
+  HREF="node4.html#SECTION00410000000000000000">Your First Model Run</A>
+<LI><A NAME="tex2html438"
+  HREF="node4.html#SECTION00420000000000000000">Managing Directories</A>
+<LI><A NAME="tex2html439"
+  HREF="node4.html#SECTION00430000000000000000">Model Field Variables</A>
+<LI><A NAME="tex2html440"
+  HREF="node4.html#SECTION00440000000000000000">Run Sessions</A>
+<UL>
+<LI><A NAME="tex2html441"
+  HREF="node4.html#SECTION00441000000000000000">What is a Run Session?</A>
+<LI><A NAME="tex2html442"
+  HREF="node4.html#SECTION00442000000000000000">Changing Variables</A>
+<LI><A NAME="tex2html443"
+  HREF="node4.html#SECTION00443000000000000000">Continuing a Model Run</A>
+<LI><A NAME="tex2html444"
+  HREF="node4.html#SECTION00444000000000000000">Passing Restart Snapshots Between Run Sessions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html445"
+  HREF="node4.html#SECTION00450000000000000000">Creating Multiple Models</A>
+<UL>
+<LI><A NAME="tex2html446"
+  HREF="node4.html#SECTION00451000000000000000">Model Instances</A>
+<LI><A NAME="tex2html447"
+  HREF="node4.html#SECTION00452000000000000000">Passing Snapshots To Other Models</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html448"
+  HREF="node4.html#SECTION00460000000000000000">Run Lists</A>
+<LI><A NAME="tex2html449"
+  HREF="node4.html#SECTION00470000000000000000">Model Output</A>
+<UL>
+<LI><A NAME="tex2html450"
+  HREF="node4.html#SECTION00471000000000000000">NetCDF Output</A>
+<LI><A NAME="tex2html451"
+  HREF="node4.html#SECTION00472000000000000000">Visualization</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html452"
+  HREF="node4.html#SECTION00480000000000000000">Documentation</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00400000000000000000"></A>  <A NAME="ch:getting.started"></A>
+<BR>
+Getting Started With <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>
+</H1>
+
+<H1><A NAME="SECTION00410000000000000000">
+Your First Model Run</A>
+</H1>
+
+<P>
+Figure&nbsp;<A HREF="#fig:my.first.run">3.1</A> shows an example of a script to make
+a 30 day seasonal, aquaplanet model run, with run name ``test'',
+starting from November 1, Year 1.
+
+<P>
+<A NAME="fig:my.first.run"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="273" HEIGHT="239" ALIGN="MIDDLE" BORDER="0"
+ SRC="img37.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+from qtcm ...
+...led\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}}
+}}$"></DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="320" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img38.png"
+ ALT="% latex2html id marker 16321
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\re...
+...g:my.first.run}:
+An example of a simple \textcolor{blue}{\texttt{qtcm}} run.}}$">
+</DIV>
+The class describing the QTCM1 model is <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>.  An instance
+of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>, in this example <FONT COLOR="#0000ff"><TT>model</TT></FONT>, is created the same
+way you create an instance of any class.  When instantiating an
+instance of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>, keyword parameters can be used to override
+any default settings.  In the example above, the dictionary
+<FONT COLOR="#0000ff"><TT>inputs</TT></FONT> specifying all keyword parameters is passed in on the
+instantiation of <FONT COLOR="#0000ff"><TT>model</TT></FONT>.
+
+<P>
+The keyword parameter settings in
+Figure&nbsp;<A HREF="#fig:my.first.run">3.1</A> have the following meanings:
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>runname</TT></FONT>:  This string (``test'') is used in the
+	output filename.  QTCM1 writes mean and instantaneous
+	output files to the directory given in <FONT COLOR="#0000ff"><TT>model.outdir.value</TT></FONT>,
+	with filenames 
+	<I><I>qm_</I></I><I>runname</I><I><I>.nc</I></I> for mean output and
+	<I><I>qi_</I></I><I>runname</I><I><I>.nc</I></I> for instantaneous output.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>landon</TT></FONT>: When set to ``0'', the land is turned off and
+	the run is an aquaplanet run.  When set to ``1'', the land
+	model is turned on.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>year0</TT></FONT>:  The year the run starts on.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>month0</TT></FONT>:  The month the run starts on (11 = November).
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>day0</TT></FONT>: The day of the month the run starts on.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>lastday</TT></FONT>:  The model runs from day 1 to <FONT COLOR="#0000ff"><TT>lastday</TT></FONT>.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>mrestart</TT></FONT>:  When set to ``0'', the run starts from
+	default initial conditions
+	(see Section&nbsp;<A HREF="node5.html#sec:initial.variables">4.7.2</A> for a table of
+	those values).
+	When set to ``1'', the run starts from a restart file.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT>:  This keyword sets what form the
+	compiled QTCM1 model has, and its value is saved to
+	the instance's <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> attribute.
+	It is a string and can be set either to
+	``parts'' or ``full''.  Most of the time, you will want
+	to set it to <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT>.
+	This keyword is the only one
+	that must be specified on instantiation; the model instance
+	will at least instantiate
+	using only the default settings for all the other keyword
+	parameters (given in Appendix&nbsp;<A HREF="node10.html#app:defaults.values">A</A>).
+	See Section&nbsp;<A HREF="node5.html#sec:compiledform">4.4</A> for details about
+	what the <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> attribute controls.
+</LI>
+</UL>
+
+<P>
+By default, the <FONT COLOR="#0000ff"><TT>SSTmode</TT></FONT> attribute, which controls whether the
+model will use climatological sea-surface temperatures (SST) 
+or real SSTs, is set to the <FONT COLOR="#0000ff"><TT>value</TT></FONT> ``seasonal'', thus giving a
+run with seasonal forcing at the lower-boundary over the ocean.
+
+<P>
+This example assumes that the boundary condition files, sea surface
+temperature files, and the model output directories are as specified
+in submodule <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>.  Those values are described in
+Section&nbsp;<A HREF="node10.html#sec:defaults.scalar">A.1</A>.
+
+<P>
+
+<H1><A NAME="SECTION00420000000000000000">
+Managing Directories</A>
+</H1>
+
+<P>
+Most of the time, your boundary condition files and output files
+will not be in the locations specified in
+Section&nbsp;<A HREF="node10.html#sec:defaults.scalar">A.1</A>, or in the directory your
+Python script resides.  The easiest way to tell your <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> 
+instance where your input/output files are is to pass them in
+as keyword parameters on instantiation.
+
+<P>
+<A NAME="fig:manage.dir.example"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="489" HEIGHT="373" ALIGN="MIDDLE" BORDER="0"
+ SRC="img39.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+from qtcm ...
+...led\_form'] = 'parts' \\
+model = Qtcm(**inputs) \\
+model.run\_session()}}
+}}$"></DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="578" HEIGHT="48" ALIGN="MIDDLE" BORDER="0"
+ SRC="img40.png"
+ ALT="% latex2html id marker 16324
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\re...
+...ttt{qtcm}} run showing detailed description of
+input and output directories.}}$">
+</DIV>
+Figure&nbsp;<A HREF="#fig:manage.dir.example">3.2</A> shows an example run where those
+directories are explicitly specified; in all other aspects, the run
+is identical to the one in Figure&nbsp;<A HREF="#fig:my.first.run">3.1</A>.
+In Figure&nbsp;<A HREF="#fig:manage.dir.example">3.2</A>, output from the model is
+directed to the directory described by string variable
+<FONT COLOR="#0000ff"><TT>dirbasepath</TT></FONT>.  <FONT COLOR="#0000ff"><TT>dirbasepath</TT></FONT> is created by joining the
+current working directory with the run name given in string variable
+<FONT COLOR="#0000ff"><TT>rundirname</TT></FONT>.<A NAME="tex2html92"
+  HREF="footnode.html#foot3664"><SUP>3.1</SUP></A>Setting keyword parameter <FONT COLOR="#0000ff"><TT>outdir</TT></FONT> to <FONT COLOR="#0000ff"><TT>dirbasepath</TT></FONT> sends
+output to <FONT COLOR="#0000ff"><TT>dirbasepath</TT></FONT>.  
+Keywords <FONT COLOR="#0000ff"><TT>bnddir</TT></FONT> and <FONT COLOR="#0000ff"><TT>SSTdir</TT></FONT> specify the directories
+where non-SST and SST boundary condition files, respectively, are
+found.
+
+<P>
+Interestingly, the default version of QTCM1 does <I>not</I> send
+all output from the model to <FONT COLOR="#0000ff"><TT>outdir</TT></FONT>.  The restart file
+<I><I>qtcm_</I></I><I>yyyymmdd</I><I><I>.restart</I></I> (where <I>yyyymmdd</I>
+is the year, month, and day of the model date when the restart
+file was written) is written into the current working directory,
+not the output directory.  Thus, if you do multiple runs, you'll
+have to manually deal with the restart files that will proliferate.
+
+<P>
+Neither the QTCM1 model nor the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> object
+create the directories specified in <FONT COLOR="#0000ff"><TT>bnddir</TT></FONT>, <FONT COLOR="#0000ff"><TT>SSTdir</TT></FONT>,
+and <FONT COLOR="#0000ff"><TT>outdir</TT></FONT>.  Failure to do so will create an error.  I use
+Python's file management tools to make sure the output directory
+is created, and any old output files are deleted.  Here's an example
+that does that, using the <FONT COLOR="#0000ff"><TT>dirbasepath</TT></FONT> and <FONT COLOR="#0000ff"><TT>rundirname</TT></FONT>variables from Figure&nbsp;<A HREF="#fig:manage.dir.example">3.2</A>:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT><FONT SIZE="-1">
+if not os.path.exists(dirbasepath):  os.makedirs(dirbasepath) 
+<BR>
+qi_file = os.path.join( dirbasepath, 'qi_'+rundirname+'.nc' ) 
+<BR>
+qm_file = os.path.join( dirbasepath, 'qm_'+rundirname+'.nc' ) 
+<BR>
+if os.path.exists(qi_file):   os.remove(qi_file) 
+<BR>
+if os.path.exists(qm_file):   os.remove(qm_file)</FONT></TT></FONT></TD></TR>
+</TABLE>
+<P>
+
+<H1><A NAME="SECTION00430000000000000000"></A>   <A NAME="sec:field.variables.intro"></A>
+<BR>
+Model Field Variables
+</H1>
+
+<P>
+The term ``field'' variable refers to QTCM1 model variables that 
+are accessible at both the compiled Fortran QTCM1 model-level as
+well as the Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance-level.
+Field variables are all instances of the <FONT COLOR="#0000ff"><TT>Field</TT></FONT> class,
+and are stored as attributes of the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.<A NAME="tex2html93"
+  HREF="footnode.html#foot3665"><SUP>3.2</SUP></A>
+<P>
+<FONT COLOR="#0000ff"><TT>Field</TT></FONT> class instances have the following attributes:
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>id</TT></FONT>:  A string naming the field (e.g., ``Qc'', ``mrestart'').
+	This string should contain no whitespace.
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>value</TT></FONT>:  The value of the field.  Can be of any type, though
+	typically is either a string or numeric scalar or a numeric array.
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>units</TT></FONT>:  A string giving the units of the field.
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>long_name</TT></FONT>:  A string giving a description of the field.
+</LI>
+</UL>
+
+<P>
+<FONT COLOR="#0000ff"><TT>Field</TT></FONT> instances also have methods to return the rank 
+and typecode of <FONT COLOR="#0000ff"><TT>value</TT></FONT>.
+
+<P>
+Remember, if you want to access the value of a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> object,
+make sure you access that object's <FONT COLOR="#0000ff"><TT>value</TT></FONT> attribute.  
+Thus, for example,
+to assign a variable <FONT COLOR="#0000ff"><TT>foo</TT></FONT> to the
+<FONT COLOR="#0000ff"><TT>lastday</TT></FONT> value for a given
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance <FONT COLOR="#0000ff"><TT>model</TT></FONT>, type the following:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>foo = model.lastday.value</TT></FONT></TD></TR>
+</TABLE>
+<P>
+For scalars, this assignment sets <FONT COLOR="#0000ff"><TT>foo</TT></FONT> by value (i.e., a copy
+of the value of attribute <FONT COLOR="#0000ff"><TT>model.lastday</TT></FONT> is set to <FONT COLOR="#0000ff"><TT>foo</TT></FONT>).
+In general, however, Python assigns variables by reference.  Use
+the <FONT COLOR="#0000ff"><TT>copy</TT></FONT> module if you truly want a copy of a field variable's
+value (such as an array), rather than an alias.  For more details
+about field variables, see Section&nbsp;<A HREF="node5.html#sec:field.variables">4.7</A>.
+
+<P>
+
+<H1><A NAME="SECTION00440000000000000000">
+Run Sessions</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00441000000000000000">
+What is a Run Session?</A>
+</H2>
+
+<P>
+A run session is a unit of simulation where the model is run from
+day 1 of simulation to the day specified by the <FONT COLOR="#0000ff"><TT>lastday</TT></FONT>attribute of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.  A run session is a
+``complete'' model run, at the beginning of which all compiled QTCM1
+model variables are set to the values given at the Python-level,
+and at the end of which restart files are written, the values
+at the Python-level are overwritten by the values in the Fortran
+model, and a Python-accessible snapshot is taken of the 
+model variables that were written to the restart file.
+
+<P>
+
+<H2><A NAME="SECTION00442000000000000000">
+Changing Variables</A>
+</H2>
+
+<P>
+Between run sessions, changing any field variable is as easy
+as a Python assignment.  For instance, to change the atmosphere
+mixed layer depth to 100&nbsp;m, just type:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>model.ziml.value = 100.0</TT></FONT></TD></TR>
+</TABLE>
+<P>
+When changing arrays, be careful to try to match the shape of the 
+array.<A NAME="tex2html94"
+  HREF="footnode.html#foot3666"><SUP>3.3</SUP></A>You can use the NumPy <FONT COLOR="#0000ff"><TT>shape</TT></FONT> function on a NumPy array to
+check its shape.
+
+<P>
+
+<H2><A NAME="SECTION00443000000000000000"></A>  <A NAME="sec:continuation.intro"></A>
+<BR>
+Continuing a Model Run
+</H2>
+
+<P>
+Figure&nbsp;<A HREF="#fig:continuation.example">3.3</A> shows an example of two run
+sessions, where the second run session is a continuation of the
+first.
+
+<P>
+<A NAME="fig:continuation.example"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="311" HEIGHT="241" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+inputs['ye...
+...
+model.init\_with\_instance\_state = True \\
+model.run\_session(cont=30)}}
+}}$"></DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="578" HEIGHT="90" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="% latex2html id marker 16340
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\re...
+...name and
+all input and output directory names were added
+to the dictionary.}}$">
+</DIV>
+The first run session runs from day 1 to day 10.  The second
+run session runs the model for another 30 days.  
+Setting the <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> of
+<FONT COLOR="#0000ff"><TT>model</TT></FONT> to <FONT COLOR="#0000ff"><TT>True</TT></FONT> tells the model to use the
+the values of the instance attributes 
+(for prognostic variables, right-hand sides, and start date) 
+are currently stored <FONT COLOR="#0000ff"><TT>model</TT></FONT>as the initial values for the run_session.<A NAME="tex2html95"
+  HREF="footnode.html#foot3669"><SUP>3.4</SUP></A>The <FONT COLOR="#0000ff"><TT>cont</TT></FONT>keyword in the second <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> call specifies a
+continuation run, and the value gives the number of additional
+days to run the model.
+
+<P>
+The set of runs described above would produce the exact same
+results as if you had gone into the Fortran model after 10 days,
+doubled the first baroclinic mode zonal velocity, and continued
+the run for another 30 days.  With the Python example above, however,
+you didn't need to know you were going to do that ahead of starting
+the model run (which is what a compiled model requires you to do).
+Section&nbsp;<A HREF="node5.html#sec:contination.run.sessions">4.5</A> describes continuation
+runs in detail.
+
+<P>
+
+<H2><A NAME="SECTION00444000000000000000"></A>
+					<A NAME="sec:snapshot.intro"></A>
+<BR>
+Passing Restart Snapshots Between Run Sessions
+</H2>
+
+<P>
+The pure-Fortran QTCM1 uses a restart file to enable continuation
+runs.  A <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance can also make use of that option,
+through setting the <FONT COLOR="#0000ff"><TT>mrestart</TT></FONT> attribute value
+(see Section&nbsp;<A HREF="node5.html#sec:contination.run.sessions">4.5</A> and
+Neelin et al. [<A
+ HREF="node9.html#Neelin_etal:2002">4</A>] for details).  
+It's easier, however, instead of using a restart file, to pass 
+along a ``snapshot'' dictionary.
+
+<P>
+The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance method <FONT COLOR="#0000ff"><TT>make_snapshot</TT></FONT> copies the
+variables that would be written out to a restart file into a
+dictionary that is saves as the instance attribute <FONT COLOR="#0000ff"><TT>snapshot</TT></FONT>.
+This snapshot can be saved separately, for later recall.  Note that
+snapshots are automatically made at the end of a run session.
+
+<P>
+The following example shows a model <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> call,
+following which the snapshot is saved to the variable
+<FONT COLOR="#0000ff"><TT>snapshot</TT></FONT>:<A NAME="tex2html96"
+  HREF="footnode.html#foot3670"><SUP>3.5</SUP></A>
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>model.run_session() 
+<BR>
+mysnapshot = model.snapshot</TT></FONT></TD></TR>
+</TABLE>
+<P>
+After taking the snapshot, you might continue the run a while, and
+then decide to return to the snapshot you saved.  To do so, use
+the <FONT COLOR="#0000ff"><TT>sync_set_py_values_to_snapshot</TT></FONT>method to reset the model instance values to
+<FONT COLOR="#0000ff"><TT>mysnapshot</TT></FONT> before your next run session:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>model.sync_set_py_values_to_snapshot(snapshot=mysnapshot) 
+<BR>
+model.init_with_instance_state = True 
+<BR>
+model.run_session()</TT></FONT></TD></TR>
+</TABLE>
+<P>
+See Section&nbsp;<A HREF="node5.html#sec:snapshots">4.5.5</A> for details regarding the use of
+snapshots, as well as for a list of what variables are saved in
+a snapshot.
+
+<P>
+
+<H1><A NAME="SECTION00450000000000000000">
+Creating Multiple Models</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00451000000000000000">
+Model Instances</A>
+</H2>
+
+<P>
+Creating a new QTCM1 model is as simple as creating another
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+For instance, to instantiate two QTCM1
+models, <FONT COLOR="#0000ff"><TT>model1</TT></FONT> and <FONT COLOR="#0000ff"><TT>model2</TT></FONT>, type the following:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>from qtcm import Qtcm 
+<BR>
+model1 = Qtcm(compiled_form='parts') 
+<BR>
+model2 = Qtcm(compiled_form='parts')</TT></FONT></TD></TR>
+</TABLE>
+<P>
+<FONT COLOR="#0000ff"><TT>model1</TT></FONT> and <FONT COLOR="#0000ff"><TT>model2</TT></FONT> do <I>not</I> share any variables
+in common, including the extension modules holding the Fortran
+code.  In creating the instances, a copy of the extension modules
+are saved in temporary directories.
+
+<P>
+
+<H2><A NAME="SECTION00452000000000000000">
+Passing Snapshots To Other Models</A>
+</H2>
+
+<P>
+The snapshots described in Section&nbsp;<A HREF="#sec:snapshot.intro">3.4.4</A>
+can also be passed around to other model instances,
+enabling you to easily branch a model run:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>model.run_session() 
+<BR>
+mysnapshot = model.snapshot 
+<BR>
+model1.sync_set_py_values_to_snapshot(snapshot=mysnapshot) 
+<BR>
+model2.sync_set_py_values_to_snapshot(snapshot=mysnapshot) 
+<BR>
+model1.run_session() 
+<BR>
+model2.run_session()</TT></FONT></TD></TR>
+</TABLE>
+<P>
+The state of <FONT COLOR="#0000ff"><TT>model</TT></FONT> after its run session is used to start
+<FONT COLOR="#0000ff"><TT>model1</TT></FONT> and <FONT COLOR="#0000ff"><TT>model2</TT></FONT>.  This is an easy way to save time
+in spinning-up multiple models.
+
+<P>
+
+<H1><A NAME="SECTION00460000000000000000"></A>		<A NAME="sec:runlist.intro"></A>
+<BR>
+Run Lists
+</H1>
+
+<P>
+This feature of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> objects is what really gives 
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> model instances their flexibility.
+A run list is a list of strings and dictionaries that specify
+what routines to run in order to execute a particular part of
+the model.  Each element of the run list specifies the method
+or subroutine to execute, and the order of the elements specifies
+their execution order.
+
+<P>
+For instance, the standard run list for initializing the the
+atmospheric portion of the model is named ``qtcminit'', and
+equals the following list:
+
+<P>
+<BLOCKQUOTE>
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>['__qtcm.wrapcall.wparinit', 
+<BR> '__qtcm.wrapcall.wbndinit', 
+<BR> 'varinit', 
+<BR> {'__qtcm.wrapcall.wtimemanager': [1]}, 
+<BR> 'atm_physics1']
+
+</BLOCKQUOTE>
+This list is stored as an entry in the <FONT COLOR="#0000ff"><TT>runlists</TT></FONT> dictionary
+(with key <FONT COLOR="#0000ff"><TT>'qtcminit'</TT></FONT>).
+<FONT COLOR="#0000ff"><TT>runlists</TT></FONT> is an attribute of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+Table&nbsp;<A HREF="node5.html#tab:stnd.runlists">4.3</A> lists all standard run lists.
+
+<P>
+When the run list element in the list is a string, the string gives the
+name of the routine to execute.  The routine has no parameter
+list.  The routine can be a
+compiled QTCM1 model subroutine for which an interface has been
+written (e.g., <FONT COLOR="#0000ff"><TT>__qtcm.wrapcall.wparinit</TT></FONT>), 
+a method of the of the Python model instance 
+(e.g., <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>), or another run list
+(e.g., <FONT COLOR="#0000ff"><TT>atm_physics1</TT></FONT>).
+
+<P>
+When the run list element is a 1-element dictionary, the key of
+the dictionary element is the name of the routine, and the value
+of the dictionary element is a list specifying input parameters
+to be passed to the routine on call.  Thus, the element:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>{'__qtcm.wrapcall.wtimemanager': [1]}</TT></FONT></TD></TR>
+</TABLE>calls the <FONT COLOR="#0000ff"><TT>__qtcm.wrapcall.wtimemanager</TT></FONT> routine, passing in
+one input parameter, which in this case is the value 1.
+
+<P>
+If you want to change the order of the run list, just change the
+order of the list.  To add or remove routines to be executed, just
+add and remove their names from the run list.
+Python provides a number of methods to manipulate
+lists (e.g., <FONT COLOR="#0000ff"><TT>append</TT></FONT>).  Since lists are dynamic data types
+in Python, you do not have to do any recompiling to implement
+the change.
+
+<P>
+The <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> attribute must be set to <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT>in the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance in order to take advantage of the run
+lists feature of the class.  Run lists are not available for
+<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT>, because subroutine
+calls are hardwired in the compiled QTCM1 model Fortran code in
+that case.
+
+<P>
+
+<H1><A NAME="SECTION00470000000000000000"></A>			<A NAME="sec:output.intro"></A>
+<BR>
+Model Output
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00471000000000000000">
+NetCDF Output</A>
+</H2>
+
+<P>
+Model output is written to netCDF files in the directory
+specified by the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute <FONT COLOR="#0000ff"><TT>outdir</TT></FONT>.
+Mean values are written to an output file beginning with
+<I><I>qm_</I></I>, and instantaneous values are written to an output
+file beginning with <I><I>qi_</I></I>.
+
+<P>
+The frequency of mean output is controlled by <FONT COLOR="#0000ff"><TT>ntout</TT></FONT>, and the
+frequency of instantaneous output is controlled by <FONT COLOR="#0000ff"><TT>ntouti</TT></FONT>.
+<FONT COLOR="#0000ff"><TT>ntout.value</TT></FONT> gives the number of days over which to average
+(and if equals <FONT COLOR="#0000ff"><TT>-30</TT></FONT>, monthly means are calculated).
+<FONT COLOR="#0000ff"><TT>ntouti.value</TT></FONT> gives the frequency in days that instantaneous
+values are output (monthly if it equals <FONT COLOR="#0000ff"><TT>-30</TT></FONT>).  (See
+Section&nbsp;<A HREF="node5.html#sec:initial.variables">4.7.2</A> for a description of other
+output-control variables, and see the QTCM1 manual [<A
+ HREF="node9.html#Neelin_etal:2002">4</A>]
+for a detailed description of how these variables control output.)
+
+<P>
+Figure&nbsp;<A HREF="#fig:netcdf.read">3.4</A> gives an example of a block of code
+to read netCDF output, where <FONT COLOR="#0000ff"><TT>datafn</TT></FONT> is the netCDF filename, and
+<FONT COLOR="#0000ff"><TT>id</TT></FONT> is the string name of the field variable (e.g.,
+<FONT COLOR="#0000ff"><TT>'u1'</TT></FONT>, <FONT COLOR="#0000ff"><TT>'T1'</TT></FONT>, etc.).
+(Note that the netCDF identifier for field variables is the same as
+the name in <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>, except for the variables given in
+Table&nbsp;<A HREF="#tab:qtcm.netcdf.ids">3.1</A>.)
+
+<P>
+In the code in Figure&nbsp;<A HREF="#fig:netcdf.read">3.4</A>,
+the array value is read into <FONT COLOR="#0000ff"><TT>data</TT></FONT>, and the longitude values, 
+latitude values, and time values are read into variables
+<FONT COLOR="#0000ff"><TT>lon</TT></FONT>, <FONT COLOR="#0000ff"><TT>lat</TT></FONT>, and <FONT COLOR="#0000ff"><TT>time</TT></FONT>, respectively.
+As netCDF files also hold metadata, a description and the units
+of the variable given by <FONT COLOR="#0000ff"><TT>id</TT></FONT>, and each dimension, are read
+into variables ending in <FONT COLOR="#0000ff"><TT>_name</TT></FONT> and <FONT COLOR="#0000ff"><TT>_units</TT></FONT>,
+respectively.
+
+<P>
+<A NAME="fig:netcdf.read"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="434" HEIGHT="432" ALIGN="MIDDLE" BORDER="0"
+ SRC="img43.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+import num...
+... \\
+time\_units = fileobj.variables['time'].units \\ \\
+fileobj.close()}}
+}}$"></DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="578" HEIGHT="48" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="% latex2html id marker 16358
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\re...
+...d}:
+Example of Python code to read netCDF output.
+See text for description.}}$">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="4533"></A>
+<TABLE>
+<CAPTION><STRONG>Table:</STRONG>
+NetCDF output names for <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> field variables that
+	are different from the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> and compiled QTCM1 model
+	variable names.  The netCDF names are case-sensitive.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1" ALIGN="CENTER">
+<TR><TH ALIGN="LEFT"><B><FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Attribute Name</B></TH>
+<TH ALIGN="LEFT"><B>NetCDF Output Name</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>'Qc'</TT></FONT></TD>
+<TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>'Prec'</TT></FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>'FLWut'</TT></FONT></TD>
+<TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>'OLR'</TT></FONT></TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>'STYPE'</TT></FONT></TD>
+<TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>'stype'</TT></FONT></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<A NAME="tab:qtcm.netcdf.ids"></A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+
+<P>
+<B>NB:</B>  All netCDF array output is dimensioned (time, latitude,
+longitude) when read into Python using the <FONT COLOR="#0000ff"><TT>Scientific</TT></FONT> package.
+This differs from the way <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> saves field variables, which
+follows Fortran convention (longitude, latitude).  Please be careful
+when relating the two types of arrays.
+Section&nbsp;<A HREF="node5.html#sec:field.var.shape">4.7.4</A> for a discussion of why there is
+this discrepancy.
+
+<P>
+
+<H2><A NAME="SECTION00472000000000000000"></A>	<A NAME="sec:viz.intro"></A>
+<BR>
+Visualization
+</H2>
+
+<P>
+The <FONT COLOR="#0000ff"><TT>plotm</TT></FONT> method of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances creates line
+plots or contour plots, as appropriate, of model output of
+average fields of run session(s) associated with the instance.
+Some examples, assuming <FONT COLOR="#0000ff"><TT>model</TT></FONT> is an instance of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>and has already executed a run session:
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>model.plotm('Qc', lat=1.875)</TT></FONT>:
+	A time vs. longitude contour
+          plot is made for the full range of time and longitude,
+          at the latitude 1.875 deg N, for mean precipitation.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>model.plotm('Qc', time=10)</TT></FONT>:
+	A latitude vs. longitude contour plot of precipitation
+	is made for the full spatial domain at day 10 of the model run.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>model.plotm('Evap', lat=1.875, lon=[100,200])</TT></FONT>:  A contour
+	plot of time vs. longitude of evaporation is made for the
+          longitude points between 100 and 200 degrees E, at the
+          latitude 1.875 deg N.  
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>model.plotm('cl1', lat=1.875, lon=[100,200], time=20)</TT></FONT>:
+          A deep cloud amount vs. longitude line plot is made for
+          the longitude points between 100 and 200 degrees east,
+          at the latitude 1.875 deg N, at day 20 of the model run.
+</LI>
+</UL>
+
+<P>
+In these examples, the number of days over which the mean is taken
+equals <FONT COLOR="#0000ff"><TT>model.ntout.value</TT></FONT>.
+Also, the <FONT COLOR="#0000ff"><TT>plotm</TT></FONT> method automatically takes into account the
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>/netCDF variable differences described in
+Table&nbsp;<A HREF="#tab:qtcm.netcdf.ids">3.1</A>.
+
+<P>
+
+<H1><A NAME="SECTION00480000000000000000">
+Documentation</A>
+</H1>
+
+<P>
+Section&nbsp;<A HREF="node2.html#sec:ver">1.4</A> gives the online locations of the
+transparent copies of this manual.  
+Model formulation is fully described in
+Neelin &amp; Zeng [<A
+ HREF="node9.html#Neelin_Zeng:2000">3</A>] and model
+results are described in Zeng et&nbsp;al. [<A
+ HREF="node9.html#Zeng_etal:2000">5</A>]
+([<A
+ HREF="node9.html#Neelin_Zeng:2000">3</A>] is based upon v2.0 of QTCM1
+and [<A
+ HREF="node9.html#Zeng_etal:2000">5</A>] is based on QTCM1 v2.1).
+Additional documentation you'll find useful include:
+
+<P>
+
+<UL>
+<LI><A NAME="tex2html99"
+  HREF="http://www.johnny-lin.com/py_pkgs/qtcm/doc/html-api/">The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Package API Documentation</A>
+
+<P>
+</LI>
+<LI><A NAME="tex2html101"
+  HREF="http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf">The Pure-Fortran QTCM1 Manual</A>
+[<A
+ HREF="node9.html#Neelin_etal:2002">4</A>]
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html435"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html431"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html425"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html433"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html436"
+  HREF="node5.html">Using qtcm</A>
+<B> Up:</B> <A NAME="tex2html432"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html426"
+  HREF="node3.html">Installation and Configuration</A>
+ &nbsp; <B>  <A NAME="tex2html434"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

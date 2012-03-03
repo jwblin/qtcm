@@ -1,0 +1,896 @@
+% ==========================================================================
+% Using QTCM
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+
+%---------------------------------------------------------------------
+\section{Introduction}
+
+This section describes programming practices and issues related to
+the \mods{qtcm} package that might be of interest to users wishing
+to add/change code in the package.
+Please see the package
+\latexhtml{API documentation,%
+		\footnote{http://www.johnny-lin.com/py\_pkgs/qtcm/doc/html-api/}
+		which includes the source code}%
+        {\htmladdnormallink{API documentation}%
+		{http://www.johnny-lin.com/py\_pkgs/qtcm/doc/html-api/},
+		which includes the source code},
+for details.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Changes to QTCM1 Fortran Files}  \label{sec:f90changes}
+
+The source code used to generate the shared object files used
+in this Python package is unchanged
+from the pure-Fortran QTCM1 model source code, except in the
+following ways:
+
+\begin{itemize}
+\item The suffix of all source code files 
+	has been changed from \fn{.f90} to \fn{.F90}, 
+	in order to ensure the compiler preprocesses 
+	the source code.  Some compilers use the capitalization to
+	tell whether or not to run the code through a preprocessor.
+
+\item In all \fn{.F90} files, occurrences of:
+	\begin{codeblock}
+	\codeblockfont{%
+	Character(len=130)}
+	\end{codeblock}
+	are changed to:
+	\begin{codeblock}
+	\codeblockfont{%
+	Character(len=305)}
+	\end{codeblock}
+	This enables the model to properly deal with longer filenames.
+	The number ``305'' is chosen to make search and replace easier.
+
+\item In \fn{qtcmpar.F90}, the 
+	\vars{eps\_c} variable is changed from an unchangable
+	parameter to a changeable real, 
+	so that it can be changed in the model at runtime.
+
+\item All occurrences of an underscore (``\_'') character in a
+	subroutine or function name are removed.  The
+	presence of the underscore messes up the dynamic lookup
+	mechanism for the \mods{f2py} generated extension module.
+	The following names are changed, both in subroutine definitions
+	and calls:
+	\begin{itemize}
+	\item \mods{out\_restart} to \mods{outrestart},
+	\item \mods{save\_bartr} to \mods{savebartr},
+	\item \mods{grad\_phis} to \mods{gradphis}.
+	\end{itemize}
+
+\item \fn{driver.F90} is changed so that program
+	\mods{driver} becomes a subroutine, and 
+	subroutine \mods{driverinit} is deleted (along with
+	all calls to it) because basic model initialization is
+	handled at the Python level.
+
+\item In \fn{clrad.F90}, subroutine \mods{cloud}, the first
+	\vars{COUNTCAP} preprocessor macro, a comment line for
+	that ifdef is moved to prevent a warning message during
+	building with \mods{f2py}.
+
+\item The order of subroutine \mods{qtcminit} is changed.  The original
+	pure-Fortran QTCM1 \mods{qtcminit} code has the following
+	calling sequence:
+
+	\begin{codeblock}
+        \codeblockfont{%
+Call parinit            !Initialize model parameters \\
+Call varinit            !Initialize variables \\
+Call TimeManager(1)     !mm set model time \\
+Call bndinit            !input boundary datasets \\
+Call physics1           !diagnostic fields for initial condition}
+	\end{codeblock}
+
+	For the \mods{qtcm} package, I've altered this order so
+	\mods{bndinit} comes after \mods{parinit} but before \mods{varinit}:
+	\begin{codeblock}
+        \codeblockfont{%
+Call parinit            !Initialize model parameters \\
+Call bndinit            !input boundary datasets \\
+Call varinit            !Initialize variables \\
+Call TimeManager(1)     !mm set model time  \\
+Call physics1           !diagnostic fields for initial condition}
+	\end{codeblock}
+
+	This is done because \vars{STYPE} is not read in for the
+	\vars{landon} \vars{True} case until \mods{bndinit}, but
+	in \mods{varinit} \vars{STYPE} is used to calculate the
+	original values of \vars{WD} for the non-restart case.  This
+	also corrects the conflicting order found in the pure-Fortran
+	QTCM1 manual (compare pp.\ 29 and 32).  As far as I can
+	tell, \mods{bndinit} has no dependencies that require it
+	to come after \mods{timemanager} or \mods{varinit}.
+
+\end{itemize}
+
+In addition, the Fortran files \fn{setbypy.F90}, \fn{wrapcall.F90},
+and \fn{varptrinit.F90} are added.  The routines in these files, 
+however, just add more flexibility and functionality to the model;
+they do not automatically affect any model computations.  See
+Section~\ref{sec:newf90} for details.
+
+
+
+
+%---------------------------------------------------------------------
+\section{New Interfaces and Fortran Functionality}  \label{sec:newf90}
+
+As described in Section~\ref{sec:f90changes}, the Fortran files
+\fn{setbypy.F90}, \fn{wrapcall.F90}, and \fn{varptrinit.F90} are
+added to the QTCM1 source directory.  The first two files define the Fortran
+90 modules (\mods{SetbyPy} and \mods{WrapCall}) needed to interface
+the Python and Fortran levels.  The last file defines a new Fortran
+subroutine \mods{varptrinit} that associates QTCM1 model pointer
+variables at the Fortran level.  In a pure-Fortran run of QTCM1,
+this occurs in subroutine \mods{varinit}; for a
+\vars{compiled\_form\thinspace=\thinspace'parts'} run, since the
+functionality of the Fortran \mods{varinit} is now in the Python
+\mods{varinit} method, a separate Fortran pointer association
+subroutine needed to be defined.  The Fortran subroutine \mods{varptrinit}
+is called as the \mods{varptrinit} function of the 
+\vars{compiled\_form\thinspace=\thinspace'parts'}
+\fn{.so} extension module.
+
+
+	\subsection{Fortran Module \mods{SetbyPy}}   \label{sec:setbypy}
+
+		\subsubsection{Design Description}
+
+This module defines functions and subroutines used to read variables
+from the Fortran-level to the Python-level, and in setting Fortran-level
+variables using the Python-level values.  These routines are used
+by \class{Qtcm} methods \mods{get\_qtcm1\_item} and \mods{set\_qtcm1\_item}
+(and dependencies thereof) to ``get'' and ``set'' the Fortran-level
+variables.  Note that the Fortran module \mods{SetbyPy} is referred
+to in lowercase at the Python level, i.e., as the
+attribute \vars{\_\_.qtcm.setbypy} of a \class{Qtcm} instance.
+
+Because Fortran variables are not dynamically typed, separate Fortran
+functions and subroutines need to be defined to get and set variables
+of different types.\footnote%
+	{The \mods{interface} construct in Fortran 90 is supposed to
+	provide a way to create a single interface to multiple
+	routines, e.g.:
+	\begin{codeblock}
+	\codeblockfont{%
+Interface setitem \\
+\hspace*{3ex}Module Procedure setitem\_real, setitem\_int, setitem\_str \\
+End Interface}
+	\end{codeblock}
+	This construct, however, causes a bus error
+	(Mac OS X 10.4, Intel).  Thus, I put the
+	same functionality in the Python code.}
+The \class{Qtcm} methods \mods{get\_qtcm1\_item}
+and \mods{set\_qtcm1\_item} know which one of the Fortran routines
+to call on the basis of the type and rank of the value for the field
+variable in the \mods{defaults} submodule.  This is why all field
+variables need to have defaults defined in \mods{defaults}.  For
+array variables, the field variable defaults also provide the rank
+of the Fortran-level variable being gotten or set.  However, the
+array default values do \emph{not} have to have the same shape as
+the Fortran-level variables; on the Python-side, variable shape
+adjusts to what is declared on the Fortran-side.  
+Thus, if you change the resolution of
+the compiled QTCM1 model, you do not have to change the dimensions
+of the field variable values in \mods{defaults}.
+
+The \class{Qtcm} method \mods{get\_qtcm1\_item} directly calls
+the \mods{SetByPy} routines.
+The \class{Qtcm} method \mods{set\_qtcm1\_item} makes use of
+private instance methods that make the calls to the \mods{SetByPy} routines.
+
+For scalar field variables, \mods{SetByPy} provides functions and
+subroutines that provide the value of the variable on output.
+For array field variables, \mods{SetByPy}
+dynamic \emph{module} arrays are used to pass array
+variables in and out; I could not get the 
+\mods{SetByPy} Fortran routines to set
+locally defined dynamic arrays (that is, locally within a function or
+subroutine).\footnote%
+	{I tried to implement Fortran subroutine
+	\mods{getitem\_real\_array} using traditional array 
+	dimension passing 
+	(e.g., \code{subroutine foo(nx, ny, a)}) as well
+	as declaring the allocatable array inside the subroutine, 
+	but neither option worked on my \mods{f2py} (version 2\_3816) 
+	and Python (version 2.4.3).}
+In the \mods{SetByPy} module, these dynamic arrays
+are defined as follows:
+
+\begin{codeblock}
+\codeblockfont{%
+Real, allocatable, dimension(:) :: real\_rank1\_array \\
+Real, allocatable, dimension(:,:) :: real\_rank2\_array \\
+Real, allocatable, dimension(:,:,:) :: real\_rank3\_array}
+\end{codeblock}
+
+For all field variables, scalar or array, the \mods{SetByPy} module
+has a fourth module variable defined, \vars{is\_readable}, that the
+Fortran get and set routines will set to \vars{.TRUE.} if the
+variable is readable and \vars{.FALSE.} if not (it's declared as a
+logical variable).  This Fortran variable can be used to prevent
+Python from accessing pointer variables that aren't yet associated
+to targets.
+
+In general, \mods{SetByPy} routines make use of Fortran constructs
+to enable them to accomodate all possible
+variables of a given type and shape.  However, 
+for string scalars, the \mods{SetByPy} function \mods{getitem\_str}
+has to have a return value of a predefined length, in order to
+work properly.  That length is given by the parameter
+\vars{maxitemlen} and is set to 505 (the value is chosen to
+be larger than all filename variables described in
+Section~\ref{sec:f90changes} and to be easily found in
+the \fn{.F90} files).
+
+
+		\subsubsection{Module Structure}
+
+If you're a Fortran programmer, you can probably get all the information
+in this section from just reading the \fn{setbypy.F90} file directly.
+This description of the module structure, however, permits me to highlight
+what you need to do if you want to make additional compiled QTCM1 variables
+accessible to Python \class{Qtcm} objects.
+
+\begin{itemize}
+\item All \mods{Use} statements are given in the beginning of 
+	the \mods{SetByPy} module.  These statements cover
+	nearly all of the QTCM1 Fortran
+	modules that contain variables of interest.  If the
+	QTCM1 variable you're interested in isn't in a module
+	listed here, you'll have to add your own
+	\mods{Use} statement of that module here.
+
+\item Next comes the definitions for the
+	\vars{real\_rank1\_array},
+	\vars{real\_rank2\_array}, and
+	\vars{real\_rank3\_array} dynamic array variables, and
+	the \vars{is\_readable} boolean variable.
+
+\item The \mods{Contains} block of the module defines the module
+	routines called by the \class{Qtcm} instance methods to
+	set and get the compiled QTCM1 model variables.  The
+	routines are:
+	\begin{itemize}
+	\item Function \mods{getitem\_real}
+	\item Subroutine \mods{getitem\_real\_array}
+	\item Function \mods{getitem\_int}
+	\item Function \mods{getitem\_str}
+	\item Subroutine \mods{setitem\_real}
+	\item Subroutine \mods{setitem\_real\_array}
+	\item Subroutine \mods{setitem\_int}
+	\item Subroutine \mods{setitem\_str}
+	\end{itemize}
+
+\end{itemize}
+
+Each of the routines in the module \mods{Contains} block is essentially
+a list of \mods{if}/\mods{elseif} statements.  The list tests for the
+name of the variable of interest (a string), and gets or sets the
+compiled QTCM1 model variable corresponding to that name.  For pointer
+array variables, a test is also made as to whether or not the variable
+has been associated.  If not, the variable is not readable
+and \vars{is\_readable} is set to \vars{.FALSE.}\ accordingly.
+
+If you wish to add another compiled QTCM1 model variable to be
+accessible to \class{Qtcm} instance methods \mods{get\_qtcm1\_item}
+and \mods{set\_qtcm1\_item}, just add another \mods{if}/\mods{else\-if},
+like the other \mods{if}/\mods{elseif} blocks, in the Fortran set
+and get routines corresponding to the QTCM1 variable type (scalar
+vs.\ array, and real, integer, or string).  On the Python side, add
+an entry in \mods{defaults} corresponding to the new field variable
+you've created access to.  I would strongly recommend making the
+Python name of your new field variable
+(given in \mods{defaults}) be the same as the compiled
+QTCM1 model variable name.
+
+
+
+	\subsection{Fortran Module \mods{WrapCall}}   \label{sec:wrapcall}
+
+Most of the time, if you want to call a compiled QTCM1 model subroutine
+from the Python level, you will use the version of the subroutine that
+is found in this Fortran module.  
+Note that the Fortran module \mods{WrapCall} is referred
+to in lowercase at the Python level, i.e., as the
+attribute \vars{\_\_.qtcm.wrapcall} of a \class{Qtcm} instance.
+
+All the routines in this module do is wrap one of the compiled QTCM1
+model routines.  For instance, \mods{WrapCall} subroutine
+\mods{wadvcttq} is defined as just:
+
+% --- Two versions of this block, one for display in PDF and the other
+%     for display in HTML:
+%
+\begin{latexonly}
+\begin{codeblock}
+\codeblockfont{%
+Subroutine wadvcttq \\
+\hspace*{3ex}Call advcttq \\
+End Subroutine wadvcttq}
+\end{codeblock}
+\end{latexonly}
+
+\begin{htmlonly}
+\begin{rawhtml}
+<p><code><font color="blue">Subroutine wadvcttq<br>
+&nbsp;&nbsp;&nbsp;Call advcttq<br>
+End Subroutine wadvcttq</font></code></p>
+\end{rawhtml}
+\end{htmlonly}
+
+All subroutines in this module begin with ``w'', with the rest of
+the name being the Fortran QTCM1 subroutine name.  The calling
+interface for the ``w'' version is the same as the Fortran QTCM1
+original version.  There are no subroutines in this module that do
+not have an exact counterpart in the Fortran QTCM1 code, and thus
+this module's subroutines sole purpose is to call other subroutines
+in the compiled QTCM1 model.
+
+These wrapper routines are needed because \mods{f2py}, for some
+reason I can't figure out, will not properly wrap Fortran routines
+(that are then callable at the Python level) that create local
+arrays using parameters obtained through a Fortran \mods{use}
+statment.  Thus, as an example, a Fortran subroutine \mods{foo}
+with the following definition:
+
+% --- Two versions of this block, one for display in PDF and the other
+%     for display in HTML:
+%
+\begin{latexonly}
+\begin{codeblock}
+\codeblockfont{%
+subroutine foo \\
+\hspace*{3ex}use dimensions \\
+\hspace*{3ex}real a(nx,ny) \\
+\hspace*{3ex}[\ldots] \\
+end subroutine foo}
+\end{codeblock}
+\end{latexonly}
+
+\begin{htmlonly}
+\begin{rawhtml}
+<p><code><font color="blue">
+subroutine foo<br>
+&nbsp;&nbsp;&nbsp;use dimensions<br>
+&nbsp;&nbsp;&nbsp;real a(nx,ny)<br>
+&nbsp;&nbsp;&nbsp;[\ldots]<br>
+end subroutine foo
+</font></code></p>
+\end{rawhtml}
+\end{htmlonly}
+
+
+where \vars{nx} and \vars{ny} are defined in the module vars{dimensions},
+will return an error, with the result that the extension module
+will not be created, or an extension modules that yields output
+that is different from running the pure-Fortran version of QTCM1.
+
+By wrapping these calls into this file, I also avoid having to
+separate out the Fortran QTCM1 subroutines into separate \fn{.F90}
+files.  For Fortran subroutines that you want callable from the
+Python level, \mods{f2py} seems to require each Fortran subroutine
+to be in its own file of the same name (e.g., the version of
+\fn{driver.F90} for this package). If several Fortran subroutines
+are all found in a single \fn{.F90} files, \mods{f2py} seems unable
+to create wrappers for those subroutines.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Python \mods{qtcm} and Pure-Fortran QTCM1 Differences}
+
+This section describes differences between how the \mods{qtcm}
+package and the pure-Fortran QTCM1 assign some varables.  A list
+of changes to the QTCM1 Fortran Files for use in the \mods{qtcm}
+package is found in Section~\ref{sec:f90changes}.
+
+
+	\subsection{QTCM1 \mods{driverinit}}   \label{sec:driverinit.diffs}
+
+In the pure-Fortran version of QTCM1, by default, the following variables are
+set by reference (as given below), not by value, in the \mods{driverinit}
+routine:\footnote%
+	{In the pure-Fortran version of QTCM1, this routine is found
+	in \fn{driver.F90}.}
+\begin{codeblock}
+\codeblockfont{%
+lastday\thinspace=\thinspace{daysperyear} \\
+viscxu0\thinspace=\thinspace{viscU} \\
+viscyu0\thinspace=\thinspace{viscU} \\
+visc4x\thinspace=\thinspace{viscU} \\
+visc4y\thinspace=\thinspace{viscU} \\
+viscxu1\thinspace=\thinspace{viscU} \\
+viscyu1\thinspace=\thinspace{viscU} \\
+viscxT\thinspace=\thinspace{viscT} \\
+viscyT\thinspace=\thinspace{viscT} \\
+viscxq\thinspace=\thinspace{viscQ} \\
+viscyq\thinspace=\thinspace{viscQ}}
+\end{codeblock}
+
+Thus, in pure-Fortran QTCM1, if you change \vars{daysperyear},
+\vars{viscU}, etc.
+and recompile (as needed), you will automatically change 
+\vars{lastday}, \vars{viscxu0}, etc.
+(Though, in the pure-Fortran QTCM1, the default values may be overwritten by
+namelist input values.)
+
+The \mods{driverinit} routine is eliminated
+in the Python \code{qtcm} package.  Instead, inital values 
+of field variables are specified in the \mods{defaults} submodule
+and set by value to attributes of the \code{Qtcm} instance.
+Thus, for instance, in a \class{Qtcm} instance, \code{lastday} 
+is set to \code{365} by default, not to some variable
+\vars{daysperyear}.  For the diffusion and viscosity terms,
+the \class{Qtcm} instance attributes corresponding to those
+terms are set to literals.\footnote%
+	{Those literals are defined by \mods{defaults} private
+	module variables \vars{\_\_viscT}, \vars{\_\_viscQ},
+	and \vars{\_\_viscU}.}
+
+In contrast, in the pure-Fortran QTCM1,
+\mods{driverinit} declares local
+variables \code{viscU}, \code{viscT}, and \code{viscQ},
+and reads values into those variables via the input namelist.
+Those values are then used to set
+\vars{viscxu0}, \vars{viscyu0}, etc., as described above.
+In pure-Fortran QTCM1, \code{viscU}, \code{viscT}, and \code{viscQ}
+are not directly accessed anywhere else in the model.
+Thus, \code{viscU}, \code{viscT}, and \code{viscQ} are not
+defined as field variables in the \code{qtcm} package, and
+\class{Qtcm} instances do not have attributes corresponding
+to those names.
+Additionally, if you wish to change a viscosity parameter
+\vars{visc*} (given above), the parameter for each direction
+must be set one-by-one even if the flow is isotropic.
+
+
+	\subsection{The \mods{varinit} Routine}
+
+One of the functions of the pure-Fortran QTCM1 \mods{varinit}
+subroutine is to associate the pointer variables \vars{u1}, \vars{v1},
+\vars{q1}, and \vars{T1}.  For the extension modules in the \mods{qtcm}
+package, a Fortran subroutine \mods{varptrinit} is added that can
+also do this association.  This subroutine is called in the
+\class{Qtcm} instance method
+\latexhtml{\mods{varinit}%
+		\footnote{http://www.johnny-lin.com/py\_docs/qtcm/doc/html-api/qtcm.qtcm.Qtcm-class.html\#varinit}}%
+	{\htmladdnormallink{\mods{varinit}}{http://www.johnny-lin.com/py_docs/qtcm/doc/html-api/qtcm.qtcm.Qtcm-class.html#varinit}}
+(which duplicates and
+extends the function of its pure-Fortran counterpart, enabling
+alternative ways of handling restart).
+
+The \mods{varptrinit} is not accessed via \mods{wrapcall}.  Remember
+that \mods{wrapcall} contains only those routines that were in the
+original pure-Fortran QTCM1 code, and that we want to have access
+to at the Python level.
+
+
+	\subsection{The \mods{qtcm} Method of \class{Qtcm}}
+
+The \class{Qtcm} method \mods{qtcm} duplicates the functionality
+of the \mods{qtcm} subroutine in the pure-Fortran QTCM1 model.
+There are a few differences, however.  First, the \mods{qtcm} method
+for \class{Qtcm} instances does not include a call to \mods{cplmean},
+which uses mean surface flux for air-sea coupling.  This state is
+consistent with the pure-Fortran QTCM1 pre-processor macro
+\vars{CPLMEAN} being off.  Thus, if you wish to use mean surface
+flux for air-sea coupling, you will have to revise the \mods{qtcm}
+method of \class{Qtcm} to call \mods{cplmean}.  You'll also have to
+check for any other code additions needed that are associated with
+the \vars{CPLMEAN} macro.
+
+Second, the \mods{qtcm} method for \class{Qtcm} instances does not
+include the option of not using the atmospheric boundary layer
+model.  This is consistent with macro \vars{NO\_ABL} being off.  If
+you wish to have no atmospheric boundary layer model, change the
+run list \vars{atm\_bartr\_mode} so that the \mods{wsavebartr} and
+\mods{wgradphis} routines are not called.  You'll also have to check
+for any other code additions needed that are associated with the
+\vars{NO\_ABL} macro.
+
+
+
+	\subsection{Miscellaneous Differences}
+
+\begin{itemize}
+\item In Python \class{Qtcm} instances,
+	\vars{dateofmodel} is set to 0 by default.  
+	In contrast, in the compiled QTCM1 model,
+	the default (i.e., initial value) is calculated from 
+	\vars{day0}, \vars{month0}, and \vars{year0}.
+	See Section~\ref{sec:init.compiledform.full} for details.
+
+\item The \class{Qtcm} instance attribute
+	\vars{\_\_qtcm} is not copyable using \mods{copy.deepcopy}.
+
+\item In general, when executing a \class{Qtcm} instance method, 
+	if you change a \class{Qtcm} instance attribute 
+	that has a counterpart in the compiled QTCM1 model,
+	the compiled QTCM1 counterpart is not changed until the
+	end of the method.  Likewise, if you call a compiled QTCM1 model
+	subroutine and change a compiled QTCM1 model variable with
+	a \class{Qtcm} instance counterpart, the \class{Qtcm}
+	instance counterpart is not changed until the end of the
+	subroutine.
+
+\item In general, even though some of the compiled QTCM1 model
+	Fortran subroutines/functions have counterparts in \class{Qtcm}
+	that duplicate the former's functionality, the Fortran
+	versions are kept intact so that the
+	\vars{compiled\_form\thinspace=\thinspace'full'} case will work.
+\end{itemize}
+
+
+
+
+%---------------------------------------------------------------------
+\section{Considerations When Adding Fortran Code}
+
+In this section I describe issues to consider if you wish to add
+your own compiled code to the package as separate extension modules.
+(This is different from creating new standard extension modules,
+which is described in Section~\ref{sec:create.new.so}.):
+
+\begin{itemize}
+\item The \class{Qtcm} class assumes that the directory path 
+	to the original shared object file is the same as for the 
+	\mods{package\_version} module.
+
+\item If you want to be able to pass other Fortran variables 
+	in and out to/from Python, please see the 
+	Section~\ref{sec:setbypy}
+	discussion of the Fotran \mods{SetByPy} module.
+
+\item Fortran and Python routines to get and set compiled QTCM1 model
+	arrays are currently written only for floating point array.
+
+\item If you ever change 
+	\class{Qtcm} instance method
+	\mods{\_set\_qtcm\_array\_item\_in\_model}
+	to work with non-floating point values, you will also
+	have to change the array handling section in 
+	\mods{set\_qtcm1\_item}.
+
+\item The restart mechanism in the pure-Fortran QTCM1 model is 
+	\emph{not} bit-for-bit correct.  Thus, if you compare the final
+	output from a 40 day run with a 30 day run restarted from
+	a 10 day run, the output will not be the same.
+	This behavior has been duplicated in \class{Qtcm} 
+	instances when the \vars{mrestart} flag is used
+	and applicable.
+
+\item When creating new extension modules using the \fn{src} makefile,
+	be sure you first use the \cmd{make clean} command to clean-up
+	any old files.
+
+\end{itemize}
+
+
+
+
+%---------------------------------------------------------------------
+\section{Creating New Standard Extension Modules}   \label{sec:create.new.so}
+
+The steps involved in creating the standard extension modules (e.g.,
+\fn{\_qtcm\_full\_365.so}, etc.) on installation are given in
+Section~\ref{sec:create.so}.  The makefile provided in \fn{/buildpath/src}
+uses a Fortran compiler to create the object code, runs \mods{f2py}
+to create the shared object file in \fn{src}, and moves the shared
+object files into \fn{../lib}, overwriting any pre-existing files
+of the same name.  In this section, I describe the makefile and
+\mods{f2py} in a little more detail, in case you wish to create
+standard extension modules with additions from the ones the default
+makefile creates.
+
+
+	\subsection{Makefile Rules}    \label{sec:makefile.rules}
+
+This section describes the rules of the
+makefile found in the \fn{src} directory
+of the \mods{qtcm} distribution.  
+This makefile is used by the Python package to create the extension
+module (\fn{.so} files) imported and used by \mods{qtcm} objects
+(as described in Section~\ref{sec:create.so}).
+The makefile will, in general, be used only during \mods{qtcm}
+installation, but if you wish to recompile the QTCM1 libraries
+and make changes in the Python extension module,
+you'll want to use/change this makefile.
+
+\begin{description}
+\item[clean] Removes old files in preparation for compiling new
+	extension modules.
+
+\item[libqtcm.a] Creates library \fn{libqtcm.a} that contains all
+	QTCM1 object files in the directory \fn{src},, except
+	\fn{setbypy.o}, \fn{wrapcall.o}, \fn{varptrinit.o}, and
+	\fn{driver.o}.  This archive is compiled with the netCDF
+	libraries.  Previous versions of \fn{libqtcm.a} are overwritten.
+
+\item[\_qtcm\_full\_365.so] Creates the extension module
+	\fn{\_qtcm\_full\_365.so}.  \mods{f2py} is run on applicable code
+	in \fn{src}, and the extension module is moved to \fn{../lib}.
+	Any previous versions of \fn{../lib/\_qtcm\_full\_365.so}
+	are overwritten.
+
+\item[\_qtcm\_parts\_365.so] Creates the extension module
+	\fn{\_qtcm\_parts\_365.so}.  \mods{f2py} is run on applicable code
+	in \fn{src}, and the extension module is moved to \fn{../lib}.
+	Any previous versions of \fn{../lib/\_qtcm\_parts\_365.so}
+	are overwritten.
+
+\end{description}
+
+
+
+	\subsection{Using \mods{f2py}}      \label{sec:using.f2py}
+
+This section briefly describes how \mods{f2py} is used in the
+makefile during the creation of the extension modules.
+\htmladdnormallink{\mods{F2py}}{http://cens.ioc.ee/projects/f2py2e/} is a
+program that generates shared object libraries that allow you to call
+Fortran routines in Python.  \mods{F2py} comes with Python's
+\htmladdnormallink{NumPy}{http://numpy.scipy.org/}
+array handling package, so you do not need to install anything
+extra if you have NumPy already installed.
+
+To create the extension modules in \mods{qtcm} using
+the makefile described in Section~\ref{sec:makefile.rules},
+I use a method similar to the
+\latexhtml{``Quick and Smart Way,''\footnote%
+{http://cens.ioc.ee/projects/f2py2e/usersguide/index.html\#the-quick-and-smart-way}}%
+{\htmladdnormallink{``Quick and Smart Way''}%
+{http://cens.ioc.ee/projects/f2py2e/usersguide/index.html#the-quick-and-smart-way}}
+described in the \mods{f2py} manual.
+For the \fn{\_qtcm\_full\_365.so} extension module, the 
+\mods{f2py} call is:
+
+\begin{codeblock}
+\codeblockfont{%
+f2py --fcompiler=\$(FC) -c -m \_qtcm\_full\_365 driver.F90 $\backslash$ \\
+\hspace*{10ex}setbypy.F90 libqtcm.a \$(NCLIB)}
+\end{codeblock}
+
+and for the \fn{\_qtcm\_parts\_365.so} extension module, the call is:
+
+\begin{codeblock}
+\codeblockfont{%
+f2py --fcompiler=\$(FC) -c -m \_qtcm\_parts\_365 $\backslash$ \\
+\hspace*{10ex}varptrinit.F90 wrapcall.F90 setbypy.F90 $\backslash$ \\
+\hspace*{10ex}libqtcm.a \$(NCLIB)}
+\end{codeblock}
+
+For both calls, \vars{FC} and \vars{NCLIB} are the environment
+variables in the makefile specifying the Fortran compiler and netCDF
+libraries, respectively.  The \vars{-m} flag specifies the extension
+module name (without the \fn{.so} suffix).  The \fn{.F90} files
+specify the files that have modules and routines that will be
+accessible at the extension module level, and the rest of the Fortran
+files in QTCM1 are compiled and archived in a library \fn{libqtcm.a}.
+For \mods{f2py} to work properly,
+the \fn{.F90} files may define \emph{only one} module or routine.
+
+If you add Fortran files containing new modules, and you wish those
+modules to be accessible at the Python level, compile your new code
+with \mods{f2py}.  If we have a file of such new code, \fn{newcode.F90},
+the \mods{f2py} call to create the \fn{\_qtcm\_parts\_365.so}
+extension module will become:
+
+\begin{codeblock}
+\codeblockfont{%
+f2py --fcompiler=\$(FC) -c -m \_qtcm\_parts\_365 $\backslash$ \\
+\hspace*{10ex}varptrinit.F90 wrapcall.F90 setbypy.F90 $\backslash$ \\
+\hspace*{10ex}newcode.F90 $\backslash$ \\
+\hspace*{10ex}libqtcm.a \$(NCLIB)}
+\end{codeblock}
+
+If you write new Fortran code for the compiled QTCM1 model that
+will \emph{not} be accessed from the Python-level, just add the
+object code filename to the variable \vars{QTCMOBJS} in the
+makefile; you don't have to do anything else.  If you are adding
+Fortran code to existing Fortran modules, it's even easier:  You
+don't need change the makefile.  Note that for 64 bit processor
+machines, you may have to use \mods{f2py} with the \cmd{-fPIC} flag;
+see Section~\ref{sec:sopic} for details on how the lines above will
+change.
+
+
+	\subsection{Two Examples}
+
+\emphpara{A Function:}
+Let's say you have written a piece of Fortran code called
+\fn{myfunction.F90} that contains one function called
+\mods{myfunction}, and you want to have this function
+callable from the Python level through the \class{Qtcm} 
+instance method \mods{\_\_qtcm.myfunction}.  Do the following:
+
+\begin{enumerate}
+\item Move \fn{myfunction.F90} to \fn{src} in the \mods{qtcm}
+	distribution directory \fn{/buildpath}.
+
+\item Add \cmd{myfunction.o} to the end of the object file list lines
+	after the target names
+	\vars{\_qtcm\_full\_365.so} and
+	\vars{\_qtcm\_parts\_365.so}.
+
+\item In the
+	\vars{\_qtcm\_full\_365.so} and
+	\vars{\_qtcm\_parts\_365.so} target descriptions,
+	add \cmd{myfunction.F90} to the 
+	beginning of the list of \fn{.F90} names 
+	in the \mods{f2py} lines.
+\end{enumerate}
+
+
+\emphpara{A Module:} 
+Let's say you have written a piece of Fortran code called
+\fn{mymodule.F90} that contains the Fortran module \mods{MyModule}
+containing multiple routines and variables.  You want to have those
+routines and variables callable from the Python level through the
+\class{Qtcm} instance attribute \mods{\_\_qtcm.mymodule}.  The steps
+to add \mods{MyModule} to the extension modules are exactly the
+same as for a single function, with \cmd{mymodule} being
+substituted in the makefile everywhere you have \cmd{myfunction}.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Attributes and Methods in \class{Qtcm} Instances}
+
+In this section I describe some attributes, particularly private ones,
+that may be of interest to developers.
+As is the convention in Python, private
+attributes and methods are prepended by one or two underscores,
+with two underscores being the ``more'' private attribute.
+Please see the package
+\latexhtml{API documentation%
+		\footnote{http://www.johnny-lin.com/py\_pkgs/qtcm/doc/html-api/}}
+        {\htmladdnormallink{API documentation}%
+		{http://www.johnny-lin.com/py\_pkgs/qtcm/doc/html-api/}}
+for details about all variables, including private variables.
+
+
+	\subsection{Public \mods{num\_settings} Submodule Attributes/Methods}
+
+\begin{itemize}
+\item \vars{typecode}:  This module function returns the
+	type code of the data array passed in as its argument.
+
+\item \vars{typecodes}:  This dictionary is the same as the
+	NumPy (or Numeric and \mods{numarray})
+	dictionary \vars{typecodes}, except that the character
+	\vars{'S'} and \vars{'c'} are added to the
+	\vars{typecodes['Character']} entry, if absent.  This
+	functionality is added because I found 
+	\vars{typecodes['Character']} had different values in
+	Mac OS X and Ubuntu GNU/Linux.
+\end{itemize}
+
+
+	\subsection{Private \mods{qtcm} Submodule Attributes}
+
+This submodule of the package \mods{qtcm} is the module that defines
+the \class{Qtcm} class.
+
+\begin{itemize}
+\item \vars{\_init\_prog\_dict}:  This dictionary contains
+	the default values of all prognostic variables and 
+	right-hand sides that can be initialized.  In the
+	submodule \mods{qtcm}, it is set to
+	the \vars{init\_prognostic\_dict} module variable in
+	submodule \mods{defaults}.
+
+\item \vars{\_init\_vars\_keys}:  List of all keys in
+	\vars{\_init\_prog\_dict}, plus \vars{'dateofmodel'}
+	and \vars{'title'}.  These names correspond to the
+	field variables that are usually written out into a
+	restart file.
+
+\item \vars{\_test\_field}:  \class{Field} object instance used 
+	in type tests.
+\end{itemize}
+
+
+
+	\subsection{Private \class{Qtcm} Attributes}  
+					\label{sec:Qtcm.private.attrib}
+
+\begin{itemize}
+\item \vars{\_cont}:  A boolean attribute that is \vars{True}
+	if the run session is a continuation run session and
+	\vars{False} if not.  Set the value passed in by
+	the keyword \vars{cont} when the \mods{run\_session}
+	method is executed.
+
+\item \vars{\_monlen}:  Integer array of the number of days in 
+	each month, assuming a 365~day year.
+
+\item \vars{\_\_qtcm}:  The extension module that is the
+	compiled QTCM1 Fortran model for this instance.
+	This attribute is unique for every instance:  The
+	extension module \fn{.so} file is first copied to
+	a temporary directory (given by the \vars{sodir}
+	instance attribute) and then imported to the
+	\class{Qtcm} instance.
+	This private attribute is set on instantiation.
+
+\item \vars{\_qtcm\_fields\_ids}:  Field ids for all default 
+	field variables, set on instantiation.
+
+\item \vars{\_runlists\_long\_names}:  Dictionary holding the
+	descriptions of the standard run lists.  The keys of
+	the dictionary are the names of the standard run lists.
+\end{itemize}
+
+
+
+
+%---------------------------------------------------------------------
+\section{Creating Documentation}
+
+The distribution of \mods{qtcm} comes with the full set of
+documentation in readable form (PDF and HTML).  The documentation
+consists of two kinds:  this User's Guide and the API documentation.
+The User's Guide is written in \LaTeX.  The PDF version is generated
+directly from \LaTeX, and the HTML version is created by
+\LaTeX{2}HTML.
+
+I use the \fn{make\_docs} shell script in \fn{doc} creates all these
+documents.  Briefly, that script does the following:
+
+\begin{itemize}
+\item In the \fn{doc/latex} directory, uses \cmd{python} to
+	run \fn{code\_to\_latex.py}, which generates the
+	\LaTeX\ files describing the current \mods{qtcm} 
+	package settings, including text in the manual which gives
+	all uses of the current version number.
+
+\item \LaTeX\ is run on the \LaTeX\ files in the \fn{doc/latex} directory.
+	The PDF generated by the run is moved from \fn{doc/latex} to
+	\fn{doc}.
+
+\item \LaTeX{2}HTML is run on the \LaTeX\ files in \fn{doc/latex}.
+	The HTML files generated by the run are moved to \fn{doc/html}.
+
+\item \mods{epydoc} is run on the \mods{qtcm} package libraries.
+	This is run in \fn{doc}, to make use of the \fn{epydoc}
+	configuration file present there.  The syntax from the
+	command line is:
+
+\begin{codeblock}
+\codeblockfont{%
+epydoc -v --config epydocrc [name]}
+\end{codeblock}
+\vars{[name]} is either \cmd{qtcm}, if the \mods{qtcm} package is
+installed in a directory listed in \vars{sys.path}, or 
+\vars{[name]} is the name of the directory the \mods{qtcm} package is
+located in (e.g., \fn{/usr/lib/python2.4/site-packages/qtcm}).
+
+\end{itemize}
+
+The \fn{make\_docs} script cannot be used without customizing it
+to your system, so please \emphpara{DO NOT USE IT} if you do
+not know what you are doing.  You could easily wipe out all your
+documentation by mistake.
+
+
+
+
+
+% ===== end of file =====

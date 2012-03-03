@@ -1,0 +1,569 @@
+%=====================================================================
+% Introduction
+%=====================================================================
+
+
+% ----- BEGIN TEXT -----
+%
+%---------------------------------------------------------------------
+\section{How to Read This Manual}
+
+\emphpara{Most users:} 
+Just read 
+(1) the installation instructions in Chapter~\ref{ch:install},
+(2) Chapter~\ref{ch:getting.started},
+which tells you all you need to get started using \mods{qtcm}, and
+(3) examples in Section~\ref{sec:cookbook} that give a feel
+for how you can use the model.
+
+\emphpara{Users having problems:}
+Chapter~\ref{ch:trouble} provides troubleshooting tips for
+a few problems.
+The detailed description of how the package functions, 
+in Chapter~\ref{ch:using}, will probably be more useful.
+
+\emphpara{Developers:}
+If you want to change the source code, please read
+Chapter~\ref{ch:devnotes}.  Chapter~\ref{ch:future} describes
+all the things I'd like to do to improve the package, but haven't
+gotten to yet.
+
+
+
+
+%---------------------------------------------------------------------
+\section{About the Package}
+
+The single-baroclinic mode
+Neelin-Zeng Quasi-Equilibrium Tropical Circulation Model
+\latexhtml{(QTCM1)\footnote{http://www.atmos.ucla.edu/$\sim$csi}}%
+	{\htmladdnormallink{(QTCM1)}{http://www.atmos.ucla.edu/~csi}}
+is a primitive equation-based intermediate-level atmospheric model
+that focuses on simulating the tropical atmosphere.  Being more
+complicated than a simple model, the model has full non-linearity
+with a basic representation of baroclinic instability,
+includes a radiative-convective feedback package, and includes a
+simple land soil moisture routine (but does not include topography).
+A brief, but more detailed, description of QTCM1 is given in
+Section~\ref{sec:brief_qtcm}.
+
+\htmladdnormallinkfoot{Python}{http://www.python.org}
+is an interpreted, object-oriented, multi-platform,
+open-source language that is used in a variety of software applications,
+ranging from game development to bioinformatics.
+In climate studies, Python has been used as the core language for
+data analysis
+(e.g., \htmladdnormallinkfoot{Climate Data Analysis Tools}{http://cdat.sf.net}),
+visualization
+(e.g., \htmladdnormallinkfoot{Matplotlib}{http://matplotlib.sf.net}),
+and 
+modeling
+(e.g., \htmladdnormallinkfoot{PyCCSM}{http://code.google.com/p/pyccsm/}).
+
+In comparison to traditional compiled languages like Fortran,
+Python's lack of a separate compile step greatly simplifies the
+debugging and testing phases of development, because code snippets
+can be testing as code is written.
+Python's extensive suite of higher-level tools (e.g., statistics,
+visualization, string and file manipulation) accessible at runtime 
+enables modeling and analysis to occur concurrently.  
+
+The \mods{qtcm} package is an implementation of the Neelin-Zeng
+QTCM1 in a Python object-oriented environment.  The conversion
+package
+\htmladdnormallinkfoot{\mods{f2py}}{http://cens.ioc.ee/projects/f2py2e/} is
+used to wrap the QTCM1 Fortran model routines and manage model
+execution using Python datatypes and utilities.  The result is a
+modeling package where order and choice of subroutine execution can
+be altered at runtime.  Model analysis and visualization can also
+be integrated with model execution at runtime.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Conventions In This Manual}
+
+	\subsection{Audience}
+
+In this manual I assume you have a rudimentary knowledge of Python.
+Thus, I do not describe basic Python data types (e.g., dictionaries,
+lists), object framework and syntax (e.g., classes, methods,
+attributes, instantiation), module and package importing.  If you
+need to brush up (or learn) Python, I'd recommend the following
+resources:
+
+\begin{itemize}
+\item \htmladdnormallinkfoot{Python Tutorial:}{http://docs.python.org/tut/}
+	This tutorial was written by Guido van Rossum, Python's original
+	author.
+
+\item \htmladdnormallinkfoot{Instant Hacking:}%
+	{http://www.hetland.org/python/instant-hacking.php}
+	Learn how to program with Python.
+
+\item \htmladdnormallinkfoot{Dive Into Python:}%
+	{http://diveintopython.org/index.html}
+	Reasonably complete and cohesive. The entire book is available for 
+	free online.
+
+\item \htmladdnormallinkfoot{Handbook of the Physics Computing Course:}%
+	{http://www.pentangle.net/python/handbook/}
+	Written for a science audience.  Recommended.
+
+\item \latexhtml{CDAT/Python Tips for Earth Scientists:\footnote%
+	{http://www.johnny-lin.com/cdat\_tips/}}%
+	{\htmladdnormallink{CDAT/Python Tips for Earth Scientists:}%
+		{http://www.johnny-lin.com/cdat_tips/}}
+	This web site is a FAQ of sorts for people using Python and
+	the Climate Data Analysis Tools (CDAT) in the earth sciences,
+	and thus focuses on using Python to do science rather than
+	the computer science aspects of the language.
+
+\end{itemize}
+
+The purpose of this package is to make the QTCM1 model easier to
+use.  In order to interpret the results, however, you still need
+to have a robust sense of what climate models can and cannot tell
+you.  A starting point for the QTCM1 model is the brief description
+of the model in Section~\ref{sec:brief_qtcm}.  After that, I would
+read the original papers describing the model formulation and results
+\cite{Neelin/Zeng:2000,Zeng/etal:2000}, and 
+\latexhtml{papers citing the model formulation work.\footnote%
+{http://scholar.google.com/scholar?hl=en\&lr=\&cites=14217886709842286738}}%
+{\htmladdnormallink{papers citing the model formulation work}%
+{http://scholar.google.com/scholar?hl=en&lr=&cites=14217886709842286738}.}
+Being an intermediate-level model using the quasi-equilibrium assumption,
+QTCM1 (and thus \mods{qtcm}) has distinct strengths and limitations; 
+please be aware of them.
+
+
+	\subsection{Typographic Conventions}
+
+\begin{center}
+\begin{tabular}{\tabletabulardims}
+\cmd{commands} & to be typed at the command-line
+	are rendered in a 
+	blue, serif, fixed-width typewriter font
+	(e.g., \cmd{make \_qtcm\_full\_365}). \\ \hline
+\dumarg{dummy arguments} &
+	coupled with code or screen display is rendered in a 
+	serif, proportional, italicized font
+	(e.g., \screen{Error-Value too long in} \dumarg{variable}). \\ \hline
+\fn{file and directory names} & are rendered in a 
+	sans-serif, italicized font
+	(e.g., \fn{setbypy.F90}). \\ \hline
+\screen{screen display} & is rendered in a 
+	green, serif, fixed-width typewriter font. \\ \hline
+\mods{module, method, and subroutine names} & are rendered in a 
+	blue, serif, fixed-width typewriter font. \\ \hline
+\vars{variable and attribute names} & are rendered in a 
+	blue, serif, fixed-width typewriter font. \\ \hline
+\class{class names} & are rendered in a 
+	blue, serif, fixed-width typewriter font.
+\end{tabular}
+\end{center}
+
+Blocks of code (usually commands, screen display, and module,
+variable, and class names) are displayed in a blue, serif, fixed-width
+typewriter font.
+
+
+	\subsection{Terminology}
+
+\begin{description}
+\item[attribute and method references:]
+	If there is any possibility of confusion, I will give the
+	class that an attribute or method comes from when that
+	attribute or method is referenced.  If no class is mentioned
+	by name or context,
+	assume that the attribute/method comes from the
+	\class{Qtcm} class.
+
+\item[``compiled QTCM1 model'':]
+	This usually is used to denote when I'm talking about
+	compiled Fortran QTCM1 routines and variables therein,
+	as an extension module to the Python \mods{qtcm} package..
+	Thus, ``compiled QTCM1 model \vars{u1}'' is the value
+	of variable \vars{u1} in the Fortran model, not the
+	value at the Python-level.  Sometimes I refer to the
+	compiled QTCM1 model as just ``QTCM1'' or as
+	``compiled QTCM1 Fortran model''.
+
+\item[``pure-Fortran QTCM1'':]
+	This refers to the Neelin-Zeng QTCM1 model in it's
+	original Fortran form, not as an extension module to
+	the Python \mods{qtcm} package.
+
+\item[``Python-level'':]
+	This usually denotes the value of a variable as an
+	attribute of a \class{Qtcm} instance.  This variable
+	is stored at the Python interpreter level.
+
+\item[\class{Qtcm}:]
+	This refers to the Python \class{Qtcm} class
+	(note the capitalized first letter).
+
+\item[\mods{qtcm}:]
+	This refers to the Python \mods{qtcm} package.
+
+\item[QTCM1 vs.\ QTCM:]
+	Although the QTCM1 is currently the only version of a
+	quasi-equilibrium tropical circulation model (QTCM), in
+	principle one can construct a QTCM with any number of
+	baroclinic modes.  In anticipation of this, the names of
+	the Python package and class do not end in a numeral.  In
+	this manual and the \mods{qtcm} docstrings, QTCM and QTCM1
+	are used interchangably.
+	Usually either of these phrases mean the quasi-equilibrium
+	tropical circulation model in a generic sense, regardless
+	of its form of implementation.
+\end{description}
+
+
+
+
+%---------------------------------------------------------------------
+\section{Current Version Information and Acknowledgments}  \label{sec:ver}
+
+\input{pkg_version_date.tex}
+\input{pkg_author.tex}is the primary author of the package.
+
+The \mods{qtcm} package is built upon the pure-Fortran QTCM1 model,
+version 2.3 (August 2002), with a few minor changes.
+Those changes are described in detail in
+Section~\ref{sec:f90changes}.
+
+The homepage for the \mods{qtcm} package is
+\htmladdnormallink{http://www.johnny-lin.com/py\_pkgs/qtcm}%
+	{http://www.johnny-lin.com/py_pkgs/qtcm}.
+All Python code in this package, 
+and the Fortran files \fn{setbypy.F90} and \fn{wrapcall.F90},
+are \copyright\ 2003--2008 by 
+\htmladdnormallinkfoot{Johnny Lin}%
+		{http://www.johnny-lin.com} 
+and constitutes a
+library that is covered under the GNU Lesser General Public License
+(LGPL):
+
+\begin{quotation}
+	This library is free software; you can redistribute it
+	and/or modify it under the terms of the 
+	\htmladdnormallinkfoot{GNU Lesser General Public License}%
+		{http://www.gnu.org/copyleft/lesser.html} 
+	as published by
+	the Free Software Foundation; either version 2.1 of the
+	License, or (at your option) any later version.
+
+	This library is distributed in the hope that it will be
+	useful, but WITHOUT ANY WARRANTY; without even the implied
+	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+	PURPOSE. See the GNU Lesser General Public License for more
+	details.
+
+	You should have received a copy of the GNU Lesser General
+	Public License along with this library; if not, write to
+	the Free Software Foundation, Inc., 59 Temple Place, Suite
+	330, Boston, MA 02111-1307 USA.
+
+	You can contact Johnny Lin at his email address 
+	or at North Park University, Physics Department,
+	3225 W. Foster Ave., Chicago, IL 60625, USA.  
+\end{quotation}
+
+All other Fortran code in this package, as well as the makefiles,
+are covered by licenses (if any) chosen by their respective owners.
+
+This manual, in all forms (e.g., HTML, PDF, \LaTeX),
+is part of the documentation of the \mods{qtcm} package 
+and is \copyright\ 2007--2008 by Johnny Lin.
+Permission is granted to copy, distribute and/or modify 
+this document under the terms of the 
+GNU Free Documentation License, Version 1.2 
+or any later version published by the Free Software Foundation; 
+with no Invariant Sections, no Front-Cover Texts, 
+and no Back-Cover Texts. 
+A copy of the license can be found 
+\htmladdnormallinkfoot{here}{http://www.gnu.org/licenses/fdl.html}.
+
+Transparent copies of this document are located online in
+\latexhtml{%
+\htmladdnormallinkfoot{PDF}%
+	{http://www.johnny-lin.com/py\_pkgs/qtcm/doc/manual.pdf}}%
+{\htmladdnormallink{PDF}%
+	{http://www.johnny-lin.com/py_pkgs/qtcm/doc/manual.pdf}}
+and
+\latexhtml{%
+\htmladdnormallinkfoot{HTML}%
+	{http://www.johnny-lin.com/py\_pkgs/qtcm/doc/}}%
+{\htmladdnormallink{HTML}%
+	{http://www.johnny-lin.com/py_pkgs/qtcm/doc/}}
+formats.
+The \LaTeX\ source files are distributed with the \mods{qtcm}
+distribution.
+While the HTML version is nearly identical to the PDF
+and \LaTeX\ versions, not every feature in the manual was successfully
+converted.  This is particularly true with figures, which are
+unnumbered in the HTML version and may be formatted differently
+than the authoritative PDF version.
+Thus, please consider the \LaTeX\ version as the authoritative
+version.
+
+\vspace{\baselineskip}
+
+\emphpara{Acknowledgements:}
+Thanks to David Neelin and Ning Zeng and the Climate Systems
+Interactions Group at UCLA for their encouragement and help.
+On the Python side,
+thanks to Alexis Zubrow, Christian Dieterich, Rodrigo Caballero,
+Michael Tobis, and Ray Pierrehumbert for steering me straight.
+Early versions of some of this work was carried out 
+at the University of Chicago Climate Systems Center, 
+funded by the National Science Foundation (NSF) 
+Information Technology Research Program under grant ATM-0121028. 
+Any opinions, findings and conclusions or recommendations 
+expressed in this material are those of the author and 
+do not necessarily reflect the views of the NSF.
+
+Intel\textregistered\ and
+   Xeon\textregistered\ are registered trademarks of Intel Corporation.
+Matlab\textregistered\ is a registered trademark of The MathWorks.
+UNIX\textregistered\ is a registered trademark of The Open Group.
+
+
+
+
+%---------------------------------------------------------------------
+\section{Summary of Release History}
+
+\begin{itemize}
+\item 2008 Sep 12:  Version 0.1.2 released.  Summary of changes:
+	\begin{itemize}
+	\item Create \class{Qtcm} method \mods{get\_qtcm1\_item}.
+		This method is effectively an alias of method 
+		\mods{get\_qtcm\_item}.
+	\item Create \class{Qtcm} method \mods{set\_qtcm1\_item}.
+		This method is effectively an alias of method 
+		\mods{set\_qtcm\_item}.
+	\item Update User's Guide to phase out references to
+		the \mods{get\_qtcm\_item}
+		and \mods{set\_qtcm\_item} methods.  
+		Adding the ``1'' to the method names makes the purpose
+		of the methods clearer.
+	\item Add unit tests to cover methods \mods{get\_qtcm1\_item} and
+		\mods{set\_qtcm1\_item}.
+	\end{itemize}
+
+\item 2008 Jul 30:  Updates to the User's Guide (just the online versions,
+        not the copies released with the tarball).
+
+\item 2008 Jul 15:  First publicly available distribution 
+	released (v0.1.1).
+\end{itemize}
+
+
+
+
+%---------------------------------------------------------------------
+\section{A Brief Description of The QTCM1}   \label{sec:brief_qtcm}
+
+This description is copied from Ch.\ 3 of Lin \cite{Lin:2000}, 
+with minor revisions.
+Model formulation is fully described in
+Neelin \& Zeng \cite{Neelin/Zeng:2000} and model
+results are described in Zeng et~al.\ \cite{Zeng/etal:2000}.
+Neelin \& Zeng \cite{Neelin/Zeng:2000} is based upon v2.0 of QTCM1
+and Zeng et~al.\ \cite{Zeng/etal:2000} is based on QTCM1 v2.1.
+The 
+\latexhtml{%
+\htmladdnormallinkfoot{QTCM1 manual}%
+	{http://www.atmos.ucla.edu/$\sim$csi/qtcm\_man/v2.3/qtcm\_manv2.3.pdf}}%
+{\htmladdnormallink{QTCM1 manual}%
+	{http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf}}
+\cite{Neelin/etal:2002}
+describes the details of model implementation.
+
+QTCM1 differs from most full-scale GCMs primarily in how the vertical
+temperature, humidity, and velocity structure of the atmosphere is
+represented.  First, instead of representing the vertical structure
+by finite-differenced levels, the model uses a Galerkin expansion
+in the vertical.  The vertical basis functions are chosen according
+to analytical solutions under convective quasi-equilibrium conditions,
+so only a few need be retained.
+Temperature and humidity are each described by separate
+vertical basis functions ($a_1$ and $b_1$, respectively).
+Low-level variations in the humidity basis
+are larger than in the temperature basis.
+For velocity, QTCM1 uses a single baroclinic basis function ($V_1$)
+defined consistently with the temperature basis function,
+as well as a barotropic velocity mode ($V_0$).
+The vertical profiles of $a_1$, $b_1$, and $V_1$
+are given in Figure~\ref{fig:qtcm.basis}.
+Currently, QTCM1 does not include a separate
+vertical degree of freedom describing the PBL.
+The horizontal grid spacing of the model is 
+$5.625^{\circ}$ longitude by $3.75^{\circ}$ latitude.
+
+
+% <QTCM1 beta version vertical structure modes>
+%
+% (1) LaTeX version:
+%
+\begin{latexonly}
+\begin{figure}
+   \noindent
+   \begin{minipage}[b]{.49\linewidth}
+      \settowidth{\enumlabel}{(a) }%
+      \setlength{\remainder}{\linewidth}% 
+      \addtolength{\remainder}{-\enumlabel}
+      {(a)}~\makebox[\remainder]{$a_1$ and $b_1$}
+      \centering\includegraphics[width=\linewidth,viewport=58 72 389 344,clip]%
+                    {figs/a1b1.pdf}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{.49\linewidth}
+      \settowidth{\enumlabel}{(b) }%
+      \setlength{\remainder}{\linewidth}% 
+      \addtolength{\remainder}{-\enumlabel}
+      {(b)}~\makebox[\remainder]{$V_1$}
+
+      \centering\includegraphics[width=\linewidth,viewport=58 72 389 346,clip]%
+                    {figs/V1.pdf}
+   \end{minipage}
+
+   \caption{Vertical profiles of basis functions for
+		(a) temperature $a_1$ (solid) and humidity $b_1$ (dashed) and
+		(b) baroclinic component of
+		horizontal velocity $V_1$.}
+   \label{fig:qtcm.basis}
+\end{figure}
+\end{latexonly}
+
+% (2) HTML replacement version:
+%
+\begin{htmlonly}
+\label{fig:qtcm.basis}
+\begin{center}
+\htmladdimg{../latex/figs/a1b1.png}
+\htmladdimg{../latex/figs/V1.png}
+
+\htmlfigcaption{Figure \ref{fig:qtcm.basis}:  
+	Vertical profiles of basis functions for
+   	(a) temperature $a_1$ (solid) and humidity $b_1$ (dashed) and
+   	(b) baroclinic component of
+   	horizontal velocity $V_1$.}
+\end{center}
+\end{htmlonly}
+
+
+These modes are chosen to accurately capture deep convective regions.
+Outside deep convective regions the mode
+is simply a highly truncated
+Galerkin representation.  The system is much more tightly constrained than
+a full-scale GCM, yet hopefully retains the essential dynamics and nonlinear
+feedbacks.  The result is that QTCM1 is easier to diagnose than a GCM,
+and is computationally fast (about 8 minutes per year on a Sun Ultra 2
+workstation).  Zeng et al.\ \cite{Zeng/etal:2000} show results indicating
+this intermediate-level model does a reasonable job simulating
+tropical climatology and ENSO variability.  
+
+
+Below is a summary of the main model equations \cite{Neelin/Zeng:2000}:
+\begin{equation}
+   \partial_t \mathbf{v}_1 
+      + \D_{V1} (\mathbf{v}_0 , \mathbf{v}_1)
+      + f \mathbf{k} \times \mathbf{v}_1
+      =
+   - \kappa \nabla T_1 
+      - \epsilon_1 \mathbf{v}_1 
+      - \epsilon_{01} \mathbf{v}_0
+   \label{eqn:barocl_wind}
+\end{equation}
+\begin{equation}
+   \partial_t \zeta_0 
+      + \mathrm{curl}_z (\D_{V0} (\mathbf{v}_0 , \mathbf{v}_1))
+      + \beta v_0
+      =
+   - \mathrm{curl}_z (\epsilon_0 \mathbf{v}_0)
+      - \mathrm{curl}_z (\epsilon_{10} \mathbf{v}_1)
+   \label{eqn:barotr_wind}
+\end{equation}
+\begin{equation}
+   \aonehat (\partial_t + \D_{T1}) T_1 
+      + M_{S1} \nabla \cdot {\bf v}_1 
+      =
+   \langle Q_c \rangle
+      + (g/p_T) (-R^\uparrow_t -R^\downarrow_s + R^\uparrow_s + S_t - S_s + H)
+   \label{eqn:temperature}
+\end{equation}
+\begin{equation}
+   \bonehat (\partial_t + \D_{q1}) q_1 
+      - M_{q1} \nabla \cdot {\bf v}_1 
+      =
+   \langle Q_q \rangle
+      + (g/p_T) E
+   \label{eqn:moisture}
+\end{equation}
+where (\ref{eqn:barocl_wind}) describes the baroclinic wind component,
+      (\ref{eqn:barotr_wind}) describes the barotropic wind component,
+      (\ref{eqn:temperature}) is the temperature equation, and
+      (\ref{eqn:moisture}) is the moisture equation.
+
+In the simplest formulation, the vertically integrated
+convective heating and moisture sink
+are assumed to be equal and opposite, so:
+\begin{equation}
+  -\langle Q_q \rangle = \langle Q_c \rangle 
+                              = \epsilon^\ast_c (q_1 - T_1)
+\end{equation}
+
+For its convective parameterization for $Q_c$, this model uses the
+Betts-Miller \cite{Betts/Miller:1986} moist convective
+adjustment scheme, a scheme that is also used in some GCMs.
+In the convective parameterization, the coefficient
+$\epsilon^\ast_c$ is defined as:
+\begin{equation}
+   \epsilon^\ast_c 
+      \equiv 
+   \aonehat \bonehat (\aonehat + \bonehat)^{-1} \tau_c^{-1} 
+      \mathcal{H}( \mathit{C}_{\mathrm{1}} )
+\end{equation}
+where $\mathcal{H}( \mathit{C}_{\mathrm{1}} )$ is zero for
+$C_{1} \leq 0$, and one for $C_{1} > 0$, and $C_{1}$
+is a measure of the convective available potential energy (CAPE),
+projected onto the model's temperature and moisture basis functions.
+
+Sensible heat ($H$) and evaporation ($E$) are given as
+bulk-aerodynamic formulations:
+\begin{equation}
+   H
+      =
+   \rho_a C_D \mathrm{V}_s (T_s - (T_{rs} + a_{1s} T_1))
+\end{equation}
+\begin{equation}
+   E
+      =
+   \rho_a C_D \mathrm{V}_s (q_\mathit{sat} (T_s) 
+      - (q_{rs} + b_{1s} q_1))
+\end{equation}
+
+Longwave radiation components are denoted by $R$, and net shortwave
+radiation is denoted by $S$.
+The terms $\D_{V1}$ and $\D_{V0}$ are the advection-diffusion operators
+for the momentum equations (projected onto $V_0$ and $V_1 (p)$,
+respectively).
+The terms $\D_{T1}$ and $\D_{q1}$ are the
+advection-diffusion operators for the temperature and moisture
+equations, respectively, using a vertical average projection.
+The $\langle X \rangle$ and $\widehat{X}$ operators are
+equivalent and denote vertically integration over the troposphere.
+Please see Neelin \& Zeng \cite{Neelin/Zeng:2000} and 
+Zeng et al.\ \cite{Zeng/etal:2000}
+for a more complete description of equations and coefficients.
+
+
+
+
+
+
+
+% ====== end file ======

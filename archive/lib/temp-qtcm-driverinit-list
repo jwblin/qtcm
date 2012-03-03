@@ -1,0 +1,49 @@
+  title='QTCM default title'      ! A decrciptive title 
+  bnddir='../bnddata'             ! bnd. data other than SST
+  SSTdir='../bnddata/SST_Reynolds'! where SST files are 
+  outdir='../proc/qtcm_output'    ! where output go
+  runname='runname'               ! string for an output filename
+  landon=1                        ! if not 1: land = ocean w. fake 'SST'
+  SSTmode='seasonal'              ! decide what kind of SST to use
+  year0 = 0                       ! starting year if <0 use year in restart
+  month0 = -1                     ! starting month if <0 use mo in restart
+  day0 = -1                       ! starting day if <0 use day in restart
+  lastday = daysperyear           ! last day of integration
+  interval = 1                    ! coupling interval
+  noout=0                         ! no output for the first noout days
+  nooutr=0                        ! no restart file for the first nooutr days
+  ntout=-30                       ! monthly mean output
+  ntouti=0                        ! monthly instantaneous data output
+  ntoutr=0                        ! restart file only at end of model run
+  mrestart=1                      ! =1: restart using qtcm.restart
+  write(*,*)'@@@@@@@',dt !@@@
+  dt=1200.                        ! time step [seconds]
+  mt0=1                           ! barotropic timestep every mt0 timesteps
+  viscT=12.0e5                    ! temperature diffusion parameter [m^s/s]
+  viscQ=12.0e5                    ! humidity diffusion parameter [m^s/s]
+  viscU=7.0e5                     ! viscocity parameter [m^s/s]
+  ziml=500                        ! Atmos. Mixed layer depth [m]
+  weml=0.01                       ! Mixed layer entrainment velocity [m]
+  VVsmin=4.5                      ! Minumum wind speed for fluxes [m/s]
+  arr1name='?'                    ! Auxiliary output array names 1...8
+  arr2name='?'                    !='?' Array not included in output.
+  arr3name='?'
+  arr4name='?'
+  arr5name='?'
+  arr6name='?'
+  arr7name='?'
+  arr8name='?'
+  ! Example:
+  ! arr1name='dps1dx Mode 1 contribution to dpsdx [m/s^2]'
+  !
+  viscxu0=viscU
+  viscyu0=viscU
+  visc4x=viscU
+  visc4y=viscU
+  viscxu1=viscU
+  viscyu1=viscU
+  viscxT=viscT
+  viscyT=viscT
+  viscxq=viscQ
+  viscyq=viscQ
+

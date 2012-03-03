@@ -1,0 +1,67 @@
+%=====================================================================
+% Model Performance
+%=====================================================================
+
+
+% ----- BEGIN TEXT -----
+%
+%---------------------------------------------------------------------
+
+The wall-clock time values below give the mean over three
+separate 365 day aquaplanet runs,
+using climatological sea surface temperature for lower boundary forcing.
+NetCDF output is written daily, for both instantaneous and mean values.
+The time step is 1200~sec, and the version of \mods{qtcm} used
+is 0.1.1.
+The horizontal grid spacing of all model versions is
+$5.625^{\circ}$ longitude by $3.75^{\circ}$ latitude.
+Values are in seconds:
+\begin{center}
+\begin{tabular}{p{0.5\linewidth}|c|c|c}
+\textbf{System} & \textbf{Pure} & \textbf{Full} & \textbf{Parts} \\
+\hline
+Mac OS X:  MacBook 1.83 GHz Intel Core Duo running Mac OS X
+	10.4.10 with 1 GB RAM
+	(Python 2.4.3, NumPy 1.0.3, \mods{f2py} 2\_3816).
+    & 152.59 & 153.63 & 158.94 \\
+\hline
+Ubuntu GNU/Linux:  Dell PowerEdge 860 with 2.66 GHz Quad Core Intel
+	Xeon processors (64 bit) running Ubuntu 8.04.1 LTS
+	(Python 2.5.2, NumPy 1.1.0, \mods{f2py} 2\_5237).
+    & 43.73 & 44.79 & 47.45
+\end{tabular}
+\end{center}
+
+``Pure'' refers to the pure-Fortran version of QTCM1.
+``Full'' refers to a \mods{qtcm} run session with \vars{compiled\_form}
+set to \vars{'full'}.  ``Parts'' refers to a \mods{qtcm} run session
+with \vars{compiled\_form} set to \vars{'parts'}.
+(Section~\ref{sec:compiledform} has details about the difference
+between compiled forms.)
+
+The \vars{'parts'} version of \mods{qtcm} gives Python the maximum
+flexibility in accessing compiled QTCM1 model subroutines and
+variables.  The price of that flexibility is an increase in
+run time of approximately 4--9\% over the pure-Fortran version.
+The difference in performance between the
+\vars{'full'} version of \mods{qtcm} and the pure-Fortran version of
+QTCM1 is between negligible and 3\% longer.
+
+To make a timing for the pure-Fortran model, go to
+\fn{test/benchmarks/timing/work} in \fn{/buildpath} and run the
+\fn{timing\_365.sh} script in that directory.  That script runs the
+QTCM1 model using \cmd{/usr/bin/time}, which at the end of the
+script will output the amount of time it took to make the model
+run.  Run the timing script three times and average the values to
+obtain a time comparable to the above.
+
+To make a timing for the \mods{qtcm} model, type \cmd{python
+timing\_365.py} while in the \fn{test} directory in \fn{/buildpath}.
+Three run sessions will be made for \vars{compiled\_form} equal to
+\vars{'full'} and \vars{'parts'}, the times are averaged, and the
+value are output at the end of the script.
+
+
+
+
+% ====== end file ======

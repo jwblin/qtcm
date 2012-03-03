@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Python Package qtcm</title>
+<META name="description" content="Libraries">
+<META name="keywords" content="model utilities qtcm libraries library
+  Python python routines procedures functions">
+<link type="text/css" rel="stylesheet" href="style/root.css">
+</head>
+
+
+<body>
+<!-- ============= Begin Overall Container ============= -->
+<div id="container">
+
+
+<!-- === Main Title Block === -->
+<div class="maintitle">
+<H1><span><code>qtcm</code>:  A Python Implementation of
+the Neelin-Zeng QTCM1</span></H1>
+</div>
+
+
+<!-- === Begin Not-Main Title Container === -->
+<div class="notmaintitle">
+
+
+
+<!-- === Begin Main Text Block === -->
+<div class="maintext">
+<table class="imageblock">
+<tbody>
+<tr>
+<td valign="top">
+<h2 class="first">Contents</h2>
+<ul class="concise">
+<li> Current Version: <b>0.1.2</b>
+	(<a href="doc/html/node2.html#SECTION00250000000000000000">release
+history</a>).
+	</li>
+<li> Platforms:  Mac OS X, Ubuntu GNU/Linux 8.04
+(<a href="doc/html/node3.html#SECTION00360000000000000000">performance</a>).
+	</li>
+<li> Download:  <a href="../qtcm-0.1.2.tar.gz">Gzipped tarball</a> (note
+	the version of the documentation in this tarball may not be
+	as current as is available <a href="doc/manual.pdf">online</a>).
+	</li>
+<li> Installation and Troubleshooting:  
+	See the <a href="doc/manual.pdf">User's Guide</a>.
+	</li>
+<li> User's Guide:  <a href="doc/manual.pdf">PDF</a> &#124;
+	<a href="doc/html/">HTML</a> &#124;
+<a href="http://www.atmos.ucla.edu/~csi/qtcm_man">Original QTCM1 manual</a>.
+	</li>
+<li> API Documentation:  <a href="doc/html-api/">HTML</a>
+	</li>
+<li> Article About Package (<i>Geosci. Model Dev.</i>):
+        <a href="/papers/pyqtcm.shtml">HTML</a>.
+        </li>
+<li> Users Mailing List:
+	<a href="http://lists.johnny-lin.com/listinfo.cgi/qtcm-users-johnny-lin.com">Subscribe</a>
+	</li>
+</ul>
+	</td>
+<td valign="middle" align="center">
+<img src="doc/imgs/screencapture_300.png" width=300 border=1
+	alt="Screenshot"><br>
+	<code>qtcm</code> Screenshot
+	(<a href="doc/imgs/screencapture.png">zoom</a>)
+	</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>About</h2>
+<p><span>
+The single-baroclinic mode
+<a href="http://www.atmos.ucla.edu/~csi">
+Neelin-Zeng Quasi-Equilibrium Tropical Circulation Model (QTCM1)</a>
+is a primitive equation-based intermediate-level atmospheric model
+that focuses on simulating the tropical atmosphere.
+The <code>qtcm</code> package is an implementation of the Neelin-Zeng
+QTCM1 in a 
+<a href="http://www.python.org">Python</a>
+object-oriented environment using the
+<a href="http://cens.ioc.ee/projects/f2py2e/"><code>f2py</code></a>
+Fortran wrapping tool.  The result is a
+modeling package where order and choice of subroutine execution can
+be altered at runtime, model analysis and visualization can also
+be integrated with model execution at runtime, while retaining the
+computationally light footprint of the original intermediate-level model.
+</span></p>
+
+<h2>News</h2>
+<ul class="bulky">
+<li> 2008 Sep 12:  Version 0.1.2 released.
+	</li>
+<li> 2008 Jul 30:  Updates to the User's Guide (just the online versions,
+	not the copies released with the tarball).
+	</li>
+<li class="last"> 2008 Jul 15:  First publicly available distribution.
+	I <b>strongly</b> recommend you
+	<a href="http://lists.johnny-lin.com/listinfo.cgi/qtcm-users-johnny-lin.com">subscribe</a> to the mailing list in order to keep abreast of fixes.
+	</li>
+</ul>
+
+
+<h2><a name="license">License</a></h2>
+<p><span>
+All Python code in this package,  
+and the Fortran files setbypy.F90 and wrapcall.F90,
+are &copy;2003&ndash;2008 by 
+<a href="http://www.johnny-lin.com">Johnny Lin</a>
+and constitutes a
+library that is covered under the GNU Lesser General Public License
+(LGPL):
+</span></p>
+
+<blockquote>
+	<p><span> 
+        This library is free software; you can redistribute it
+        and/or modify it under the terms of the
+	<a href="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General Public License</a>
+        as published by
+        the Free Software Foundation; either version 2.1 of the
+        License, or (at your option) any later version.
+        This library is distributed in the hope that it will be
+        useful, but WITHOUT ANY WARRANTY; without even the implied
+        warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+        PURPOSE. See the GNU Lesser General Public License for more
+        details.
+	</span></p>
+       
+	<p><span> 
+        You should have received a copy of the GNU Lesser General
+        Public License along with this library; if not, write to
+        the Free Software Foundation, Inc., 59 Temple Place, Suite
+        330, Boston, MA 02111-1307 USA.
+        You can contact Johnny Lin at his email address 
+        or at North Park University, Physics Department,
+        3225 W. Foster Ave., Chicago, IL 60625, USA.
+	</span></p>
+</blockquote>
+
+<p><span>
+All other Fortran code in this package, as well as the makefiles,
+are covered by licenses (if any) chosen by their respective owners.
+</span></p>
+
+<!-- === End Main Text Block === -->
+</div>
+
+
+
+
+<!-- === Begin Footer Text Block === -->
+<div class="footertext">
+<p><span>
+<i>Acknowledgements:</i>
+Thanks to David Neelin and Ning Zeng and the Climate Systems
+Interactions Group at UCLA for their encouragement and help.
+On the Python side,
+thanks to Alexis Zubrow, Christian Dieterich, Rodrigo Caballero,
+Michael Tobis, and Ray Pierrehumbert for steering me straight.
+Early versions of some of this work was carried out at the
+University of Chicago Climate Systems Center, funded
+by the National Science Foundation (NSF)
+Information Technology Research Program under grant
+ATM-0121028.  Any opinions, findings and conclusions or recommendations
+expressed in this material are those of the author(s) and do not
+necessarily reflect the views of the NSF.
+</span></p>
+
+<p><span>
+[<a href="/">Home</a> &#124; <a href="../">Up</a>]
+</span></p>
+
+<!-- Address block in the address tags -->
+<address>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">
+<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/us/88x31.png" />
+</a>
+<span>Updated:  <!--#echo var="Last_Modified" -->.
+Valid 
+<a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.johnny-lin.com/py_pkgs/qtcm/index.shtml">CSS</a>,
+<a href="http://validator.w3.org/check/referer">HTML</a>.
+Author:  Johnny Lin
+&lt;<a href="http://www.johnny-lin.com/index.html#emailaddress">email address</a>&gt;.
+This web page is licensed under a 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/us/">Creative Commons Attribution-Share Alike 3.0 United States License</a>.</span>
+</address>
+<!-- === End Footer Text Block === -->
+</div>
+
+
+
+
+
+
+<!-- === End Not-Main Title Container === -->
+</div>
+<!-- ============= End Overall Container ============= -->
+</div>
+</body>
+</html>

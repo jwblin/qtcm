@@ -1,0 +1,105 @@
+% ==========================================================================
+% Compiling extension modules
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+
+The extension modules (\fn{.so} files) are imported and used by
+\mods{qtcm} objects, and contain the Fortran QTCM1 model that is
+called by the \mods{qtcm} Python wrappers.  These extension modules
+are located in the \fn{lib} directory of the \mods{qtcm} distribution,
+and, in general, need to be created only when the \mods{qtcm} package
+is installed.
+
+Two extension modules are created:  \fn{\_qtcm\_full\_365.so} and
+\fn{\_qtcm\_parts\_365.so}.  Both modules define QTCM1 models where:
+
+\begin{itemize}
+\item A year is 365 days long 
+	(makefile macro \vars{YEAR360} is off).
+\item Model output is written to netCDF files
+	(makefile macro \vars{NETCDFOUT} is on).
+\item The atmospheric boundary layer model is used
+	(makefile macro \vars{NO\_ABL} is off).
+\item A global domain is used
+	(makefile macro \vars{SPONGES} is off).
+\item Topography effects due to induced divergence are not included
+	(makefile macro \vars{TOPO} is off).
+\item Coupling between atmosphere and ocean is through mean fluxes
+	(makefile macro \vars{CPLMEAN} is off).
+\item The mixed layer ocean model is not used
+	(makefile macros \vars{MXL\_OCEAN} and \vars{BLEND\_SST} are both off).
+\end{itemize}
+
+(All other makefile macros not listed are also turned off.)
+The only difference between these two extension modules is that the
+``full'' module is used by \class{Qtcm} instances where
+\vars{compiled\_form} is set to \vars{'full'}, and the ``parts''
+module is used by \class{Qtcm} instances where \vars{compiled\_form}
+is set to \vars{'parts'}.  See Section~\ref{sec:compiledform} for
+details about the \vars{compiled\_form} attribute.
+
+The extension modules are created through the following steps:
+\begin{enumerate}
+\item Go to the \mods{qtcm} distribution directory
+	\fn{\input{pkg_distro_dirname}}located in
+	your build path \fn{/buildpath}.  Go to the \fn{src}
+	sub-directory.  This is where all the building of the
+	extension modules will take place.
+
+\item Copy the makefile that corresponds to your platform to
+	the \fn{src} directory, and rename it \fn{makefile}.
+	The \fn{Makefiles} sub-directory of \fn{src} contains
+	makefiles for various platforms.
+
+\item In \fn{makefile}, make the following changes:
+	\begin{enumerate}
+	\item Change the \vars{FC} environment variable as needed, 
+		if your Fortran compiler is different.
+	\item Change the \vars{FFLAGSM} environment variable, if the
+		compiler flags listed are not supported by your
+		compiler.
+	\item Change the \vars{-I} and \vars{-L} parts of the
+		\vars{NCINC} and \vars{NCLIB} environment
+		variables so that the paths for the netCDF library and
+		include files match your system's installation:
+		\begin{codeblock}
+		\codeblockfont{%
+NCINC=-I/yourpath/netcdf/include \\
+NCLIB=-L/yourpath/netcdf/lib -lnetcdf}
+		\end{codeblock}
+		Set \dumarg{yourpath} to the full path to the
+		\fn{netcdf} directory where the \fn{include} and
+		\fn{lib} sub-directories are that hold the netCDF
+		libraries and include files.
+		(You shouldn't have to change the \vars{-l} part of
+		\vars{NCLIB}, since it is standard to name the netCDF
+		library \fn{libnetcdf.a}.  But if you have a non-standard
+		installation, change the \vars{-l} part too.)
+	\end{enumerate}
+
+\item At the Unix prompt, type:
+\begin{codeblock}
+\codeblockfont{%
+\small
+make clean \&\& make \_qtcm\_full\_365.so \&\& make \_qtcm\_parts\_365.so}
+\end{codeblock}
+	to clean up leftover files from previous compilations, and to
+	compile the extension module shared object files
+	\fn{\_qtcm\_full\_365.so} and \fn{\_qtcm\_parts\_365.so}.
+\end{enumerate}
+
+The makefile will automatically move the shared object files into
+\fn{../lib}, overwriting any pre-existing files of the same name.
+A detailed description of the makefile and using \mods{f2py} is
+given in Section~\ref{sec:create.new.so}, if you wish to create a
+different extension module.
+
+
+
+
+% ===== end of file =====

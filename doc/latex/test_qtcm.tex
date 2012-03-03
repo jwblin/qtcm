@@ -1,0 +1,115 @@
+% ==========================================================================
+% Installation Summary
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+
+The \mods{qtcm} distribution comes with a set of tests for the
+package, using Python's \mods{unittest} package.  
+Just to warn you, the tests take around an hour to run.
+The tests will not work if the contents of \fn{lib}
+after you've finished building \mods{qtcm} have not been copied
+to a directory named \fn{qtcm} that is on your \mods{sys.path} path,
+so make sure you've gone through all the install steps
+(summarized in Section~\ref{sec:install.sum}) before you do these
+tests.
+
+\emphpara{NB:}  For these tests to work, both \cmd{python} and
+\cmd{python2.4} must refer to the executable for the Python
+installation on your system that you are using for running \mods{qtcm}.
+
+The tests require a set of benchmark output files in the
+\fn{test/benchmarks} directory in the
+\fn{\input{pkg_distro_dirname}}directory (the output will be in
+directories whose names begin with ``aquaplanet'' or ``landon'').
+These output files are not included with the \mods{qtcm} distribution,
+and must be created, by doing the following:
+
+\begin{enumerate}
+\item Goto the directory \fn{test/benchmarks/create/src} in the
+	\fn{\input{pkg_distro_dirname}}\mods{qtcm} distribution directory,
+	and copy the makefile from sub-directory \fn{Makesfiles},
+	that corresponds to your system to the
+	\fn{test/benchmarks/create/src} directory.  Rename the makefile 
+	in \fn{test/benchmarks/create/src} to \fn{makefile}.
+
+\item In \fn{makefile}, make the following changes:
+        \begin{enumerate}
+        \item Change the \vars{FC} environment variable as needed,
+                if your Fortran compiler is different.
+        \item Change the \vars{FFLAGSM} environment variable, if the
+                compiler flags listed are not supported by your
+                compiler.
+        \item Change the \vars{-I} and \vars{-L} parts of the
+                \vars{NCINC} and \vars{NCLIB} environment
+                variables so that the paths for the netCDF library and
+                include files match your system's installation:
+                \begin{codeblock}
+                \codeblockfont{%
+NCINC=-I/yourpath/netcdf/include \\
+NCLIB=-L/yourpath/netcdf/lib -lnetcdf}
+                \end{codeblock}
+                Set \dumarg{yourpath} to the full path to the
+                \fn{netcdf} directory where the \fn{include} and
+                \fn{lib} sub-directories are that hold the netCDF
+                libraries and include files.
+                (You shouldn't have to change the \vars{-l} part of
+                \vars{NCLIB}, since it is standard to name the netCDF
+                library \fn{libnetcdf.a}.  But if you have a non-standard
+                installation, change the \vars{-l} part too.)
+        \end{enumerate}
+
+\item Go to the directory \fn{test/benchmarks/create} in the
+	\fn{\input{pkg_distro_dirname}}\mods{qtcm} distribution directory.
+
+\item Type \cmd{python create\_benchmarks.py} at the Unix command line
+	to run the benchmark creation script.
+\end{enumerate}
+
+The created benchmarks will be located in 
+\fn{test/benchmarks}, in directories with names related to the
+run that was done, as described earlier.
+The benchmarks are created using the
+pure-Fortran QTCM1 model code,
+version 2.3 (August 2002), with an altered makefile
+(described above) and the following code change:
+In all \fn{.F90} files, occurrences of:
+        \begin{codeblock}
+        \codeblockfont{%
+        Character(len=130)}
+        \end{codeblock}
+        are changed to:
+        \begin{codeblock}
+        \codeblockfont{%
+        Character(len=305)}
+        \end{codeblock}
+This enables the model to properly deal with longer filenames.
+The number ``305'' is chosen to make search and replace easier.
+
+Once the benchmarks are created, you can test the \mods{qtcm} package
+by doing the following:
+\begin{enumerate}
+\item Go to the \fn{test} directory in the 
+	\fn{\input{pkg_distro_dirname}}directory.
+\item Type \cmd{python test\_all.py} at the Unix command line.
+\end{enumerate}
+
+If at the end of the test runs you see this message (or something similar):
+\begin{codeblock}
+\codeblockfont{%
+\footnotesize
+---------------------------------------------------------------------- \\
+Ran 93 tests in 1244.205s \\
+ \\
+OK}
+\end{codeblock}
+then everything worked fine!  If you get any other message, the test(s) have
+failed.
+
+
+
+% ===== end of file =====

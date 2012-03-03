@@ -1,0 +1,107 @@
+G95 module created on Wed May 28 18:10:20 2008 from qtcmmod.F90
+If you edit this, you'll get what you deserve.
+module-version 3
+(() () () () () () () () () () () () () () () () () () () () ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'cosui' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+3 'cosvi' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+4 'cosv' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0') (
+CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+5 'dxi' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE) (REAL 4 ())
+0 0 () () '' () ())
+6 'dx' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE) (REAL 4 ())
+0 0 () () '' () ())
+7 'dimensions' 'dimensions' 1 ((MODULE UNKNOWN UNKNOWN UNKNOWN NONE NONE)
+(UNKNOWN 0 ()) 0 0 () () '' () ())
+8 'dxui' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+9 'dyi' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE) (REAL 4 ())
+0 0 () () '' () ())
+10 'dy' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE) (REAL 4 ())
+0 0 () () '' () ())
+11 'dyvi' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+12 'fu' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+13 'fv' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0') (
+CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+14 'dyui' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+15 'im2' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(INTEGER 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '64')) '' () ())
+16 'im1' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(INTEGER 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '64')) '' () ())
+17 'ip1' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(INTEGER 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '64')) '' () ())
+18 'latt' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+19 'nx' 'dimensions' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (
+INTEGER 4 ()) 0 0 () (CONSTANT (INTEGER 4 ()) 0 '64') () '' () ())
+20 'lont' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '64')) '' () ())
+21 'ny' 'dimensions' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (
+INTEGER 4 ()) 0 0 () (CONSTANT (INTEGER 4 ()) 0 '42') () '' () ())
+22 'pi' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE) (REAL 4 ())
+0 0 () () '' () ())
+23 'nxy' 'dimensions' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (
+INTEGER 4 ()) 0 0 () (CONSTANT (INTEGER 4 ()) 0 '2688') () '' () ())
+24 'ip2' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(INTEGER 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '64')) '' () ())
+25 'weight2v' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42') (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '3')) '' () ())
+26 'weight2u' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42') (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '3')) '' () ())
+27 'grid' 'grid' 1 ((MODULE UNKNOWN UNKNOWN UNKNOWN NONE NONE) (UNKNOWN
+0 ()) 0 0 () () '' () ())
+28 'weight4v' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42') (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '5')) '' () ())
+29 'yb' 'grid' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (REAL 4
+()) 0 0 () (CONSTANT (REAL 4 ()) 0 '10321920' 0 133) () '' () ())
+30 'weight4u' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42') (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '5')) '' () ())
+31 'dxvi' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+32 'cosu' 'grid' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+)
+
+('cosu' 0 32 'dxvi' 0 31 'dxui' 0 8 'dimensions' 0 7 'cosv' 0 4 'cosui'
+0 2 'cosvi' 0 3 'dx' 0 6 'dxi' 0 5 'weight4u' 0 30 'grid' 0 27 'dyui' 0
+14 'dy' 0 10 'dyi' 0 9 'fv' 0 13 'fu' 0 12 'dyvi' 0 11 'weight2u' 0 26
+'ip2' 0 24 'ip1' 0 17 'im1' 0 16 'im2' 0 15 'nxy' 0 23 'lont' 0 20 'latt'
+0 18 'nx' 0 19 'pi' 0 22 'ny' 0 21 'weight2v' 0 25 'yb' 0 29 'weight4v'
+0 28)

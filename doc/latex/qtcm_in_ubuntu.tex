@@ -1,0 +1,362 @@
+% ==========================================================================
+% Description of installing in Ubuntu
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+%------------------------------------------------------------------------
+\subsection{Introduction}
+
+This section describes installation issues 
+I followed to install \mods{qtcm} on my
+Dell PowerEdge 860 running Ubuntu GNU/Linux 8.04.1 LTS (Hardy).
+The machine has 2.66 GHz Quad Core Intel Xeon processors (64 bit),
+4 GB RAM, and 677 GB of disk in its main partition.
+This section is a specific realization of the general installation
+instructions found in Sections~\ref{sec:install.sum}--\ref{sec:test.qtcm}.
+I worked through these installation steps during July 2008.
+The best way to go through this section is to go through
+the summary of the installation steps in 
+Section~\ref{sec:ubuntu.install.summary},
+and looking back to other sections as needed.
+
+
+
+%------------------------------------------------------------------------
+\subsection{Fortran Compiler}     \label{sec:ubuntu.fort.install}
+
+The easiest Fortran compiler to install in Ubuntu 8.04.1 is
+\htmladdnormallinkfoot{GNU Fortran}{http://gcc.gnu.org/fortran/}
+(\mods{gfortran}), the Fortran 95 compiler included with the more
+recent versions of the GNU Compiler Collection (GCC); you can
+use any package manager (e.g., \mods{apt-get}, \mods{aptitude})
+to install it.
+Unfortunately, I was not able to get it to compile QTCM1.
+I was, however, able to successfully compile QTCM1 using
+the second open-source Fortran compiler,
+\htmladdnormallinkfoot{G95}{http://www.g95.org/} (\mods{g95}),
+which some feel is farther along in its development than \mods{gfortran}.
+G95, however, is not supported as an Ubuntu package, and so I had
+to manually install it.
+
+I downloaded the binary version of G95 v0.91 
+(the Linux x86\_64/EMT64 with 32 bit default integers) 
+using the following
+\cmd{curl} command:\footnote%
+	{I use \mods{curl} because I usually access my
+	Ubuntu server via a terminal session.}
+
+\begin{codeblock}
+\codeblockfont{%
+\small
+curl -o g95.tgz http://ftp.g95.org/v0.91/g95-x86\_64-32-linux.tgz}
+\end{codeblock}
+
+which saves the \fn{.tgz} file as the local file \fn{g95.tgz}.
+After that, I followed the G95 project's standard
+\latexhtml{installation instructions\footnote%
+	{http://g95.sourceforge.net/docs.html\#starting}}%
+	{\htmladdnormallink{installation instructions}%
+		{http://g95.sourceforge.net/docs.html#starting}}
+to finish the install.\footnote%
+	{The G95 installation instructions say you can put
+	\fn{g95-install} anywhere, and make a link to the
+	executable \mods{g95} in
+	\fn{$\sim$/bin}.  I put \fn{g95-install} in
+	\fn{/usr/local}, and while in \fn{/usr/local/bin}, 
+	I put a link to the G95 executable using the command:
+	\begin{codeblock}
+	\codeblockfont{%
+	sudo ln -s ../g95-install\_64/bin/x86\_64-suse-linux-gnu-g95 g95.}
+	\end{codeblock}}
+The regular Linux x86 version of G95
+(in \fn{g95-x86-linux.tgz} from the G95 website) did not work on my
+machine.
+
+
+
+
+%------------------------------------------------------------------------
+\subsection{NetCDF Libraries}   \label{sec:ubuntu.netcdf}
+
+%Here things were very confusing for my machine, as I needed to
+%install two versions of the
+%\htmladdnormallinkfoot{netCDF}%
+%	{http://www.unidata.ucar.edu/software/netcdf/}
+%libraries and include files, one 
+%for a successful compilation of the extension modules
+%(as described in Section~\ref{sec:create.so}),
+%and the other 
+%for a successful run of the pure-Fortran QTCM1 model
+%(used to create the testing benchmarks, as described in
+%Section~\ref{sec:test.qtcm}).
+%
+%The first set of netCDF files (for the extension modules) are
+%installed from Ubuntu's package management system.
+%These are automatically installed when the \mods{python-netcdf}
+%package is installed via an Ubuntu package manager
+%(see Section~\ref{sec:ubuntu.install.summary}).
+%The include files for this netCDF installation are 
+%located in \fn{/usr/include}, and the libraries for this
+%netCDF installation are location in \fn{/usr/lib}.
+
+For some reason, the netCDF libraries and include files
+installed from the Ubuntu packages do not
+correspond to the files needed
+by the calling routines in \mods{qtcm}.  To solve this, I compiled
+my own set of
+\htmladdnormallinkfoot{netCDF 3.6.2 libraries}%
+        {http://www.unidata.ucar.edu/software/netcdf/}
+using the tarball
+\latexhtml{downloaded from UCAR\footnote{http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3\_6\_2/}}%
+        {\htmladdnormallink{downloaded from UCAR}{http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3_6_2/}}.
+
+Once I uncompressed and untarred the package, and went into
+the top-level directory of the package, I built the package by typing
+the following at the Unix prompt:
+
+\begin{codeblock}
+\codeblockfont{%
+export FC=g95 \\
+export FFLAGS="-O -fPIC" \\
+export FFLAGS="-fPIC" \\
+export F90FLAGS="-fPIC" \\
+export CFLAGS="-fPIC" \\
+export CXXFLAGS="-fPIC" \\
+./configure \\
+make check \\
+sudo make install}
+\end{codeblock}
+
+(The \cmd{export} commands set environment variables for the
+Fortran compiler and Fortran and other compiler flags.  The
+\vars{-fPIC} flag enables the compilers to create
+position independent code, needed for shared libraries in
+Ubuntu on a 64 bit Intel processor.)
+
+The above installs the netCDF binaries, libraries, and include files into
+sub-directories \fn{bin}, \fn{lib}, and \fn{include} in 
+\fn{/usr/local}, the default.
+The include files for this netCDF installation are thus
+located in \fn{/usr/local/include}, and the libraries for this
+netCDF installation are location in \fn{/usr/local/lib}.
+(If you want to specify a different installation
+location, use the \vars{--prefix} option in \cmd{configure}.)
+While you don't have to have root privileges during the configuration
+and check steps, you do during the installation step if you're installing
+into \fn{/usr/local} (thus the \cmd{sudo} in the last step).\footnote%
+	{Note that when you build netCDF, make sure the build directory
+	is not in the directory tree of \vars{--prefix}
+	or the default directory \fn{/usr/local}.}
+
+%Because there are two different netCDF installations used in the
+%\mods{qtcm} package, the makefiles for creating the benchmarks
+%and extensions files will have different \vars{NCLIB} and \vars{NCINC}
+%environment variables (see Section~\ref{sec:ubuntu.makefile}).
+
+
+
+
+%------------------------------------------------------------------------
+\subsection{Makefile Configuration}  \label{sec:ubuntu.makefile}
+
+	\subsubsection{NetCDF}
+
+In the \fn{src} directory in the \mods{qtcm} distribution, there is a
+sub-directory \fn{Makefiles} that contains the makefiles for a
+variety of platforms.  Edit the file \fn{makefile.ubuntu\_64\_g95}
+so that the lines specifying the environment variables for the
+netCDF libraries and include files:
+
+\begin{codeblock}
+\codeblockfont{%
+NCINC=-I/usr/local/include \\
+NCLIB=-L/usr/local/lib -lnetcdf}
+\end{codeblock}
+
+are changed to the path where your manually compiled
+netCDF libraries and include files are.
+
+Copy \fn{makefile.ubuntu\_64\_g95} from the \fn{Makefiles} sub-directory
+in \fn{src} into \fn{src}.  
+In other words, from the \mods{qtcm} distribution directory
+(i.e., \fn{/buildpath}), at the Unix prompt execute:
+
+\begin{codeblock}
+\codeblockfont{%
+cp src/Makefiles/makefile.ubuntu\_64\_g95 src/makefile}
+\end{codeblock}
+
+
+	\subsubsection{Linking Order}
+
+Compilers in the GNU Compiler Collection (GCC) search libraries
+and object files in the order they are listed in the command-line,
+\latexhtml{from left-to-right\footnote%
+	{http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Link-Options.html\#index-l-670}}%
+	{\htmladdnormallink{from left-to-right}{http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Link-Options.html#index-l-670}}.
+Thus, if routines in \fn{b.o} call routines in \fn{a.o}, 
+you must list the files in the order \fn{a.o b.o}.
+
+For some reason, that isn't the case for \mods{g95}.  Thus, you will
+find \mods{g95} makefile rules structured like the following
+(below is part of the rule to create an executable (\fn{qtcm}) for
+benchmark runs):
+
+% --- Two versions of this rule, one for display in PDF and the other
+%     for display in HTML:
+%
+\begin{latexonly}
+\begin{codeblock}
+\codeblockfont{%
+qtcm: main.o \\
+\hspace*{8ex}\$(FC)~-O~\$(NCINC)~-o~\$@ main.o~\$(QTCMLIB)~\$(NCLIB)}
+\end{codeblock}
+\end{latexonly}
+
+\begin{htmlonly}
+\begin{rawhtml}
+<p><code><font color="blue">qtcm: main.o<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(FC) -O $(NCINC) -o 
+$@ main.o $(QTCMLIB) $(NCLIB)</font></code></p>
+\end{rawhtml}
+\end{htmlonly}
+
+even though \fn{main.o} depends on the QTCM library 
+(specified in macro setting \vars{QTCMLIB}), which in turn
+depends on the netCDF library (specified in macro setting \vars{NCLIB}).
+
+
+	\subsubsection{Shared Object PIC}   \label{sec:sopic}
+
+In order to compile the model in Ubuntu on a 64 bit Intel processor,
+the model and the netCDF library it is linked to needs to be
+compiled to be 
+\latexhtml{position independent code (PIC).\footnote%
+		{http://www.gentoo.org/proj/en/base/amd64/howtos/index.xml?part=1\&chap=3}}%
+	{\htmladdnormallink{position independent code (PIC)}%
+		{http://www.gentoo.org/proj/en/base/amd64/howtos/index.xml?part=1&chap=3}.}
+This is accomplished with the 
+\htmladdnormallinkfoot{\cmd{-fPIC} flag}%
+	{http://www.fortran-2000.com/ArnaudRecipes/sharedlib.html}.
+
+In the \mods{qtcm} makefiles, the \cmd{-fPIC} flag is introduced in the
+macro \vars{FFLAGSM}, for instance:
+\begin{codeblock}
+\codeblockfont{%
+FFLAGSM = -O -fPIC}
+\end{codeblock}
+For makefiles used in creating extension modules, \cmd{-fPIC} must
+be passed into the \mods{f2py} call.  To do so, put the flags:
+\begin{codeblock}
+\codeblockfont{%
+--f90flags="-fPIC" --f77flags="-fPIC"}
+\end{codeblock}
+after the \vars{--fcompiler} flag in the \mods{f2py} calling line.
+
+The \cmd{-fPIC} flag must also be used when compiling the netCDF
+libraries, as described in Section~\ref{sec:ubuntu.netcdf}.
+Failure to create PIC libraries in 64 bit Ubuntu can result in errors 
+like the following when creating the \mods{qtcm} extension modules:
+\begin{codeblock}
+\codeblockfont{%
+ld: /usr/local/lib/libnetcdf.a(fort-attio.o): relocation R\_X86\_64\_32 against `a local symbol' can not be used when making a shared object; recompile with -fPIC /usr/local/lib/libnetcdf.a: could not read symbols: Bad value}
+\end{codeblock}
+
+
+
+
+%------------------------------------------------------------------------
+\subsection{Summary of Steps}      \label{sec:ubuntu.install.summary}
+
+The following summarizes all the steps I took to install
+\mods{qtcm} in
+Ubuntu 8.04.1 LTS (Hardy) running on a
+Quad Core Intel Xeon (64 bit) machine.
+Note that while I use the \mods{aptitude} package manager, you are
+free to use any manager of your choice (e.g., \mods{apt-get},
+\mods{synaptic}, etc.):
+
+\begin{enumerate}
+\item Install the G95 Fortran compiler from the binary distribution.
+	See Section~\ref{sec:ubuntu.fort.install} for details.
+
+\item Use an Ubuntu package manager
+	to install the following packages, by typing:
+	\begin{codeblock}
+	\codeblockfont{%
+sudo aptitude update \\
+sudo aptitude install curl \\
+sudo aptitude install python-epydoc \\
+sudo aptitude install python-matplotlib \\
+sudo aptitude install python-netcdf \\
+sudo aptitude install python-scientific \\
+sudo aptitude install python-scipy \\
+sudo aptitude install texlive}
+	\end{codeblock}
+
+	Installing \mods{python-scipy} will also install NumPy and
+	\mods{f2py}, so you don't have to install the
+	\mods{python-numpy} package separately.
+
+	Early-on as I debugged my \mods{qtcm} install on Ubuntu,
+	I encountered errors that I thought came from an 
+	\htmladdnormallinkfoot{old version of NumPy}%
+		{http://cens.ioc.ee/pipermail/f2py-users/2008-June/001617.html},
+	and thus I replaced Ubuntu's packaged NumPy with NumPy 1.1.0
+	built 
+	\latexhtml{directly from source.\footnote%
+			{http://sourceforge.net/project/showfiles.php?group\_id=1369\&package\_id=175103}}%
+		{\htmladdnormallink{directly from source}{http://sourceforge.net/project/showfiles.php?group_id=1369&package_id=175103}.}
+	(Note, you shouldn't install your new NumPy in the default
+	location, which may cause problems later-on with Ubuntu's
+	package manager.)
+	Later on, I concluded the errors I had encountered were not
+	because of the NumPy version, but by then I didn't want to
+	try to reinstall NumPy again.
+	So strictly speaking, the version of Numpy I used is not
+	the one bundled with \mods{python-scipy}, but that shouldn't
+	be a problem.
+
+\item Manually install netCDF 3.6.2 from source
+	(see Section \ref{sec:ubuntu.netcdf}).
+
+\item Manually install the \mods{basemap} package of
+	\mods{matplotlib}.  
+	The source for the \mods{basemap} toolkit is
+	available 
+	\latexhtml{from Sourceforge\footnote%
+			{http://sourceforge.net/project/showfiles.php?group\_id=80706}}%
+		{\htmladdnormallink{from Sourceforge}%
+			{http://sourceforge.net/project/showfiles.php?group_id=80706}}
+	I obtained version 0.9.9.1 using the
+	following \cmd{curl} command:
+	\begin{codeblock}
+	\codeblockfont{%
+\scriptsize
+curl -o basemap.tar.gz $\backslash$ \\
+http://voxel.dl.sourceforge.net/sourceforge/matplotlib/basemap-0.9.9.1.tar.gz}
+	\end{codeblock}
+
+	The \fn{README} file in the \fn{basemap-0.9.9.1} directory has
+	detailed installation instructions.  Note that you have to
+	install the GEOS library first (\fn{README} has detailed
+	directions on how to do that too).  To be on the safe-side,
+	I would set the \vars{FC} environment variable to the G95
+	compiler
+	(e.g., with \cmd{export FC=g95} in Bash).
+
+\item From this point on, you can follow the
+	general instructions given in Section~\ref{sec:install.sum},
+	starting with step~\ref{list:download.qtcm.sum}.
+	Please do not ignore, however, Section~\ref{sec:install.ubuntu}'s
+	Ubuntu-specific details.
+
+\end{enumerate}
+
+
+
+% ===== end of file =====

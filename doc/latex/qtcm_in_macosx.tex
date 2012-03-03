@@ -1,0 +1,357 @@
+% ==========================================================================
+% Description of installing in Mac OS X
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+%------------------------------------------------------------------------
+\subsection{Introduction}
+
+This section describes issues and a summary of the installation steps
+I followed to install \mods{qtcm} on a Mac running OS X.
+It is a specific realization of the general installation
+instructions found in Sections~\ref{sec:install.sum}--\ref{sec:test.qtcm}.
+I first worked through these installation steps during June--July 2007,
+with updates during July 2008.
+The best way to go through this section is to go through
+the summary of the installation steps in 
+Section~\ref{sec:osx.install.summary},
+and looking back to other sections as needed.
+
+
+
+
+%------------------------------------------------------------------------
+\subsection{Platform and Unix Dependencies}
+
+This work was done on a MacBook 1.83 GHz Intel Core Duo running Mac OS X
+10.4.11.  My machine has 1 GB RAM and 64 GB of disk in its main partition.
+
+I recommend you turn-off your antivirus software before you
+do the installs.  
+Problems have been
+\latexhtml{reported by Fink users\footnote%
+		{http://finkproject.org/faq/usage-fink.php?phpLang=en\#kernel-panics}}%
+	{\htmladdnormallink{reported by Fink users}%
+		{http://finkproject.org/faq/usage-fink.php?phpLang=en#kernel-panics}}
+using the Fink package manager with antivirus software enabled.
+
+There are a variety of dependencies that are required to get your Mac
+up-and-running as a scientific computing platform.  The most basic is
+installing Apple's 
+\htmladdnormallinkfoot{XCode}{http://developer.apple.com/tools/xcode/}
+developer tools.\footnote%
+	{The package should work in Mac OS X 10.4 with XCode 2.4.1 and higher;
+	I've tried it with both 2.4.1 and XCode 2.5.  Note that
+	XCode 3.1 only works on Mac OS X 10.5.}
+This set of tools contains compilers and libraries
+needed to do anything further.  You have to be a member of Apple's
+Developer Connection, but registration is free.
+
+Besides XCode, there are a variety of Unix libraries and utilities that you
+need.  I first tried installing them by myself, from scratch, into
+\fn{/usr/local}, but it was hard to keep track of all the dependencies.
+A few that did work, and that I installed from their disk images, are:
+\htmladdnormallinkfoot{MacTeX}{http://www.tug.org/mactex/}, 
+\htmladdnormallinkfoot{MAMP}{http://www.mamp.info/}, and 
+\htmladdnormallinkfoot{Tcl/Tk Aqua BI (Batteries Included)}%
+	{http://tcltkaqua.sourceforge.net/}.\footnote%
+		{Theoretically you can use Fink to install the equivalent
+		of these packages, but I like the specific collection 
+		found in these packages.  For instance, Tcl/Tk Aqua BI
+		runs natively on the Mac.}
+
+For everything else, thankfully, there's the
+\htmladdnormallinkfoot{Fink Project}{http://www.finkproject.org/} which
+uses a package manager built upon Debian tools to install ports of
+Unix programs onto a Mac.  I just 
+\htmladdnormallinkfoot{downloaded}%
+	{http://www.finkproject.org/download/index.php?phpLang=en}
+a binary version of the Fink 0.8.1 installer for Intel Macs,
+installed Fink, and used its package management tools to install
+(almost) everything else I needed.\footnote%
+	{The one drawback of Fink is that it sometimes
+	has stability problems.  In those cases, Fink provides
+	command line suggestions to fix the problems, which sometimes
+	will work.  If not, sometimes
+\latexhtml{%
+	deleting Fink and everything it installed,\footnote%
+	{http://www.finkproject.org/faq/usage-fink.php?phpLang=en\#removing}}{%
+\htmladdnormallink{deleting Fink and everything it installed}
+	{http://www.finkproject.org/faq/usage-fink.php?phpLang=en#removing},}
+	and starting afresh, will do the trick.
+	It also appeared to me that sometimes when I installed 
+	multiple packages
+	via one \cmd{fink install} call, the installation did not work
+	as well as when I installed only one package per call.}
+
+Although you do not need anything besides a Fortran compiler and
+the netCDF libraries to run QTCM1 in its pure-Fortran form, in order to
+manipulate the model and use this Python version \mods{qtcm}, you
+need to have Python installed.  The default Python that comes
+with the Mac is a little old, so I used Fink to also install
+Python 2.5 and related packages, including
+\htmladdnormallinkfoot{matplotlib}{http://matplotlib.sourceforge.net/},
+\htmladdnormallinkfoot{ScientificPython}{http://dirac.cnrs-orleans.fr/plone/software/scientificpython/},
+and
+\htmladdnormallinkfoot{SciPy}{http://www.scipy.org}
+(see Section~\ref{sec:osx.summary} for details).
+
+
+
+
+%------------------------------------------------------------------------
+\subsection{Fortran Compiler}
+
+There are a variety of high-quality, commercial Fortran compilers.
+Unfortunately, because I do not have a research budget, I am not able
+to use those compilers.  The 
+\htmladdnormallinkfoot{GNU Compiler Collection}{http://gcc.gnu.org/}
+(GCC) provides a suite of open-source compilers, some of which are the
+standards of their language.  Most of the GCC compilers are installed
+on your Mac when you install XCode.
+
+\htmladdnormallinkfoot{GNU Fortran}{http://gcc.gnu.org/fortran/}
+(\mods{gfortran}), is the Fortran 95 compiler included with the more
+recent versions of GCC.
+Unfortunately, I was not able to get it to compile QTCM1.
+There is a second open-source Fortran compiler,
+\htmladdnormallinkfoot{G95}{http://www.g95.org/} (\mods{g95}),
+which some feel is farther along in its development than \mods{gfortran}.
+I was able to successfully compile QTCM1 with \mods{g95} on my Mac.
+I used Fink to install G95
+(see Section~\ref{sec:osx.summary} for details).
+
+
+
+
+%------------------------------------------------------------------------
+\subsection{NetCDF Libraries}   \label{sec:netcdf}
+
+For some reason, the netCDF libraries and include files
+installed by Fink didn't correspond to the files needed
+by the calling routines in \mods{qtcm}.  To solve this, I compiled
+my own set of 
+\htmladdnormallinkfoot{netCDF 3.6.2 libraries}%
+	{http://www.unidata.ucar.edu/software/netcdf/}
+using the tarball 
+\latexhtml{downloaded from UCAR\footnote{http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3\_6\_2/}}%
+        {\htmladdnormallink{downloaded from UCAR}{http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3_6_2/}}.
+
+Once I uncompressed and untarred the package, and went into 
+the top-level directory of the package, I built the package by typing
+the following at the Unix prompt:
+
+\begin{codeblock}
+\codeblockfont{%
+./configure --prefix=/Users/jlin/extra/netcdf \\
+make check \\
+make install}
+\end{codeblock}
+
+This installed the netCDF binaries, libraries, and include files into
+sub-directories \fn{bin}, \fn{lib}, and \fn{include} in 
+the directory specified by \vars{--prefix}.
+If you want to install the netCDF libraries in the default
+(usually \fn{/usr/local}), just leave out the \vars{--prefix}
+option.
+
+Note:  When you build netCDF, make sure the build directory
+is not in the directory tree of \vars{--prefix}
+(or the default directory \fn{/usr/local}).
+
+
+
+
+%------------------------------------------------------------------------
+\subsection{Makefile Configuration}  \label{sec:osx.makefile}
+
+	\subsubsection{NetCDF}
+
+In the \fn{src} directory in the \mods{qtcm} distribution, there is a
+sub-directory \fn{Makefiles} that contains the makefiles for a
+variety of platforms.  Edit the file \fn{makefile.osx\_g95}
+so that the lines specifying the environment variables for the
+netCDF libraries and include files:
+
+\begin{codeblock}
+\codeblockfont{%
+NCINC=-I/Users/jlin/extra/netcdf/include \\
+NCLIB=-L/Users/jlin/extra/netcdf/lib -lnetcdf}
+\end{codeblock}
+
+are changed to the path where your \emph{manually compiled} 
+netCDF libraries and include files are.
+
+Copy \fn{makefile.osx\_g95} from the \fn{Makefiles} sub-directory
+in \fn{src} into \fn{src}.  
+In other words, from the \mods{qtcm} distribution directory
+(i.e., \fn{/buildpath}), at the Unix prompt execute:
+
+\begin{codeblock}
+\codeblockfont{%
+cp src/Makefiles/makefile.osx\_g95 src/makefile}
+\end{codeblock}
+
+
+	\subsubsection{Linking Order}
+
+Compilers in the GNU Compiler Collection (GCC) search libraries
+and object files in the order they are listed in the command-line, 
+\latexhtml{from left-to-right\footnote%
+        {http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Link-Options.html\#index-l-670}}%
+        {\htmladdnormallink{from left-to-right}{http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Link-Options.html#index-l-670}}.
+Thus, if routines in \fn{b.o} call routines in \fn{a.o}, 
+you must list the files in the order \fn{a.o b.o}.
+
+For some reason, that isn't the case for \mods{g95}.  Thus, you will
+find \mods{g95} makefile rules structured like the following
+(below is part of the rule to create an executable (\fn{qtcm}) for
+benchmark runs):
+
+% --- Two versions of this rule, one for display in PDF and the other
+%     for display in HTML:
+%
+\begin{latexonly}
+\begin{codeblock}
+\codeblockfont{%
+qtcm: main.o \\
+\hspace*{8ex}\$(FC)~-O~\$(NCINC)~-o~\$@ main.o~\$(QTCMLIB)~\$(NCLIB)}
+\end{codeblock}
+\end{latexonly}
+
+\begin{htmlonly}
+\begin{rawhtml}
+<p><code><font color="blue">qtcm: main.o<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(FC) -O $(NCINC) -o 
+$@ main.o $(QTCMLIB) $(NCLIB)</font></code></p>
+\end{rawhtml}
+\end{htmlonly}
+
+even though \fn{main.o} depends on the QTCM library 
+(specified in macro setting \vars{\$(QTCMLIB)}), which in turn
+depends on the netCDF library (specified in macro setting \vars{\$(NCLIB)}).
+
+
+%------------------------------------------------------------------------
+\subsection{Summary of Steps}   \label{sec:osx.install.summary}
+
+The following summarizes all the steps I took to install
+\mods{qtcm} in Mac OS X:
+
+\begin{enumerate}
+\item Install
+	\htmladdnormallinkfoot{XCode 2.5}%
+		{http://developer.apple.com/tools/xcode/}.
+
+\item Install 
+	\htmladdnormallinkfoot{MacTeX}{http://www.tug.org/mactex/}, 
+	\htmladdnormallinkfoot{MAMP}{http://www.mamp.info/}, and 
+	\htmladdnormallinkfoot{TCL/Tk Aqua BI (Batteries Included)}%
+		{http://tcltkaqua.sourceforge.net/}.
+
+\item Install
+	\htmladdnormallinkfoot{Fink 0.8.1}%
+		{http://www.finkproject.org/download/index.php?phpLang=en}.
+	Make sure you
+	\htmladdnormallink{set up your environment}%
+		{http://www.finkproject.org/doc/users-guide/install.php\#setup}
+	to enable you to use the packages you install with Fink
+	(e.g. \vars{PATH} settings, etc.).
+	Most of the time, that just means adding the line
+	\cmd{source /sw/bin/init.csh} to your \fn{.cshrc} file (or the
+	equivalent in your \fn{.bashrc}).
+
+	Note that for many of the packages needed to run \mods{qtcm},
+	you need to 
+	\htmladdnormallink{configure Fink to download packages 
+		from the unstable trees}%
+	{http://www.finkproject.org/faq/usage-fink.php?phpLang=en\#unstable}.
+	To do that, add \vars{unstable/main} and \vars{unstable/crypto}
+	to the \vars{Trees:} line in \fn{/sw/etc/fink.conf}, and run:
+
+	\begin{codeblock}
+	\codeblockfont{fink selfupdate} \\
+	\codeblockfont{fink index} \\
+	\codeblockfont{fink scanpackages} \\
+	\codeblockfont{fink update-all}
+	\end{codeblock}
+
+	When \cmd{selfupdate} runs, choose \cmd{rsync} for the
+	self update method.  If you do not, Fink will not look in the
+	unstable trees for packages.
+
+\item Use Fink to install the \mods{g95} Fortran compiler.
+	From a Unix prompt, type:
+
+	\begin{codeblock}
+	\codeblockfont{fink -$\,\!$-use-binary-dist install g95}
+	\end{codeblock}
+
+\item Use Fink to install Python 
+	and the NumPy package (which \mods{f2py} is a part of).
+	From a Unix prompt, type:
+
+	\begin{codeblock}
+	\codeblockfont{%
+	fink -$\,\!$-use-binary-dist install python25 \\
+	fink -$\,\!$-use-binary-dist install scipy-core-py25}
+	\end{codeblock}
+
+	(Numpy used to be called SciPy Core.)  If you want to
+	install Python 2.4 instead, just change the ``25'' and ``py25'' above
+	(and in later occurrences) to ``24'' and ``py24'', respectively.
+	Note that Fink does not have a version of epydoc for Python 2.4,
+	so if you wish to create documentation using epydoc, you will
+	need to install Python 2.5.
+
+\item Install teTeX and \LaTeX{2HTML} using Fink.
+	From a Unix prompt, type:
+
+	\begin{codeblock}
+	\codeblockfont{fink -$\,\!$-use-binary-dist install tetex} \\
+	\codeblockfont{fink -$\,\!$-use-binary-dist install latex2html}
+	\end{codeblock}
+
+	When prompted, choose ghostscript and ghostscript-fonts to
+	satistfy the dependency (which should be the default options).
+	I tried choosing system-ghostscript8, but Fink looks for
+	ghostscript 8.51 and didn't recognize ghostscript 8.57 that
+	was already installed in \fn{/usr/local} (via my MacTeX
+	install).  \LaTeX{2HTML} has a package required by the
+	\mods{qtcm} manual \LaTeX\ file.
+
+\item Install additional programming and
+	scientific packages and libraries using Fink.
+	From a Unix prompt, type:
+
+	\begin{codeblock}
+	\codeblockfont{%
+	fink -$\,\!$-use-binary-dist install scientificpython-py25 \\
+	fink -$\,\!$-use-binary-dist install matplotlib-py25 \\
+	fink -$\,\!$-use-binary-dist install matplotlib-basemap-py25 \\
+	fink -$\,\!$-use-binary-dist install matplotlib-basemap-data-py25 \\
+	fink -$\,\!$-use-binary-dist install xaw3d \\
+	fink -$\,\!$-use-binary-dist install fftw fftw3 \\
+	fink -$\,\!$-use-binary-dist install epydoc-py25 \\
+	fink -$\,\!$-use-binary-dist install graphviz \\
+	fink -$\,\!$-use-binary-dist install scipy-py25}
+	\end{codeblock}
+
+\item Manually install netCDF 3.6.2
+	(see Section \ref{sec:netcdf}).
+
+\item From this point on, you can follow the
+	general instructions given in Section~\ref{sec:install.sum},
+	starting with step~\ref{list:download.qtcm.sum}.
+	Please do not ignore, however, Section~\ref{sec:install.macosx}'s
+	Mac-specific details.
+
+\end{enumerate}
+
+
+
+% ===== end of file =====

@@ -1,0 +1,29 @@
+TO DO NEXT
+
+
+add keyword whose default makes you ignore mrestart in the model.:
+   CHECK VARINIT
+
+write landon run and tests for long benchmark (800 days) 
+
+write this:
+\item Instantiate a fresh model, execute a run session, analyze the
+        output, change variables in the model instance,         execute another run session, analyze the output.
+        This basically executes a restart with arbitrary new values.
+
+unwrap these fortran routines (and modules as needed) in physics1 and
+make a physics1_atm_step runlist:
+  Call cloud           !cloud prediction
+  Call radsw           !shortwave scheme 
+  Call radlw           !longwave radiation scheme
+  Call Sflux           !surface fluxes
+  ! call other_flux      !e.g., stochastic forcing; add to rhs
+  (mconvct is already unwrapped)
+
+
+----------------
+
+units and long names for all default variables
+
+make test to confirm that with init_with_instance_state, this keyword
+only has an effect if compiled_form = 'parts'.

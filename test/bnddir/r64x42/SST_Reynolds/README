@@ -1,0 +1,9 @@
+*Data interpolated by Hui Su  (July 15, 2002) using two sets of Reynolds SST
+*original data from /data/zeng/datasets/Reynolds_recon and Reynolds_oi. 
+
+Reynolds Reconstructed SST: From 1950-01 to 1981-10   (Smith et al. 1996)
+Reynolds Optimum Interpolated SST: from 1981-11 to 2001-10 (Reynolds and 
+Smith 1994)
+
+Months before 1950-01 and after 2001-10 are climatological SSTs for 
+1982-1998.

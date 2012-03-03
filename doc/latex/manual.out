@@ -1,0 +1,98 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}
+\BOOKMARK [1][-]{section.1.1}{How to Read This Manual}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{About the Package}{chapter.1}
+\BOOKMARK [1][-]{section.1.3}{Conventions In This Manual}{chapter.1}
+\BOOKMARK [2][-]{subsection.1.3.1}{Audience}{section.1.3}
+\BOOKMARK [2][-]{subsection.1.3.2}{Typographic Conventions}{section.1.3}
+\BOOKMARK [2][-]{subsection.1.3.3}{Terminology}{section.1.3}
+\BOOKMARK [1][-]{section.1.4}{Current Version Information and Acknowledgments}{chapter.1}
+\BOOKMARK [1][-]{section.1.5}{Summary of Release History}{chapter.1}
+\BOOKMARK [1][-]{section.1.6}{A Brief Description of The QTCM1}{chapter.1}
+\BOOKMARK [0][-]{chapter.2}{Installation and Configuration}{}
+\BOOKMARK [1][-]{section.2.1}{Summary and Conventions}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Fortran Compiler}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{Required Packages}{chapter.2}
+\BOOKMARK [1][-]{section.2.4}{Compiling Extension Modules}{chapter.2}
+\BOOKMARK [1][-]{section.2.5}{Testing the Installation}{chapter.2}
+\BOOKMARK [1][-]{section.2.6}{Model Performance}{chapter.2}
+\BOOKMARK [1][-]{section.2.7}{Installing in Mac OS X}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.7.1}{Introduction}{section.2.7}
+\BOOKMARK [2][-]{subsection.2.7.2}{Platform and Unix Dependencies}{section.2.7}
+\BOOKMARK [2][-]{subsection.2.7.3}{Fortran Compiler}{section.2.7}
+\BOOKMARK [2][-]{subsection.2.7.4}{NetCDF Libraries}{section.2.7}
+\BOOKMARK [2][-]{subsection.2.7.5}{Makefile Configuration}{section.2.7}
+\BOOKMARK [2][-]{subsection.2.7.6}{Summary of Steps}{section.2.7}
+\BOOKMARK [1][-]{section.2.8}{Installing in Ubuntu}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.8.1}{Introduction}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.2}{Fortran Compiler}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.3}{NetCDF Libraries}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.4}{Makefile Configuration}{section.2.8}
+\BOOKMARK [2][-]{subsection.2.8.5}{Summary of Steps}{section.2.8}
+\BOOKMARK [0][-]{chapter.3}{Getting Started With qtcm}{}
+\BOOKMARK [1][-]{section.3.1}{Your First Model Run}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Managing Directories}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{Model Field Variables}{chapter.3}
+\BOOKMARK [1][-]{section.3.4}{Run Sessions}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.4.1}{What is a Run Session?}{section.3.4}
+\BOOKMARK [2][-]{subsection.3.4.2}{Changing Variables}{section.3.4}
+\BOOKMARK [2][-]{subsection.3.4.3}{Continuing a Model Run}{section.3.4}
+\BOOKMARK [2][-]{subsection.3.4.4}{Passing Restart Snapshots Between Run Sessions}{section.3.4}
+\BOOKMARK [1][-]{section.3.5}{Creating Multiple Models}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.5.1}{Model Instances}{section.3.5}
+\BOOKMARK [2][-]{subsection.3.5.2}{Passing Snapshots To Other Models}{section.3.5}
+\BOOKMARK [1][-]{section.3.6}{Run Lists}{chapter.3}
+\BOOKMARK [1][-]{section.3.7}{Model Output}{chapter.3}
+\BOOKMARK [2][-]{subsection.3.7.1}{NetCDF Output}{section.3.7}
+\BOOKMARK [2][-]{subsection.3.7.2}{Visualization}{section.3.7}
+\BOOKMARK [1][-]{section.3.8}{Documentation}{chapter.3}
+\BOOKMARK [0][-]{chapter.4}{Using qtcm}{}
+\BOOKMARK [1][-]{section.4.1}{Introduction}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Model Instances}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Initializing a Model Run}{chapter.4}
+\BOOKMARK [1][-]{section.4.4}{The compiled\137form Keyword}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.4.1}{Initialization for compiled\137form='full'}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.2}{Initialization for compiled\137form='parts'}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.3}{Communication Between Python and Fortran-Levels}{section.4.4}
+\BOOKMARK [1][-]{section.4.5}{Restart and Continuation Run Sessions}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.5.1}{Restart Runs In the Pure-Fortran QTCM1}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.2}{Overview of Restart/Continuation Options In qtcm}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.3}{Restart/Continuation for compiled\137form='full' Model Instances}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.4}{Restart/Continuation for compiled\137form='parts' Model Instances}{section.4.5}
+\BOOKMARK [2][-]{subsection.4.5.5}{Snapshots of a Qtcm Instance}{section.4.5}
+\BOOKMARK [1][-]{section.4.6}{Creating and Using Run Lists}{chapter.4}
+\BOOKMARK [1][-]{section.4.7}{Field Variables and the Field Class}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.7.1}{Creating Field Variables}{section.4.7}
+\BOOKMARK [2][-]{subsection.4.7.2}{Initial Field Variables}{section.4.7}
+\BOOKMARK [2][-]{subsection.4.7.3}{Passing Fields Between the Python and Fortran-Levels}{section.4.7}
+\BOOKMARK [2][-]{subsection.4.7.4}{Field Variable Shape}{section.4.7}
+\BOOKMARK [1][-]{section.4.8}{Model Output}{chapter.4}
+\BOOKMARK [1][-]{section.4.9}{Miscellaneous}{chapter.4}
+\BOOKMARK [1][-]{section.4.10}{Cookbook of Ways the Model Can Be Used}{chapter.4}
+\BOOKMARK [0][-]{chapter.5}{Troubleshooting}{}
+\BOOKMARK [1][-]{section.5.1}{Error Messages Produced by qtcm}{chapter.5}
+\BOOKMARK [1][-]{section.5.2}{Other Errors}{chapter.5}
+\BOOKMARK [0][-]{chapter.6}{Developer Notes}{}
+\BOOKMARK [1][-]{section.6.1}{Introduction}{chapter.6}
+\BOOKMARK [1][-]{section.6.2}{Changes to QTCM1 Fortran Files}{chapter.6}
+\BOOKMARK [1][-]{section.6.3}{New Interfaces and Fortran Functionality}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.3.1}{Fortran Module SetbyPy}{section.6.3}
+\BOOKMARK [2][-]{subsection.6.3.2}{Fortran Module WrapCall}{section.6.3}
+\BOOKMARK [1][-]{section.6.4}{Python qtcm and Pure-Fortran QTCM1 Differences}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.4.1}{QTCM1 driverinit}{section.6.4}
+\BOOKMARK [2][-]{subsection.6.4.2}{The varinit Routine}{section.6.4}
+\BOOKMARK [2][-]{subsection.6.4.3}{The qtcm Method of Qtcm}{section.6.4}
+\BOOKMARK [2][-]{subsection.6.4.4}{Miscellaneous Differences}{section.6.4}
+\BOOKMARK [1][-]{section.6.5}{Considerations When Adding Fortran Code}{chapter.6}
+\BOOKMARK [1][-]{section.6.6}{Creating New Standard Extension Modules}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.6.1}{Makefile Rules}{section.6.6}
+\BOOKMARK [2][-]{subsection.6.6.2}{Using f2py}{section.6.6}
+\BOOKMARK [2][-]{subsection.6.6.3}{Two Examples}{section.6.6}
+\BOOKMARK [1][-]{section.6.7}{Attributes and Methods in Qtcm Instances}{chapter.6}
+\BOOKMARK [2][-]{subsection.6.7.1}{Public num\137settings Submodule Attributes/Methods}{section.6.7}
+\BOOKMARK [2][-]{subsection.6.7.2}{Private qtcm Submodule Attributes}{section.6.7}
+\BOOKMARK [2][-]{subsection.6.7.3}{Private Qtcm Attributes}{section.6.7}
+\BOOKMARK [1][-]{section.6.8}{Creating Documentation}{chapter.6}
+\BOOKMARK [0][-]{chapter.7}{Future Work}{}
+\BOOKMARK [0][-]{appendix.A}{Field Settings in defaults}{}
+\BOOKMARK [1][-]{section.A.1}{Scalar Field Variables}{appendix.A}
+\BOOKMARK [1][-]{section.A.2}{Array Field Variables}{appendix.A}

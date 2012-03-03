@@ -1,0 +1,246 @@
+/* a basic css file for CSC html package documentation */
+
+
+/* =================================================================== */
+                        /* basic constructs */
+
+/* a link constructs */
+
+a:link { color: #2c529b;}
+
+a:visited { color: #2c529b;}
+
+a:active { color: #2c529b;}
+
+
+/* a link and img constructs used so the HTML W3C verification buttons
+in the address block look ok */
+
+a:link img, a:visited img { border-style: none }
+a img { color: white }   /* to hide border in NS 4.x */
+
+
+/* for address block */
+
+address { margin-top: 3ex; margin-bottom: 3ex; font-size: 11px; }
+address img { float: right; }
+
+
+body
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    FONT-FAMILY: verdana, sans-serif;
+    FONT-SIZE: 14px;
+}  
+
+
+/* make pre and code tagged font courier, a little bigger */
+
+pre
+{
+    FONT-SIZE: 1.2em;
+    font-family: courier, monospace;
+}
+
+code
+{
+    FONT-SIZE: 1.2em;
+    font-family: courier, monospace;
+}
+
+
+/* heading settings */
+
+h1, h2, h3, h4, h5, h6
+{
+    COLOR: #2C529B;
+    FONT-FAMILY: verdana, sans-serif;
+}
+
+h1 code { FONT-SIZE: 1.2em; }
+h2 code { FONT-SIZE: 1.2em; }
+h3 code { FONT-SIZE: 1.3em; }
+
+
+/* =================================================================== */
+                        /* overall container */
+
+#container
+{
+    margin-top: 0ex;
+    margin-bottom: 5%;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+
+/* =================================================================== */
+                           /* title block */
+
+div.maintitle
+{
+    clear: none;
+    border-bottom: black 0.5ex solid;
+    margin: 0%;
+    padding: 0%;
+    text-align: center;
+    width: 100%;
+}
+
+
+/* =================================================================== */
+                       /* not main title container */
+
+div.notmaintitle
+{
+    clear: none;
+    margin: 0%;
+    padding: 0%;
+    width: 100%;
+}
+
+
+/* =================================================================== */
+             /* main text block */
+
+div.maintext
+{
+}
+
+
+/* in main text, all h2 headers except the first has padding on top */
+
+div.maintext h2
+{
+    margin-top: 0px;
+    padding-top: 1ex;
+}
+
+
+/* in main text, the first h2 header has no padding on top */
+
+div.maintext h2.first
+{
+    margin-top: 0ex;
+    padding-top: 0ex;
+}
+
+
+             /* bulky and concise lists in main text block */
+
+/* this is for a main text list that i want to have a line separating 
+each item.  note the last item has 0 padding.  ordered and unordered 
+list tags are defined. */
+    
+div.maintext ul.bulky li { padding-bottom: 2ex; }
+div.maintext ul.bulky li.last { padding-bottom: 0ex; }
+div.maintext ol.bulky li { padding-bottom: 2ex; }
+div.maintext ol.bulky li.last { padding-bottom: 0ex; }
+
+/* concise lists:  this is for a main text list that i want to have 
+   a line separating each item */
+
+div.maintext ul.concise li { padding-bottom: 0%; }
+div.maintext ol.concise li { padding-bottom: 0%; }
+
+
+             /* bulky and concise ordered list classes for different
+                markers in main text block */
+
+/* These classes set the type of list-item marker explicitly and
+preserve the bulky spacing.  These are set only for maintext block.
+See:
+http://www.htmlhelp.com/reference/css/classification/list-style-type.html */
+
+div.maintext ol.bulky-arabic { list-style-type: decimal }
+div.maintext ol.bulky-arabic li { padding-bottom: 2ex; }
+div.maintext ol.bulky-arabic li.last { padding-bottom: 0ex; }
+
+div.maintext ol.concise-arabic { list-style-type: decimal }
+div.maintext ol.concise-arabic li { padding-bottom: 0ex; }
+div.maintext ol.concise-arabic li.last { padding-bottom: 0ex; }
+
+div.maintext ol.bulky-lcalpha { list-style-type: lower-alpha }
+div.maintext ol.bulky-lcalpha li { padding-bottom: 2ex; }
+div.maintext ol.bulky-lcalpha li.last { padding-bottom: 0ex; }
+
+div.maintext ol.concise-lcalpha { list-style-type: lower-alpha }
+div.maintext ol.concise-lcalpha li { padding-bottom: 0ex; }
+div.maintext ol.concise-lcalpha li.last { padding-bottom: 0ex; }
+
+
+             /* ordered list classes for different markers */
+
+/* These classes set the type of list-item marker explicitly.  Note 
+that you cannot use these classes then with the bulky and concise
+lists classes.  See:
+http://www.htmlhelp.com/reference/css/classification/list-style-type.html */
+
+ol.arabic  { list-style-type: decimal }      /* 1 2 3 4 5 etc. */
+ol.lcalpha { list-style-type: lower-alpha }  /* a b c d e etc. */
+ol.ucalpha { list-style-type: upper-alpha }  /* A B C D E etc. */
+
+
+/* =================================================================== */
+             /* footer text block */
+
+div.footertext
+{
+    border-top: black 0.3ex solid;
+}
+
+
+/* =================================================================== */
+             /* additional constructs */
+
+/* table of modules */
+
+div.modlist th
+{
+    background-color: #99FF00;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+div.modlist td
+{
+    background-color: #99CCFF;
+    vertical-align: top;
+}
+
+
+/* replacement for center tag for text and tables.  see 
+http://theodorakis.net/tablecentertest.html for details */
+
+div.center
+{
+    text-align: center;
+}
+
+div.center table
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+
+             /* imageblock table:  table setting for a block with an
+		image/text pairing.  these settings mainly control
+		margins, padding, and borders */
+
+table.imageblock
+{
+    width: 100%;
+    margin: 0ex;
+    padding: 0ex;
+    margin-top:2.5ex;
+    border: black 0px solid;
+    border-spacing: 0px;
+}
+
+table.imageblock td
+{
+    padding-right: 4ex;
+}

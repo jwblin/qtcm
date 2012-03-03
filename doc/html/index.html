@@ -1,0 +1,363 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>qtcm User's Guide</TITLE>
+<META NAME="description" CONTENT="qtcm User's Guide">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node1.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html142"
+  HREF="node1.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png"> 
+<A NAME="tex2html140"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html143"
+  HREF="node1.html">Contents</A>
+ &nbsp; <B>  <A NAME="tex2html141"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<P>
+
+<H1 ALIGN="CENTER"><FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> User's Guide</H1>
+<DIV>
+
+<P ALIGN="CENTER"><STRONG>Johnny Wei-Bing Lin<A NAME="tex2html1"
+  HREF="footnode.html#foot104"><SUP>1</SUP></A></STRONG></P>
+<P ALIGN="CENTER"><STRONG>September 12, 2008</STRONG></P>
+</DIV>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL>
+<LI><A NAME="tex2html144"
+  HREF="node1.html">Contents</A>
+<LI><A NAME="tex2html145"
+  HREF="node2.html">Introduction</A>
+<UL>
+<LI><A NAME="tex2html146"
+  HREF="node2.html#SECTION00210000000000000000">How to Read This Manual</A>
+<LI><A NAME="tex2html147"
+  HREF="node2.html#SECTION00220000000000000000">About the Package</A>
+<LI><A NAME="tex2html148"
+  HREF="node2.html#SECTION00230000000000000000">Conventions In This Manual</A>
+<UL>
+<LI><A NAME="tex2html149"
+  HREF="node2.html#SECTION00231000000000000000">Audience</A>
+<LI><A NAME="tex2html150"
+  HREF="node2.html#SECTION00232000000000000000">Typographic Conventions</A>
+<LI><A NAME="tex2html151"
+  HREF="node2.html#SECTION00233000000000000000">Terminology</A>
+</UL>
+<LI><A NAME="tex2html152"
+  HREF="node2.html#SECTION00240000000000000000">Current Version Information and Acknowledgments</A>
+<LI><A NAME="tex2html153"
+  HREF="node2.html#SECTION00250000000000000000">Summary of Release History</A>
+<LI><A NAME="tex2html154"
+  HREF="node2.html#SECTION00260000000000000000">A Brief Description of The QTCM1</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html155"
+  HREF="node3.html">Installation and Configuration</A>
+<UL>
+<LI><A NAME="tex2html156"
+  HREF="node3.html#SECTION00310000000000000000">Summary and Conventions</A>
+<LI><A NAME="tex2html157"
+  HREF="node3.html#SECTION00320000000000000000">Fortran Compiler</A>
+<LI><A NAME="tex2html158"
+  HREF="node3.html#SECTION00330000000000000000">Required Packages</A>
+<LI><A NAME="tex2html159"
+  HREF="node3.html#SECTION00340000000000000000">Compiling Extension Modules</A>
+<LI><A NAME="tex2html160"
+  HREF="node3.html#SECTION00350000000000000000">Testing the Installation</A>
+<LI><A NAME="tex2html161"
+  HREF="node3.html#SECTION00360000000000000000">Model Performance</A>
+<LI><A NAME="tex2html162"
+  HREF="node3.html#SECTION00370000000000000000">Installing in Mac OS X</A>
+<UL>
+<LI><A NAME="tex2html163"
+  HREF="node3.html#SECTION00371000000000000000">Introduction</A>
+<LI><A NAME="tex2html164"
+  HREF="node3.html#SECTION00372000000000000000">Platform and Unix Dependencies</A>
+<LI><A NAME="tex2html165"
+  HREF="node3.html#SECTION00373000000000000000">Fortran Compiler</A>
+<LI><A NAME="tex2html166"
+  HREF="node3.html#SECTION00374000000000000000">NetCDF Libraries</A>
+<LI><A NAME="tex2html167"
+  HREF="node3.html#SECTION00375000000000000000">Makefile Configuration</A>
+<UL>
+<LI><A NAME="tex2html168"
+  HREF="node3.html#SECTION00375100000000000000">NetCDF</A>
+<LI><A NAME="tex2html169"
+  HREF="node3.html#SECTION00375200000000000000">Linking Order</A>
+</UL>
+<LI><A NAME="tex2html170"
+  HREF="node3.html#SECTION00376000000000000000">Summary of Steps</A>
+</UL>
+<LI><A NAME="tex2html171"
+  HREF="node3.html#SECTION00380000000000000000">Installing in Ubuntu</A>
+<UL>
+<LI><A NAME="tex2html172"
+  HREF="node3.html#SECTION00381000000000000000">Introduction</A>
+<LI><A NAME="tex2html173"
+  HREF="node3.html#SECTION00382000000000000000">Fortran Compiler</A>
+<LI><A NAME="tex2html174"
+  HREF="node3.html#SECTION00383000000000000000">NetCDF Libraries</A>
+<LI><A NAME="tex2html175"
+  HREF="node3.html#SECTION00384000000000000000">Makefile Configuration</A>
+<UL>
+<LI><A NAME="tex2html176"
+  HREF="node3.html#SECTION00384100000000000000">NetCDF</A>
+<LI><A NAME="tex2html177"
+  HREF="node3.html#SECTION00384200000000000000">Linking Order</A>
+<LI><A NAME="tex2html178"
+  HREF="node3.html#SECTION00384300000000000000">Shared Object PIC</A>
+</UL>
+<LI><A NAME="tex2html179"
+  HREF="node3.html#SECTION00385000000000000000">Summary of Steps</A>
+</UL>
+</UL>
+<BR>
+<LI><A NAME="tex2html180"
+  HREF="node4.html">Getting Started With <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT></A>
+<UL>
+<LI><A NAME="tex2html181"
+  HREF="node4.html#SECTION00410000000000000000">Your First Model Run</A>
+<LI><A NAME="tex2html182"
+  HREF="node4.html#SECTION00420000000000000000">Managing Directories</A>
+<LI><A NAME="tex2html183"
+  HREF="node4.html#SECTION00430000000000000000">Model Field Variables</A>
+<LI><A NAME="tex2html184"
+  HREF="node4.html#SECTION00440000000000000000">Run Sessions</A>
+<UL>
+<LI><A NAME="tex2html185"
+  HREF="node4.html#SECTION00441000000000000000">What is a Run Session?</A>
+<LI><A NAME="tex2html186"
+  HREF="node4.html#SECTION00442000000000000000">Changing Variables</A>
+<LI><A NAME="tex2html187"
+  HREF="node4.html#SECTION00443000000000000000">Continuing a Model Run</A>
+<LI><A NAME="tex2html188"
+  HREF="node4.html#SECTION00444000000000000000">Passing Restart Snapshots Between Run Sessions</A>
+</UL>
+<LI><A NAME="tex2html189"
+  HREF="node4.html#SECTION00450000000000000000">Creating Multiple Models</A>
+<UL>
+<LI><A NAME="tex2html190"
+  HREF="node4.html#SECTION00451000000000000000">Model Instances</A>
+<LI><A NAME="tex2html191"
+  HREF="node4.html#SECTION00452000000000000000">Passing Snapshots To Other Models</A>
+</UL>
+<LI><A NAME="tex2html192"
+  HREF="node4.html#SECTION00460000000000000000">Run Lists</A>
+<LI><A NAME="tex2html193"
+  HREF="node4.html#SECTION00470000000000000000">Model Output</A>
+<UL>
+<LI><A NAME="tex2html194"
+  HREF="node4.html#SECTION00471000000000000000">NetCDF Output</A>
+<LI><A NAME="tex2html195"
+  HREF="node4.html#SECTION00472000000000000000">Visualization</A>
+</UL>
+<LI><A NAME="tex2html196"
+  HREF="node4.html#SECTION00480000000000000000">Documentation</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html197"
+  HREF="node5.html">Using <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT></A>
+<UL>
+<LI><A NAME="tex2html198"
+  HREF="node5.html#SECTION00510000000000000000">Introduction</A>
+<LI><A NAME="tex2html199"
+  HREF="node5.html#SECTION00520000000000000000">Model Instances</A>
+<LI><A NAME="tex2html200"
+  HREF="node5.html#SECTION00530000000000000000">Initializing a Model Run</A>
+<LI><A NAME="tex2html201"
+  HREF="node5.html#SECTION00540000000000000000">The <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> Keyword</A>
+<UL>
+<LI><A NAME="tex2html202"
+  HREF="node5.html#SECTION00541000000000000000">Initialization for 
+			<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT></A>
+<LI><A NAME="tex2html203"
+  HREF="node5.html#SECTION00542000000000000000">Initialization for 
+			<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT></A>
+<LI><A NAME="tex2html204"
+  HREF="node5.html#SECTION00543000000000000000">Communication Between Python and Fortran-Levels</A>
+<UL>
+<LI><A NAME="tex2html205"
+  HREF="node5.html#SECTION00543100000000000000">Passing Variables</A>
+<LI><A NAME="tex2html206"
+  HREF="node5.html#SECTION00543200000000000000">Calling Compiled QTCM1 Model Subroutines</A>
+</UL>
+</UL>
+<LI><A NAME="tex2html207"
+  HREF="node5.html#SECTION00550000000000000000">Restart and Continuation Run Sessions</A>
+<UL>
+<LI><A NAME="tex2html208"
+  HREF="node5.html#SECTION00551000000000000000">Restart Runs In the Pure-Fortran QTCM1</A>
+<LI><A NAME="tex2html209"
+  HREF="node5.html#SECTION00552000000000000000">Overview of Restart/Continuation Options In <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT></A>
+<LI><A NAME="tex2html210"
+  HREF="node5.html#SECTION00553000000000000000">Restart/Continuation for 
+		<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT> 
+		Model Instances</A>
+<LI><A NAME="tex2html211"
+  HREF="node5.html#SECTION00554000000000000000">Restart/Continuation for 
+		<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT> 
+		Model Instances</A>
+<UL>
+<LI><A NAME="tex2html212"
+  HREF="node5.html#SECTION00554100000000000000">Method&nbsp;1:
+			From a QTCM1 Restart File</A>
+<LI><A NAME="tex2html213"
+  HREF="node5.html#SECTION00554200000000000000">Method&nbsp;2:
+			From a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance Snapshot</A>
+<LI><A NAME="tex2html214"
+  HREF="node5.html#SECTION00554300000000000000">Method&nbsp;3:
+			From the Calling <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance</A>
+</UL>
+<LI><A NAME="tex2html215"
+  HREF="node5.html#SECTION00555000000000000000">Snapshots of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance</A>
+</UL>
+<LI><A NAME="tex2html216"
+  HREF="node5.html#SECTION00560000000000000000">Creating and Using Run Lists</A>
+<LI><A NAME="tex2html217"
+  HREF="node5.html#SECTION00570000000000000000">Field Variables and the <FONT COLOR="#0000ff"><TT>Field</TT></FONT> Class</A>
+<UL>
+<LI><A NAME="tex2html218"
+  HREF="node5.html#SECTION00571000000000000000">Creating Field Variables</A>
+<LI><A NAME="tex2html219"
+  HREF="node5.html#SECTION00572000000000000000">Initial Field Variables</A>
+<UL>
+<LI><A NAME="tex2html220"
+  HREF="node5.html#SECTION00572100000000000000">Scalars</A>
+<LI><A NAME="tex2html221"
+  HREF="node5.html#SECTION00572200000000000000">Arrays</A>
+</UL>
+<LI><A NAME="tex2html222"
+  HREF="node5.html#SECTION00573000000000000000">Passing Fields Between the Python and Fortran-Levels</A>
+<LI><A NAME="tex2html223"
+  HREF="node5.html#SECTION00574000000000000000">Field Variable Shape</A>
+</UL>
+<LI><A NAME="tex2html224"
+  HREF="node5.html#SECTION00580000000000000000">Model Output</A>
+<LI><A NAME="tex2html225"
+  HREF="node5.html#SECTION00590000000000000000">Miscellaneous</A>
+<LI><A NAME="tex2html226"
+  HREF="node5.html#SECTION005100000000000000000">Cookbook of Ways the Model Can Be Used</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html227"
+  HREF="node6.html">Troubleshooting</A>
+<UL>
+<LI><A NAME="tex2html228"
+  HREF="node6.html#SECTION00610000000000000000">Error Messages Produced by <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT></A>
+<LI><A NAME="tex2html229"
+  HREF="node6.html#SECTION00620000000000000000">Other Errors</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html230"
+  HREF="node7.html">Developer Notes</A>
+<UL>
+<LI><A NAME="tex2html231"
+  HREF="node7.html#SECTION00710000000000000000">Introduction</A>
+<LI><A NAME="tex2html232"
+  HREF="node7.html#SECTION00720000000000000000">Changes to QTCM1 Fortran Files</A>
+<LI><A NAME="tex2html233"
+  HREF="node7.html#SECTION00730000000000000000">New Interfaces and Fortran Functionality</A>
+<UL>
+<LI><A NAME="tex2html234"
+  HREF="node7.html#SECTION00731000000000000000">Fortran Module <FONT COLOR="#0000ff"><TT>SetbyPy</TT></FONT></A>
+<UL>
+<LI><A NAME="tex2html235"
+  HREF="node7.html#SECTION00731100000000000000">Design Description</A>
+<LI><A NAME="tex2html236"
+  HREF="node7.html#SECTION00731200000000000000">Module Structure</A>
+</UL>
+<LI><A NAME="tex2html237"
+  HREF="node7.html#SECTION00732000000000000000">Fortran Module <FONT COLOR="#0000ff"><TT>WrapCall</TT></FONT></A>
+</UL>
+<LI><A NAME="tex2html238"
+  HREF="node7.html#SECTION00740000000000000000">Python <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> and Pure-Fortran QTCM1 Differences</A>
+<UL>
+<LI><A NAME="tex2html239"
+  HREF="node7.html#SECTION00741000000000000000">QTCM1 <FONT COLOR="#0000ff"><TT>driverinit</TT></FONT></A>
+<LI><A NAME="tex2html240"
+  HREF="node7.html#SECTION00742000000000000000">The <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> Routine</A>
+<LI><A NAME="tex2html241"
+  HREF="node7.html#SECTION00743000000000000000">The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Method of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT></A>
+<LI><A NAME="tex2html242"
+  HREF="node7.html#SECTION00744000000000000000">Miscellaneous Differences</A>
+</UL>
+<LI><A NAME="tex2html243"
+  HREF="node7.html#SECTION00750000000000000000">Considerations When Adding Fortran Code</A>
+<LI><A NAME="tex2html244"
+  HREF="node7.html#SECTION00760000000000000000">Creating New Standard Extension Modules</A>
+<UL>
+<LI><A NAME="tex2html245"
+  HREF="node7.html#SECTION00761000000000000000">Makefile Rules</A>
+<LI><A NAME="tex2html246"
+  HREF="node7.html#SECTION00762000000000000000">Using <FONT COLOR="#0000ff"><TT>f2py</TT></FONT></A>
+<LI><A NAME="tex2html247"
+  HREF="node7.html#SECTION00763000000000000000">Two Examples</A>
+</UL>
+<LI><A NAME="tex2html248"
+  HREF="node7.html#SECTION00770000000000000000">Attributes and Methods in <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instances</A>
+<UL>
+<LI><A NAME="tex2html249"
+  HREF="node7.html#SECTION00771000000000000000">Public <FONT COLOR="#0000ff"><TT>num_settings</TT></FONT> Submodule Attributes/Methods</A>
+<LI><A NAME="tex2html250"
+  HREF="node7.html#SECTION00772000000000000000">Private <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Submodule Attributes</A>
+<LI><A NAME="tex2html251"
+  HREF="node7.html#SECTION00773000000000000000">Private <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Attributes</A>
+</UL>
+<LI><A NAME="tex2html252"
+  HREF="node7.html#SECTION00780000000000000000">Creating Documentation</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html253"
+  HREF="node8.html">Future Work</A>
+<LI><A NAME="tex2html254"
+  HREF="node9.html">Bibliography</A>
+<LI><A NAME="tex2html255"
+  HREF="node10.html">Field Settings in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT></A>
+<UL>
+<LI><A NAME="tex2html256"
+  HREF="node10.html#SECTION001010000000000000000">Scalar Field Variables</A>
+<LI><A NAME="tex2html257"
+  HREF="node10.html#SECTION001020000000000000000">Array Field Variables</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html258"
+  HREF="node11.html">About this document ...</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

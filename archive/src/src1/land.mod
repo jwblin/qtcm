@@ -1,0 +1,71 @@
+G95 module created on Tue May 27 17:51:09 2008 from landutil.F90
+If you edit this, you'll get what you deserve.
+module-version 3
+(() () () () () () () () () () () () () () () () () () () () ())
+
+()
+
+()
+
+()
+
+()
+
+(2 'dimensions' 'dimensions' 1 ((MODULE UNKNOWN UNKNOWN UNKNOWN NONE
+NONE) (UNKNOWN 0 ()) 0 0 () () '' () ())
+3 'albdveg' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0')
+(CONSTANT (INTEGER 4 ()) 0 '3')) '' () ())
+4 'jland' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (INTEGER 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0
+'1') (CONSTANT (INTEGER 4 ()) 0 '2688')) '' () ())
+5 'land' 'land' 1 ((MODULE UNKNOWN UNKNOWN UNKNOWN NONE NONE) (UNKNOWN 0
+()) 0 0 () () '' () ())
+6 'iland' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (INTEGER 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0
+'1') (CONSTANT (INTEGER 4 ()) 0 '2688')) '' () ())
+7 'nx' 'dimensions' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (
+INTEGER 4 ()) 0 0 () (CONSTANT (INTEGER 4 ()) 0 '64') () '' () ())
+8 'nxy' 'dimensions' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (
+INTEGER 4 ()) 0 0 () (CONSTANT (INTEGER 4 ()) 0 '2688') () '' () ())
+9 'nstype' 'land' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (
+INTEGER 4 ()) 0 0 () (CONSTANT (INTEGER 4 ()) 0 '4') () '' () ())
+10 'rsmin' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION) (REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0')
+(CONSTANT (INTEGER 4 ()) 0 '3')) '' () ())
+11 'runf' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION TARGET) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ())
+0 '1') (CONSTANT (INTEGER 4 ()) 0 '64') (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+12 'runs' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION TARGET) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ())
+0 '1') (CONSTANT (INTEGER 4 ()) 0 '64') (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+13 'ny' 'dimensions' 1 ((PARAMETER UNKNOWN UNKNOWN UNKNOWN NONE NONE) (
+INTEGER 4 ()) 0 0 () (CONSTANT (INTEGER 4 ()) 0 '42') () '' () ())
+14 'wd0' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0') (
+CONSTANT (INTEGER 4 ()) 0 '3')) '' () ())
+15 'z0' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0') (
+CONSTANT (INTEGER 4 ()) 0 '3')) '' () ())
+16 'xla' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION)
+(REAL 4 ()) 0 0 () (1 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '0') (
+CONSTANT (INTEGER 4 ()) 0 '3')) '' () ())
+17 'wet' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION
+TARGET) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '64') (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+18 'wd' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE DIMENSION
+TARGET) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '64') (CONSTANT (INTEGER 4 ()) 0 '1') (
+CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+19 'evapi' 'land' 1 ((VARIABLE UNKNOWN UNKNOWN UNKNOWN NONE NONE
+DIMENSION TARGET) (REAL 4 ()) 0 0 () (2 EXPLICIT (CONSTANT (INTEGER 4 ())
+0 '1') (CONSTANT (INTEGER 4 ()) 0 '64') (CONSTANT (INTEGER 4 ()) 0 '1')
+(CONSTANT (INTEGER 4 ()) 0 '42')) '' () ())
+)
+
+('evapi' 0 19 'albdveg' 0 3 'dimensions' 0 2 'wd' 0 18 'ny' 0 13 'nstype'
+0 9 'iland' 0 6 'land' 0 5 'jland' 0 4 'nxy' 0 8 'nx' 0 7 'runs' 0 12
+'runf' 0 11 'rsmin' 0 10 'wet' 0 17 'wd0' 0 14 'xla' 0 16 'z0' 0 15)

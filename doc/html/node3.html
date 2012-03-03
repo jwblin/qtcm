@@ -1,0 +1,1504 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Installation and Configuration</TITLE>
+<META NAME="description" CONTENT="Installation and Configuration">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html399"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html395"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html389"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html397"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html400"
+  HREF="node4.html">Getting Started With qtcm</A>
+<B> Up:</B> <A NAME="tex2html396"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html390"
+  HREF="node2.html">Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html398"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html401"
+  HREF="node3.html#SECTION00310000000000000000">Summary and Conventions</A>
+<LI><A NAME="tex2html402"
+  HREF="node3.html#SECTION00320000000000000000">Fortran Compiler</A>
+<LI><A NAME="tex2html403"
+  HREF="node3.html#SECTION00330000000000000000">Required Packages</A>
+<LI><A NAME="tex2html404"
+  HREF="node3.html#SECTION00340000000000000000">Compiling Extension Modules</A>
+<LI><A NAME="tex2html405"
+  HREF="node3.html#SECTION00350000000000000000">Testing the Installation</A>
+<LI><A NAME="tex2html406"
+  HREF="node3.html#SECTION00360000000000000000">Model Performance</A>
+<LI><A NAME="tex2html407"
+  HREF="node3.html#SECTION00370000000000000000">Installing in Mac OS X</A>
+<UL>
+<LI><A NAME="tex2html408"
+  HREF="node3.html#SECTION00371000000000000000">Introduction</A>
+<LI><A NAME="tex2html409"
+  HREF="node3.html#SECTION00372000000000000000">Platform and Unix Dependencies</A>
+<LI><A NAME="tex2html410"
+  HREF="node3.html#SECTION00373000000000000000">Fortran Compiler</A>
+<LI><A NAME="tex2html411"
+  HREF="node3.html#SECTION00374000000000000000">NetCDF Libraries</A>
+<LI><A NAME="tex2html412"
+  HREF="node3.html#SECTION00375000000000000000">Makefile Configuration</A>
+<UL>
+<LI><A NAME="tex2html413"
+  HREF="node3.html#SECTION00375100000000000000">NetCDF</A>
+<LI><A NAME="tex2html414"
+  HREF="node3.html#SECTION00375200000000000000">Linking Order</A>
+</UL>
+<LI><A NAME="tex2html415"
+  HREF="node3.html#SECTION00376000000000000000">Summary of Steps</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html416"
+  HREF="node3.html#SECTION00380000000000000000">Installing in Ubuntu</A>
+<UL>
+<LI><A NAME="tex2html417"
+  HREF="node3.html#SECTION00381000000000000000">Introduction</A>
+<LI><A NAME="tex2html418"
+  HREF="node3.html#SECTION00382000000000000000">Fortran Compiler</A>
+<LI><A NAME="tex2html419"
+  HREF="node3.html#SECTION00383000000000000000">NetCDF Libraries</A>
+<LI><A NAME="tex2html420"
+  HREF="node3.html#SECTION00384000000000000000">Makefile Configuration</A>
+<UL>
+<LI><A NAME="tex2html421"
+  HREF="node3.html#SECTION00384100000000000000">NetCDF</A>
+<LI><A NAME="tex2html422"
+  HREF="node3.html#SECTION00384200000000000000">Linking Order</A>
+<LI><A NAME="tex2html423"
+  HREF="node3.html#SECTION00384300000000000000">Shared Object PIC</A>
+</UL>
+<LI><A NAME="tex2html424"
+  HREF="node3.html#SECTION00385000000000000000">Summary of Steps</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00300000000000000000"></A>    <A NAME="ch:install"></A>
+<BR>
+Installation and Configuration
+</H1>
+	
+<H1><A NAME="SECTION00310000000000000000"></A>      <A NAME="sec:install.sum"></A>
+<BR>
+Summary and Conventions
+</H1>
+	
+This section provides a summary of the steps needed to install
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, and a description of the naming conventions used in
+this chapter.  If you have had a decent amount of experience with
+Python and installing software on a Unix system, this section will
+probably be all you need to read.  The installation steps are:
+
+<P>
+
+<OL>
+<LI>Install a Fortran compiler (see Section&nbsp;<A HREF="#sec:fort.compilers">2.2</A>
+	for a list of compilers known to work).
+	This compiler should be in a directory
+	listed in your system path (e.g., <I><I>/usr/bin</I></I>, etc.).
+
+<P>
+</LI>
+<LI>Install all required packages
+	(see Section&nbsp;<A HREF="#sec:py.etc.pkgs">2.3</A> for details):
+	Python,
+	<FONT COLOR="#0000ff"><TT>matplotlib</TT></FONT> (plus the <FONT COLOR="#0000ff"><TT>basemap</TT></FONT> toolkit),
+	NumPy (which includes <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>),
+	Scientific Python,
+	L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X,
+	and
+	netCDF.
+
+<P>
+Python packages are required to be installed on your
+	system in a directory listed in your <FONT COLOR="#0000ff"><TT>sys.path</TT></FONT>,
+	and the other packages/libraries are required to be in 
+	standard directories listed in your system path 
+	(e.g., <I><I>/usr/bin</I></I>, <I><I>/sw/include</I></I>, etc.).
+
+<P>
+Make sure the executable for Python can be called at the
+	Unix command line by typing both <FONT COLOR="#0000ff"><TT>python</TT></FONT>.
+	You might need to define a Unix alias
+	that maps <FONT COLOR="#0000ff"><TT>python2.4</TT></FONT> (or whichever version of Python
+	you are using) to <FONT COLOR="#0000ff"><TT>python</TT></FONT>.
+
+<P>
+</LI>
+<LI><A NAME="tex2html28"
+  HREF="http://www.johnny-lin.com/py_pkgs/qtcm/">Download</A>
+	the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> tarball and extract the distribution
+	into a temporary directory for building purposes.
+	<I><I><</I></I><1000>>qtcm-0.1.2
+is the name of	the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory;
+	the number following the hyphen is the
+	version number of the distribution.  <A NAME="list:download.qtcm.sum"></A>
+<P>
+In this manual, the path to <I><I><</I></I><1070>>qtcm-0.1.2
+will	be called the ``<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> build path'' and be given as
+	<I><I>/buildpath</I></I>.  When you see <I><I>/buildpath</I></I>, please substitute
+	the actual temporary directory you created for building purposes.
+
+<P>
+</LI>
+<LI>The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory 
+	<I><I><</I></I><1084>>qtcm-0.1.2
+contains the following 	principal sub-directories:
+	<I><I>doc</I></I>, <I><I>lib</I></I>, <I><I>src</I></I>, <I><I>test</I></I>.
+	Documentation is in <I><I>doc</I></I>,
+	all the package modules are in <I><I>lib</I></I>,
+	building of extension modules will take place in <I><I>src</I></I>,
+	and testing of the package is done in <I><I>test</I></I>.
+
+<P>
+</LI>
+<LI>Compile <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> extension modules in <I><I>src</I></I>:
+	Go to <I><I>src</I></I>, copy the makefile from
+	<I><I>src/Makefiles</I></I> corresponding to your
+	system into <I><I>src</I></I>, rename to <I><I>makefile</I></I>,
+	make changes to the makefile as needed,
+	and execute:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>make clean 
+<BR>
+make _qtcm_full_365.so 
+<BR>
+make _qtcm_parts_365.so</TT></FONT></TD></TR>
+</TABLE>	If you executed the make commands in <I><I>src,</I></I>,
+	the extension modules will be automatically placed in
+	<I><I>lib</I></I> in the <I><I><</I></I><1122>>qtcm-0.1.2
+directory.	See Section&nbsp;<A HREF="#sec:create.so">2.4</A> for details.
+	<A NAME="list:compile.so.sum"></A>
+<P>
+</LI>
+<LI>Copy the entire contents of <I><I>lib</I></I> in
+	<I><I><</I></I><1175>>qtcm-0.1.2
+(not <I><I>lib</I></I> itself) 	to a directory named
+	<I><I>qtcm</I></I> that is on your <FONT COLOR="#0000ff"><TT>sys.path</TT></FONT>.  For instance,
+	for Mac OS X using Fink,
+	many Python packages are located in a directory
+	named <I><I>/sw/lib/python2.4/site-packages</I></I>, or something
+	similar, and this directory is on the system <FONT COLOR="#0000ff"><TT>sys.path</TT></FONT>.  
+	If this is the case for your system, copy the
+	contents of <I><I>lib</I></I> into
+	<I><I>/sw/lib/python2.4/site-packages/qtcm</I></I>.
+	(For Unix systems, the equivalent directory is usually
+	<I><I>/usr/local/lib/python2.4/site-packages</I></I>.)
+
+<P>
+</LI>
+<LI>Test the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution in <I><I>test</I></I>:
+	This step is optional and can take a while.
+	Testing requires you to first generate a suite of benchmarks
+	using the pure-Fortran QTCM1 model, then running the tests of
+	<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> by typing:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>python test_all.py</TT></FONT></TD></TR>
+</TABLE>	at the Unix command line while in <I><I>test</I></I>.
+	See Section&nbsp;<A HREF="#sec:test.qtcm">2.5</A> for details.
+
+<P>
+</LI>
+</OL>
+
+<P>
+At some point, I will automate the installation using Python's
+<A NAME="tex2html29"
+  HREF="http://docs.python.org/dist/dist.html"><FONT COLOR="#0000ff"><TT>distutils</TT></FONT></A>
+utilities.
+
+<P>
+
+<H1><A NAME="SECTION00320000000000000000"></A>             <A NAME="sec:fort.compilers"></A>
+<BR>
+Fortran Compiler
+</H1>
+	
+<P>
+You must have a Fortran compiler installed on your system in order
+to compile <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>.  The compiler must be able to interface with
+a pre-processor, as QTCM1 makes copious use of pre-processor directives.
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> is known to work with the following Fortran compilers on the
+following platforms:
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Compiler</B></TH>
+<TH ALIGN="LEFT"><B>Compiler Web Site</B></TH>
+<TH ALIGN="LEFT"><B>Platform(s)</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>g95</TT></FONT></TD>
+<TD ALIGN="LEFT"><A NAME="tex2html30"
+  HREF="http://www.g95.org/">http://www.g95.org/</A></TD>
+<TD ALIGN="LEFT">Mac OS X</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+It will probably work with other platforms, but I haven't been able
+to test platforms besides those listed above.  Note that <FONT COLOR="#0000ff"><TT>g95</TT></FONT>is not <A NAME="tex2html31"
+  HREF="http://gcc.gnu.org/fortran/">GNU Fortran</A>
+(<FONT COLOR="#0000ff"><TT>gfortran</TT></FONT>), the Fortran 95 compiler included with the more
+recent versions of GCC.
+
+<P>
+	
+<H1><A NAME="SECTION00330000000000000000"></A>            <A NAME="sec:py.etc.pkgs"></A>
+<BR>
+Required Packages
+</H1>
+	
+<P>
+The following Python packages are required to be installed on your
+system in a directory listed in your <FONT COLOR="#0000ff"><TT>sys.path</TT></FONT>:
+
+<UL>
+<LI><A NAME="tex2html34"
+  HREF="http://www.python.org/">Python</A>:  The Python programming language
+
+and interpreter.  Make sure you have a version recent enough
+	to be compatible with all the needed Python packages.
+</LI>
+<LI><A NAME="tex2html35"
+  HREF="http://matplotlib.sourceforge.net/"><FONT COLOR="#0000ff"><TT>matplotlib</TT></FONT></A>:  Scientific plotting
+
+package, using Matlab-like syntax.  The <FONT COLOR="#0000ff"><TT>basemap</TT></FONT> toolkit
+	for <FONT COLOR="#0000ff"><TT>matplotlib</TT></FONT> must also be installed.
+</LI>
+<LI><A NAME="tex2html36"
+  HREF="http://numpy.scipy.org/">NumPy</A>:  The standard array package for
+
+Python.  The module name of NumPy imported in a Python 
+	session is <FONT COLOR="#0000ff"><TT>numpy</TT></FONT>.
+</LI>
+<LI><A NAME="tex2html37"
+  HREF="http://dirac.cnrs-orleans.fr/plone/software/scientificpython/">Scientific Python</A>:
+
+Has netCDF file operators, in addition to other routines
+	of use in scientific computing.  The module name of
+	Scientific Python imported in a Python session is
+	<FONT COLOR="#0000ff"><TT>Scientific</TT></FONT>.
+</LI>
+</UL>
+
+<P>
+One other required Python package, <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>, is now a part of the
+NumPy package, and so installation of NumPy is sufficient to give
+you both.
+
+<P>
+The package <A NAME="tex2html38"
+  HREF="http://www.scipy.org">SciPy</A>,
+which includes several Python-accessible scientific libraries, also
+includes NumPy (and thus <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>), so if you install SciPy,
+you don't have to install NumPy again.  Note that SciPy is not the
+same as Scientific Python; the names are confusing.
+
+<P>
+A few non-Python packages are also required:
+
+<UL>
+<LI>L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X: A scientific typesetting program used by the 
+	<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance method <FONT COLOR="#0000ff"><TT>plotm</TT></FONT> to handle 
+	exponents and subscripts.  The most common Unix 
+	distribution of L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X is
+	<A NAME="tex2html39"
+  HREF="http://www.tug.org/teTeX">teTeX</A>.
+
+<P>
+</LI>
+<LI>netCDF:  This set of libraries enables one to write datasets into
+	a platform independent, binary format, with metdata attached.
+	The <A NAME="tex2html40"
+  HREF="http://www.unidata.ucar.edu/software/netcdf/">netCDF 3.6.2 library</A>
+source code can be
+<A NAME="tex2html33"
+  HREF="http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3_6_2/">downloaded from UCAR</A>.
+</LI>
+</UL>
+
+<P>
+For most Unix installations, the easiest way to install all the
+above is via a package manager, for instance <FONT COLOR="#0000ff"><TT>apt-get</TT></FONT> in
+Debian GNU/Linux, <FONT COLOR="#0000ff"><TT>aptitude</TT></FONT> or <FONT COLOR="#0000ff"><TT>synaptic</TT></FONT> in Ubuntu
+GNU/Linux, and <FONT COLOR="#0000ff"><TT>fink</TT></FONT> in Mac OS X.  Of course, you can also
+download a package's source code and build direct and/or install
+using Python's
+<A NAME="tex2html41"
+  HREF="http://docs.python.org/dist/dist.html"><FONT COLOR="#0000ff"><TT>distutils</TT></FONT></A>
+utilities.
+
+<P>
+	
+<H1><A NAME="SECTION00340000000000000000"></A>  <A NAME="sec:create.so"></A>
+<BR>
+Compiling Extension Modules
+</H1>
+	
+The extension modules (<I><I>.so</I></I> files) are imported and used by
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> objects, and contain the Fortran QTCM1 model that is
+called by the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Python wrappers.  These extension modules
+are located in the <I><I>lib</I></I> directory of the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution,
+and, in general, need to be created only when the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package
+is installed.
+
+<P>
+Two extension modules are created:  <I><I>_qtcm_full_365.so</I></I> and
+<I><I>_qtcm_parts_365.so</I></I>.  Both modules define QTCM1 models where:
+
+<P>
+
+<UL>
+<LI>A year is 365 days long 
+	(makefile macro <FONT COLOR="#0000ff"><TT>YEAR360</TT></FONT> is off).
+</LI>
+<LI>Model output is written to netCDF files
+	(makefile macro <FONT COLOR="#0000ff"><TT>NETCDFOUT</TT></FONT> is on).
+</LI>
+<LI>The atmospheric boundary layer model is used
+	(makefile macro <FONT COLOR="#0000ff"><TT>NO_ABL</TT></FONT> is off).
+</LI>
+<LI>A global domain is used
+	(makefile macro <FONT COLOR="#0000ff"><TT>SPONGES</TT></FONT> is off).
+</LI>
+<LI>Topography effects due to induced divergence are not included
+	(makefile macro <FONT COLOR="#0000ff"><TT>TOPO</TT></FONT> is off).
+</LI>
+<LI>Coupling between atmosphere and ocean is through mean fluxes
+	(makefile macro <FONT COLOR="#0000ff"><TT>CPLMEAN</TT></FONT> is off).
+</LI>
+<LI>The mixed layer ocean model is not used
+	(makefile macros <FONT COLOR="#0000ff"><TT>MXL_OCEAN</TT></FONT> and <FONT COLOR="#0000ff"><TT>BLEND_SST</TT></FONT> are both off).
+</LI>
+</UL>
+
+<P>
+(All other makefile macros not listed are also turned off.)
+The only difference between these two extension modules is that the
+``full'' module is used by <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances where
+<FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> is set to <FONT COLOR="#0000ff"><TT>'full'</TT></FONT>, and the ``parts''
+module is used by <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances where <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT>is set to <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT>.  See Section&nbsp;<A HREF="node5.html#sec:compiledform">4.4</A> for
+details about the <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> attribute.
+
+<P>
+The extension modules are created through the following steps:
+
+<OL>
+<LI>Go to the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory
+	<I><I><</I></I><1480>>qtcm-0.1.2
+located in	your build path <I><I>/buildpath</I></I>.  Go to the <I><I>src</I></I>
+	sub-directory.  This is where all the building of the
+	extension modules will take place.
+
+<P>
+</LI>
+<LI>Copy the makefile that corresponds to your platform to
+	the <I><I>src</I></I> directory, and rename it <I><I>makefile</I></I>.
+	The <I><I>Makefiles</I></I> sub-directory of <I><I>src</I></I> contains
+	makefiles for various platforms.
+
+<P>
+</LI>
+<LI>In <I><I>makefile</I></I>, make the following changes:
+	
+<OL>
+<LI>Change the <FONT COLOR="#0000ff"><TT>FC</TT></FONT> environment variable as needed, 
+		if your Fortran compiler is different.
+</LI>
+<LI>Change the <FONT COLOR="#0000ff"><TT>FFLAGSM</TT></FONT> environment variable, if the
+		compiler flags listed are not supported by your
+		compiler.
+</LI>
+<LI>Change the <FONT COLOR="#0000ff"><TT>-I</TT></FONT> and <FONT COLOR="#0000ff"><TT>-L</TT></FONT> parts of the
+		<FONT COLOR="#0000ff"><TT>NCINC</TT></FONT> and <FONT COLOR="#0000ff"><TT>NCLIB</TT></FONT> environment
+		variables so that the paths for the netCDF library and
+		include files match your system's installation:
+		<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>NCINC=-I/yourpath/netcdf/include 
+<BR>
+NCLIB=-L/yourpath/netcdf/lib -lnetcdf</TT></FONT></TD></TR>
+</TABLE>		Set <I>yourpath</I> to the full path to the
+		<I><I>netcdf</I></I> directory where the <I><I>include</I></I> and
+		<I><I>lib</I></I> sub-directories are that hold the netCDF
+		libraries and include files.
+		(You shouldn't have to change the <FONT COLOR="#0000ff"><TT>-l</TT></FONT> part of
+		<FONT COLOR="#0000ff"><TT>NCLIB</TT></FONT>, since it is standard to name the netCDF
+		library <I><I>libnetcdf.a</I></I>.  But if you have a non-standard
+		installation, change the <FONT COLOR="#0000ff"><TT>-l</TT></FONT> part too.)
+	
+</LI>
+</OL>
+
+<P>
+</LI>
+<LI>At the Unix prompt, type:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT><FONT SIZE="-1">
+make clean &amp;&amp; make _qtcm_full_365.so &amp;&amp; make _qtcm_parts_365.so</FONT></TT></FONT></TD></TR>
+</TABLE>	to clean up leftover files from previous compilations, and to
+	compile the extension module shared object files
+	<I><I>_qtcm_full_365.so</I></I> and <I><I>_qtcm_parts_365.so</I></I>.
+</LI>
+</OL>
+
+<P>
+The makefile will automatically move the shared object files into
+<I><I>../lib</I></I>, overwriting any pre-existing files of the same name.
+A detailed description of the makefile and using <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> is
+given in Section&nbsp;<A HREF="node7.html#sec:create.new.so">6.6</A>, if you wish to create a
+different extension module.
+
+<P>
+
+<H1><A NAME="SECTION00350000000000000000"></A>     <A NAME="sec:test.qtcm"></A>
+<BR>
+Testing the Installation
+</H1>
+	
+The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution comes with a set of tests for the
+package, using Python's <FONT COLOR="#0000ff"><TT>unittest</TT></FONT> package.  
+Just to warn you, the tests take around an hour to run.
+The tests will not work if the contents of <I><I>lib</I></I>
+after you've finished building <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> have not been copied
+to a directory named <I><I>qtcm</I></I> that is on your <FONT COLOR="#0000ff"><TT>sys.path</TT></FONT> path,
+so make sure you've gone through all the install steps
+(summarized in Section&nbsp;<A HREF="#sec:install.sum">2.1</A>) before you do these
+tests.
+
+<P>
+<B>NB:</B>  For these tests to work, both <FONT COLOR="#0000ff"><TT>python</TT></FONT> and
+<FONT COLOR="#0000ff"><TT>python2.4</TT></FONT> must refer to the executable for the Python
+installation on your system that you are using for running <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>.
+
+<P>
+The tests require a set of benchmark output files in the
+<I><I>test/benchmarks</I></I> directory in the
+<I><I><</I></I><1757>>qtcm-0.1.2
+directory (the output will be indirectories whose names begin with ``aquaplanet'' or ``landon'').
+These output files are not included with the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution,
+and must be created, by doing the following:
+
+<P>
+
+<OL>
+<LI>Goto the directory <I><I>test/benchmarks/create/src</I></I> in the
+	<I><I><</I></I><1809>>qtcm-0.1.2
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory,	and copy the makefile from sub-directory <I><I>Makesfiles</I></I>,
+	that corresponds to your system to the
+	<I><I>test/benchmarks/create/src</I></I> directory.  Rename the makefile 
+	in <I><I>test/benchmarks/create/src</I></I> to <I><I>makefile</I></I>.
+
+<P>
+</LI>
+<LI>In <I><I>makefile</I></I>, make the following changes:
+        
+<OL>
+<LI>Change the <FONT COLOR="#0000ff"><TT>FC</TT></FONT> environment variable as needed,
+                if your Fortran compiler is different.
+</LI>
+<LI>Change the <FONT COLOR="#0000ff"><TT>FFLAGSM</TT></FONT> environment variable, if the
+                compiler flags listed are not supported by your
+                compiler.
+</LI>
+<LI>Change the <FONT COLOR="#0000ff"><TT>-I</TT></FONT> and <FONT COLOR="#0000ff"><TT>-L</TT></FONT> parts of the
+                <FONT COLOR="#0000ff"><TT>NCINC</TT></FONT> and <FONT COLOR="#0000ff"><TT>NCLIB</TT></FONT> environment
+                variables so that the paths for the netCDF library and
+                include files match your system's installation:
+                <TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>NCINC=-I/yourpath/netcdf/include 
+<BR>
+NCLIB=-L/yourpath/netcdf/lib -lnetcdf</TT></FONT></TD></TR>
+</TABLE>                Set <I>yourpath</I> to the full path to the
+                <I><I>netcdf</I></I> directory where the <I><I>include</I></I> and
+                <I><I>lib</I></I> sub-directories are that hold the netCDF
+                libraries and include files.
+                (You shouldn't have to change the <FONT COLOR="#0000ff"><TT>-l</TT></FONT> part of
+                <FONT COLOR="#0000ff"><TT>NCLIB</TT></FONT>, since it is standard to name the netCDF
+                library <I><I>libnetcdf.a</I></I>.  But if you have a non-standard
+                installation, change the <FONT COLOR="#0000ff"><TT>-l</TT></FONT> part too.)
+        
+</LI>
+</OL>
+
+<P>
+</LI>
+<LI>Go to the directory <I><I>test/benchmarks/create</I></I> in the
+	<I><I><</I></I><1847>>qtcm-0.1.2
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory.
+</LI>
+<LI>Type <FONT COLOR="#0000ff"><TT>python create_benchmarks.py</TT></FONT> at the Unix command line
+	to run the benchmark creation script.
+</LI>
+</OL>
+
+<P>
+The created benchmarks will be located in 
+<I><I>test/benchmarks</I></I>, in directories with names related to the
+run that was done, as described earlier.
+The benchmarks are created using the
+pure-Fortran QTCM1 model code,
+version 2.3 (August 2002), with an altered makefile
+(described above) and the following code change:
+In all <I><I>.F90</I></I> files, occurrences of:
+        <TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>Character(len=130)</TT></FONT></TD></TR>
+</TABLE>        are changed to:
+        <TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>Character(len=305)</TT></FONT></TD></TR>
+</TABLE>This enables the model to properly deal with longer filenames.
+The number ``305'' is chosen to make search and replace easier.
+
+<P>
+Once the benchmarks are created, you can test the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package
+by doing the following:
+
+<OL>
+<LI>Go to the <I><I>test</I></I> directory in the 
+	<I><I><</I></I><1949>>qtcm-0.1.2
+directory.
+</LI>
+<LI>Type <FONT COLOR="#0000ff"><TT>python test_all.py</TT></FONT> at the Unix command line.
+</LI>
+</OL>
+
+<P>
+If at the end of the test runs you see this message (or something similar):<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT><FONT SIZE="-1">
+----------------------------------- 
+<BR>
+Ran 93 tests in 1244.205s 
+<BR> 
+<BR>
+OK</FONT></TT></FONT></TD></TR>
+</TABLE>then everything worked fine!  If you get any other message, the test(s) have
+failed.
+
+<P>
+
+<H1><A NAME="SECTION00360000000000000000">
+Model Performance</A>
+</H1>
+	
+<P>
+The wall-clock time values below give the mean over three
+separate 365 day aquaplanet runs,
+using climatological sea surface temperature for lower boundary forcing.
+NetCDF output is written daily, for both instantaneous and mean values.
+The time step is 1200&nbsp;sec, and the version of <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> used
+is 0.1.1.
+The horizontal grid spacing of all model versions is
+<IMG
+ WIDTH="54" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$5.625^{\circ}$"> longitude by <IMG
+ WIDTH="45" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$3.75^{\circ}$"> latitude.
+Values are in seconds:
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=250><B>System</B></TH>
+<TH ALIGN="CENTER"><B>Pure</B></TH>
+<TH ALIGN="CENTER"><B>Full</B></TH>
+<TH ALIGN="CENTER"><B>Parts</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=250>Mac OS X:  MacBook 1.83 GHz Intel Core Duo running Mac OS X
+	10.4.10 with 1 GB RAM
+	(Python 2.4.3, NumPy 1.0.3, <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> 2_3816).</TD>
+<TD ALIGN="CENTER">152.59</TD>
+<TD ALIGN="CENTER">153.63</TD>
+<TD ALIGN="CENTER">158.94</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=250>Ubuntu GNU/Linux:  Dell PowerEdge 860 with 2.66 GHz Quad Core Intel
+	Xeon processors (64 bit) running Ubuntu 8.04.1 LTS
+	(Python 2.5.2, NumPy 1.1.0, <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> 2_5237).</TD>
+<TD ALIGN="CENTER">43.73</TD>
+<TD ALIGN="CENTER">44.79</TD>
+<TD ALIGN="CENTER">47.45</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+``Pure'' refers to the pure-Fortran version of QTCM1.
+``Full'' refers to a <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> run session with <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT>set to <FONT COLOR="#0000ff"><TT>'full'</TT></FONT>.  ``Parts'' refers to a <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> run session
+with <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> set to <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT>.
+(Section&nbsp;<A HREF="node5.html#sec:compiledform">4.4</A> has details about the difference
+between compiled forms.)
+
+<P>
+The <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> version of <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> gives Python the maximum
+flexibility in accessing compiled QTCM1 model subroutines and
+variables.  The price of that flexibility is an increase in
+run time of approximately 4-9% over the pure-Fortran version.
+The difference in performance between the
+<FONT COLOR="#0000ff"><TT>'full'</TT></FONT> version of <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> and the pure-Fortran version of
+QTCM1 is between negligible and 3% longer.
+
+<P>
+To make a timing for the pure-Fortran model, go to
+<I><I>test/benchmarks/timing/work</I></I> in <I><I>/buildpath</I></I> and run the
+<I><I>timing_365.sh</I></I> script in that directory.  That script runs the
+QTCM1 model using <FONT COLOR="#0000ff"><TT>/usr/bin/time</TT></FONT>, which at the end of the
+script will output the amount of time it took to make the model
+run.  Run the timing script three times and average the values to
+obtain a time comparable to the above.
+
+<P>
+To make a timing for the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> model, type <FONT COLOR="#0000ff"><TT>python
+timing_365.py</TT></FONT> while in the <I><I>test</I></I> directory in <I><I>/buildpath</I></I>.
+Three run sessions will be made for <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> equal to
+<FONT COLOR="#0000ff"><TT>'full'</TT></FONT> and <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT>, the times are averaged, and the
+value are output at the end of the script.
+
+<P>
+	
+<H1><A NAME="SECTION00370000000000000000"></A>       <A NAME="sec:install.macosx"></A>
+<BR>
+Installing in Mac OS X
+</H1>
+	
+<P>
+
+<H2><A NAME="SECTION00371000000000000000">
+Introduction</A>
+</H2>
+
+<P>
+This section describes issues and a summary of the installation steps
+I followed to install <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> on a Mac running OS X.
+It is a specific realization of the general installation
+instructions found in Sections&nbsp;<A HREF="#sec:install.sum">2.1</A>-<A HREF="#sec:test.qtcm">2.5</A>.
+I first worked through these installation steps during June-July 2007,
+with updates during July 2008.
+The best way to go through this section is to go through
+the summary of the installation steps in 
+Section&nbsp;<A HREF="#sec:osx.install.summary">2.7.6</A>,
+and looking back to other sections as needed.
+
+<P>
+
+<H2><A NAME="SECTION00372000000000000000">
+Platform and Unix Dependencies</A>
+</H2>
+
+<P>
+This work was done on a MacBook 1.83 GHz Intel Core Duo running Mac OS X
+10.4.11.  My machine has 1 GB RAM and 64 GB of disk in its main partition.
+
+<P>
+I recommend you turn-off your antivirus software before you
+do the installs.  
+Problems have been
+<A NAME="tex2html43"
+  HREF="http://finkproject.org/faq/usage-fink.php?phpLang=en#kernel-panics">reported by Fink users</A>
+using the Fink package manager with antivirus software enabled.
+
+<P>
+There are a variety of dependencies that are required to get your Mac
+up-and-running as a scientific computing platform.  The most basic is
+installing Apple's 
+<A NAME="tex2html48"
+  HREF="http://developer.apple.com/tools/xcode/">XCode</A>
+developer tools.<A NAME="tex2html44"
+  HREF="footnode.html#foot2193"><SUP>2.4</SUP></A>This set of tools contains compilers and libraries
+needed to do anything further.  You have to be a member of Apple's
+Developer Connection, but registration is free.
+
+<P>
+Besides XCode, there are a variety of Unix libraries and utilities that you
+need.  I first tried installing them by myself, from scratch, into
+<I><I>/usr/local</I></I>, but it was hard to keep track of all the dependencies.
+A few that did work, and that I installed from their disk images, are:
+<A NAME="tex2html49"
+  HREF="http://www.tug.org/mactex/">MacTeX</A>, 
+<A NAME="tex2html50"
+  HREF="http://www.mamp.info/">MAMP</A>, and 
+<A NAME="tex2html51"
+  HREF="http://tcltkaqua.sourceforge.net/">Tcl/Tk Aqua BI (Batteries Included)</A>.<A NAME="tex2html45"
+
+HREF="footnode.html#foot2201"><SUP>2.5</SUP></A>
+<P>
+For everything else, thankfully, there's the
+<A NAME="tex2html52"
+  HREF="http://www.finkproject.org/">Fink Project</A>
+which
+uses a package manager built upon Debian tools to install ports of
+Unix programs onto a Mac.  I just 
+<A NAME="tex2html53"
+  HREF="http://www.finkproject.org/download/index.php?phpLang=en">downloaded</A>
+a binary version of the Fink 0.8.1 installer for Intel Macs,
+installed Fink, and used its package management tools to install
+(almost) everything else I needed.<A NAME="tex2html46"
+  HREF="footnode.html#foot2351"><SUP>2.6</SUP></A>
+<P>
+Although you do not need anything besides a Fortran compiler and
+the netCDF libraries to run QTCM1 in its pure-Fortran form, in order to
+manipulate the model and use this Python version <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, you
+need to have Python installed.  The default Python that comes
+with the Mac is a little old, so I used Fink to also install
+Python 2.5 and related packages, including
+<A NAME="tex2html54"
+  HREF="http://matplotlib.sourceforge.net/">matplotlib</A>,
+<A NAME="tex2html55"
+  HREF="http://dirac.cnrs-orleans.fr/plone/software/scientificpython/">ScientificPython</A>,
+and
+<A NAME="tex2html56"
+  HREF="http://www.scipy.org">SciPy</A>
+(see Section&nbsp;<A HREF="#sec:osx.summary"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details).
+
+<P>
+
+<H2><A NAME="SECTION00373000000000000000">
+Fortran Compiler</A>
+</H2>
+
+<P>
+There are a variety of high-quality, commercial Fortran compilers.
+Unfortunately, because I do not have a research budget, I am not able
+to use those compilers.  The 
+<A NAME="tex2html57"
+  HREF="http://gcc.gnu.org/">GNU Compiler Collection</A>
+(GCC) provides a suite of open-source compilers, some of which are the
+standards of their language.  Most of the GCC compilers are installed
+on your Mac when you install XCode.
+
+<P>
+<A NAME="tex2html58"
+  HREF="http://gcc.gnu.org/fortran/">GNU Fortran</A>
+(<FONT COLOR="#0000ff"><TT>gfortran</TT></FONT>), is the Fortran 95 compiler included with the more
+recent versions of GCC.
+Unfortunately, I was not able to get it to compile QTCM1.
+There is a second open-source Fortran compiler,
+<A NAME="tex2html59"
+  HREF="http://www.g95.org/">G95</A>
+(<FONT COLOR="#0000ff"><TT>g95</TT></FONT>),
+which some feel is farther along in its development than <FONT COLOR="#0000ff"><TT>gfortran</TT></FONT>.
+I was able to successfully compile QTCM1 with <FONT COLOR="#0000ff"><TT>g95</TT></FONT> on my Mac.
+I used Fink to install G95
+(see Section&nbsp;<A HREF="#sec:osx.summary"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details).
+
+<P>
+
+<H2><A NAME="SECTION00374000000000000000"></A>   <A NAME="sec:netcdf"></A>
+<BR>
+NetCDF Libraries
+</H2>
+
+<P>
+For some reason, the netCDF libraries and include files
+installed by Fink didn't correspond to the files needed
+by the calling routines in <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>.  To solve this, I compiled
+my own set of 
+<A NAME="tex2html62"
+  HREF="http://www.unidata.ucar.edu/software/netcdf/">netCDF 3.6.2 libraries</A>
+using the tarball 
+<A NAME="tex2html61"
+  HREF="http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3_6_2/">downloaded from UCAR</A>.
+
+<P>
+Once I uncompressed and untarred the package, and went into 
+the top-level directory of the package, I built the package by typing
+the following at the Unix prompt:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>./configure -prefix=/Users/jlin/extra/netcdf 
+<BR>
+make check 
+<BR>
+make install</TT></FONT></TD></TR>
+</TABLE>
+<P>
+This installed the netCDF binaries, libraries, and include files into
+sub-directories <I><I>bin</I></I>, <I><I>lib</I></I>, and <I><I>include</I></I> in 
+the directory specified by <FONT COLOR="#0000ff"><TT>-prefix</TT></FONT>.
+If you want to install the netCDF libraries in the default
+(usually <I><I>/usr/local</I></I>), just leave out the <FONT COLOR="#0000ff"><TT>-prefix</TT></FONT>option.
+
+<P>
+Note:  When you build netCDF, make sure the build directory
+is not in the directory tree of <FONT COLOR="#0000ff"><TT>-prefix</TT></FONT>(or the default directory <I><I>/usr/local</I></I>).
+
+<P>
+
+<H2><A NAME="SECTION00375000000000000000"></A>  <A NAME="sec:osx.makefile"></A>
+<BR>
+Makefile Configuration
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00375100000000000000">
+NetCDF</A>
+</H3>
+
+<P>
+In the <I><I>src</I></I> directory in the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution, there is a
+sub-directory <I><I>Makefiles</I></I> that contains the makefiles for a
+variety of platforms.  Edit the file <I><I>makefile.osx_g95</I></I>
+so that the lines specifying the environment variables for the
+netCDF libraries and include files:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>NCINC=-I/Users/jlin/extra/netcdf/include 
+<BR>
+NCLIB=-L/Users/jlin/extra/netcdf/lib -lnetcdf</TT></FONT></TD></TR>
+</TABLE>
+<P>
+are changed to the path where your <I>manually compiled</I> 
+netCDF libraries and include files are.
+
+<P>
+Copy <I><I>makefile.osx_g95</I></I> from the <I><I>Makefiles</I></I> sub-directory
+in <I><I>src</I></I> into <I><I>src</I></I>.  
+In other words, from the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory
+(i.e., <I><I>/buildpath</I></I>), at the Unix prompt execute:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>cp src/Makefiles/makefile.osx_g95 src/makefile</TT></FONT></TD></TR>
+</TABLE>
+<P>
+
+<H3><A NAME="SECTION00375200000000000000">
+Linking Order</A>
+</H3>
+
+<P>
+Compilers in the GNU Compiler Collection (GCC) search libraries
+and object files in the order they are listed in the command-line, 
+<A NAME="tex2html64"
+  HREF="http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Link-Options.html#index-l-670">from left-to-right</A>.
+Thus, if routines in <I><I>b.o</I></I> call routines in <I><I>a.o</I></I>, 
+you must list the files in the order <I><I>a.o b.o</I></I>.
+
+<P>
+For some reason, that isn't the case for <FONT COLOR="#0000ff"><TT>g95</TT></FONT>.  Thus, you will
+find <FONT COLOR="#0000ff"><TT>g95</TT></FONT> makefile rules structured like the following
+(below is part of the rule to create an executable (<I><I>qtcm</I></I>) for
+benchmark runs):
+
+<P>
+
+<p><code><font color="blue">qtcm: main.o<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(FC) -O $(NCINC) -o 
+$@ main.o $(QTCMLIB) $(NCLIB)</font></code></p>
+even though <I><I>main.o</I></I> depends on the QTCM library 
+(specified in macro setting <FONT COLOR="#0000ff"><TT>$(QTCMLIB)</TT></FONT>), which in turn
+depends on the netCDF library (specified in macro setting <FONT COLOR="#0000ff"><TT>$(NCLIB)</TT></FONT>).
+
+<P>
+
+<H2><A NAME="SECTION00376000000000000000"></A>   <A NAME="sec:osx.install.summary"></A>
+<BR>
+Summary of Steps
+</H2>
+
+<P>
+The following summarizes all the steps I took to install
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> in Mac OS X:
+
+<P>
+
+<OL>
+<LI>Install
+	<A NAME="tex2html65"
+  HREF="http://developer.apple.com/tools/xcode/">XCode 2.5</A>.
+
+<P>
+</LI>
+<LI>Install 
+	<A NAME="tex2html66"
+  HREF="http://www.tug.org/mactex/">MacTeX</A>, 
+
+<A NAME="tex2html67"
+  HREF="http://www.mamp.info/">MAMP</A>, and 
+
+<A NAME="tex2html68"
+  HREF="http://tcltkaqua.sourceforge.net/">TCL/Tk Aqua BI (Batteries Included)</A>.
+
+<P>
+</LI>
+<LI>Install
+	<A NAME="tex2html69"
+  HREF="http://www.finkproject.org/download/index.php?phpLang=en">Fink 0.8.1</A>.
+
+Make sure you
+	<A NAME="tex2html70"
+  HREF="http://www.finkproject.org/doc/users-guide/install.php#setup">set up your environment</A>
+to enable you to use the packages you install with Fink
+	(e.g. <FONT COLOR="#0000ff"><TT>PATH</TT></FONT> settings, etc.).
+	Most of the time, that just means adding the line
+	<FONT COLOR="#0000ff"><TT>source /sw/bin/init.csh</TT></FONT> to your <I><I>.cshrc</I></I> file (or the
+	equivalent in your <I><I>.bashrc</I></I>).
+
+<P>
+Note that for many of the packages needed to run <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>,
+	you need to 
+	<A NAME="tex2html71"
+  HREF="http://www.finkproject.org/faq/usage-fink.php?phpLang=en#unstable">configure Fink to download packages 
+		from the unstable trees</A>.
+
+To do that, add <FONT COLOR="#0000ff"><TT>unstable/main</TT></FONT> and <FONT COLOR="#0000ff"><TT>unstable/crypto</TT></FONT>	to the <FONT COLOR="#0000ff"><TT>Trees:</TT></FONT> line in <I><I>/sw/etc/fink.conf</I></I>, and run:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>fink selfupdate</TT></FONT> 
+<BR>	<FONT COLOR="#0000ff"><TT>fink index</TT></FONT> 
+<BR>	<FONT COLOR="#0000ff"><TT>fink scanpackages</TT></FONT> 
+<BR>	<FONT COLOR="#0000ff"><TT>fink update-all</TT></FONT></TD></TR>
+</TABLE>
+<P>
+When <FONT COLOR="#0000ff"><TT>selfupdate</TT></FONT> runs, choose <FONT COLOR="#0000ff"><TT>rsync</TT></FONT> for the
+	self update method.  If you do not, Fink will not look in the
+	unstable trees for packages.
+
+<P>
+</LI>
+<LI>Use Fink to install the <FONT COLOR="#0000ff"><TT>g95</TT></FONT> Fortran compiler.
+	From a Unix prompt, type:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install g95</TT></FONT></TD></TR>
+</TABLE>
+<P>
+</LI>
+<LI>Use Fink to install Python 
+	and the NumPy package (which <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> is a part of).
+	From a Unix prompt, type:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install python25 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install scipy-core-py25</TT></FONT></TD></TR>
+</TABLE>
+<P>
+(Numpy used to be called SciPy Core.)  If you want to
+	install Python 2.4 instead, just change the ``25'' and ``py25'' above
+	(and in later occurrences) to ``24'' and ``py24'', respectively.
+	Note that Fink does not have a version of epydoc for Python 2.4,
+	so if you wish to create documentation using epydoc, you will
+	need to install Python 2.5.
+
+<P>
+</LI>
+<LI>Install teTeX and L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X2HTML using Fink.
+	From a Unix prompt, type:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install tetex</TT></FONT> 
+<BR>	<FONT COLOR="#0000ff"><TT>fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install latex2html</TT></FONT></TD></TR>
+</TABLE>
+<P>
+When prompted, choose ghostscript and ghostscript-fonts to
+	satistfy the dependency (which should be the default options).
+	I tried choosing system-ghostscript8, but Fink looks for
+	ghostscript 8.51 and didn't recognize ghostscript 8.57 that
+	was already installed in <I><I>/usr/local</I></I> (via my MacTeX
+	install).  L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X2HTML has a package required by the
+	<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> manual L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X file.
+
+<P>
+</LI>
+<LI>Install additional programming and
+	scientific packages and libraries using Fink.
+	From a Unix prompt, type:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install scientificpython-py25 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install matplotlib-py25 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install matplotlib-basemap-py25 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install matplotlib-basemap-data-py25 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install xaw3d 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install fftw fftw3 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install epydoc-py25 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install graphviz 
+<BR>
+fink -<IMG
+ WIDTH="4" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$\,\!$">-use-binary-dist install scipy-py25</TT></FONT></TD></TR>
+</TABLE>
+<P>
+</LI>
+<LI>Manually install netCDF 3.6.2
+	(see Section <A HREF="#sec:netcdf">2.7.4</A>).
+
+<P>
+</LI>
+<LI>From this point on, you can follow the
+	general instructions given in Section&nbsp;<A HREF="#sec:install.sum">2.1</A>,
+	starting with step&nbsp;<A HREF="#list:download.qtcm.sum">3</A>.
+	Please do not ignore, however, Section&nbsp;<A HREF="#sec:install.macosx">2.7</A>'s
+	Mac-specific details.
+
+<P>
+</LI>
+</OL>
+
+<P>
+	
+<H1><A NAME="SECTION00380000000000000000"></A>         <A NAME="sec:install.ubuntu"></A>
+<BR>
+Installing in Ubuntu
+</H1>
+	
+<P>
+
+<H2><A NAME="SECTION00381000000000000000">
+Introduction</A>
+</H2>
+
+<P>
+This section describes installation issues 
+I followed to install <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> on my
+Dell PowerEdge 860 running Ubuntu GNU/Linux 8.04.1 LTS (Hardy).
+The machine has 2.66 GHz Quad Core Intel Xeon processors (64 bit),
+4 GB RAM, and 677 GB of disk in its main partition.
+This section is a specific realization of the general installation
+instructions found in Sections&nbsp;<A HREF="#sec:install.sum">2.1</A>-<A HREF="#sec:test.qtcm">2.5</A>.
+I worked through these installation steps during July 2008.
+The best way to go through this section is to go through
+the summary of the installation steps in 
+Section&nbsp;<A HREF="#sec:ubuntu.install.summary">2.8.5</A>,
+and looking back to other sections as needed.
+
+<P>
+
+<H2><A NAME="SECTION00382000000000000000"></A>     <A NAME="sec:ubuntu.fort.install"></A>
+<BR>
+Fortran Compiler
+</H2>
+
+<P>
+The easiest Fortran compiler to install in Ubuntu 8.04.1 is
+<A NAME="tex2html76"
+  HREF="http://gcc.gnu.org/fortran/">GNU Fortran</A>
+(<FONT COLOR="#0000ff"><TT>gfortran</TT></FONT>), the Fortran 95 compiler included with the more
+recent versions of the GNU Compiler Collection (GCC); you can
+use any package manager (e.g., <FONT COLOR="#0000ff"><TT>apt-get</TT></FONT>, <FONT COLOR="#0000ff"><TT>aptitude</TT></FONT>)
+to install it.
+Unfortunately, I was not able to get it to compile QTCM1.
+I was, however, able to successfully compile QTCM1 using
+the second open-source Fortran compiler,
+<A NAME="tex2html77"
+  HREF="http://www.g95.org/">G95</A>
+(<FONT COLOR="#0000ff"><TT>g95</TT></FONT>),
+which some feel is farther along in its development than <FONT COLOR="#0000ff"><TT>gfortran</TT></FONT>.
+G95, however, is not supported as an Ubuntu package, and so I had
+to manually install it.
+
+<P>
+I downloaded the binary version of G95 v0.91 
+(the Linux x86_64/EMT64 with 32 bit default integers) 
+using the following
+<FONT COLOR="#0000ff"><TT>curl</TT></FONT> command:<A NAME="tex2html72"
+  HREF="footnode.html#foot2951"><SUP>2.9</SUP></A>
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT><FONT SIZE="-1">
+curl -o g95.tgz http://ftp.g95.org/v0.91/g95-x86_64-32-linux.tgz</FONT></TT></FONT></TD></TR>
+</TABLE>
+<P>
+which saves the <I><I>.tgz</I></I> file as the local file <I><I>g95.tgz</I></I>.
+After that, I followed the G95 project's standard
+<A NAME="tex2html74"
+  HREF="http://g95.sourceforge.net/docs.html#starting">installation instructions</A>
+to finish the install.<A NAME="tex2html75"
+  HREF="footnode.html#foot2954"><SUP>2.11</SUP></A>The regular Linux x86 version of G95
+(in <I><I>g95-x86-linux.tgz</I></I> from the G95 website) did not work on my
+machine.
+
+<P>
+
+<H2><A NAME="SECTION00383000000000000000"></A>   <A NAME="sec:ubuntu.netcdf"></A>
+<BR>
+NetCDF Libraries
+</H2>
+
+<P>
+For some reason, the netCDF libraries and include files
+installed from the Ubuntu packages do not
+correspond to the files needed
+by the calling routines in <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>.  To solve this, I compiled
+my own set of
+<A NAME="tex2html81"
+  HREF="http://www.unidata.ucar.edu/software/netcdf/">netCDF 3.6.2 libraries</A>
+using the tarball
+<A NAME="tex2html79"
+  HREF="http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3_6_2/">downloaded from UCAR</A>.
+
+<P>
+Once I uncompressed and untarred the package, and went into
+the top-level directory of the package, I built the package by typing
+the following at the Unix prompt:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>export FC=g95 
+<BR>
+export FFLAGS="-O -fPIC" 
+<BR>
+export FFLAGS="-fPIC" 
+<BR>
+export F90FLAGS="-fPIC" 
+<BR>
+export CFLAGS="-fPIC" 
+<BR>
+export CXXFLAGS="-fPIC" 
+<BR>./configure 
+<BR>
+make check 
+<BR>
+sudo make install</TT></FONT></TD></TR>
+</TABLE>
+<P>
+(The <FONT COLOR="#0000ff"><TT>export</TT></FONT> commands set environment variables for the
+Fortran compiler and Fortran and other compiler flags.  The
+<FONT COLOR="#0000ff"><TT>-fPIC</TT></FONT> flag enables the compilers to create
+position independent code, needed for shared libraries in
+Ubuntu on a 64 bit Intel processor.)
+
+<P>
+The above installs the netCDF binaries, libraries, and include files into
+sub-directories <I><I>bin</I></I>, <I><I>lib</I></I>, and <I><I>include</I></I> in 
+<I><I>/usr/local</I></I>, the default.
+The include files for this netCDF installation are thus
+located in <I><I>/usr/local/include</I></I>, and the libraries for this
+netCDF installation are location in <I><I>/usr/local/lib</I></I>.
+(If you want to specify a different installation
+location, use the <FONT COLOR="#0000ff"><TT>-prefix</TT></FONT> option in <FONT COLOR="#0000ff"><TT>configure</TT></FONT>.)
+While you don't have to have root privileges during the configuration
+and check steps, you do during the installation step if you're installing
+into <I><I>/usr/local</I></I> (thus the <FONT COLOR="#0000ff"><TT>sudo</TT></FONT> in the last step).<A NAME="tex2html80"
+  HREF="footnode.html#foot2957"><SUP>2.13</SUP></A>
+<P>
+
+<H2><A NAME="SECTION00384000000000000000"></A>  <A NAME="sec:ubuntu.makefile"></A>
+<BR>
+Makefile Configuration
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00384100000000000000">
+NetCDF</A>
+</H3>
+
+<P>
+In the <I><I>src</I></I> directory in the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution, there is a
+sub-directory <I><I>Makefiles</I></I> that contains the makefiles for a
+variety of platforms.  Edit the file <I><I>makefile.ubuntu_64_g95</I></I>
+so that the lines specifying the environment variables for the
+netCDF libraries and include files:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>NCINC=-I/usr/local/include 
+<BR>
+NCLIB=-L/usr/local/lib -lnetcdf</TT></FONT></TD></TR>
+</TABLE>
+<P>
+are changed to the path where your manually compiled
+netCDF libraries and include files are.
+
+<P>
+Copy <I><I>makefile.ubuntu_64_g95</I></I> from the <I><I>Makefiles</I></I> sub-directory
+in <I><I>src</I></I> into <I><I>src</I></I>.  
+In other words, from the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory
+(i.e., <I><I>/buildpath</I></I>), at the Unix prompt execute:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>cp src/Makefiles/makefile.ubuntu_64_g95 src/makefile</TT></FONT></TD></TR>
+</TABLE>
+<P>
+
+<H3><A NAME="SECTION00384200000000000000">
+Linking Order</A>
+</H3>
+
+<P>
+Compilers in the GNU Compiler Collection (GCC) search libraries
+and object files in the order they are listed in the command-line,
+<A NAME="tex2html83"
+  HREF="http://gcc.gnu.org/onlinedocs/gcc-4.1.2/gcc/Link-Options.html#index-l-670">from left-to-right</A>.
+Thus, if routines in <I><I>b.o</I></I> call routines in <I><I>a.o</I></I>, 
+you must list the files in the order <I><I>a.o b.o</I></I>.
+
+<P>
+For some reason, that isn't the case for <FONT COLOR="#0000ff"><TT>g95</TT></FONT>.  Thus, you will
+find <FONT COLOR="#0000ff"><TT>g95</TT></FONT> makefile rules structured like the following
+(below is part of the rule to create an executable (<I><I>qtcm</I></I>) for
+benchmark runs):
+
+<P>
+
+<p><code><font color="blue">qtcm: main.o<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$(FC) -O $(NCINC) -o 
+$@ main.o $(QTCMLIB) $(NCLIB)</font></code></p>
+even though <I><I>main.o</I></I> depends on the QTCM library 
+(specified in macro setting <FONT COLOR="#0000ff"><TT>QTCMLIB</TT></FONT>), which in turn
+depends on the netCDF library (specified in macro setting <FONT COLOR="#0000ff"><TT>NCLIB</TT></FONT>).
+
+<P>
+
+<H3><A NAME="SECTION00384300000000000000"></A>   <A NAME="sec:sopic"></A>
+<BR>
+Shared Object PIC
+</H3>
+
+<P>
+In order to compile the model in Ubuntu on a 64 bit Intel processor,
+the model and the netCDF library it is linked to needs to be
+compiled to be 
+<A NAME="tex2html85"
+  HREF="http://www.gentoo.org/proj/en/base/amd64/howtos/index.xml?part=1&amp;chap=3">position independent code (PIC)</A>.
+This is accomplished with the 
+<A NAME="tex2html86"
+  HREF="http://www.fortran-2000.com/ArnaudRecipes/sharedlib.html"><FONT COLOR="#0000ff"><TT>-fPIC</TT></FONT> flag</A>.
+
+<P>
+In the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> makefiles, the <FONT COLOR="#0000ff"><TT>-fPIC</TT></FONT> flag is introduced in the
+macro <FONT COLOR="#0000ff"><TT>FFLAGSM</TT></FONT>, for instance:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>FFLAGSM = -O -fPIC</TT></FONT></TD></TR>
+</TABLE>For makefiles used in creating extension modules, <FONT COLOR="#0000ff"><TT>-fPIC</TT></FONT> must
+be passed into the <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> call.  To do so, put the flags:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>-f90flags="-fPIC" -f77flags="-fPIC"</TT></FONT></TD></TR>
+</TABLE>after the <FONT COLOR="#0000ff"><TT>-fcompiler</TT></FONT> flag in the <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> calling line.
+
+<P>
+The <FONT COLOR="#0000ff"><TT>-fPIC</TT></FONT> flag must also be used when compiling the netCDF
+libraries, as described in Section&nbsp;<A HREF="#sec:ubuntu.netcdf">2.8.3</A>.
+Failure to create PIC libraries in 64 bit Ubuntu can result in errors 
+like the following when creating the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> extension modules:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>ld: /usr/local/lib/libnetcdf.a(fort-attio.o): relocation R_X86_64_32 against `a local symbol' can not be used when making a shared object; recompile with -fPIC /usr/local/lib/libnetcdf.a: could not read symbols: Bad value</TT></FONT></TD></TR>
+</TABLE>
+<P>
+
+<H2><A NAME="SECTION00385000000000000000"></A>      <A NAME="sec:ubuntu.install.summary"></A>
+<BR>
+Summary of Steps
+</H2>
+
+<P>
+The following summarizes all the steps I took to install
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> in
+Ubuntu 8.04.1 LTS (Hardy) running on a
+Quad Core Intel Xeon (64 bit) machine.
+Note that while I use the <FONT COLOR="#0000ff"><TT>aptitude</TT></FONT> package manager, you are
+free to use any manager of your choice (e.g., <FONT COLOR="#0000ff"><TT>apt-get</TT></FONT>,
+<FONT COLOR="#0000ff"><TT>synaptic</TT></FONT>, etc.):
+
+<P>
+
+<OL>
+<LI>Install the G95 Fortran compiler from the binary distribution.
+	See Section&nbsp;<A HREF="#sec:ubuntu.fort.install">2.8.2</A> for details.
+
+<P>
+</LI>
+<LI>Use an Ubuntu package manager
+	to install the following packages, by typing:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>sudo aptitude update 
+<BR>
+sudo aptitude install curl 
+<BR>
+sudo aptitude install python-epydoc 
+<BR>
+sudo aptitude install python-matplotlib 
+<BR>
+sudo aptitude install python-netcdf 
+<BR>
+sudo aptitude install python-scientific 
+<BR>
+sudo aptitude install python-scipy 
+<BR>
+sudo aptitude install texlive</TT></FONT></TD></TR>
+</TABLE>
+<P>
+Installing <FONT COLOR="#0000ff"><TT>python-scipy</TT></FONT> will also install NumPy and
+	<FONT COLOR="#0000ff"><TT>f2py</TT></FONT>, so you don't have to install the
+	<FONT COLOR="#0000ff"><TT>python-numpy</TT></FONT> package separately.
+
+<P>
+Early-on as I debugged my <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> install on Ubuntu,
+	I encountered errors that I thought came from an 
+	<A NAME="tex2html91"
+  HREF="http://cens.ioc.ee/pipermail/f2py-users/2008-June/001617.html">old version of NumPy</A>,
+
+and thus I replaced Ubuntu's packaged NumPy with NumPy 1.1.0
+	built 
+	<A NAME="tex2html88"
+  HREF="http://sourceforge.net/project/showfiles.php?group_id=1369&amp;package_id=175103">directly from source</A>.
+	(Note, you shouldn't install your new NumPy in the default
+	location, which may cause problems later-on with Ubuntu's
+	package manager.)
+	Later on, I concluded the errors I had encountered were not
+	because of the NumPy version, but by then I didn't want to
+	try to reinstall NumPy again.
+	So strictly speaking, the version of Numpy I used is not
+	the one bundled with <FONT COLOR="#0000ff"><TT>python-scipy</TT></FONT>, but that shouldn't
+	be a problem.
+
+<P>
+</LI>
+<LI>Manually install netCDF 3.6.2 from source
+	(see Section <A HREF="#sec:ubuntu.netcdf">2.8.3</A>).
+
+<P>
+</LI>
+<LI>Manually install the <FONT COLOR="#0000ff"><TT>basemap</TT></FONT> package of
+	<FONT COLOR="#0000ff"><TT>matplotlib</TT></FONT>.  
+	The source for the <FONT COLOR="#0000ff"><TT>basemap</TT></FONT> toolkit is
+	available 
+	<A NAME="tex2html90"
+  HREF="http://sourceforge.net/project/showfiles.php?group_id=80706">from Sourceforge</A>
+	I obtained version 0.9.9.1 using the
+	following <FONT COLOR="#0000ff"><TT>curl</TT></FONT> command:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT><FONT SIZE="-2">
+curl -o basemap.tar.gz <IMG
+ WIDTH="14" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\backslash$"> 
+<BR>
+http://voxel.dl.sourceforge.net/sourceforge/matplotlib/basemap-0.9.9.1.tar.gz</FONT></TT></FONT></TD></TR>
+</TABLE>
+<P>
+The <I><I>README</I></I> file in the <I><I>basemap-0.9.9.1</I></I> directory has
+	detailed installation instructions.  Note that you have to
+	install the GEOS library first (<I><I>README</I></I> has detailed
+	directions on how to do that too).  To be on the safe-side,
+	I would set the <FONT COLOR="#0000ff"><TT>FC</TT></FONT> environment variable to the G95
+	compiler
+	(e.g., with <FONT COLOR="#0000ff"><TT>export FC=g95</TT></FONT> in Bash).
+
+<P>
+</LI>
+<LI>From this point on, you can follow the
+	general instructions given in Section&nbsp;<A HREF="#sec:install.sum">2.1</A>,
+	starting with step&nbsp;<A HREF="#list:download.qtcm.sum">3</A>.
+	Please do not ignore, however, Section&nbsp;<A HREF="#sec:install.ubuntu">2.8</A>'s
+	Ubuntu-specific details.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html399"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html395"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html389"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html397"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html400"
+  HREF="node4.html">Getting Started With qtcm</A>
+<B> Up:</B> <A NAME="tex2html396"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html390"
+  HREF="node2.html">Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html398"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

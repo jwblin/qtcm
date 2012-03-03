@@ -1,0 +1,6 @@
+makefile currently set so it always compiles for netCDF output.
+the makefile in the current directory is up-to-date.  archival versions are
+in ./archive.
+
+i think this source code is based on
+Version 2.3 - current-release (August 2002)

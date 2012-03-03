@@ -1,0 +1,646 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Field Settings in defaults</TITLE>
+<META NAME="description" CONTENT="Field Settings in defaults">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node11.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node11.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html576"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html572"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html566"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html574"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html577"
+  HREF="node11.html">About this document ...</A>
+<B> Up:</B> <A NAME="tex2html573"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html567"
+  HREF="node9.html">Bibliography</A>
+ &nbsp; <B>  <A NAME="tex2html575"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html578"
+  HREF="node10.html#SECTION001010000000000000000">Scalar Field Variables</A>
+<LI><A NAME="tex2html579"
+  HREF="node10.html#SECTION001020000000000000000">Array Field Variables</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001000000000000000000"></A>  <A NAME="app:defaults.values"></A>
+<BR>
+Field Settings in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>
+</H1>
+
+<H1><A NAME="SECTION001010000000000000000"></A>  <A NAME="sec:defaults.scalar"></A>
+<BR>
+Scalar Field Variables
+</H1>
+
+<P>
+This table lists the default settings for scalar <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> fields
+as set by the <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> submodule.  All fields are of class
+<FONT COLOR="#0000ff"><TT>Field</TT></FONT>.  Numerical values are rounded as per the conventions
+of Python's <FONT COLOR="#0000ff"><TT>%g</TT></FONT> format code.
+To create a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instance whose value is set to the
+default, instantiate with the field id as the argument
+
+<P>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Field</B></TH>
+<TH ALIGN="CENTER"><B>Value</B></TH>
+<TH ALIGN="CENTER"><B>Units</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=150><B>Description</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>SSTdir</TT></FONT></TD>
+<TD ALIGN="CENTER">../bnddata/SST_Reynolds</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Where SST files are</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>SSTmode</TT></FONT></TD>
+<TD ALIGN="CENTER">seasonal</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Decide what kind of SST to use</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>VVsmin</TT></FONT></TD>
+<TD ALIGN="CENTER">4.5</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Minimum wind speed for fluxes</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>bnddir</TT></FONT></TD>
+<TD ALIGN="CENTER">../bnddata</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Boundary data other than SST</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Date of model coded as an integer as yyyymmdd</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>day0</TT></FONT></TD>
+<TD ALIGN="CENTER">-1</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Starting day; if <IMG
+ WIDTH="19" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$&lt;$"> 0 use day in restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>dt</TT></FONT></TD>
+<TD ALIGN="CENTER">1200</TD>
+<TD ALIGN="CENTER">s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Time step</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>eps_c</TT></FONT></TD>
+<TD ALIGN="CENTER">0.000138889</TD>
+<TD ALIGN="CENTER">1/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>1/tau_c NZ (5.7)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>interval</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Atmosphere-ocean coupling interval</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>it</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Time of day in time steps</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>landon</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>If not 1: land = ocean with fake SST</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>lastday</TT></FONT></TD>
+<TD ALIGN="CENTER">365</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Last day of integration</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>month0</TT></FONT></TD>
+<TD ALIGN="CENTER">-1</TD>
+<TD ALIGN="CENTER">mo</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Starting month; if <IMG
+ WIDTH="19" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$&lt;$"> 0 use mo in restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>mrestart</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>=1: restart using qtcm.restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>mt0</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Barotropic timestep every mt0 timesteps</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>nastep</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Number of atmosphere time steps within one air-sea coupling interval</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>noout</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>No output for the first noout days</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>nooutr</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>No restart file for the first nooutr days</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ntout</TT></FONT></TD>
+<TD ALIGN="CENTER">-30</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Monthly mean output</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ntouti</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Monthly instantaneous data output</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ntoutr</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Restart file only at end of model run</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>outdir</TT></FONT></TD>
+<TD ALIGN="CENTER">../proc/qtcm_output</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Where output goes to</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>runname</TT></FONT></TD>
+<TD ALIGN="CENTER">runname</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>String for an output filename</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>title</TT></FONT></TD>
+<TD ALIGN="CENTER">QTCM default title</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>A descriptive title</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u0bar</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>visc4x</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Del 4 viscocity parameter in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>visc4y</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Del 4 viscocity parameter in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxT</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Temperature diffusion parameter in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxq</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Humidity diffusion parameter in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxu0</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Viscocity parameter for u0 in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxu1</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Viscocity parameter for u1 in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyT</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Temperature diffusion parameter in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyq</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Humidity diffusion parameter in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyu0</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Viscocity parameter for u0 in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyu1</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Viscocity parameter for u1 in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>weml</TT></FONT></TD>
+<TD ALIGN="CENTER">0.01</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Mixed layer entrainment velocity</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>year0</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">yr</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Starting year; if <IMG
+ WIDTH="19" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$&lt;$"> 0 use year in restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ziml</TT></FONT></TD>
+<TD ALIGN="CENTER">500</TD>
+<TD ALIGN="CENTER">m</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Atmosphere mixed layer depth <IMG
+ WIDTH="19" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img4.png"
+ ALT="$\sim$"> cloud base</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H1><A NAME="SECTION001020000000000000000"></A>   <A NAME="sec:defaults.array"></A>
+<BR>
+Array Field Variables
+</H1>
+
+<P>
+This table lists the default settings for array <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> fields
+as set by the <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> submodule.  All fields are of class
+<FONT COLOR="#0000ff"><TT>Field</TT></FONT>.  Numerical values are rounded as per the conventions
+of Python's <FONT COLOR="#0000ff"><TT>%g</TT></FONT> format code.
+
+<P>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Field</B></TH>
+<TH ALIGN="CENTER"><B>Shape</B></TH>
+<TH ALIGN="CENTER"><B>Max</B></TH>
+<TH ALIGN="CENTER"><B>Min</B></TH>
+<TH ALIGN="CENTER"><B>Units</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=185><B>Description</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>Evap</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLW</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLWds</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLWus</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLWut</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSW</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSWds</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSWus</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSWut</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FTs</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>Qc</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Precipitation</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>S0</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>STYPE</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Surface type; ocean or vegetation type over land</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>T1</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>Ts</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Surface temperature</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>WD</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>WD0</TT></FONT></TD>
+<TD ALIGN="CENTER">(1,)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Field capacity SIB2/CSU (approximately)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr1</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 1</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr2</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 2</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr3</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 3</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr4</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 4</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr5</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 5</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr6</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 6</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr7</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 7</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr8</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Auxiliary optional output array 8</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>psi0</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>q1</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>rhsu0bar</TT></FONT></TD>
+<TD ALIGN="CENTER">(1,)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>rhsvort0</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>taux</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>tauy</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u0</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Barotropic zonal wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u1</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Current time step baroclinic zonal wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>v0</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>Barotropic meridional wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>v1</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>vort0</TT></FONT></TD>
+<TD ALIGN="CENTER">(1, 1)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=185>&nbsp;</TD>
+</TR>
+</TABLE>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html576"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html572"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html566"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html574"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html577"
+  HREF="node11.html">About this document ...</A>
+<B> Up:</B> <A NAME="tex2html573"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html567"
+  HREF="node9.html">Bibliography</A>
+ &nbsp; <B>  <A NAME="tex2html575"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

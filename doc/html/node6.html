@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Troubleshooting</TITLE>
+<META NAME="description" CONTENT="Troubleshooting">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html504"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html500"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html494"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html502"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html505"
+  HREF="node7.html">Developer Notes</A>
+<B> Up:</B> <A NAME="tex2html501"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html495"
+  HREF="node5.html">Using qtcm</A>
+ &nbsp; <B>  <A NAME="tex2html503"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html506"
+  HREF="node6.html#SECTION00610000000000000000">Error Messages Produced by <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT></A>
+<LI><A NAME="tex2html507"
+  HREF="node6.html#SECTION00620000000000000000">Other Errors</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00600000000000000000"></A>                   <A NAME="ch:trouble"></A>
+<BR>
+Troubleshooting
+</H1>
+
+<P>
+
+<H1><A NAME="SECTION00610000000000000000">
+Error Messages Produced by <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT></A>
+</H1>
+
+<P>
+<DL>
+<DT><STRONG><FONT COLOR="#009900"><TT>Error-Value too long in SetbyPy module getitem_str for</TT></FONT>	<I>key</I>:</STRONG></DT>
+<DD>This message is produced by the Fortran
+	subroutine <FONT COLOR="#0000ff"><TT>getitem_str</TT></FONT>	in the module <FONT COLOR="#0000ff"><TT>SetbyPy</TT></FONT> in the compiled QTCM1 Fortran code.
+	The code is in the file <I><I>setbypy.F90</I></I>.  This error occurs when
+	the Fortran variable whose name is given by the string <I>key</I>
+	has a value that is greater than the local parameter
+	<FONT COLOR="#0000ff"><TT>maxitemlen</TT></FONT> in <FONT COLOR="#0000ff"><TT>getitem_str</TT></FONT>.  To fix this, you have
+	to go into <I><I>setbypy.F90</I></I> and change the value of
+	<FONT COLOR="#0000ff"><TT>maxitemlen</TT></FONT>.
+
+<P>
+</DD>
+<DT><STRONG><FONT COLOR="#009900"><TT>Error-real_rank1_array should be deallocated</TT></FONT>:</STRONG></DT>
+<DD>Fortran module <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT>'s subroutine
+	<FONT COLOR="#0000ff"><TT>getitem_real_array</TT></FONT> generates this message
+	(or a similar message for other ranks) if the Fortran
+	variable for the input <I>key</I> are allocated on entry
+	to the routine.  This may indicate the user has written another
+	Fortran routine to access the <FONT COLOR="#0000ff"><TT>real_rank1_array</TT></FONT> variable
+	outside of the standard interfaces..
+
+<P>
+</DD>
+<DT><STRONG><FONT COLOR="#009900"><TT>Error-Bad call to SetbyPy module ...</TT></FONT>:</STRONG></DT>
+<DD>Often times, this error occurs because a get or set routine
+	in <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> tried to act on a variable for which the
+	corresponding input <I>key</I> is not defined.  The solution
+	is to add that case in the if/then construct for the get and set
+	routines in <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> and rebuild the extension modules.
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00620000000000000000">
+Other Errors</A>
+</H1>
+
+<P>
+<DL>
+<DT><STRONG>Python cannot find some packages:</STRONG></DT>
+<DD>This error often happens when the version of Python in which
+	you have installed all your packages is not the version that
+	is called at the Unix command line by typing in <FONT COLOR="#0000ff"><TT>python</TT></FONT>.
+	To get around this, 
+        define a Unix alias
+        that maps <FONT COLOR="#0000ff"><TT>python2.4</TT></FONT> (or whichever version of Python
+	has all your packages installed) to <FONT COLOR="#0000ff"><TT>python</TT></FONT>.  If you
+	have multiple Python's installed on your system, you might
+	have to use a more specific name for the Python executable.
+	As a result, you may have to change the test scripts in
+	<I><I>test</I></I> in the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution directory.
+
+<P>
+</DD>
+<DT><STRONG><FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> and compiled QTCM1 model pointer
+	variables:</STRONG></DT>
+<DD>If you try to use the <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> method on a compiled
+	QTCM1 model pointer variable 
+	(i.e., <FONT COLOR="#0000ff"><TT>u1</TT></FONT>, <FONT COLOR="#0000ff"><TT>v1</TT></FONT>, <FONT COLOR="#0000ff"><TT>q1</TT></FONT>, <FONT COLOR="#0000ff"><TT>T1</TT></FONT>),
+	 before the compiled
+	model <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> subroutine is run, you'll get a bus error
+	with no additional message.
+
+<P>
+</DD>
+<DT><STRONG>Mismatch between Python and Fortran array field variables:</STRONG></DT>
+<DD>You change an array field variable on the Python side, but
+	it seems like the wrong elements are changed on the Fortran
+	side.  Or you type in the same index address for accessing a
+	<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> netCDF output array as well as its <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>	instance attribute counterpart, and find you get different
+	answers.  Some possible reasons and fixes:
+
+<P>
+
+<UL>
+<LI>This will occur if you haven't accounted for the
+		difference in how field variables are saved at the
+		Python-level, Fortran-level, and in a netCDF file.
+		All netCDF array output is dimensioned (time,
+		latitude, longitude) when read into Python using
+		the <FONT COLOR="#0000ff"><TT>Scientific</TT></FONT> package.  This differs from
+		the way <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> saves field variables, <I>both</I>
+		at the Python- and Fortran-levels, which follows
+		Fortran convention (longitude, latitude).
+
+<P>
+Note that the way <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> saves field variables
+		at the Python- and Fortran-levels is different than
+		the default way Python and Fortran save arrays.
+		Section&nbsp;<A HREF="node5.html#sec:field.var.shape">4.7.4</A> for more information.
+
+<P>
+</LI>
+<LI>You may have forgotten that array indices in Python start at
+		0, while indices in Fortran (generally) start at 1.
+		Also, ranges in Python are exclusive at the upper-bound,
+		while ranges in Fortran are inclusive at the upper-bound.
+		(Both Python and Fortran array indice ranges are inclusive
+		at the lower-bound.)
+
+<P>
+</LI>
+<LI>You may have forgotten some field variables have
+		ghost latitudes, and thus there are extra latitude bands
+		when the array is stored as a Python or Fortran field
+		variable, but there are <I>no</I> extra latitude bands
+		when the array is stored as netCDF output (the QTCM1
+		output routines strip off the ghost latitudes when
+		writing those field variables out).
+	        See the
+        <A NAME="tex2html121"
+  HREF="http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf">QTCM1 manual</A>
+        [<A
+ HREF="node9.html#Neelin_etal:2002">4</A>]
+        for details about ghost latitudes.
+
+<P>
+The safest and easiest way to tell whether the variable has a
+		ghost latitudes is to look at its shape.
+		A call to the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance
+		method <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> will give you the array,
+		and the use of NumPy's <FONT COLOR="#0000ff"><TT>shape</TT></FONT> function will give you
+		the shape.
+	
+</LI>
+</UL>
+</DD>
+</DL>
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html504"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html500"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html494"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html502"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html505"
+  HREF="node7.html">Developer Notes</A>
+<B> Up:</B> <A NAME="tex2html501"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html495"
+  HREF="node5.html">Using qtcm</A>
+ &nbsp; <B>  <A NAME="tex2html503"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

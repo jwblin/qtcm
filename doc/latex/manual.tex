@@ -1,0 +1,290 @@
+% ==========================================================================
+% Manual for QTCM Python Package
+%
+% Usage:
+% - If you are running this on your own system, you will not have a copy of
+%   my master.bib BibTeX database.  To run this, you'll have to comment out:
+%
+%      \bibliographystyle{chicago-jl}
+%      \bibliography{/Users/jlin/work/res/bib/master}
+%
+%   and comment back in:
+%
+%      \input{manual.bbl}
+%
+%   in this file.  Then you can use pdflatex on this file to get the PDF of
+%   the manual.  These 3 lines are in the back matter of the document.
+%
+% Revision Notes:
+% - By Johnny Lin, North Park University, http://www.johnny-lin.com/
+% - The chicago BibTeX style is unrecognized by latex2html, so I use
+%   the plain style.
+% ==========================================================================
+
+
+% ------ DOCUMENT DEFINITIONS ------
+%
+\documentclass[12pt]{book}
+\usepackage{color}
+\usepackage{html}
+\usepackage{graphicx}
+\usepackage{textcomp}
+%\usepackage{comment}    %- Unrecognized by latex2html; its use causes errors
+%\usepackage{fancyvrb}   %- Unrecognized by latex2html; its use causes errors
+
+
+%- Packages unrecognized by latex2html, but causes no error:
+%
+%\usepackage[letterpaper,margin=1in,includefoot]{geometry}
+\usepackage[letterpaper,margin=1.25in]{geometry}
+\usepackage{bibnames}
+\usepackage{longtable}
+\usepackage{multirow}
+
+
+%+ Comment out explicity margin settings since use package geometry:
+%\setlength{\topmargin}{0in}
+%\setlength{\headheight}{0in}
+%\setlength{\headsep}{0in}
+%\setlength{\oddsidemargin}{0in}
+%\setlength{\evensidemargin}{0in}
+%\setlength{\textheight}{8.5in}
+%\setlength{\textwidth}{6.5in}
+
+
+
+
+% ------ COMMANDS AND LENGTHS ------
+%
+% --- Define colors:  Have to do this because for some reason LaTeX
+%     sometimes looks for "BLUE" instead of "blue" and complains when
+%     "BLUE" isn't found.
+%
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{BLUE}{rgb}{0,0,1}
+\definecolor{green}{rgb}{0,0.6,0}
+\definecolor{Green}{rgb}{0,0.6,0}
+\definecolor{GREEN}{rgb}{0,0.6,0}
+
+
+% --- Format code blocks.  Currently set to print out the code in just 
+%     typewriter font with no box.  Will work the same for pdflatex 
+%     and latex2html:
+%
+%     codeblock:  Environment for blocks of computer code or internet 
+%       addresses.
+%     codeblockfont:  Sets font for codeblocks.
+%
+\newenvironment{codeblock}%
+	{\begin{quotation}\begin{minipage}[t]{0.9\textwidth}}%
+	{\end{minipage}\end{quotation}}
+	%{\begin{flushleft}}%
+	%{\end{flushleft}}
+\newcommand{\codeblockfont}[1]{\textcolor{blue}{\texttt{#1}}}
+%     *** Version that only works for pdflatex that puts a box around 
+%         the block and centers it (commented out).  Note that using
+%         fancyvrb is the better way of creating such a boxed section
+%         of code, but fancyvrb isn't recognized by latex2html:
+%\newenvironment{codeblock}%
+%	{\begin{center}\begin{tabular}{|c|} \hline \\ }%
+%	{\\ \\ \hline \end{tabular}\end{center}}
+%\newcommand{\codeblockfont}[1]{\parbox{0.8\textwidth}{\texttt{#1}}}
+
+
+% --- Text titling/emphasis settings:
+%
+%     emphpara:  Emphasis for the first phrase or sentence of a 
+%         paragraph.
+%     booktitle:  Formats book titles.
+%     tabletitle:  Title for an item block in the information table.
+%     paratitle:  Title for a paragraph in an item block in the
+%         information table.
+%     emphdate:  Emphasize date in paragraph text.
+%
+%     cmd:  Commands
+%     dumarg:  Dummy arguments
+%     codearg:  Same as dumarg.
+%     fn:  File and directory names
+%     screen:  Screen display
+%     vars:  Variable and attribute names
+%     mods:  Module, subroutine, and method names
+%     class:  Class names
+%     code:  Generic code (avoid using this)
+%
+\newcommand{\emphpara}[1]{\textbf{#1}}
+\newcommand{\booktitle}[1]{\textit{#1}}
+%\newcommand{\tabletitle}[1]{\textsf{\textbf{#1}}}
+\newcommand{\paratitle}[1]{\textit{#1}}
+\newcommand{\emphdate}[1]{\textbf{#1}}
+
+\newcommand{\code}[1]{\textcolor{blue}{\texttt{#1}}}
+\newcommand{\cmd}[1]{\textcolor{blue}{\texttt{#1}}}
+\newcommand{\dumarg}[1]{\textit{#1}}
+\newcommand{\codearg}[1]{\textit{#1}}
+\newcommand{\fn}[1]{\textsf{\textit{#1}}}
+\newcommand{\screen}[1]{\textcolor{green}{\texttt{#1}}}
+\newcommand{\vars}[1]{\textcolor{blue}{\texttt{#1}}}
+\newcommand{\class}[1]{\textcolor{blue}{\texttt{#1}}}
+\newcommand{\mods}[1]{\textcolor{blue}{\texttt{#1}}}
+
+
+% --- Special table formatting:
+%
+%     tabletitlewidth:  Width for title field of an item block in the 
+%         information table.
+%     tablebodywidth:  Width for body field of an item block in the 
+%         information table.
+%     tabletabulardims:  Dimensions for the information table, used in
+%         the tabular command.
+%     tableitemlinespace:  Vertical spacing between item blocks in the
+%         information table.
+%     infotitle and infotext:  Used for two-column sub-information 
+%         tables found in the body field of the information table.  
+%         These are not global lengths but have values specific to the 
+%         local context in which they're used.
+%
+\newlength{\tabletitlewidth}
+\settowidth{\tabletitlewidth}{file and directory names}
+
+\newlength{\tablebodywidth}
+\setlength{\tablebodywidth}{0.9\textwidth}
+\addtolength{\tablebodywidth}{-4ex}
+\addtolength{\tablebodywidth}{-\tabletitlewidth}
+
+\newcommand{\tabletabulardims}%
+	{p{\tabletitlewidth}@{\hspace{4ex}}p{\tablebodywidth}}
+
+\newcommand{\tableitemlinespace}{\baselineskip}
+\newlength{\infotitle}
+\newlength{\infotext}
+
+
+% --- Lengths for formatting:
+%
+\newlength{\remainder}        % length to describe the residual of the
+                              %   linewidth minus \enumlabel
+\newlength{\enumlabel}        % length to describe figure sub-label width
+                              %   (e.g. "(a)")
+
+
+% --- TtH stuff:
+%
+%\def\tthdump#1{#1}
+
+
+% --- LaTeX2HTML stuff:
+%
+%     htmlfigcaption:  Formatting for HTML replacement figure captions.
+%
+\newcommand{\htmlfigcaption}[1]{\parbox[c]{70ex}{\footnotesize{#1}}}
+
+
+% --- Some book title abbreviations:
+%
+%     rute:  Booktitle for Rute User's.
+%     linuxnut:  Booktitle for Linux in a Nutshell.
+%     pynut:  Booktitle for Python in a Nutshell.
+%
+\newcommand{\rute}{\booktitle{Rute User's}}
+\newcommand{\linuxnut}{\booktitle{Linux in a Nutshell}}
+\newcommand{\pynut}{\booktitle{Python in a Nutshell}}
+
+
+% --- Define special characters ---
+%
+\newcommand{\aonehat}{\ensuremath{\widehat{a_1}}}
+\newcommand{\bonehat}{\ensuremath{\widehat{b_1}}}
+\newcommand{\D}{\ensuremath{\mathcal{D}}}
+\def\BibTeX{B\kern-.03em i\kern-.03em b\kern-.15em\TeX}
+
+
+
+
+% ------ BEGINNING OF DOCUMENT TEXT ------
+%
+\begin{document}
+
+    
+
+    
+% ------ TITLE AND TOC ------
+%
+\title{\mods{qtcm} User's Guide}
+\author{Johnny Wei-Bing Lin\thanks{Physics Department, North Park University,
+	3225 W.\ Foster Ave., Chicago, IL  60625, USA}}
+\date{\today}
+\maketitle
+\tableofcontents
+
+
+
+
+% ------ BODY ------
+%
+\chapter{Introduction}
+\input{intro}
+
+\chapter{Installation and Configuration}    \label{ch:install}
+	\section{Summary and Conventions}      \label{sec:install.sum}
+	\input{install_sum}
+	\section{Fortran Compiler}             \label{sec:fort.compilers}
+	\input{install_fort}
+	\section{Required Packages}            \label{sec:py.etc.pkgs}
+	\input{install_pkgs}
+	\section{Compiling Extension Modules}  \label{sec:create.so}
+	\input{compile_so}
+	\section{Testing the Installation}     \label{sec:test.qtcm}
+	\input{test_qtcm}
+	\section{Model Performance}
+	\input{perform}
+	\section{Installing in Mac OS X}       \label{sec:install.macosx}
+	\input{qtcm_in_macosx}
+	\section{Installing in Ubuntu}         \label{sec:install.ubuntu}
+	\input{qtcm_in_ubuntu}
+
+\chapter{Getting Started With \mods{qtcm}}  \label{ch:getting.started}
+\input{started}
+
+\chapter{Using \mods{qtcm}}                 \label{ch:using}
+\input{using}
+
+%@@@\chapter{Combining \code{qtcm} with \code{CliMT}}
+%@@@\input{climt}
+
+\chapter{Troubleshooting}                   \label{ch:trouble}
+\input{trouble}
+
+\chapter{Developer Notes}                   \label{ch:devnotes}
+\input{devnotes}
+
+\chapter{Future Work}                       \label{ch:future}
+\input{future}
+
+
+
+
+% ----- BACK MATTER OF THE DOCUMENT -----
+%
+\normalsize
+\pagebreak
+\bibliographystyle{plain}
+\bibliography{/Users/jlin/work/res/bib/master}
+
+%- Uncomment the input line below and comment out the \bibliographystyle
+%  and \bibliography lines if you're running this without the master.bib 
+%  BibTeX database
+%\input{manual.bbl}        
+
+\appendix
+\chapter{Field Settings in \mods{defaults}}  \label{app:defaults.values}
+\input{defaults}
+
+
+
+
+% ------ END OF DOCUMENT TEXT ------
+%
+\end{document}
+
+
+% ===== end of file =====

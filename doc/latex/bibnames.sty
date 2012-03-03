@@ -1,0 +1,149 @@
+%/u/sy/beebe/tex/bib/bibnames.sty, Tue Jul 10 14:19:57 1990
+%Edit by Nelson H.F. Beebe <beebe@plot79.math.utah.edu>
+%%
+%%  @texfile{
+%%      author          = "Nelson H. F. Beebe",
+%%      version         = "1.03",
+%%      date            = "01 August 1991",
+%%      filename        = "bibnames.sty",
+%%      address         = "Center for Scientific Computing
+%%                         and Department of Mathematics
+%%                         South Physics Building
+%%                         University of Utah
+%%                         Salt Lake City, UT 84112
+%%                         USA
+%%                         Tel: (801) 581-5254",
+%%      checksum        = "143     393    4284",
+%%      email           = "beebe@science.utah.edu (Internet)",
+%%      codetable       = "ISO/ASCII",
+%%      supported       = "yes",
+%%      docstring       = "This file provides standard definitions of
+%%                         proper names needed in TeX-related
+%%                         bibliographies.  The definitions are a
+%%                         significant extension of those in Rick
+%%                         Futura's texnames.sty; the latter is not
+%%                         used directly here, because not all sites
+%%                         have it.
+%%                         The checksum field above contains the
+%%                         standard UNIX wc (word count) utility
+%%                         output of lines, words, and characters;
+%%                         eventually, a better checksum scheme should
+%%                         be developed."
+%%      }
+%
+%=======================================================================
+% The TeX-related program names that are not defined already in LaTeX
+%
+% Richard Furuta
+% Department of Computer Science
+% University of Maryland
+% College Park, MD  20742
+%
+% furuta@mimsy.umd.edu
+% seismo!umcp-cs!furuta
+%
+% October 22, 1986, first release
+%
+% April 1, 1987:  modified by William LeFebvre, Rice University
+%   Now includes definitions for BibTeX and SLiTeX, as they appear in the
+%   LaTeX Local User's Guide.
+%
+% April 10, 1989: modified by NHFB: added use of \ifundefined so as to
+% preserve any existing definitions.
+%=======================================================================
+% TeXbook, p. 308:
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
+%
+% The following comes from Mike Spivak
+\ifundefined{AMSTEX}
+    \newcommand{\AMSTEX}{$\cal A$\kern-.1667em\lower.5ex\hbox{$\cal M$}
+                \kern-.125em$\cal S$-\TeX}
+\fi
+% Letter case variants:
+\ifundefined{AmSTeX}
+    \newcommand{\AmSTeX}{\AMSTEX{}}
+\fi
+%
+\ifundefined{AMSTeX}
+    \newcommand{\AMSTeX}{\AMSTEX{}}
+\fi
+%
+% \BibTeX and \SLiTeX, taken from the top of the local user's guide  (--wnl)
+\ifundefined{BibTeX}
+    \newcommand{\BibTeX}{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+                T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\fi
+%
+\ifundefined{CMR}
+    \newcommand{\CMR}{{Computer Modern}}
+\fi
+%
+\ifundefined{CWEB}
+    \newcommand{\CWEB}{{\tt CWEB}}
+\fi
+%
+\ifundefined{emdash}
+    \newcommand{\emdash}{\penalty\exhyphenpenalty---\penalty\exhyphenpenalty}
+\fi
+%
+\ifundefined{LAMSTeX}
+\newcommand{\LAMSTeX}{L\raise.42ex\hbox{\kern-.3em\the\scriptfont2 A}%
+    \kern-.2em\lower.376ex\hbox{\the\textfont2 M}\kern-.125em
+    {\the\textfont2 S}-\\Tex{}}
+\fi
+%
+\ifundefined{FWEB}
+    \newcommand{\FWEB}{{\tt FWEB}}
+\fi
+%
+\ifundefined{METAFONT}
+    \font\mf=logo10
+%    \hyphenchar\mf=-1
+    \newcommand{\METAFONT}{{\mf META{\rm{}\-{}}FONT}}
+\fi
+%
+\ifundefined{MF}
+    \newcommand{\MF}{\METAFONT}
+\fi
+%
+\ifundefined{ndash}
+    \newcommand{\ndash}{\penalty\exhyphenpenalty--\penalty\exhyphenpenalty}
+\fi
+%
+\ifundefined{noopsort}
+    \newcommand{\noopsort}[1]{}
+\fi
+%
+\ifundefined{PLOT}
+    \newcommand{\PLOT}{{\mbox{\raise.2ex\hbox{$<$}\kern-.06em\hbox{PLOT79}
+               \kern-.3em\hbox{\raise.2ex\hbox{$>$}}}}}
+\fi
+%
+\ifundefined{POSTSCRIPT}
+    \newcommand{\POSTSCRIPT}{{\sc Post\-Script}}
+\fi
+%
+\ifundefined{PS}
+    \newcommand{\PS}{\POSTSCRIPT}
+\fi
+%
+\ifundefined{singleletter}
+    \newcommand{\singleletter}[1]{#1}
+\fi
+%
+\ifundefined{SLiTeX}
+    \newcommand{\SLiTeX}{{\rm S\kern-.06em{\sc l\kern-.035emi}\kern-.06em
+                T\kern -.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\fi
+%
+\ifundefined{tubissue}
+    \newcommand{\tubissue}[2]{\TUB~#1, no.~#2}
+\fi
+%
+\ifundefined{TUB}
+    \newcommand{\TUB}{{\em TUG\-boat\/}}
+\fi
+%
+\ifundefined{WEB}
+    \newcommand{\WEB}{{\tt WEB}}
+\fi

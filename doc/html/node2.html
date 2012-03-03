@@ -1,0 +1,1003 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Introduction</TITLE>
+<META NAME="description" CONTENT="Introduction">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node3.html">
+<LINK REL="previous" HREF="node1.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node3.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html378"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html374"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html368"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html376"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html379"
+  HREF="node3.html">Installation and Configuration</A>
+<B> Up:</B> <A NAME="tex2html375"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html369"
+  HREF="node1.html">Contents</A>
+ &nbsp; <B>  <A NAME="tex2html377"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html380"
+  HREF="node2.html#SECTION00210000000000000000">How to Read This Manual</A>
+<LI><A NAME="tex2html381"
+  HREF="node2.html#SECTION00220000000000000000">About the Package</A>
+<LI><A NAME="tex2html382"
+  HREF="node2.html#SECTION00230000000000000000">Conventions In This Manual</A>
+<UL>
+<LI><A NAME="tex2html383"
+  HREF="node2.html#SECTION00231000000000000000">Audience</A>
+<LI><A NAME="tex2html384"
+  HREF="node2.html#SECTION00232000000000000000">Typographic Conventions</A>
+<LI><A NAME="tex2html385"
+  HREF="node2.html#SECTION00233000000000000000">Terminology</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html386"
+  HREF="node2.html#SECTION00240000000000000000">Current Version Information and Acknowledgments</A>
+<LI><A NAME="tex2html387"
+  HREF="node2.html#SECTION00250000000000000000">Summary of Release History</A>
+<LI><A NAME="tex2html388"
+  HREF="node2.html#SECTION00260000000000000000">A Brief Description of The QTCM1</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00200000000000000000">
+Introduction</A>
+</H1>
+
+<H1><A NAME="SECTION00210000000000000000">
+How to Read This Manual</A>
+</H1>
+
+<P>
+<B>Most users:</B> 
+Just read 
+(1) the installation instructions in Chapter&nbsp;<A HREF="node3.html#ch:install">2</A>,
+(2) Chapter&nbsp;<A HREF="node4.html#ch:getting.started">3</A>,
+which tells you all you need to get started using <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, and
+(3) examples in Section&nbsp;<A HREF="node5.html#sec:cookbook">4.10</A> that give a feel
+for how you can use the model.
+
+<P>
+<B>Users having problems:</B>
+Chapter&nbsp;<A HREF="node6.html#ch:trouble">5</A> provides troubleshooting tips for
+a few problems.
+The detailed description of how the package functions, 
+in Chapter&nbsp;<A HREF="node5.html#ch:using">4</A>, will probably be more useful.
+
+<P>
+<B>Developers:</B>
+If you want to change the source code, please read
+Chapter&nbsp;<A HREF="node7.html#ch:devnotes">6</A>.  Chapter&nbsp;<A HREF="node8.html#ch:future">7</A> describes
+all the things I'd like to do to improve the package, but haven't
+gotten to yet.
+
+<P>
+
+<H1><A NAME="SECTION00220000000000000000">
+About the Package</A>
+</H1>
+
+<P>
+The single-baroclinic mode
+Neelin-Zeng Quasi-Equilibrium Tropical Circulation Model
+<A NAME="tex2html3"
+  HREF="http://www.atmos.ucla.edu/~csi">(QTCM1)</A>
+is a primitive equation-based intermediate-level atmospheric model
+that focuses on simulating the tropical atmosphere.  Being more
+complicated than a simple model, the model has full non-linearity
+with a basic representation of baroclinic instability,
+includes a radiative-convective feedback package, and includes a
+simple land soil moisture routine (but does not include topography).
+A brief, but more detailed, description of QTCM1 is given in
+Section&nbsp;<A HREF="#sec:brief_qtcm">1.6</A>.
+
+<P>
+<A NAME="tex2html4"
+  HREF="http://www.python.org">Python</A>
+is an interpreted, object-oriented, multi-platform,
+open-source language that is used in a variety of software applications,
+ranging from game development to bioinformatics.
+In climate studies, Python has been used as the core language for
+data analysis
+(e.g., <A NAME="tex2html5"
+  HREF="http://cdat.sf.net">Climate Data Analysis Tools</A>),
+visualization
+(e.g., <A NAME="tex2html6"
+  HREF="http://matplotlib.sf.net">Matplotlib</A>),
+and 
+modeling
+(e.g., <A NAME="tex2html7"
+  HREF="http://code.google.com/p/pyccsm/">PyCCSM</A>).
+
+<P>
+In comparison to traditional compiled languages like Fortran,
+Python's lack of a separate compile step greatly simplifies the
+debugging and testing phases of development, because code snippets
+can be testing as code is written.
+Python's extensive suite of higher-level tools (e.g., statistics,
+visualization, string and file manipulation) accessible at runtime 
+enables modeling and analysis to occur concurrently.  
+
+<P>
+The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package is an implementation of the Neelin-Zeng
+QTCM1 in a Python object-oriented environment.  The conversion
+package
+<A NAME="tex2html8"
+  HREF="http://cens.ioc.ee/projects/f2py2e/"><FONT COLOR="#0000ff"><TT>f2py</TT></FONT></A>
+is
+used to wrap the QTCM1 Fortran model routines and manage model
+execution using Python datatypes and utilities.  The result is a
+modeling package where order and choice of subroutine execution can
+be altered at runtime.  Model analysis and visualization can also
+be integrated with model execution at runtime.
+
+<P>
+
+<H1><A NAME="SECTION00230000000000000000">
+Conventions In This Manual</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00231000000000000000">
+Audience</A>
+</H2>
+
+<P>
+In this manual I assume you have a rudimentary knowledge of Python.
+Thus, I do not describe basic Python data types (e.g., dictionaries,
+lists), object framework and syntax (e.g., classes, methods,
+attributes, instantiation), module and package importing.  If you
+need to brush up (or learn) Python, I'd recommend the following
+resources:
+
+<P>
+
+<UL>
+<LI><A NAME="tex2html13"
+  HREF="http://docs.python.org/tut/">Python Tutorial:</A>
+This tutorial was written by Guido van Rossum, Python's original
+	author.
+
+<P>
+</LI>
+<LI><A NAME="tex2html14"
+  HREF="http://www.hetland.org/python/instant-hacking.php">Instant Hacking:</A>
+Learn how to program with Python.
+
+<P>
+</LI>
+<LI><A NAME="tex2html15"
+  HREF="http://diveintopython.org/index.html">Dive Into Python:</A>
+Reasonably complete and cohesive. The entire book is available for 
+	free online.
+
+<P>
+</LI>
+<LI><A NAME="tex2html16"
+  HREF="http://www.pentangle.net/python/handbook/">Handbook of the Physics Computing Course:</A>
+Written for a science audience.  Recommended.
+
+<P>
+</LI>
+<LI><A NAME="tex2html10"
+  HREF="http://www.johnny-lin.com/cdat_tips/">CDAT/Python Tips for Earth Scientists:</A>
+	This web site is a FAQ of sorts for people using Python and
+	the Climate Data Analysis Tools (CDAT) in the earth sciences,
+	and thus focuses on using Python to do science rather than
+	the computer science aspects of the language.
+
+<P>
+</LI>
+</UL>
+
+<P>
+The purpose of this package is to make the QTCM1 model easier to
+use.  In order to interpret the results, however, you still need
+to have a robust sense of what climate models can and cannot tell
+you.  A starting point for the QTCM1 model is the brief description
+of the model in Section&nbsp;<A HREF="#sec:brief_qtcm">1.6</A>.  After that, I would
+read the original papers describing the model formulation and results
+[<A
+ HREF="node9.html#Neelin_Zeng:2000">3</A>,<A
+ HREF="node9.html#Zeng_etal:2000">5</A>], and 
+<A NAME="tex2html12"
+  HREF="http://scholar.google.com/scholar?hl=en&amp;lr=&amp;cites=14217886709842286738">papers citing the model formulation work</A>.
+Being an intermediate-level model using the quasi-equilibrium assumption,
+QTCM1 (and thus <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>) has distinct strengths and limitations; 
+please be aware of them.
+
+<P>
+
+<H2><A NAME="SECTION00232000000000000000">
+Typographic Conventions</A>
+</H2>
+
+<P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0><FONT COLOR="#0000ff"><TT>commands</TT></FONT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0>to be typed at the command-line
+	are rendered in a 
+	blue, serif, fixed-width typewriter font
+	(e.g., <FONT COLOR="#0000ff"><TT>make _qtcm_full_365</TT></FONT>).</TD>
+</TR>
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=0><I>dummy arguments</I></TH>
+<TD ALIGN="LEFT">&nbsp;</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0>coupled with code or screen display is rendered in a 
+	serif, proportional, italicized font
+	(e.g., <FONT COLOR="#009900"><TT>Error-Value too long in</TT></FONT> <I>variable</I>).</TD>
+</TR>
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=0><I><I>file and directory names</I></I></TH>
+<TD ALIGN="LEFT">&nbsp;</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0>are rendered in a 
+	sans-serif, italicized font
+	(e.g., <I><I>setbypy.F90</I></I>).</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0><FONT COLOR="#009900"><TT>screen display</TT></FONT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0>is rendered in a 
+	green, serif, fixed-width typewriter font.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0><FONT COLOR="#0000ff"><TT>module, method, and subroutine names</TT></FONT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0>are rendered in a 
+	blue, serif, fixed-width typewriter font.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0><FONT COLOR="#0000ff"><TT>variable and attribute names</TT></FONT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0>are rendered in a 
+	blue, serif, fixed-width typewriter font.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0><FONT COLOR="#0000ff"><TT>class names</TT></FONT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=0>are rendered in a 
+	blue, serif, fixed-width typewriter font.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+Blocks of code (usually commands, screen display, and module,
+variable, and class names) are displayed in a blue, serif, fixed-width
+typewriter font.
+
+<P>
+
+<H2><A NAME="SECTION00233000000000000000">
+Terminology</A>
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>attribute and method references:</STRONG></DT>
+<DD>If there is any possibility of confusion, I will give the
+	class that an attribute or method comes from when that
+	attribute or method is referenced.  If no class is mentioned
+	by name or context,
+	assume that the attribute/method comes from the
+	<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> class.
+
+<P>
+</DD>
+<DT><STRONG>``compiled QTCM1 model'':</STRONG></DT>
+<DD>This usually is used to denote when I'm talking about
+	compiled Fortran QTCM1 routines and variables therein,
+	as an extension module to the Python <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package..
+	Thus, ``compiled QTCM1 model <FONT COLOR="#0000ff"><TT>u1</TT></FONT>'' is the value
+	of variable <FONT COLOR="#0000ff"><TT>u1</TT></FONT> in the Fortran model, not the
+	value at the Python-level.  Sometimes I refer to the
+	compiled QTCM1 model as just ``QTCM1'' or as
+	``compiled QTCM1 Fortran model''.
+
+<P>
+</DD>
+<DT><STRONG>``pure-Fortran QTCM1'':</STRONG></DT>
+<DD>This refers to the Neelin-Zeng QTCM1 model in it's
+	original Fortran form, not as an extension module to
+	the Python <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package.
+
+<P>
+</DD>
+<DT><STRONG>``Python-level'':</STRONG></DT>
+<DD>This usually denotes the value of a variable as an
+	attribute of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.  This variable
+	is stored at the Python interpreter level.
+
+<P>
+</DD>
+<DT><STRONG><FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>:</STRONG></DT>
+<DD>This refers to the Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> class
+	(note the capitalized first letter).
+
+<P>
+</DD>
+<DT><STRONG><FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>:</STRONG></DT>
+<DD>This refers to the Python <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package.
+
+<P>
+</DD>
+<DT><STRONG>QTCM1 vs. QTCM:</STRONG></DT>
+<DD>Although the QTCM1 is currently the only version of a
+	quasi-equilibrium tropical circulation model (QTCM), in
+	principle one can construct a QTCM with any number of
+	baroclinic modes.  In anticipation of this, the names of
+	the Python package and class do not end in a numeral.  In
+	this manual and the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> docstrings, QTCM and QTCM1
+	are used interchangably.
+	Usually either of these phrases mean the quasi-equilibrium
+	tropical circulation model in a generic sense, regardless
+	of its form of implementation.
+</DD>
+</DL>
+
+<P>
+
+<H1><A NAME="SECTION00240000000000000000"></A>  <A NAME="sec:ver"></A>
+<BR>
+Current Version Information and Acknowledgments
+</H1>
+
+<P>
+
+<P>
+This manual describes version 0.1.2 (dated September 12, 2008), of package <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>.
+Johnny Lin
+is the primary author of the package.
+The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package is built upon the pure-Fortran QTCM1 model,
+version 2.3 (August 2002), with a few minor changes.
+Those changes are described in detail in
+Section&nbsp;<A HREF="node7.html#sec:f90changes">6.2</A>.
+
+<P>
+The homepage for the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package is
+<A NAME="tex2html22"
+  HREF="http://www.johnny-lin.com/py_pkgs/qtcm">http://www.johnny-lin.com/py_pkgs/qtcm</A>.
+All Python code in this package, 
+and the Fortran files <I><I>setbypy.F90</I></I> and <I><I>wrapcall.F90</I></I>,
+are &#169; 2003-2008 by 
+<A NAME="tex2html23"
+  HREF="http://www.johnny-lin.com">Johnny Lin</A>
+and constitutes a
+library that is covered under the GNU Lesser General Public License
+(LGPL):
+
+<P>
+<BLOCKQUOTE>
+This library is free software; you can redistribute it
+	and/or modify it under the terms of the 
+	<A NAME="tex2html17"
+  HREF="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General Public License</A>
+as published by
+	the Free Software Foundation; either version 2.1 of the
+	License, or (at your option) any later version.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>This library is distributed in the hope that it will be
+	useful, but WITHOUT ANY WARRANTY; without even the implied
+	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+	PURPOSE. See the GNU Lesser General Public License for more
+	details.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>You should have received a copy of the GNU Lesser General
+	Public License along with this library; if not, write to
+	the Free Software Foundation, Inc., 59 Temple Place, Suite
+	330, Boston, MA 02111-1307 USA.
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>You can contact Johnny Lin at his email address 
+	or at North Park University, Physics Department,
+	3225 W. Foster Ave., Chicago, IL 60625, USA.  
+
+</BLOCKQUOTE>
+
+<P>
+All other Fortran code in this package, as well as the makefiles,
+are covered by licenses (if any) chosen by their respective owners.
+
+<P>
+This manual, in all forms (e.g., HTML, PDF, L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X),
+is part of the documentation of the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package 
+and is &#169; 2007-2008 by Johnny Lin.
+Permission is granted to copy, distribute and/or modify 
+this document under the terms of the 
+GNU Free Documentation License, Version 1.2 
+or any later version published by the Free Software Foundation; 
+with no Invariant Sections, no Front-Cover Texts, 
+and no Back-Cover Texts. 
+A copy of the license can be found 
+<A NAME="tex2html24"
+  HREF="http://www.gnu.org/licenses/fdl.html">here</A>.
+
+<P>
+Transparent copies of this document are located online in
+<A NAME="tex2html19"
+  HREF="http://www.johnny-lin.com/py_pkgs/qtcm/doc/manual.pdf">PDF</A>
+and
+<A NAME="tex2html21"
+  HREF="http://www.johnny-lin.com/py_pkgs/qtcm/doc/">HTML</A>
+formats.
+The L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X source files are distributed with the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>distribution.
+While the HTML version is nearly identical to the PDF
+and L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X versions, not every feature in the manual was successfully
+converted.  This is particularly true with figures, which are
+unnumbered in the HTML version and may be formatted differently
+than the authoritative PDF version.
+Thus, please consider the L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X version as the authoritative
+version.
+
+<P>
+<BR>
+
+<P>
+<B>Acknowledgements:</B>
+Thanks to David Neelin and Ning Zeng and the Climate Systems
+Interactions Group at UCLA for their encouragement and help.
+On the Python side,
+thanks to Alexis Zubrow, Christian Dieterich, Rodrigo Caballero,
+Michael Tobis, and Ray Pierrehumbert for steering me straight.
+Early versions of some of this work was carried out 
+at the University of Chicago Climate Systems Center, 
+funded by the National Science Foundation (NSF) 
+Information Technology Research Program under grant ATM-0121028. 
+Any opinions, findings and conclusions or recommendations 
+expressed in this material are those of the author and 
+do not necessarily reflect the views of the NSF.
+
+<P>
+Intel<IMG
+ WIDTH="22" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="\textregistered"> and
+   Xeon<IMG
+ WIDTH="22" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="\textregistered"> are registered trademarks of Intel Corporation.
+Matlab<IMG
+ WIDTH="22" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="\textregistered"> is a registered trademark of The MathWorks.
+UNIX<IMG
+ WIDTH="22" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="\textregistered"> is a registered trademark of The Open Group.
+
+<P>
+
+<H1><A NAME="SECTION00250000000000000000">
+Summary of Release History</A>
+</H1>
+
+<P>
+
+<UL>
+<LI>2008 Sep 12:  Version 0.1.2 released.  Summary of changes:
+	
+<UL>
+<LI>Create <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> method <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT>.
+		This method is effectively an alias of method 
+		<FONT COLOR="#0000ff"><TT>get_qtcm_item</TT></FONT>.
+</LI>
+<LI>Create <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> method <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>.
+		This method is effectively an alias of method 
+		<FONT COLOR="#0000ff"><TT>set_qtcm_item</TT></FONT>.
+</LI>
+<LI>Update User's Guide to phase out references to
+		the <FONT COLOR="#0000ff"><TT>get_qtcm_item</TT></FONT>		and <FONT COLOR="#0000ff"><TT>set_qtcm_item</TT></FONT> methods.  
+		Adding the ``1'' to the method names makes the purpose
+		of the methods clearer.
+</LI>
+<LI>Add unit tests to cover methods <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> and
+		<FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>.
+	
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>2008 Jul 30:  Updates to the User's Guide (just the online versions,
+        not the copies released with the tarball).
+
+<P>
+</LI>
+<LI>2008 Jul 15:  First publicly available distribution 
+	released (v0.1.1).
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION00260000000000000000"></A>   <A NAME="sec:brief_qtcm"></A>
+<BR>
+A Brief Description of The QTCM1
+</H1>
+
+<P>
+This description is copied from Ch. 3 of Lin [<A
+ HREF="node9.html#Lin:2000">2</A>], 
+with minor revisions.
+Model formulation is fully described in
+Neelin &amp; Zeng [<A
+ HREF="node9.html#Neelin_Zeng:2000">3</A>] and model
+results are described in Zeng et&nbsp;al. [<A
+ HREF="node9.html#Zeng_etal:2000">5</A>].
+Neelin &amp; Zeng [<A
+ HREF="node9.html#Neelin_Zeng:2000">3</A>] is based upon v2.0 of QTCM1
+and Zeng et&nbsp;al. [<A
+ HREF="node9.html#Zeng_etal:2000">5</A>] is based on QTCM1 v2.1.
+The 
+<A NAME="tex2html26"
+  HREF="http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf">QTCM1 manual</A>
+[<A
+ HREF="node9.html#Neelin_etal:2002">4</A>]
+describes the details of model implementation.
+
+<P>
+QTCM1 differs from most full-scale GCMs primarily in how the vertical
+temperature, humidity, and velocity structure of the atmosphere is
+represented.  First, instead of representing the vertical structure
+by finite-differenced levels, the model uses a Galerkin expansion
+in the vertical.  The vertical basis functions are chosen according
+to analytical solutions under convective quasi-equilibrium conditions,
+so only a few need be retained.
+Temperature and humidity are each described by separate
+vertical basis functions (<IMG
+ WIDTH="22" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$a_1$"> and <IMG
+ WIDTH="20" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$b_1$">, respectively).
+Low-level variations in the humidity basis
+are larger than in the temperature basis.
+For velocity, QTCM1 uses a single baroclinic basis function (<IMG
+ WIDTH="23" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$V_1$">)
+defined consistently with the temperature basis function,
+as well as a barotropic velocity mode (<IMG
+ WIDTH="23" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.png"
+ ALT="$V_0$">).
+The vertical profiles of <IMG
+ WIDTH="22" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$a_1$">, <IMG
+ WIDTH="20" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$b_1$">, and <IMG
+ WIDTH="23" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img3.png"
+ ALT="$V_1$">
+are given in Figure&nbsp;<A HREF="#fig:qtcm.basis">1.1</A>.
+Currently, QTCM1 does not include a separate
+vertical degree of freedom describing the PBL.
+The horizontal grid spacing of the model is 
+<IMG
+ WIDTH="54" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$5.625^{\circ}$"> longitude by <IMG
+ WIDTH="45" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$3.75^{\circ}$"> latitude.
+
+<P>
+<A NAME="fig:qtcm.basis"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="../latex/figs/a1b1.png"
+ ALT="a1b1.png">
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="../latex/figs/V1.png"
+ ALT="V1.png">
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="578" HEIGHT="53" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="% latex2html id marker 16170
+$\textstyle \parbox{70ex}{\footnotesize{Figure \re...
+... $b_1$\ (dashed) and
+(b) baroclinic component of
+horizontal velocity $V_1$.}}$">
+</DIV>
+These modes are chosen to accurately capture deep convective regions.
+Outside deep convective regions the mode
+is simply a highly truncated
+Galerkin representation.  The system is much more tightly constrained than
+a full-scale GCM, yet hopefully retains the essential dynamics and nonlinear
+feedbacks.  The result is that QTCM1 is easier to diagnose than a GCM,
+and is computationally fast (about 8 minutes per year on a Sun Ultra 2
+workstation).  Zeng et al. [<A
+ HREF="node9.html#Zeng_etal:2000">5</A>] show results indicating
+this intermediate-level model does a reasonable job simulating
+tropical climatology and ENSO variability.  
+
+<P>
+Below is a summary of the main model equations [<A
+ HREF="node9.html#Neelin_Zeng:2000">3</A>]:
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+\partial_t \mathbf{v}_1 
+      + \ensuremath{\mathcal{D}}_{V1} (\mathbf{v}_0 , \mathbf{v}_1)
+      + f \mathbf{k} \times \mathbf{v}_1
+      =
+   - \kappa \nabla T_1 
+      - \epsilon_1 \mathbf{v}_1 
+      - \epsilon_{01} \mathbf{v}_0
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:barocl_wind"></A><IMG
+ WIDTH="444" HEIGHT="33" BORDER="0"
+ SRC="img10.png"
+ ALT="\begin{displaymath}
+\partial_t \mathbf{v}_1
++ \ensuremath{\mathcal{D}}_{V1} (...
+...1
+- \epsilon_1 \mathbf{v}_1
+- \epsilon_{01} \mathbf{v}_0
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.1)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+\partial_t \zeta_0 
+      + \mathrm{curl}_z (\ensuremath{\mathcal{D}}_{V0} (\mathbf{v}_0 , \mathbf{v}_1))
+      + \beta v_0
+      =
+   - \mathrm{curl}_z (\epsilon_0 \mathbf{v}_0)
+      - \mathrm{curl}_z (\epsilon_{10} \mathbf{v}_1)
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:barotr_wind"></A><IMG
+ WIDTH="495" HEIGHT="33" BORDER="0"
+ SRC="img11.png"
+ ALT="\begin{displaymath}
+\partial_t \zeta_0
++ \mathrm{curl}_z (\ensuremath{\mathca...
+...mathbf{v}_0)
+- \mathrm{curl}_z (\epsilon_{10} \mathbf{v}_1)
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.2)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+\ensuremath{\widehat{a_1}}(\partial_t + \ensuremath{\mathcal{D}}_{T1}) T_1 
+      + M_{S1} \nabla \cdot {\bf v}_1 
+      =
+   \langle Q_c \rangle
+      + (g/p_T) (-R^\uparrow_t -R^\downarrow_s + R^\uparrow_s + S_t - S_s + H)
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:temperature"></A><IMG
+ WIDTH="553" HEIGHT="33" BORDER="0"
+ SRC="img12.png"
+ ALT="\begin{displaymath}
+\ensuremath{\widehat{a_1}}(\partial_t + \ensuremath{\mathca...
+...R^\uparrow_t -R^\downarrow_s + R^\uparrow_s + S_t - S_s + H)
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.3)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+\ensuremath{\widehat{b_1}}(\partial_t + \ensuremath{\mathcal{D}}_{q1}) q_1 
+      - M_{q1} \nabla \cdot {\bf v}_1 
+      =
+   \langle Q_q \rangle
+      + (g/p_T) E
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:moisture"></A><IMG
+ WIDTH="370" HEIGHT="34" BORDER="0"
+ SRC="img13.png"
+ ALT="\begin{displaymath}
+\ensuremath{\widehat{b_1}}(\partial_t + \ensuremath{\mathca...
+...\nabla \cdot {\bf v}_1
+=
+\langle Q_q \rangle
++ (g/p_T) E
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.4)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where (<A HREF="#eqn:barocl_wind">1.1</A>) describes the baroclinic wind component,
+      (<A HREF="#eqn:barotr_wind">1.2</A>) describes the barotropic wind component,
+      (<A HREF="#eqn:temperature">1.3</A>) is the temperature equation, and
+      (<A HREF="#eqn:moisture">1.4</A>) is the moisture equation.
+
+<P>
+In the simplest formulation, the vertically integrated
+convective heating and moisture sink
+are assumed to be equal and opposite, so:
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+-\langle Q_q \rangle = \langle Q_c \rangle 
+                              = \epsilon^\ast_c (q_1 - T_1)
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="223" HEIGHT="34" BORDER="0"
+ SRC="img14.png"
+ ALT="\begin{displaymath}
+-\langle Q_q \rangle = \langle Q_c \rangle
+= \epsilon^\ast_c (q_1 - T_1)
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.5)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+
+<P>
+For its convective parameterization for <IMG
+ WIDTH="26" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.png"
+ ALT="$Q_c$">, this model uses the
+Betts-Miller [<A
+ HREF="node9.html#Betts_Miller:1986">1</A>] moist convective
+adjustment scheme, a scheme that is also used in some GCMs.
+In the convective parameterization, the coefficient
+<!-- MATH
+ $\epsilon^\ast_c$
+ -->
+<IMG
+ WIDTH="19" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img16.png"
+ ALT="$\epsilon^\ast_c$"> is defined as:
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+\epsilon^\ast_c 
+      \equiv 
+   \ensuremath{\widehat{a_1}}\ensuremath{\widehat{b_1}}(\ensuremath{\widehat{a_1}}+ \ensuremath{\widehat{b_1}})^{-1} \tau_c^{-1} 
+      \mathcal{H}( \mathit{C}_{\mathrm{1}} )
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="240" HEIGHT="33" BORDER="0"
+ SRC="img17.png"
+ ALT="\begin{displaymath}
+\epsilon^\ast_c
+\equiv
+\ensuremath{\widehat{a_1}}\ensur...
+...1}})^{-1} \tau_c^{-1}
+\mathcal{H}( \mathit{C}_{\mathrm{1}} )
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.6)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+where <!-- MATH
+ $\mathcal{H}( \mathit{C}_{\mathrm{1}} )$
+ -->
+<IMG
+ WIDTH="56" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="$\mathcal{H}( \mathit{C}_{\mathrm{1}} )$"> is zero for
+<IMG
+ WIDTH="60" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$C_{1} \leq 0$">, and one for <IMG
+ WIDTH="60" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img20.png"
+ ALT="$C_{1} &gt; 0$">, and <IMG
+ WIDTH="25" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img21.png"
+ ALT="$C_{1}$">
+is a measure of the convective available potential energy (CAPE),
+projected onto the model's temperature and moisture basis functions.
+
+<P>
+Sensible heat (<IMG
+ WIDTH="21" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$H$">) and evaporation (<IMG
+ WIDTH="19" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.png"
+ ALT="$E$">) are given as
+bulk-aerodynamic formulations:
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+H
+      =
+   \rho_a C_D \mathrm{V}_s (T_s - (T_{rs} + a_{1s} T_1))
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="264" HEIGHT="33" BORDER="0"
+ SRC="img24.png"
+ ALT="\begin{displaymath}
+H
+=
+\rho_a C_D \mathrm{V}_s (T_s - (T_{rs} + a_{1s} T_1))
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.7)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+<BR>
+<DIV ALIGN="RIGHT">
+
+<!-- MATH
+ \begin{equation}
+E
+      =
+   \rho_a C_D \mathrm{V}_s (q_\mathit{sat} (T_s) 
+      - (q_{rs} + b_{1s} q_1))
+\end{equation}
+ -->
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="296" HEIGHT="33" BORDER="0"
+ SRC="img25.png"
+ ALT="\begin{displaymath}
+E
+=
+\rho_a C_D \mathrm{V}_s (q_\mathit{sat} (T_s)
+- (q_{rs} + b_{1s} q_1))
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(1.8)</TD></TR>
+</TABLE>
+<BR CLEAR="ALL"></DIV><P></P>
+
+<P>
+Longwave radiation components are denoted by <IMG
+ WIDTH="19" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img26.png"
+ ALT="$R$">, and net shortwave
+radiation is denoted by <IMG
+ WIDTH="17" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$S$">.
+The terms <!-- MATH
+ $\ensuremath{\mathcal{D}}_{V1}$
+ -->
+<IMG
+ WIDTH="38" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$\ensuremath{\mathcal{D}}_{V1}$"> and <!-- MATH
+ $\ensuremath{\mathcal{D}}_{V0}$
+ -->
+<IMG
+ WIDTH="38" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img29.png"
+ ALT="$\ensuremath{\mathcal{D}}_{V0}$"> are the advection-diffusion operators
+for the momentum equations (projected onto <IMG
+ WIDTH="23" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.png"
+ ALT="$V_0$"> and <IMG
+ WIDTH="47" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img30.png"
+ ALT="$V_1 (p)$">,
+respectively).
+The terms <!-- MATH
+ $\ensuremath{\mathcal{D}}_{T1}$
+ -->
+<IMG
+ WIDTH="36" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img31.png"
+ ALT="$\ensuremath{\mathcal{D}}_{T1}$"> and <!-- MATH
+ $\ensuremath{\mathcal{D}}_{q1}$
+ -->
+<IMG
+ WIDTH="33" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img32.png"
+ ALT="$\ensuremath{\mathcal{D}}_{q1}$"> are the
+advection-diffusion operators for the temperature and moisture
+equations, respectively, using a vertical average projection.
+The <!-- MATH
+ $\langle X \rangle$
+ -->
+<IMG
+ WIDTH="36" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img33.png"
+ ALT="$\langle X \rangle$"> and <IMG
+ WIDTH="21" HEIGHT="25" ALIGN="BOTTOM" BORDER="0"
+ SRC="img34.png"
+ ALT="$\widehat{X}$"> operators are
+equivalent and denote vertically integration over the troposphere.
+Please see Neelin &amp; Zeng [<A
+ HREF="node9.html#Neelin_Zeng:2000">3</A>] and 
+Zeng et al. [<A
+ HREF="node9.html#Zeng_etal:2000">5</A>]
+for a more complete description of equations and coefficients.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html378"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html374"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html368"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html376"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html379"
+  HREF="node3.html">Installation and Configuration</A>
+<B> Up:</B> <A NAME="tex2html375"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html369"
+  HREF="node1.html">Contents</A>
+ &nbsp; <B>  <A NAME="tex2html377"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

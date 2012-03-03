@@ -1,0 +1,120 @@
+% ==========================================================================
+% Installation Summary
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+
+This section provides a summary of the steps needed to install
+\mods{qtcm}, and a description of the naming conventions used in
+this chapter.  If you have had a decent amount of experience with
+Python and installing software on a Unix system, this section will
+probably be all you need to read.  The installation steps are:
+
+\begin{enumerate}
+\item Install a Fortran compiler (see Section~\ref{sec:fort.compilers}
+	for a list of compilers known to work).
+	This compiler should be in a directory
+	listed in your system path (e.g., \fn{/usr/bin}, etc.).
+
+\item Install all required packages
+	(see Section~\ref{sec:py.etc.pkgs} for details):
+	Python,
+	\mods{matplotlib} (plus the \mods{basemap} toolkit),
+	NumPy (which includes \mods{f2py}),
+	Scientific Python,
+	\LaTeX,
+	and
+	netCDF.
+
+	Python packages are required to be installed on your
+	system in a directory listed in your \vars{sys.path},
+	and the other packages/libraries are required to be in 
+	standard directories listed in your system path 
+	(e.g., \fn{/usr/bin}, \fn{/sw/include}, etc.).
+
+	Make sure the executable for Python can be called at the
+	Unix command line by typing both \cmd{python}.
+	You might need to define a Unix alias
+	that maps \cmd{python2.4} (or whichever version of Python
+	you are using) to \cmd{python}.
+
+\item \latexhtml{Download\footnote{http://www.johnny-lin.com/py\_pkgs/qtcm/}}%
+        {\htmladdnormallink{Download}{http://www.johnny-lin.com/py_pkgs/qtcm/}}
+	the \mods{qtcm} tarball and extract the distribution
+	into a temporary directory for building purposes.
+	\fn{\input{pkg_distro_dirname}}is the name of
+	the \mods{qtcm} distribution directory;
+	the number following the hyphen is the
+	version number of the distribution.  \label{list:download.qtcm.sum}
+
+	In this manual, the path to \fn{\input{pkg_distro_dirname}}will
+	be called the ``\mods{qtcm} build path'' and be given as
+	\fn{/buildpath}.  When you see \fn{/buildpath}, please substitute
+	the actual temporary directory you created for building purposes.
+
+\item The \mods{qtcm} distribution directory 
+	\fn{\input{pkg_distro_dirname}}contains the following 
+	principal sub-directories:
+	\fn{doc}, \fn{lib}, \fn{src}, \fn{test}.
+	Documentation is in \fn{doc},
+	all the package modules are in \fn{lib},
+	building of extension modules will take place in \fn{src},
+	and testing of the package is done in \fn{test}.
+
+\item Compile \mods{qtcm} extension modules in \fn{src}:
+	Go to \fn{src}, copy the makefile from
+	\fn{src/Makefiles} corresponding to your
+	system into \fn{src}, rename to \fn{makefile},
+	make changes to the makefile as needed,
+	and execute:
+	\begin{codeblock}
+	\codeblockfont{%
+	make clean \\
+	make \_qtcm\_full\_365.so \\
+	make \_qtcm\_parts\_365.so}
+	\end{codeblock}
+	If you executed the make commands in \fn{src,},
+	the extension modules will be automatically placed in
+	\fn{lib} in the \fn{\input{pkg_distro_dirname}}directory.
+	See Section~\ref{sec:create.so} for details.
+	\label{list:compile.so.sum}
+
+\item Copy the entire contents of \fn{lib} in
+	\fn{\input{pkg_distro_dirname}}(not \fn{lib} itself) 
+	to a directory named
+	\fn{qtcm} that is on your \mods{sys.path}.  For instance,
+	for Mac OS X using Fink,
+	many Python packages are located in a directory
+	named \fn{/sw/\-lib/\-python2.4/\-site-packages}, or something
+	similar, and this directory is on the system \mods{sys.path}.  
+	If this is the case for your system, copy the
+	contents of \fn{lib} into
+	\fn{/sw/lib/\-python2.4/\-site-packages/\-qtcm}.
+	(For Unix systems, the equivalent directory is usually
+	\fn{/usr/\-local/\-lib/\-python2.4/\-site-packages}.)
+
+\item Test the \mods{qtcm} distribution in \fn{test}:
+	This step is optional and can take a while.
+	Testing requires you to first generate a suite of benchmarks
+	using the pure-Fortran QTCM1 model, then running the tests of
+	\mods{qtcm} by typing:
+	\begin{codeblock}
+	\codeblockfont{%
+python test\_all.py}
+	\end{codeblock}
+	at the Unix command line while in \fn{test}.
+	See Section~\ref{sec:test.qtcm} for details.
+
+\end{enumerate}
+
+At some point, I will automate the installation using Python's
+\htmladdnormallinkfoot{\mods{distutils}}{http://docs.python.org/dist/dist.html}
+utilities.
+
+
+
+% ===== end of file =====

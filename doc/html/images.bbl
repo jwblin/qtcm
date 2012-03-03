@@ -1,0 +1,35 @@
+\input{bibnames.sty}
+\begin{thebibliography}{1}
+
+\bibitem{Betts/Miller:1986}
+A.~K. Betts and M.~J. Miller.
+\newblock A new convective adjustment scheme. {P}art {I}{I}: Single column
+  tests using {G}{A}{T}{E} wave, {B}{O}{M}{E}{X}, {A}{T}{E}{X} and {A}rctic
+  air-mass data sets.
+\newblock {\em Quart.\ J.\ Roy.\ Meteor.\ Soc.}, 112:693--709, 1986.
+
+\bibitem{Lin:2000}
+Johnny Wei-Bing Lin.
+\newblock {\em The Effects of Evaporation-Wind Feedback, Mid-Latitude Storms,
+  and Stochastic Convective Processes on Tropical Intraseasonal Variability}.
+\newblock Ph.D.\ Dissertation, University of California, Los Angeles, 2000.
+
+\bibitem{Neelin/Zeng:2000}
+J.~David Neelin and Ning Zeng.
+\newblock A quasi-equilibrium tropical circulation model---formulation.
+\newblock {\em J.\ Atmos.\ Sci.}, 57(11):1741--1766, June~1, 2000.
+
+\bibitem{Neelin/etal:2002}
+J.~David Neelin, Ning Zeng, Chia Chou, Johnny Lin, Hui Su, Matthias Munnich,
+  Katrina Hales, and Joyce Meyerson.
+\newblock {\em The Neelin-Zeng Quasi-Equilibrium Tropical Circulation Model
+  (QTCM1), Version 2.3}.
+\newblock UCLA Department of Atmospheric Sciences, Los Angeles, 2002.
+
+\bibitem{Zeng/etal:2000}
+Ning Zeng, J.~David Neelin, and Chia Chou.
+\newblock A quasi-equilibrium tropical circulation model---implementation and
+  simulation.
+\newblock {\em J.\ Atmos.\ Sci.}, 57:1767--1796, 2000.
+
+\end{thebibliography}

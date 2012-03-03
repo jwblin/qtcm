@@ -1,0 +1,23 @@
+HOW TO COMPILE AND WRAP
+
+* full:
+
+make _qtcm_atm_oc_365.so
+
+The new .so file will be moved to ../lib.
+
+
+* atm_oc:
+
+make _qtcm_atm_oc_coupling_365.so
+
+The new .so file will be moved to ../lib.
+
+
+* Past versions of the make file:
+
+make DEFS="-DNETCDFOUT" libqtcm.a
+f2py --fcompiler=g95 -c -m main main.F90 libqtcm.a /Users/jlin/extra/netcdf/lib/libnetcdf.a
+
+
+

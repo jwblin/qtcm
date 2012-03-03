@@ -1,0 +1,1113 @@
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=latex 2008.7.29)  12 SEP 2008 14:24
+entering extended mode
+**./images.tex
+(./images.tex
+LaTeX2e <2003/12/01>
+Babel <v3.8d> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
+stonian, finnish, greek, icelandic, irish, italian, latin, magyar, norsk, polis
+h, portuges, romanian, russian, serbian, slovak, slovene, spanish, swedish, tur
+kish, ukrainian, nohyphenation, loaded.
+
+(/sw/share/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2004/02/16 v1.4f Standard LaTeX document class
+(/sw/share/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2004/02/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/sw/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+) (/sw/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+(/sw/share/texmf-dist/tex/latex/graphics/color.cfg
+File: color.cfg 2005/02/03 v1.3 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: dvips.def on input line 125.
+(/sw/share/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+) (/sw/share/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)) (/sw/share/texmf-local/tex/latex/html/html.sty (/sw/share/texmf-dist/tex/lat
+ex/hyperref/hyperref.sty
+Package: hyperref 2003/11/30 v6.74m Hypertext links for LaTeX
+(/sw/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\@linkdim=\dimen103
+\Hy@linkcounter=\count88
+\Hy@pagecounter=\count89
+(/sw/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2003/11/30 v6.74m Hyperref: PDFDocEncoding definition (HO)
+) (/sw/share/texmf-dist/tex/latex/hyperref/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive and teTeX
+)
+Package hyperref Info: Hyper figures OFF on input line 1880.
+Package hyperref Info: Link nesting OFF on input line 1885.
+Package hyperref Info: Hyper index ON on input line 1888.
+Package hyperref Info: Plain pages ON on input line 1893.
+Package hyperref Info: Backreferencing OFF on input line 1900.
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 2004.
+(/sw/share/texmf-local/tex/latex/html/url.sty
+Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
+ names
+)
+LaTeX Info: Redefining \url on input line 2143.
+\Fld@menulength=\count90
+\Field@Width=\dimen104
+\Fld@charsize=\dimen105
+\Choice@toks=\toks15
+\Field@toks=\toks16
+Package hyperref Info: Hyper figures OFF on input line 2618.
+Package hyperref Info: Link nesting OFF on input line 2623.
+Package hyperref Info: Hyper index ON on input line 2626.
+Package hyperref Info: backreferencing OFF on input line 2633.
+Package hyperref Info: Link coloring OFF on input line 2638.
+\c@Item=\count91
+\c@Hfootnote=\count92
+)
+*hyperref using default driver hdvips*
+(/sw/share/texmf-dist/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2003/11/30 v6.74m Hyperref driver for dvips
+(/sw/share/texmf-dist/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2003/11/30 v6.74m Hyperref definitions for pdfmark specials
+\pdf@docset=\toks17
+\pdf@box=\box26
+\pdf@toks=\toks18
+\pdf@defaulttoks=\toks19
+\Fld@listcount=\count93
+\@outlinefile=\write3
+))
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@lpart=\count94
+\c@lchapter=\count95
+\c@lsection=\count96
+\c@lsubsection=\count97
+\c@lsubsubsection=\count98
+\c@lparagraph=\count99
+\c@lsubparagraph=\count100
+\c@lsubsubparagraph=\count101
+\ptrfile=\write4
+) (/sw/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(/sw/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+(/sw/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+) (/sw/share/texmf-dist/tex/latex/graphics/graphics.cfg
+File: graphics.cfg 2005/02/03 v1.3 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 80.
+)
+\Gin@req@height=\dimen106
+\Gin@req@width=\dimen107
+) (/sw/share/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2004/02/22 v1.99f Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+(/sw/share/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 311.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 312.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 313.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 314.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 315.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 316.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 317.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 318.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 319.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 320.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 321.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 322.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 323.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 324.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 326.
+) (/sw/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2002/07/08 v3.2 Page Geometry
+\Gm@cnth=\count102
+\Gm@cntv=\count103
+\c@Gm@tempcnt=\count104
+\Gm@bindingoffset=\dimen108
+\Gm@wd@mp=\dimen109
+\Gm@odd@mp=\dimen110
+\Gm@even@mp=\dimen111
+\Gm@dimlist=\toks20
+(/sw/share/texmf-dist/tex/latex/geometry/geometry.cfg)) (/Users/jlin/work/prog/
+python/qtcm/doc/latex/bibnames.sty) (/sw/share/texmf-dist/tex/latex/tools/longt
+able.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip43
+\LTright=\skip44
+\LTpre=\skip45
+\LTpost=\skip46
+\LTchunksize=\count105
+\LTcapwidth=\dimen112
+\LT@head=\box27
+\LT@firsthead=\box28
+\LT@foot=\box29
+\LT@lastfoot=\box30
+\LT@cols=\count106
+\LT@rows=\count107
+\c@LT@tables=\count108
+\c@LT@chunks=\count109
+\LT@p@ftn=\toks21
+) (/sw/share/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen113
+)
+Package color Info: Redefining color green on input line 22.
+\tabletitlewidth=\skip47
+\tablebodywidth=\skip48
+\infotitle=\skip49
+\infotext=\skip50
+\remainder=\skip51
+\enumlabel=\skip52
+(/sw/share/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2004/02/05 v1.0d Input encoding file
+(/sw/share/texmf-dist/tex/latex/base/latin1.def
+File: latin1.def 2004/02/05 v1.0d Input encoding file
+))
+\sizebox=\box31
+\lthtmlwrite=\write5
+(./images.aux)
+\openout1 = `images.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 209.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 209.
+
+(/sw/share/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 209.
+Package hyperref Info: Link coloring OFF on input line 209.
+(/sw/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2003/12/03 v2.21 Cross-referencing by name of section
+\c@section@level=\count110
+)
+LaTeX Info: Redefining \ref on input line 209.
+LaTeX Info: Redefining \pageref on input line 209.
+\openout3 = `images.out'.
+
+-------------------- Geometry parameters
+paper: letterpaper
+landscape: --
+twocolumn: --
+twoside: true
+asymmetric: --
+h-parts: 90.3375pt, 433.62001pt, 90.3375pt
+v-parts: 90.3375pt, 614.295pt, 90.3375pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: --
+includefoot: --
+includemp: --
+driver: 
+-------------------- Page layout dimensions and switches
+\paperwidth  614.295pt
+\paperheight 794.96999pt
+\textwidth  349.0pt
+\textheight 662.3625pt
+\oddsidemargin  18.0675pt
+\evensidemargin 18.0675pt
+\topmargin  0.0pt
+\headheight 0.0pt
+\headsep    0.0pt
+\footskip   0.0pt
+\marginparwidth 98.0pt
+\marginparsep   7.0pt
+\columnsep  10.0pt
+\skip\footins  10.8pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+\@twosidetrue \@mparswitchtrue 
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+(/Users/jlin/work/prog/python/qtcm/doc/latex/manual.aux
+
+LaTeX Warning: Label `sec:ver' multiply defined.
+
+
+LaTeX Warning: Label `sec:brief_qtcm' multiply defined.
+
+
+LaTeX Warning: Label `fig:qtcm.basis' multiply defined.
+
+
+LaTeX Warning: Label `eqn:barocl_wind' multiply defined.
+
+
+LaTeX Warning: Label `eqn:barotr_wind' multiply defined.
+
+
+LaTeX Warning: Label `eqn:temperature' multiply defined.
+
+
+LaTeX Warning: Label `eqn:moisture' multiply defined.
+
+
+LaTeX Warning: Label `ch:install' multiply defined.
+
+
+LaTeX Warning: Label `sec:install.sum' multiply defined.
+
+
+LaTeX Warning: Label `list:download.qtcm.sum' multiply defined.
+
+
+LaTeX Warning: Label `list:compile.so.sum' multiply defined.
+
+
+LaTeX Warning: Label `sec:fort.compilers' multiply defined.
+
+
+LaTeX Warning: Label `sec:py.etc.pkgs' multiply defined.
+
+
+LaTeX Warning: Label `sec:create.so' multiply defined.
+
+
+LaTeX Warning: Label `sec:test.qtcm' multiply defined.
+
+
+LaTeX Warning: Label `sec:install.macosx' multiply defined.
+
+
+LaTeX Warning: Label `sec:netcdf' multiply defined.
+
+
+LaTeX Warning: Label `sec:osx.makefile' multiply defined.
+
+
+LaTeX Warning: Label `sec:osx.install.summary' multiply defined.
+
+
+LaTeX Warning: Label `sec:install.ubuntu' multiply defined.
+
+
+LaTeX Warning: Label `sec:ubuntu.fort.install' multiply defined.
+
+
+LaTeX Warning: Label `sec:ubuntu.netcdf' multiply defined.
+
+
+LaTeX Warning: Label `sec:ubuntu.makefile' multiply defined.
+
+
+LaTeX Warning: Label `sec:sopic' multiply defined.
+
+
+LaTeX Warning: Label `sec:ubuntu.install.summary' multiply defined.
+
+
+LaTeX Warning: Label `ch:getting.started' multiply defined.
+
+
+LaTeX Warning: Label `fig:my.first.run' multiply defined.
+
+
+LaTeX Warning: Label `fig:manage.dir.example' multiply defined.
+
+
+LaTeX Warning: Label `sec:field.variables.intro' multiply defined.
+
+
+LaTeX Warning: Label `sec:continuation.intro' multiply defined.
+
+
+LaTeX Warning: Label `fig:continuation.example' multiply defined.
+
+
+LaTeX Warning: Label `sec:snapshot.intro' multiply defined.
+
+
+LaTeX Warning: Label `sec:runlist.intro' multiply defined.
+
+
+LaTeX Warning: Label `tab:qtcm.netcdf.ids' multiply defined.
+
+
+LaTeX Warning: Label `sec:output.intro' multiply defined.
+
+
+LaTeX Warning: Label `fig:netcdf.read' multiply defined.
+
+
+LaTeX Warning: Label `sec:viz.intro' multiply defined.
+
+
+LaTeX Warning: Label `ch:using' multiply defined.
+
+
+LaTeX Warning: Label `sec:model.instances' multiply defined.
+
+
+LaTeX Warning: Label `sec:compiledform' multiply defined.
+
+
+LaTeX Warning: Label `sec:init.compiledform.full' multiply defined.
+
+
+LaTeX Warning: Label `sec:init.compiledform.parts' multiply defined.
+
+
+LaTeX Warning: Label `sec:comm.py.fort.compiledform' multiply defined.
+
+
+LaTeX Warning: Label `sec:contination.run.sessions' multiply defined.
+
+
+LaTeX Warning: Label `sec:puref90.restart' multiply defined.
+
+
+LaTeX Warning: Label `sec:restart.options.list' multiply defined.
+
+
+LaTeX Warning: Label `list:continue.from.restart' multiply defined.
+
+
+LaTeX Warning: Label `list:continue.from.snapshot' multiply defined.
+
+
+LaTeX Warning: Label `list:continue.from.instance' multiply defined.
+
+
+LaTeX Warning: Label `sec:snapshots' multiply defined.
+
+
+LaTeX Warning: Label `sec:runlists' multiply defined.
+
+
+LaTeX Warning: Label `sec:field.variables' multiply defined.
+
+
+LaTeX Warning: Label `tab:stnd.runlists' multiply defined.
+
+
+LaTeX Warning: Label `sec:initial.variables' multiply defined.
+
+
+LaTeX Warning: Label `sec:field.var.shape' multiply defined.
+
+
+LaTeX Warning: Label `sec:model.output' multiply defined.
+
+
+LaTeX Warning: Label `fig:defn.of.inputs' multiply defined.
+
+
+LaTeX Warning: Label `sec:cookbook' multiply defined.
+
+
+LaTeX Warning: Label `fig:conditional.test.eg' multiply defined.
+
+
+LaTeX Warning: Label `fig:alt.param.inherit.eg' multiply defined.
+
+
+LaTeX Warning: Label `ch:trouble' multiply defined.
+
+
+LaTeX Warning: Label `ch:devnotes' multiply defined.
+
+
+LaTeX Warning: Label `sec:f90changes' multiply defined.
+
+
+LaTeX Warning: Label `sec:newf90' multiply defined.
+
+
+LaTeX Warning: Label `sec:setbypy' multiply defined.
+
+
+LaTeX Warning: Label `sec:wrapcall' multiply defined.
+
+
+LaTeX Warning: Label `sec:driverinit.diffs' multiply defined.
+
+
+LaTeX Warning: Label `sec:create.new.so' multiply defined.
+
+
+LaTeX Warning: Label `sec:makefile.rules' multiply defined.
+
+
+LaTeX Warning: Label `sec:using.f2py' multiply defined.
+
+
+LaTeX Warning: Label `sec:Qtcm.private.attrib' multiply defined.
+
+
+LaTeX Warning: Label `ch:future' multiply defined.
+
+
+LaTeX Warning: Label `Betts/Miller:1986' multiply defined.
+
+
+LaTeX Warning: Label `Lin:2000' multiply defined.
+
+
+LaTeX Warning: Label `Neelin/Zeng:2000' multiply defined.
+
+
+LaTeX Warning: Label `Neelin/etal:2002' multiply defined.
+
+
+LaTeX Warning: Label `Zeng/etal:2000' multiply defined.
+
+
+LaTeX Warning: Label `app:defaults.values' multiply defined.
+
+
+LaTeX Warning: Label `sec:defaults.scalar' multiply defined.
+
+
+LaTeX Warning: Label `sec:defaults.array' multiply defined.
+
+)
+
+latex2htmlLength hsize=349.0pt
+
+latex2htmlLength vsize=662.3625pt
+
+latex2htmlLength hoffset=0.0pt
+
+latex2htmlLength voffset=0.0pt
+
+latex2htmlLength topmargin=0.0pt
+
+latex2htmlLength topskip=0.00003pt
+
+latex2htmlLength headheight=0.0pt
+
+latex2htmlLength headsep=0.0pt
+
+latex2htmlLength parskip=0.0pt plus 1.0pt
+
+latex2htmlLength oddsidemargin=18.0675pt
+
+latex2htmlLength evensidemargin=18.0675pt
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 233.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 233.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 233.
+l2hSize :tex2html_wrap_inline16007:8.25pt::8.25pt::11.50557pt.
+[1
+
+
+
+]
+l2hSize :tex2html_wrap_inline16009:8.83331pt::8.83331pt::10.33334pt.
+[2
+
+
+]
+l2hSize :tex2html_wrap_inline16011:8.7pt::8.7pt::12.18752pt.
+[3
+
+
+]
+l2hSize :tex2html_wrap_inline435:7.75pt::0.0pt::9.92088pt.
+[4
+
+
+]
+l2hSize :tex2html_nomath_inline916:9.4978pt::9.4978pt::13.63988pt.
+[5
+
+
+]
+l2hSize :tex2html_wrap_inline824:8.7pt::8.7pt::12.18752pt.
+[6
+
+
+]
+l2hSize :tex2html_wrap_inline832:8.0075pt::0.0pt::32.1012pt.
+[7
+
+
+]
+l2hSize :tex2html_wrap_inline834:8.0075pt::0.0pt::26.22626pt.
+[8
+
+
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 297.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 297.
+l2hSize :tex2html_wrap_inline16170:14.5pt::14.5pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 298--299
+[]|[] 
+ []
+
+[9
+
+
+]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.311 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.311 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.312 \end{displaymath}
+                       %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+l2hSize :displaymath622:17.5pt::0.0pt::349.0pt.
+[10
+
+
+]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.325 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.325 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.326 \end{displaymath}
+                       %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+l2hSize :displaymath634:17.5pt::0.0pt::349.0pt.
+[11
+
+
+]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.338 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.338 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.339 \end{displaymath}
+                       %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+l2hSize :displaymath646:17.5pt::0.0pt::349.0pt.
+[12
+
+
+]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.351 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.351 
+      
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.352 \end{displaymath}
+                       %
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+l2hSize :displaymath652:17.85555pt::0.0pt::349.0pt.
+[13
+
+
+]
+l2hSize :displaymath662:17.85555pt::0.0pt::349.0pt.
+[14
+
+
+]
+l2hSize :tex2html_wrap_inline842:8.7pt::8.7pt::14.07507pt.
+[15
+
+
+]
+l2hSize :tex2html_wrap_inline844:8.57693pt::8.57693pt::10.08199pt.
+[16
+
+
+]
+l2hSize :displaymath665:17.5pt::0.0pt::349.0pt.
+[17
+
+
+]
+l2hSize :tex2html_wrap_inline846:9.5pt::9.5pt::33.12651pt.
+[18
+
+
+]
+l2hSize :tex2html_wrap_inline848:8.7pt::8.7pt::35.6189pt.
+[19
+
+
+]
+l2hSize :tex2html_wrap_inline850:8.7pt::8.7pt::35.42433pt.
+[20
+
+
+]
+l2hSize :tex2html_wrap_inline852:8.7pt::8.7pt::13.74403pt.
+[21
+
+
+]
+l2hSize :tex2html_wrap_inline854:8.2pt::0.0pt::11.24997pt.
+[22
+
+
+]
+l2hSize :tex2html_wrap_inline856:8.2pt::0.0pt::9.98883pt.
+[23
+
+
+]
+l2hSize :displaymath678:17.5pt::0.0pt::349.0pt.
+[24
+
+
+]
+l2hSize :displaymath683:17.5pt::0.0pt::349.0pt.
+[25
+
+
+]
+l2hSize :tex2html_wrap_inline858:8.2pt::0.0pt::9.62982pt.
+[26
+
+
+]
+l2hSize :tex2html_wrap_inline860:8.2pt::0.0pt::8.51245pt.
+[27
+
+
+]
+l2hSize :tex2html_wrap_inline862:8.69998pt::8.69998pt::21.43329pt.
+[28
+
+
+]
+l2hSize :tex2html_wrap_inline864:8.69998pt::8.69998pt::21.43329pt.
+[29
+
+
+]
+l2hSize :tex2html_wrap_inline868:9.5pt::9.5pt::27.22348pt.
+[30
+
+
+]
+l2hSize :tex2html_wrap_inline870:8.69998pt::8.69998pt::20.72356pt.
+[31
+
+
+]
+l2hSize :tex2html_wrap_inline872:8.69998pt::8.69998pt::18.6763pt.
+[32
+
+
+]
+l2hSize :tex2html_wrap_inline874:9.5pt::9.5pt::20.61592pt.
+[33
+
+
+]
+l2hSize :tex2html_wrap_inline876:11.39445pt::0.0pt::11.28258pt.
+[34
+
+
+]
+l2hSize :tex2html_wrap_inline2561:7.75pt::0.0pt::0.58752pt.
+[35
+
+
+]
+l2hSize :tex2html_wrap_inline3258:9.5pt::9.5pt::6.58754pt.
+[36
+
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 554
+.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 554.
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 554.
+
+l2hSize :tex2html_wrap_inline16320:72.97221pt::72.97221pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 555--556
+[]|[] 
+ []
+
+[37
+
+
+]
+l2hSize :tex2html_wrap_inline16321:8.25pt::8.25pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 564--565
+[]|[] 
+ []
+
+[38
+
+
+]
+l2hSize :tex2html_wrap_inline16323:114.97221pt::114.97221pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 592--593
+[]|[] 
+ []
+
+[39
+
+
+]
+l2hSize :tex2html_wrap_inline16324:12.97223pt::12.97223pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 602--603
+[]|[] 
+ []
+
+[40
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 625--625
+
+ []
+
+l2hSize :tex2html_wrap_inline16339:73.38887pt::73.38887pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 626--627
+[]|[] 
+ []
+
+[41
+
+
+]
+l2hSize :tex2html_wrap_inline16340:25.94444pt::25.94444pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 640--641
+[]|[] 
+ []
+
+[42
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 670--670
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 670--670
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 670--670
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 670--670
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 670--670
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 670--670
+
+ []
+
+l2hSize :tex2html_wrap_inline16357:133.66667pt::133.66667pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 671--672
+[]|[] 
+ []
+
+[43
+
+
+]
+l2hSize :tex2html_wrap_inline16358:12.97223pt::12.97223pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 681--682
+[]|[] 
+ []
+
+[44
+
+
+]
+l2hSize :table7217:30.46661pt::0.0pt::349.0pt.
+[45
+
+
+]
+l2hSize :tex2html_wrap_inline7978:8.25pt::8.25pt::9.72632pt.
+[46
+
+
+]
+l2hSize :tex2html_wrap_inline7982:9.51027pt::0.0pt::5.33759pt.
+[47
+
+
+]
+l2hSize :tex2html_wrap_inline16907:62.36111pt::62.36111pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 753--754
+[]|[] 
+ []
+
+[48
+
+
+]
+l2hSize :tex2html_wrap_inline16908:19.94444pt::19.94444pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 765--766
+[]|[] 
+ []
+
+[49
+
+
+]
+l2hSize :tex2html_wrap_inline16915:72.55556pt::72.55556pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 785--786
+[]|[] 
+ []
+
+[50
+
+
+]
+l2hSize :tex2html_wrap_inline16916:126.55556pt::126.55556pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 814--815
+[]|[] 
+ []
+
+[51
+
+
+]
+l2hSize :tex2html_wrap_inline16917:49.94444pt::49.94444pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 838--839
+[]|[] 
+ []
+
+[52
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 867--867
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 867--867
+
+ []
+
+l2hSize :tex2html_wrap_inline16918:132.55556pt::132.55556pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 868--869
+[]|[] 
+ []
+
+[53
+
+
+]
+l2hSize :tex2html_wrap_inline16919:67.94444pt::67.94444pt::362.25455pt.
+
+Overfull \hbox (16.63953pt too wide) in paragraph at lines 894--895
+[]|[] 
+ []
+
+[54
+
+
+] (/Users/jlin/work/prog/python/qtcm/doc/latex/bibnames.sty)
+l2hSize :center17036:40.5pt::0.0pt::349.0pt.
+[55
+
+
+] (./images.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 3766 strings out of 94501
+ 52765 string characters out of 1176137
+ 108678 words of memory out of 1500000
+ 6908 multiletter control sequences out of 10000+50000
+ 8900 words of font info for 32 fonts, out of 1200000 for 2000
+ 580 hyphenation exceptions out of 8191
+ 32i,8n,32p,1255b,249s stack positions out of 5000i,500n,6000p,200000b,5000s
+
+Output written on images.dvi (55 pages, 49380 bytes).

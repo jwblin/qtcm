@@ -1,0 +1,190 @@
+% ==========================================================================
+% Future
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+This section describes the features and fixes I plan to work on
+in this package.  The most urgent items are listed closer to the
+begining of the lists.
+
+\begin{itemize}
+\item Add \code{implicit none} top setbypy.F90.
+
+\item Check through Fortran routines that have arguments, to make sure
+	f2py is properly understanding the intentions
+	(i.e., in, out, inout) of the variables, since we're using the
+	``quick way'' of making shared object libraries using f2py.
+	The \fn{utilities.F90} file has a number of Fortran routines
+	with arguments.
+
+\item Cite:  Peterson, P. (2009) 
+	F2PY: a tool for connecting Fortran and Python programs, 
+	\emph{Int. J. Computational Science and Engineering,}
+	Vol.\ 4, No.\ 4, pp.\ 296--305 for f2py.
+
+\item Create a method like \mods{calc\_derived('T100')} which would
+	primarily operate on a data file and provide a derived variable
+	such as the temperature at 100 hPa, as given in this example.
+	Figure out where to put the parameters (V1s, etc.) that are
+	needed to make such a calculation.  As attributes?  Create a
+	method to write the quantity out to an output file?
+	Perhaps make an ability to calculate these values at heights
+	at a given time each day during a run session?
+
+\item Automate the installation using Python's
+\htmladdnormallinkfoot{\mods{distutils}}{http://docs.python.org/dist/dist.html}
+	utilities.
+
+\item Describe a way of using job control (either via the operating system
+	or IPython's \mods{jobctrl} module) 
+	to do a quick-and-dirty parallelization of multiple
+	\class{Qtcm} instance run sessions.  Or use some sort of threading
+	to fire up two simulataneously running models.  Check that the
+	simultaneously running models have different memory space.
+
+\item Add capability for \fn{create\_benchmark.py} to overwrite
+	existing benchmark files.
+
+\item Make \vars{compiled\_form} set to \vars{'parts'} as the
+	default instantiation.  Change documentation accordingly.
+
+\item Currently, the \class{Qtcm} \mods{plotm} method works only on
+	3-D output (time, latitude, longitude).  Some of the fields
+	in the netCDF output files are 2-D.  Add the capability to
+	\mods{plot\_netcdf\_output} in the \mods{plot} submodule
+	to handle 2-D fields.
+
+\item Add documentation about removing temporary files.
+	Add documentation in Section~\ref{sec:model.instances}
+	of details of what occurs during instantiation of 
+	a \class{Qtcm} instance.
+
+\item Add the units and long names for all field variables in the
+	\mods{defaults} module.
+
+\item Create a keyword to automatically change precipitation and
+	evaporation units to mm/day (or similar).
+
+\item Add ability to calculate and plot fields at different pressure
+	levels.  Create another module like defaults that specifies
+	the vertical fields and gives the equation to use to calculate
+	those fields; call the module ``derivfields'' or something
+	similar.
+
+\item Throughout the \mods{qtcm} package I use the condition
+	\mods{N.rank(}\dumarg{arg}\mods{)\thinspace=\thinspace0} 
+	to test whether
+	\dumarg{arg} is a scalar.  This works fine for \mods{numpy}
+	objects, but it does not work properly for
+	\mods{Numeric} and \mods{numarray} arrays.  In those
+	array packages, \mods{rank('abc')} returns the value~1.
+	This is not a problem, as long as everyone has \mods{numpy},
+	but in order to make the package interoperable, I need to
+	find a better way of testing for scalars.  The definitions
+	of isscalar need to be changed in \mods{num\_settings}.
+
+\item \mods{num\_settings} needs to be changed to truly enable me
+	to test whether \mods{qtcm} works for 
+	\mods{numarray} and \mods{Numeric} arrays.  The tests
+	do not do this right now, because \mods{num\_settings}
+	defaults to \mods{numpy}, if it exists.
+
+\item Create makefiles for other platforms.
+ 
+\item A few fields (e.g., \vars{u1}) have data for extra latitude bands,
+	due to the use of ``ghost latitudes'' as part of the
+	implementation of the numerics.  Details are found in the 
+\latexhtml{%
+\htmladdnormallinkfoot{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/$\sim$csi/qtcm\_man/v2.3/qtcm\_manv2.3.pdf}}%
+{\htmladdnormallink{QTCM1 manual}%
+        {http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf}}
+\cite{Neelin/etal:2002}.
+
+	Though adjusting to this idiosyncracy is not that difficult, 
+	in the future I hope to implement a method of handing
+	fields with ghost latitudes so that they have the same
+	dimensions as the other gridded output variables.  In order
+	to do this, I plan to write a Python method to read the
+	Fortran generated binary restart file.
+
+\item Change the \mods{set\_qtcm\_item} method so that it can 
+	automatically accomodate setting Fortran real variables
+	if integer values are input.
+
+\item Currently, the \mods{get\_item\_qtcm} and 
+	\mods{set\_item\_qtcm} methods will not work
+	on integer and character arrays, only scalars and real arrays.
+	Add that missing functionality to those methods.
+
+\item Currently, the \mods{make\_snapshot} method duplicates the
+	functionality of the pure-Fortran QTCM1 restart file mechanism.
+	However, the restart file mechanism itself does not do a true
+	restart.  A continuous run does not provide the same results
+	as two runs over the same period, joined by the restart file.
+
+	To see whether saving more variables would do the trick,
+	I altered \mods{make\_snapshot} to store all Python level
+	variables (i.e., \vars{self.\_qtcm\_fields\_ids}).  However,
+	the restart failing described above still continued.  In the
+	future, I hope to figure out exactly how many variables are
+	needed in order to make the restart feature do a true
+	restart.
+
+\item Add a test of using the \vars{mrestart\thinspace=\thinspace1}
+	restart option.  Does the \fn{qtcm.restart} file need to be
+	in the current working directory or another?
+
+\item Add a test in the unit test scripts to
+	confirm that the \vars{init\_with\_instance\_state}
+	attribute setting only has an effect if 
+	\vars{compiled\_form\thinspace=\thinspace'parts'}.
+
+\item Document \vars{tmppreview} keyword in \mods{plot.plot\_ncdf\_output}.
+
+\item Confirm and document that
+	for netCDF output, time is model time since dd-mm-yyyy.
+
+\item Add to the \mods{plotm} method the ability to
+	plot as text onto the figure the
+	runname string and the calling line
+	for the plotm method.
+
+\item Couple with the
+	\latexhtml{CliMT\footnote{http://maths.ucd.ie/$\sim$rca/climt/}}%
+	{\htmladdnormallink{CliMT}{http://maths.ucd.ie/~rca/climt/}}
+	climate modeling toolkit.
+
+\item Enable Python to set \vars{arr1name}, etc., which are string
+	variables at the Python level.  I haven't really thought through
+	how \vars{arr1} variables work with the Python \class{Qtcm}
+	instance.
+
+\item Possible:  In the \class{Qtcm} method
+	\mods{\_\_setattr\_\_}, add a test to raise an exception
+	if the instance tries to set \vars{viscU}, \vars{viscT},
+	or \vars{viscQ} as attributes.  Also create a method
+	\code{isotropic\_visc} that will set all viscosity parameters
+	non-dependent on direction.  See Section~\ref{sec:driverinit.diffs}
+	for details.
+
+\item Go through the manual and create HTML-only versions of tables
+	that have table numbers (use a similar construct as in
+	figure environments).
+
+\item Go through documentation to check that
+	output variable names are capitalized consistently.
+
+\item Create way to redirect stdout.
+
+\item Create a step method to run an arbitrary number of timesteps at
+	the atmosphere level.
+
+\end{itemize}
+
+
+% ===== end of file =====

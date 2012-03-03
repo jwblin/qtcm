@@ -1,0 +1,135 @@
+# QTCM standard makefile
+# Version for Ubuntu running g95 --- Rev. by Johnny Lin
+
+#
+# Macro definitions
+#
+# CPLMEAN ..... Compute mean flux values for coupling with an ocean.
+# LINEAR_T1C .. Use the linear moisture closure.
+# YEAR360 ..... A year has 360 instead of the 365 days (no leap years).
+# NETCDFOUT.... Write output in netCDF instead of Grads sequential binary
+# SPONGES ..... Activate sponge code (parameters have to be set in the code).
+# DELTA_CO2 .... Activate radiation code for changed CO2 level (default: 330 ppm).
+# NO_ABL ...... Old version 2.2 surface fluxes: Estimates without Atm. Boundary Layer
+# MXL_OCEAN..... Use mixed layer ocean 
+# BLEND_SST..... Use readsst in mask regions and mixed layer ocean outside
+# TOPO......... Turn on topography effects due to induced divergence.
+# CHIWIND...... Diagnose velocity potential using irrational winds
+# ENSEMB_INI... Create initial condition files for ensemble runs.
+# OBSCLD....... Use ISCCP observed cloud cover climatology
+
+# NOTE: always use YEAR360 when using MXL_OCEAN or BLEND_SST
+
+# Permanent macro definition cat be set here in DEFS1:
+#
+#DEFS1=-DNO_ABL
+
+#Additional macro definitions can be set on the command line using DEFS
+# e.g.: make DEFS="-DOBSCLD -DCO2"
+#
+DEFINES= $(DEFS1) $(DEFS)
+
+
+#FC=f90
+#FC=ifc  # Intel Linux (Intel's ifc)
+#FC=lf95  # Intel Linux (Lahey-Fujitsu)
+FC=g95  # Mac OSX (gfortran, which preprocesses like the Lahey-Fujitsu)
+#FC=xlf90 # IBM AIX
+
+
+# Make rules. 
+# These rules should be standard but Fortran90
+# is not  well supported by "make" on some machines.
+# We specify the valid extension so that e.g., Sun's make
+# does not confuse module files as Modula-2 sources
+#
+.SUFFIXES: 
+.SUFFIXES: .f90 .f .F90 .o .F
+#.f90.o:
+#	$(FC) $(FFLAGS) -c $<
+.f90:
+	$(FC) $(FFLAGS) -o $@ $< $(LDFLAGS)
+.f:
+	$(FC) $(FFLAGS) -o $@ $< $(LDFLAGS)
+
+# Rule for IBM AIX xlf compiler:
+# (xlf insists on .F extension) 
+#.f90.o:
+#	mv $< $*.F
+#	$(FC) $(FFLAGS) -c $*.F
+#	mv $*.F $*.f90
+#.F.o:
+#	$(FC) $(FFLAGS) -c $*.F
+#	mv $*.F $*.f90
+
+# Rule for Lahey/Fujitsu compilers:
+# (Preprocessor only with .F90 extension)
+.f90.o:
+	mv $< $*.F90
+	$(FC) $(FFLAGS) -c $*.F90
+
+.F90.o:
+	$(FC) $(FFLAGS) -c $*.F90
+#	mv $*.F90 $*.f90  # uncomment to switch back to .f90 extension
+
+
+#
+# Preprocessor switch
+#
+#FPPON= -eP      # Crays
+#FPPON= -ftpp    # SGI 
+#FPPON= -fpp     # Suns, Intel Linux
+#FPPON= -cpp     # Alpha
+#FPPON=          # The Mac OSX g95 compiler preprocesses .F90 by default
+
+#
+# Compiler flags
+#
+FFLAGSM = -O                              # Alpha/ AIX 
+#FFLAGSM = -O -Vaxlib -axM                 # Linux Intel, AMD-Athlon
+#FFLAGSM = -O -Vaxlib -axW                 # Linux Intel, Pentium-4
+#FFLAGSM = -K fast  -A m -f w              # Linux/Fujitsu F95
+#QTFFLAG = -O2,inlinefrom=utilities.f90    # Crays for qtcm.o
+#PARALLEL =  # -autopar -reduction          # Suns parallelization
+#FFLAGSM = -fast $(PARALLEL)               # Suns          
+
+FFLAGS = $(FPPON) $(DEFINES) $(FFLAGSM) $(NCINC)
+
+
+#
+# NetCDF library and include dirs
+#
+NCINC=-I/usr/local/include
+NCLIB=-L/usr/local/lib -lnetcdf
+
+#
+# Object files
+#
+QTCMOBJS = qtcmpar.o qtcmmod.o calendar.o \
+           driver.o bndry.o land.o utilities.o  \
+           clrad.o cplmean.o qtcm.o \
+           fatdpkg.o getbnd.o  ocean.o sflux.o \
+           output.o abl.o 
+
+QTCMOBJSC40U1 = qtcmpar.o qtcmmod.o calendar.o \
+               driverc40u1.o bndry.o land.o utilities.o  \
+               clrad.o cplmean.o qtcm.o \
+               fatdpkg.o getbnd.o  ocean.o sflux.o \
+               output.o abl.o 
+
+#
+# Code rules
+#
+qtcm: $(QTCMOBJS)
+	$(FC) $(FFLAGS) -o $@ $(QTCMOBJS) $(NCLIB)
+
+qtcmc40u1: $(QTCMOBJSC40U1)
+	$(FC) $(FFLAGS) -o $@ $(QTCMOBJSC40U1) $(NCLIB)
+
+#
+# Uncomment the next 2 lines to create a new parameter file
+#qtcmpar.f90: par
+#	./par
+
+clean:
+	rm -f work.??? work.?? *.o *.d core *.mod aveflux par 

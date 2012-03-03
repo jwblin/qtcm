@@ -1,0 +1,1181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Developer Notes</TITLE>
+<META NAME="description" CONTENT="Developer Notes">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node8.html">
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html518"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html514"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html508"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html516"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html519"
+  HREF="node8.html">Future Work</A>
+<B> Up:</B> <A NAME="tex2html515"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html509"
+  HREF="node6.html">Troubleshooting</A>
+ &nbsp; <B>  <A NAME="tex2html517"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html520"
+  HREF="node7.html#SECTION00710000000000000000">Introduction</A>
+<LI><A NAME="tex2html521"
+  HREF="node7.html#SECTION00720000000000000000">Changes to QTCM1 Fortran Files</A>
+<LI><A NAME="tex2html522"
+  HREF="node7.html#SECTION00730000000000000000">New Interfaces and Fortran Functionality</A>
+<UL>
+<LI><A NAME="tex2html523"
+  HREF="node7.html#SECTION00731000000000000000">Fortran Module <FONT COLOR="#0000ff"><TT>SetbyPy</TT></FONT></A>
+<UL>
+<LI><A NAME="tex2html524"
+  HREF="node7.html#SECTION00731100000000000000">Design Description</A>
+<LI><A NAME="tex2html525"
+  HREF="node7.html#SECTION00731200000000000000">Module Structure</A>
+</UL>
+<LI><A NAME="tex2html526"
+  HREF="node7.html#SECTION00732000000000000000">Fortran Module <FONT COLOR="#0000ff"><TT>WrapCall</TT></FONT></A>
+</UL>
+<BR>
+<LI><A NAME="tex2html527"
+  HREF="node7.html#SECTION00740000000000000000">Python <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> and Pure-Fortran QTCM1 Differences</A>
+<UL>
+<LI><A NAME="tex2html528"
+  HREF="node7.html#SECTION00741000000000000000">QTCM1 <FONT COLOR="#0000ff"><TT>driverinit</TT></FONT></A>
+<LI><A NAME="tex2html529"
+  HREF="node7.html#SECTION00742000000000000000">The <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> Routine</A>
+<LI><A NAME="tex2html530"
+  HREF="node7.html#SECTION00743000000000000000">The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Method of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT></A>
+<LI><A NAME="tex2html531"
+  HREF="node7.html#SECTION00744000000000000000">Miscellaneous Differences</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html532"
+  HREF="node7.html#SECTION00750000000000000000">Considerations When Adding Fortran Code</A>
+<LI><A NAME="tex2html533"
+  HREF="node7.html#SECTION00760000000000000000">Creating New Standard Extension Modules</A>
+<UL>
+<LI><A NAME="tex2html534"
+  HREF="node7.html#SECTION00761000000000000000">Makefile Rules</A>
+<LI><A NAME="tex2html535"
+  HREF="node7.html#SECTION00762000000000000000">Using <FONT COLOR="#0000ff"><TT>f2py</TT></FONT></A>
+<LI><A NAME="tex2html536"
+  HREF="node7.html#SECTION00763000000000000000">Two Examples</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html537"
+  HREF="node7.html#SECTION00770000000000000000">Attributes and Methods in <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instances</A>
+<UL>
+<LI><A NAME="tex2html538"
+  HREF="node7.html#SECTION00771000000000000000">Public <FONT COLOR="#0000ff"><TT>num_settings</TT></FONT> Submodule Attributes/Methods</A>
+<LI><A NAME="tex2html539"
+  HREF="node7.html#SECTION00772000000000000000">Private <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Submodule Attributes</A>
+<LI><A NAME="tex2html540"
+  HREF="node7.html#SECTION00773000000000000000">Private <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Attributes</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html541"
+  HREF="node7.html#SECTION00780000000000000000">Creating Documentation</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00700000000000000000"></A>                   <A NAME="ch:devnotes"></A>
+<BR>
+Developer Notes
+</H1>
+
+<P>
+
+<H1><A NAME="SECTION00710000000000000000">
+Introduction</A>
+</H1>
+
+<P>
+This section describes programming practices and issues related to
+the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package that might be of interest to users wishing
+to add/change code in the package.
+Please see the package
+<A NAME="tex2html123"
+  HREF="http://www.johnny-lin.com/py_pkgs/qtcm/doc/html-api/">API documentation</A>,
+
+which includes the source code,
+for details.
+
+<P>
+
+<H1><A NAME="SECTION00720000000000000000"></A>  <A NAME="sec:f90changes"></A>
+<BR>
+Changes to QTCM1 Fortran Files
+</H1>
+
+<P>
+The source code used to generate the shared object files used
+in this Python package is unchanged
+from the pure-Fortran QTCM1 model source code, except in the
+following ways:
+
+<P>
+
+<UL>
+<LI>The suffix of all source code files 
+	has been changed from <I><I>.f90</I></I> to <I><I>.F90</I></I>, 
+	in order to ensure the compiler preprocesses 
+	the source code.  Some compilers use the capitalization to
+	tell whether or not to run the code through a preprocessor.
+
+<P>
+</LI>
+<LI>In all <I><I>.F90</I></I> files, occurrences of:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>Character(len=130)</TT></FONT></TD></TR>
+</TABLE>	are changed to:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>Character(len=305)</TT></FONT></TD></TR>
+</TABLE>	This enables the model to properly deal with longer filenames.
+	The number ``305'' is chosen to make search and replace easier.
+
+<P>
+</LI>
+<LI>In <I><I>qtcmpar.F90</I></I>, the 
+	<FONT COLOR="#0000ff"><TT>eps_c</TT></FONT> variable is changed from an unchangable
+	parameter to a changeable real, 
+	so that it can be changed in the model at runtime.
+
+<P>
+</LI>
+<LI>All occurrences of an underscore (``_'') character in a
+	subroutine or function name are removed.  The
+	presence of the underscore messes up the dynamic lookup
+	mechanism for the <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> generated extension module.
+	The following names are changed, both in subroutine definitions
+	and calls:
+	
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>out_restart</TT></FONT> to <FONT COLOR="#0000ff"><TT>outrestart</TT></FONT>,
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>save_bartr</TT></FONT> to <FONT COLOR="#0000ff"><TT>savebartr</TT></FONT>,
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>grad_phis</TT></FONT> to <FONT COLOR="#0000ff"><TT>gradphis</TT></FONT>.
+	
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><I><I>driver.F90</I></I> is changed so that program
+	<FONT COLOR="#0000ff"><TT>driver</TT></FONT> becomes a subroutine, and 
+	subroutine <FONT COLOR="#0000ff"><TT>driverinit</TT></FONT> is deleted (along with
+	all calls to it) because basic model initialization is
+	handled at the Python level.
+
+<P>
+</LI>
+<LI>In <I><I>clrad.F90</I></I>, subroutine <FONT COLOR="#0000ff"><TT>cloud</TT></FONT>, the first
+	<FONT COLOR="#0000ff"><TT>COUNTCAP</TT></FONT> preprocessor macro, a comment line for
+	that ifdef is moved to prevent a warning message during
+	building with <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>.
+
+<P>
+</LI>
+<LI>The order of subroutine <FONT COLOR="#0000ff"><TT>qtcminit</TT></FONT> is changed.  The original
+	pure-Fortran QTCM1 <FONT COLOR="#0000ff"><TT>qtcminit</TT></FONT> code has the following
+	calling sequence:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>Call parinit            !Initialize model parameters 
+<BR>
+Call varinit            !Initialize variables 
+<BR>
+Call TimeManager(1)     !mm set model time 
+<BR>
+Call bndinit            !input boundary datasets 
+<BR>
+Call physics1           !diagnostic fields for initial condition</TT></FONT></TD></TR>
+</TABLE>
+<P>
+For the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package, I've altered this order so
+	<FONT COLOR="#0000ff"><TT>bndinit</TT></FONT> comes after <FONT COLOR="#0000ff"><TT>parinit</TT></FONT> but before <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>Call parinit            !Initialize model parameters 
+<BR>
+Call bndinit            !input boundary datasets 
+<BR>
+Call varinit            !Initialize variables 
+<BR>
+Call TimeManager(1)     !mm set model time  
+<BR>
+Call physics1           !diagnostic fields for initial condition</TT></FONT></TD></TR>
+</TABLE>
+<P>
+This is done because <FONT COLOR="#0000ff"><TT>STYPE</TT></FONT> is not read in for the
+	<FONT COLOR="#0000ff"><TT>landon</TT></FONT> <FONT COLOR="#0000ff"><TT>True</TT></FONT> case until <FONT COLOR="#0000ff"><TT>bndinit</TT></FONT>, but
+	in <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> <FONT COLOR="#0000ff"><TT>STYPE</TT></FONT> is used to calculate the
+	original values of <FONT COLOR="#0000ff"><TT>WD</TT></FONT> for the non-restart case.  This
+	also corrects the conflicting order found in the pure-Fortran
+	QTCM1 manual (compare pp. 29 and 32).  As far as I can
+	tell, <FONT COLOR="#0000ff"><TT>bndinit</TT></FONT> has no dependencies that require it
+	to come after <FONT COLOR="#0000ff"><TT>timemanager</TT></FONT> or <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+In addition, the Fortran files <I><I>setbypy.F90</I></I>, <I><I>wrapcall.F90</I></I>,
+and <I><I>varptrinit.F90</I></I> are added.  The routines in these files, 
+however, just add more flexibility and functionality to the model;
+they do not automatically affect any model computations.  See
+Section&nbsp;<A HREF="#sec:newf90">6.3</A> for details.
+
+<P>
+
+<H1><A NAME="SECTION00730000000000000000"></A>  <A NAME="sec:newf90"></A>
+<BR>
+New Interfaces and Fortran Functionality
+</H1>
+
+<P>
+As described in Section&nbsp;<A HREF="#sec:f90changes">6.2</A>, the Fortran files
+<I><I>setbypy.F90</I></I>, <I><I>wrapcall.F90</I></I>, and <I><I>varptrinit.F90</I></I> are
+added to the QTCM1 source directory.  The first two files define the Fortran
+90 modules (<FONT COLOR="#0000ff"><TT>SetbyPy</TT></FONT> and <FONT COLOR="#0000ff"><TT>WrapCall</TT></FONT>) needed to interface
+the Python and Fortran levels.  The last file defines a new Fortran
+subroutine <FONT COLOR="#0000ff"><TT>varptrinit</TT></FONT> that associates QTCM1 model pointer
+variables at the Fortran level.  In a pure-Fortran run of QTCM1,
+this occurs in subroutine <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>; for a
+<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT> run, since the
+functionality of the Fortran <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> is now in the Python
+<FONT COLOR="#0000ff"><TT>varinit</TT></FONT> method, a separate Fortran pointer association
+subroutine needed to be defined.  The Fortran subroutine <FONT COLOR="#0000ff"><TT>varptrinit</TT></FONT>is called as the <FONT COLOR="#0000ff"><TT>varptrinit</TT></FONT> function of the 
+<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT><I><I>.so</I></I> extension module.
+
+<P>
+
+<H2><A NAME="SECTION00731000000000000000"></A>   <A NAME="sec:setbypy"></A>
+<BR>
+Fortran Module <FONT COLOR="#0000ff"><TT>SetbyPy</TT></FONT>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00731100000000000000">
+Design Description</A>
+</H3>
+
+<P>
+This module defines functions and subroutines used to read variables
+from the Fortran-level to the Python-level, and in setting Fortran-level
+variables using the Python-level values.  These routines are used
+by <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> methods <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> and <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>(and dependencies thereof) to ``get'' and ``set'' the Fortran-level
+variables.  Note that the Fortran module <FONT COLOR="#0000ff"><TT>SetbyPy</TT></FONT> is referred
+to in lowercase at the Python level, i.e., as the
+attribute <FONT COLOR="#0000ff"><TT>__.qtcm.setbypy</TT></FONT> of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+
+<P>
+Because Fortran variables are not dynamically typed, separate Fortran
+functions and subroutines need to be defined to get and set variables
+of different types.<A NAME="tex2html124"
+  HREF="footnode.html#foot9850"><SUP>6.2</SUP></A>The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> methods <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT>and <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> know which one of the Fortran routines
+to call on the basis of the type and rank of the value for the field
+variable in the <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> submodule.  This is why all field
+variables need to have defaults defined in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>.  For
+array variables, the field variable defaults also provide the rank
+of the Fortran-level variable being gotten or set.  However, the
+array default values do <I>not</I> have to have the same shape as
+the Fortran-level variables; on the Python-side, variable shape
+adjusts to what is declared on the Fortran-side.  
+Thus, if you change the resolution of
+the compiled QTCM1 model, you do not have to change the dimensions
+of the field variable values in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>.
+
+<P>
+The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> method <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> directly calls
+the <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> routines.
+The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> method <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> makes use of
+private instance methods that make the calls to the <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> routines.
+
+<P>
+For scalar field variables, <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> provides functions and
+subroutines that provide the value of the variable on output.
+For array field variables, <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT>dynamic <I>module</I> arrays are used to pass array
+variables in and out; I could not get the 
+<FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> Fortran routines to set
+locally defined dynamic arrays (that is, locally within a function or
+subroutine).<A NAME="tex2html125"
+  HREF="footnode.html#foot9826"><SUP>6.3</SUP></A>In the <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> module, these dynamic arrays
+are defined as follows:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>Real, allocatable, dimension(:) :: real_rank1_array 
+<BR>
+Real, allocatable, dimension(:,:) :: real_rank2_array 
+<BR>
+Real, allocatable, dimension(:,:,:) :: real_rank3_array</TT></FONT></TD></TR>
+</TABLE>
+<P>
+For all field variables, scalar or array, the <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> module
+has a fourth module variable defined, <FONT COLOR="#0000ff"><TT>is_readable</TT></FONT>, that the
+Fortran get and set routines will set to <FONT COLOR="#0000ff"><TT>.TRUE.</TT></FONT> if the
+variable is readable and <FONT COLOR="#0000ff"><TT>.FALSE.</TT></FONT> if not (it's declared as a
+logical variable).  This Fortran variable can be used to prevent
+Python from accessing pointer variables that aren't yet associated
+to targets.
+
+<P>
+In general, <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> routines make use of Fortran constructs
+to enable them to accomodate all possible
+variables of a given type and shape.  However, 
+for string scalars, the <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> function <FONT COLOR="#0000ff"><TT>getitem_str</TT></FONT>has to have a return value of a predefined length, in order to
+work properly.  That length is given by the parameter
+<FONT COLOR="#0000ff"><TT>maxitemlen</TT></FONT> and is set to 505 (the value is chosen to
+be larger than all filename variables described in
+Section&nbsp;<A HREF="#sec:f90changes">6.2</A> and to be easily found in
+the <I><I>.F90</I></I> files).
+
+<P>
+
+<H3><A NAME="SECTION00731200000000000000">
+Module Structure</A>
+</H3>
+
+<P>
+If you're a Fortran programmer, you can probably get all the information
+in this section from just reading the <I><I>setbypy.F90</I></I> file directly.
+This description of the module structure, however, permits me to highlight
+what you need to do if you want to make additional compiled QTCM1 variables
+accessible to Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> objects.
+
+<P>
+
+<UL>
+<LI>All <FONT COLOR="#0000ff"><TT>Use</TT></FONT> statements are given in the beginning of 
+	the <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> module.  These statements cover
+	nearly all of the QTCM1 Fortran
+	modules that contain variables of interest.  If the
+	QTCM1 variable you're interested in isn't in a module
+	listed here, you'll have to add your own
+	<FONT COLOR="#0000ff"><TT>Use</TT></FONT> statement of that module here.
+
+<P>
+</LI>
+<LI>Next comes the definitions for the
+	<FONT COLOR="#0000ff"><TT>real_rank1_array</TT></FONT>,
+	<FONT COLOR="#0000ff"><TT>real_rank2_array</TT></FONT>, and
+	<FONT COLOR="#0000ff"><TT>real_rank3_array</TT></FONT> dynamic array variables, and
+	the <FONT COLOR="#0000ff"><TT>is_readable</TT></FONT> boolean variable.
+
+<P>
+</LI>
+<LI>The <FONT COLOR="#0000ff"><TT>Contains</TT></FONT> block of the module defines the module
+	routines called by the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance methods to
+	set and get the compiled QTCM1 model variables.  The
+	routines are:
+	
+<UL>
+<LI>Function <FONT COLOR="#0000ff"><TT>getitem_real</TT></FONT>
+</LI>
+<LI>Subroutine <FONT COLOR="#0000ff"><TT>getitem_real_array</TT></FONT>
+</LI>
+<LI>Function <FONT COLOR="#0000ff"><TT>getitem_int</TT></FONT>
+</LI>
+<LI>Function <FONT COLOR="#0000ff"><TT>getitem_str</TT></FONT>
+</LI>
+<LI>Subroutine <FONT COLOR="#0000ff"><TT>setitem_real</TT></FONT>
+</LI>
+<LI>Subroutine <FONT COLOR="#0000ff"><TT>setitem_real_array</TT></FONT>
+</LI>
+<LI>Subroutine <FONT COLOR="#0000ff"><TT>setitem_int</TT></FONT>
+</LI>
+<LI>Subroutine <FONT COLOR="#0000ff"><TT>setitem_str</TT></FONT>
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+Each of the routines in the module <FONT COLOR="#0000ff"><TT>Contains</TT></FONT> block is essentially
+a list of <FONT COLOR="#0000ff"><TT>if</TT></FONT>/<FONT COLOR="#0000ff"><TT>elseif</TT></FONT> statements.  The list tests for the
+name of the variable of interest (a string), and gets or sets the
+compiled QTCM1 model variable corresponding to that name.  For pointer
+array variables, a test is also made as to whether or not the variable
+has been associated.  If not, the variable is not readable
+and <FONT COLOR="#0000ff"><TT>is_readable</TT></FONT> is set to <FONT COLOR="#0000ff"><TT>.FALSE.</TT></FONT> accordingly.
+
+<P>
+If you wish to add another compiled QTCM1 model variable to be
+accessible to <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance methods <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT>and <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>, just add another <FONT COLOR="#0000ff"><TT>if</TT></FONT>/<FONT COLOR="#0000ff"><TT>elseif</TT></FONT>,
+like the other <FONT COLOR="#0000ff"><TT>if</TT></FONT>/<FONT COLOR="#0000ff"><TT>elseif</TT></FONT> blocks, in the Fortran set
+and get routines corresponding to the QTCM1 variable type (scalar
+vs. array, and real, integer, or string).  On the Python side, add
+an entry in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> corresponding to the new field variable
+you've created access to.  I would strongly recommend making the
+Python name of your new field variable
+(given in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>) be the same as the compiled
+QTCM1 model variable name.
+
+<P>
+
+<H2><A NAME="SECTION00732000000000000000"></A>   <A NAME="sec:wrapcall"></A>
+<BR>
+Fortran Module <FONT COLOR="#0000ff"><TT>WrapCall</TT></FONT>
+</H2>
+
+<P>
+Most of the time, if you want to call a compiled QTCM1 model subroutine
+from the Python level, you will use the version of the subroutine that
+is found in this Fortran module.  
+Note that the Fortran module <FONT COLOR="#0000ff"><TT>WrapCall</TT></FONT> is referred
+to in lowercase at the Python level, i.e., as the
+attribute <FONT COLOR="#0000ff"><TT>__.qtcm.wrapcall</TT></FONT> of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+
+<P>
+All the routines in this module do is wrap one of the compiled QTCM1
+model routines.  For instance, <FONT COLOR="#0000ff"><TT>WrapCall</TT></FONT> subroutine
+<FONT COLOR="#0000ff"><TT>wadvcttq</TT></FONT> is defined as just:
+
+<P>
+
+<p><code><font color="blue">Subroutine wadvcttq<br>
+&nbsp;&nbsp;&nbsp;Call advcttq<br>
+End Subroutine wadvcttq</font></code></p>
+All subroutines in this module begin with ``w'', with the rest of
+the name being the Fortran QTCM1 subroutine name.  The calling
+interface for the ``w'' version is the same as the Fortran QTCM1
+original version.  There are no subroutines in this module that do
+not have an exact counterpart in the Fortran QTCM1 code, and thus
+this module's subroutines sole purpose is to call other subroutines
+in the compiled QTCM1 model.
+
+<P>
+These wrapper routines are needed because <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>, for some
+reason I can't figure out, will not properly wrap Fortran routines
+(that are then callable at the Python level) that create local
+arrays using parameters obtained through a Fortran <FONT COLOR="#0000ff"><TT>use</TT></FONT>statment.  Thus, as an example, a Fortran subroutine <FONT COLOR="#0000ff"><TT>foo</TT></FONT>with the following definition:
+
+<P>
+
+<p><code><font color="blue">
+subroutine foo<br>
+&nbsp;&nbsp;&nbsp;use dimensions<br>
+&nbsp;&nbsp;&nbsp;real a(nx,ny)<br>
+&nbsp;&nbsp;&nbsp;[\ldots]<br>
+end subroutine foo
+</font></code></p>
+where <FONT COLOR="#0000ff"><TT>nx</TT></FONT> and <FONT COLOR="#0000ff"><TT>ny</TT></FONT> are defined in the module varsdimensions,
+will return an error, with the result that the extension module
+will not be created, or an extension modules that yields output
+that is different from running the pure-Fortran version of QTCM1.
+
+<P>
+By wrapping these calls into this file, I also avoid having to
+separate out the Fortran QTCM1 subroutines into separate <I><I>.F90</I></I>
+files.  For Fortran subroutines that you want callable from the
+Python level, <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> seems to require each Fortran subroutine
+to be in its own file of the same name (e.g., the version of
+<I><I>driver.F90</I></I> for this package). If several Fortran subroutines
+are all found in a single <I><I>.F90</I></I> files, <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> seems unable
+to create wrappers for those subroutines.
+
+<P>
+
+<H1><A NAME="SECTION00740000000000000000">
+Python <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> and Pure-Fortran QTCM1 Differences</A>
+</H1>
+
+<P>
+This section describes differences between how the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>package and the pure-Fortran QTCM1 assign some varables.  A list
+of changes to the QTCM1 Fortran Files for use in the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>package is found in Section&nbsp;<A HREF="#sec:f90changes">6.2</A>.
+
+<P>
+
+<H2><A NAME="SECTION00741000000000000000"></A>   <A NAME="sec:driverinit.diffs"></A>
+<BR>
+QTCM1 <FONT COLOR="#0000ff"><TT>driverinit</TT></FONT>
+</H2>
+
+<P>
+In the pure-Fortran version of QTCM1, by default, the following variables are
+set by reference (as given below), not by value, in the <FONT COLOR="#0000ff"><TT>driverinit</TT></FONT>routine:<A NAME="tex2html126"
+  HREF="footnode.html#foot9830"><SUP>6.4</SUP></A><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>lastday=daysperyear 
+<BR>
+viscxu0=viscU 
+<BR>
+viscyu0=viscU 
+<BR>
+visc4x=viscU 
+<BR>
+visc4y=viscU 
+<BR>
+viscxu1=viscU 
+<BR>
+viscyu1=viscU 
+<BR>
+viscxT=viscT 
+<BR>
+viscyT=viscT 
+<BR>
+viscxq=viscQ 
+<BR>
+viscyq=viscQ</TT></FONT></TD></TR>
+</TABLE>
+<P>
+Thus, in pure-Fortran QTCM1, if you change <FONT COLOR="#0000ff"><TT>daysperyear</TT></FONT>,
+<FONT COLOR="#0000ff"><TT>viscU</TT></FONT>, etc.
+and recompile (as needed), you will automatically change 
+<FONT COLOR="#0000ff"><TT>lastday</TT></FONT>, <FONT COLOR="#0000ff"><TT>viscxu0</TT></FONT>, etc.
+(Though, in the pure-Fortran QTCM1, the default values may be overwritten by
+namelist input values.)
+
+<P>
+The <FONT COLOR="#0000ff"><TT>driverinit</TT></FONT> routine is eliminated
+in the Python <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package.  Instead, inital values 
+of field variables are specified in the <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> submodule
+and set by value to attributes of the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+Thus, for instance, in a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance, <FONT COLOR="#0000ff"><TT>lastday</TT></FONT> 
+is set to <FONT COLOR="#0000ff"><TT>365</TT></FONT> by default, not to some variable
+<FONT COLOR="#0000ff"><TT>daysperyear</TT></FONT>.  For the diffusion and viscosity terms,
+the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attributes corresponding to those
+terms are set to literals.<A NAME="tex2html127"
+  HREF="footnode.html#foot9832"><SUP>6.5</SUP></A>
+<P>
+In contrast, in the pure-Fortran QTCM1,
+<FONT COLOR="#0000ff"><TT>driverinit</TT></FONT> declares local
+variables <FONT COLOR="#0000ff"><TT>viscU</TT></FONT>, <FONT COLOR="#0000ff"><TT>viscT</TT></FONT>, and <FONT COLOR="#0000ff"><TT>viscQ</TT></FONT>,
+and reads values into those variables via the input namelist.
+Those values are then used to set
+<FONT COLOR="#0000ff"><TT>viscxu0</TT></FONT>, <FONT COLOR="#0000ff"><TT>viscyu0</TT></FONT>, etc., as described above.
+In pure-Fortran QTCM1, <FONT COLOR="#0000ff"><TT>viscU</TT></FONT>, <FONT COLOR="#0000ff"><TT>viscT</TT></FONT>, and <FONT COLOR="#0000ff"><TT>viscQ</TT></FONT>are not directly accessed anywhere else in the model.
+Thus, <FONT COLOR="#0000ff"><TT>viscU</TT></FONT>, <FONT COLOR="#0000ff"><TT>viscT</TT></FONT>, and <FONT COLOR="#0000ff"><TT>viscQ</TT></FONT> are not
+defined as field variables in the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package, and
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances do not have attributes corresponding
+to those names.
+Additionally, if you wish to change a viscosity parameter
+<FONT COLOR="#0000ff"><TT>visc*</TT></FONT> (given above), the parameter for each direction
+must be set one-by-one even if the flow is isotropic.
+
+<P>
+
+<H2><A NAME="SECTION00742000000000000000">
+The <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> Routine</A>
+</H2>
+
+<P>
+One of the functions of the pure-Fortran QTCM1 <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>subroutine is to associate the pointer variables <FONT COLOR="#0000ff"><TT>u1</TT></FONT>, <FONT COLOR="#0000ff"><TT>v1</TT></FONT>,
+<FONT COLOR="#0000ff"><TT>q1</TT></FONT>, and <FONT COLOR="#0000ff"><TT>T1</TT></FONT>.  For the extension modules in the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>package, a Fortran subroutine <FONT COLOR="#0000ff"><TT>varptrinit</TT></FONT> is added that can
+also do this association.  This subroutine is called in the
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance method
+<A NAME="tex2html129"
+  HREF="http://www.johnny-lin.com/py_docs/qtcm/doc/html-api/qtcm.qtcm.Qtcm-class.html#varinit"><FONT COLOR="#0000ff"><TT>varinit</TT></FONT></A>
+(which duplicates and
+extends the function of its pure-Fortran counterpart, enabling
+alternative ways of handling restart).
+
+<P>
+The <FONT COLOR="#0000ff"><TT>varptrinit</TT></FONT> is not accessed via <FONT COLOR="#0000ff"><TT>wrapcall</TT></FONT>.  Remember
+that <FONT COLOR="#0000ff"><TT>wrapcall</TT></FONT> contains only those routines that were in the
+original pure-Fortran QTCM1 code, and that we want to have access
+to at the Python level.
+
+<P>
+
+<H2><A NAME="SECTION00743000000000000000">
+The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Method of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT></A>
+</H2>
+
+<P>
+The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> method <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> duplicates the functionality
+of the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> subroutine in the pure-Fortran QTCM1 model.
+There are a few differences, however.  First, the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> method
+for <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances does not include a call to <FONT COLOR="#0000ff"><TT>cplmean</TT></FONT>,
+which uses mean surface flux for air-sea coupling.  This state is
+consistent with the pure-Fortran QTCM1 pre-processor macro
+<FONT COLOR="#0000ff"><TT>CPLMEAN</TT></FONT> being off.  Thus, if you wish to use mean surface
+flux for air-sea coupling, you will have to revise the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>method of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> to call <FONT COLOR="#0000ff"><TT>cplmean</TT></FONT>.  You'll also have to
+check for any other code additions needed that are associated with
+the <FONT COLOR="#0000ff"><TT>CPLMEAN</TT></FONT> macro.
+
+<P>
+Second, the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> method for <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances does not
+include the option of not using the atmospheric boundary layer
+model.  This is consistent with macro <FONT COLOR="#0000ff"><TT>NO_ABL</TT></FONT> being off.  If
+you wish to have no atmospheric boundary layer model, change the
+run list <FONT COLOR="#0000ff"><TT>atm_bartr_mode</TT></FONT> so that the <FONT COLOR="#0000ff"><TT>wsavebartr</TT></FONT> and
+<FONT COLOR="#0000ff"><TT>wgradphis</TT></FONT> routines are not called.  You'll also have to check
+for any other code additions needed that are associated with the
+<FONT COLOR="#0000ff"><TT>NO_ABL</TT></FONT> macro.
+
+<P>
+
+<H2><A NAME="SECTION00744000000000000000">
+Miscellaneous Differences</A>
+</H2>
+
+<P>
+
+<UL>
+<LI>In Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances,
+	<FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> is set to 0 by default.  
+	In contrast, in the compiled QTCM1 model,
+	the default (i.e., initial value) is calculated from 
+	<FONT COLOR="#0000ff"><TT>day0</TT></FONT>, <FONT COLOR="#0000ff"><TT>month0</TT></FONT>, and <FONT COLOR="#0000ff"><TT>year0</TT></FONT>.
+	See Section&nbsp;<A HREF="node5.html#sec:init.compiledform.full">4.4.1</A> for details.
+
+<P>
+</LI>
+<LI>The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute
+	<FONT COLOR="#0000ff"><TT>__qtcm</TT></FONT> is not copyable using <FONT COLOR="#0000ff"><TT>copy.deepcopy</TT></FONT>.
+
+<P>
+</LI>
+<LI>In general, when executing a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance method, 
+	if you change a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute 
+	that has a counterpart in the compiled QTCM1 model,
+	the compiled QTCM1 counterpart is not changed until the
+	end of the method.  Likewise, if you call a compiled QTCM1 model
+	subroutine and change a compiled QTCM1 model variable with
+	a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance counterpart, the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>	instance counterpart is not changed until the end of the
+	subroutine.
+
+<P>
+</LI>
+<LI>In general, even though some of the compiled QTCM1 model
+	Fortran subroutines/functions have counterparts in <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>	that duplicate the former's functionality, the Fortran
+	versions are kept intact so that the
+	<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT> case will work.
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION00750000000000000000">
+Considerations When Adding Fortran Code</A>
+</H1>
+
+<P>
+In this section I describe issues to consider if you wish to add
+your own compiled code to the package as separate extension modules.
+(This is different from creating new standard extension modules,
+which is described in Section&nbsp;<A HREF="#sec:create.new.so">6.6</A>.):
+
+<P>
+
+<UL>
+<LI>The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> class assumes that the directory path 
+	to the original shared object file is the same as for the 
+	<FONT COLOR="#0000ff"><TT>package_version</TT></FONT> module.
+
+<P>
+</LI>
+<LI>If you want to be able to pass other Fortran variables 
+	in and out to/from Python, please see the 
+	Section&nbsp;<A HREF="#sec:setbypy">6.3.1</A>
+	discussion of the Fotran <FONT COLOR="#0000ff"><TT>SetByPy</TT></FONT> module.
+
+<P>
+</LI>
+<LI>Fortran and Python routines to get and set compiled QTCM1 model
+	arrays are currently written only for floating point array.
+
+<P>
+</LI>
+<LI>If you ever change 
+	<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance method
+	<FONT COLOR="#0000ff"><TT>_set_qtcm_array_item_in_model</TT></FONT>	to work with non-floating point values, you will also
+	have to change the array handling section in 
+	<FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>.
+
+<P>
+</LI>
+<LI>The restart mechanism in the pure-Fortran QTCM1 model is 
+	<I>not</I> bit-for-bit correct.  Thus, if you compare the final
+	output from a 40 day run with a 30 day run restarted from
+	a 10 day run, the output will not be the same.
+	This behavior has been duplicated in <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> 
+	instances when the <FONT COLOR="#0000ff"><TT>mrestart</TT></FONT> flag is used
+	and applicable.
+
+<P>
+</LI>
+<LI>When creating new extension modules using the <I><I>src</I></I> makefile,
+	be sure you first use the <FONT COLOR="#0000ff"><TT>make clean</TT></FONT> command to clean-up
+	any old files.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION00760000000000000000"></A>   <A NAME="sec:create.new.so"></A>
+<BR>
+Creating New Standard Extension Modules
+</H1>
+
+<P>
+The steps involved in creating the standard extension modules (e.g.,
+<I><I>_qtcm_full_365.so</I></I>, etc.) on installation are given in
+Section&nbsp;<A HREF="node3.html#sec:create.so">2.4</A>.  The makefile provided in <I><I>/buildpath/src</I></I>
+uses a Fortran compiler to create the object code, runs <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>to create the shared object file in <I><I>src</I></I>, and moves the shared
+object files into <I><I>../lib</I></I>, overwriting any pre-existing files
+of the same name.  In this section, I describe the makefile and
+<FONT COLOR="#0000ff"><TT>f2py</TT></FONT> in a little more detail, in case you wish to create
+standard extension modules with additions from the ones the default
+makefile creates.
+
+<P>
+
+<H2><A NAME="SECTION00761000000000000000"></A>    <A NAME="sec:makefile.rules"></A>
+<BR>
+Makefile Rules
+</H2>
+
+<P>
+This section describes the rules of the
+makefile found in the <I><I>src</I></I> directory
+of the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> distribution.  
+This makefile is used by the Python package to create the extension
+module (<I><I>.so</I></I> files) imported and used by <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> objects
+(as described in Section&nbsp;<A HREF="node3.html#sec:create.so">2.4</A>).
+The makefile will, in general, be used only during <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>installation, but if you wish to recompile the QTCM1 libraries
+and make changes in the Python extension module,
+you'll want to use/change this makefile.
+
+<P>
+<DL>
+<DT><STRONG>clean</STRONG></DT>
+<DD>Removes old files in preparation for compiling new
+	extension modules.
+
+<P>
+</DD>
+<DT><STRONG>libqtcm.a</STRONG></DT>
+<DD>Creates library <I><I>libqtcm.a</I></I> that contains all
+	QTCM1 object files in the directory <I><I>src</I></I>,, except
+	<I><I>setbypy.o</I></I>, <I><I>wrapcall.o</I></I>, <I><I>varptrinit.o</I></I>, and
+	<I><I>driver.o</I></I>.  This archive is compiled with the netCDF
+	libraries.  Previous versions of <I><I>libqtcm.a</I></I> are overwritten.
+
+<P>
+</DD>
+<DT><STRONG>_qtcm_full_365.so</STRONG></DT>
+<DD>Creates the extension module
+	<I><I>_qtcm_full_365.so</I></I>.  <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> is run on applicable code
+	in <I><I>src</I></I>, and the extension module is moved to <I><I>../lib</I></I>.
+	Any previous versions of <I><I>../lib/_qtcm_full_365.so</I></I>
+	are overwritten.
+
+<P>
+</DD>
+<DT><STRONG>_qtcm_parts_365.so</STRONG></DT>
+<DD>Creates the extension module
+	<I><I>_qtcm_parts_365.so</I></I>.  <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> is run on applicable code
+	in <I><I>src</I></I>, and the extension module is moved to <I><I>../lib</I></I>.
+	Any previous versions of <I><I>../lib/_qtcm_parts_365.so</I></I>
+	are overwritten.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00762000000000000000"></A>      <A NAME="sec:using.f2py"></A>
+<BR>
+Using <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>
+</H2>
+
+<P>
+This section briefly describes how <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> is used in the
+makefile during the creation of the extension modules.
+<A NAME="tex2html132"
+  HREF="http://cens.ioc.ee/projects/f2py2e/"><FONT COLOR="#0000ff"><TT>F2py</TT></FONT></A>
+is a
+program that generates shared object libraries that allow you to call
+Fortran routines in Python.  <FONT COLOR="#0000ff"><TT>F2py</TT></FONT> comes with Python's
+<A NAME="tex2html133"
+  HREF="http://numpy.scipy.org/">NumPy</A>
+array handling package, so you do not need to install anything
+extra if you have NumPy already installed.
+
+<P>
+To create the extension modules in <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> using
+the makefile described in Section&nbsp;<A HREF="#sec:makefile.rules">6.6.1</A>,
+I use a method similar to the
+<A NAME="tex2html131"
+  HREF="http://cens.ioc.ee/projects/f2py2e/usersguide/index.html#the-quick-and-smart-way">``Quick and Smart Way''</A>
+described in the <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> manual.
+For the <I><I>_qtcm_full_365.so</I></I> extension module, the 
+<FONT COLOR="#0000ff"><TT>f2py</TT></FONT> call is:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>f2py -fcompiler=$(FC) -c -m _qtcm_full_365 driver.F90 <IMG
+ WIDTH="14" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\backslash$"> 
+<BR>
+setbypy.F90 libqtcm.a $(NCLIB)</TT></FONT></TD></TR>
+</TABLE>
+<P>
+and for the <I><I>_qtcm_parts_365.so</I></I> extension module, the call is:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>f2py -fcompiler=$(FC) -c -m _qtcm_parts_365 <IMG
+ WIDTH="14" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\backslash$"> 
+<BR>
+varptrinit.F90 wrapcall.F90 setbypy.F90 <IMG
+ WIDTH="14" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\backslash$"> 
+<BR>
+libqtcm.a $(NCLIB)</TT></FONT></TD></TR>
+</TABLE>
+<P>
+For both calls, <FONT COLOR="#0000ff"><TT>FC</TT></FONT> and <FONT COLOR="#0000ff"><TT>NCLIB</TT></FONT> are the environment
+variables in the makefile specifying the Fortran compiler and netCDF
+libraries, respectively.  The <FONT COLOR="#0000ff"><TT>-m</TT></FONT> flag specifies the extension
+module name (without the <I><I>.so</I></I> suffix).  The <I><I>.F90</I></I> files
+specify the files that have modules and routines that will be
+accessible at the extension module level, and the rest of the Fortran
+files in QTCM1 are compiled and archived in a library <I><I>libqtcm.a</I></I>.
+For <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> to work properly,
+the <I><I>.F90</I></I> files may define <I>only one</I> module or routine.
+
+<P>
+If you add Fortran files containing new modules, and you wish those
+modules to be accessible at the Python level, compile your new code
+with <FONT COLOR="#0000ff"><TT>f2py</TT></FONT>.  If we have a file of such new code, <I><I>newcode.F90</I></I>,
+the <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> call to create the <I><I>_qtcm_parts_365.so</I></I>
+extension module will become:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>f2py -fcompiler=$(FC) -c -m _qtcm_parts_365 <IMG
+ WIDTH="14" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\backslash$"> 
+<BR>
+varptrinit.F90 wrapcall.F90 setbypy.F90 <IMG
+ WIDTH="14" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\backslash$"> 
+<BR>
+newcode.F90 <IMG
+ WIDTH="14" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\backslash$"> 
+<BR>
+libqtcm.a $(NCLIB)</TT></FONT></TD></TR>
+</TABLE>
+<P>
+If you write new Fortran code for the compiled QTCM1 model that
+will <I>not</I> be accessed from the Python-level, just add the
+object code filename to the variable <FONT COLOR="#0000ff"><TT>QTCMOBJS</TT></FONT> in the
+makefile; you don't have to do anything else.  If you are adding
+Fortran code to existing Fortran modules, it's even easier:  You
+don't need change the makefile.  Note that for 64 bit processor
+machines, you may have to use <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> with the <FONT COLOR="#0000ff"><TT>-fPIC</TT></FONT> flag;
+see Section&nbsp;<A HREF="node3.html#sec:sopic">2.8.4</A> for details on how the lines above will
+change.
+
+<P>
+
+<H2><A NAME="SECTION00763000000000000000">
+Two Examples</A>
+</H2>
+
+<P>
+<B>A Function:</B>
+Let's say you have written a piece of Fortran code called
+<I><I>myfunction.F90</I></I> that contains one function called
+<FONT COLOR="#0000ff"><TT>myfunction</TT></FONT>, and you want to have this function
+callable from the Python level through the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> 
+instance method <FONT COLOR="#0000ff"><TT>__qtcm.myfunction</TT></FONT>.  Do the following:
+
+<P>
+
+<OL>
+<LI>Move <I><I>myfunction.F90</I></I> to <I><I>src</I></I> in the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>	distribution directory <I><I>/buildpath</I></I>.
+
+<P>
+</LI>
+<LI>Add <FONT COLOR="#0000ff"><TT>myfunction.o</TT></FONT> to the end of the object file list lines
+	after the target names
+	<FONT COLOR="#0000ff"><TT>_qtcm_full_365.so</TT></FONT> and
+	<FONT COLOR="#0000ff"><TT>_qtcm_parts_365.so</TT></FONT>.
+
+<P>
+</LI>
+<LI>In the
+	<FONT COLOR="#0000ff"><TT>_qtcm_full_365.so</TT></FONT> and
+	<FONT COLOR="#0000ff"><TT>_qtcm_parts_365.so</TT></FONT> target descriptions,
+	add <FONT COLOR="#0000ff"><TT>myfunction.F90</TT></FONT> to the 
+	beginning of the list of <I><I>.F90</I></I> names 
+	in the <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> lines.
+</LI>
+</OL>
+
+<P>
+<B>A Module:</B> 
+Let's say you have written a piece of Fortran code called
+<I><I>mymodule.F90</I></I> that contains the Fortran module <FONT COLOR="#0000ff"><TT>MyModule</TT></FONT>containing multiple routines and variables.  You want to have those
+routines and variables callable from the Python level through the
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute <FONT COLOR="#0000ff"><TT>__qtcm.mymodule</TT></FONT>.  The steps
+to add <FONT COLOR="#0000ff"><TT>MyModule</TT></FONT> to the extension modules are exactly the
+same as for a single function, with <FONT COLOR="#0000ff"><TT>mymodule</TT></FONT> being
+substituted in the makefile everywhere you have <FONT COLOR="#0000ff"><TT>myfunction</TT></FONT>.
+
+<P>
+
+<H1><A NAME="SECTION00770000000000000000">
+Attributes and Methods in <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instances</A>
+</H1>
+
+<P>
+In this section I describe some attributes, particularly private ones,
+that may be of interest to developers.
+As is the convention in Python, private
+attributes and methods are prepended by one or two underscores,
+with two underscores being the ``more'' private attribute.
+Please see the package
+<A NAME="tex2html134"
+  HREF="http://www.johnny-lin.com/py_pkgs/qtcm/doc/html-api/">API documentation</A>
+for details about all variables, including private variables.
+
+<P>
+
+<H2><A NAME="SECTION00771000000000000000">
+Public <FONT COLOR="#0000ff"><TT>num_settings</TT></FONT> Submodule Attributes/Methods</A>
+</H2>
+
+<P>
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>typecode</TT></FONT>:  This module function returns the
+	type code of the data array passed in as its argument.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>typecodes</TT></FONT>:  This dictionary is the same as the
+	NumPy (or Numeric and <FONT COLOR="#0000ff"><TT>numarray</TT></FONT>)
+	dictionary <FONT COLOR="#0000ff"><TT>typecodes</TT></FONT>, except that the character
+	<FONT COLOR="#0000ff"><TT>'S'</TT></FONT> and <FONT COLOR="#0000ff"><TT>'c'</TT></FONT> are added to the
+	<FONT COLOR="#0000ff"><TT>typecodes['Character']</TT></FONT> entry, if absent.  This
+	functionality is added because I found 
+	<FONT COLOR="#0000ff"><TT>typecodes['Character']</TT></FONT> had different values in
+	Mac OS X and Ubuntu GNU/Linux.
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00772000000000000000">
+Private <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> Submodule Attributes</A>
+</H2>
+
+<P>
+This submodule of the package <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> is the module that defines
+the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> class.
+
+<P>
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>_init_prog_dict</TT></FONT>:  This dictionary contains
+	the default values of all prognostic variables and 
+	right-hand sides that can be initialized.  In the
+	submodule <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, it is set to
+	the <FONT COLOR="#0000ff"><TT>init_prognostic_dict</TT></FONT> module variable in
+	submodule <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>_init_vars_keys</TT></FONT>:  List of all keys in
+	<FONT COLOR="#0000ff"><TT>_init_prog_dict</TT></FONT>, plus <FONT COLOR="#0000ff"><TT>'dateofmodel'</TT></FONT>	and <FONT COLOR="#0000ff"><TT>'title'</TT></FONT>.  These names correspond to the
+	field variables that are usually written out into a
+	restart file.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>_test_field</TT></FONT>:  <FONT COLOR="#0000ff"><TT>Field</TT></FONT> object instance used 
+	in type tests.
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00773000000000000000"></A>  
+					<A NAME="sec:Qtcm.private.attrib"></A>
+<BR>
+Private <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Attributes
+</H2>
+
+<P>
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>_cont</TT></FONT>:  A boolean attribute that is <FONT COLOR="#0000ff"><TT>True</TT></FONT>	if the run session is a continuation run session and
+	<FONT COLOR="#0000ff"><TT>False</TT></FONT> if not.  Set the value passed in by
+	the keyword <FONT COLOR="#0000ff"><TT>cont</TT></FONT> when the <FONT COLOR="#0000ff"><TT>run_session</TT></FONT>	method is executed.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>_monlen</TT></FONT>:  Integer array of the number of days in 
+	each month, assuming a 365&nbsp;day year.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>__qtcm</TT></FONT>:  The extension module that is the
+	compiled QTCM1 Fortran model for this instance.
+	This attribute is unique for every instance:  The
+	extension module <I><I>.so</I></I> file is first copied to
+	a temporary directory (given by the <FONT COLOR="#0000ff"><TT>sodir</TT></FONT>	instance attribute) and then imported to the
+	<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+	This private attribute is set on instantiation.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>_qtcm_fields_ids</TT></FONT>:  Field ids for all default 
+	field variables, set on instantiation.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>_runlists_long_names</TT></FONT>:  Dictionary holding the
+	descriptions of the standard run lists.  The keys of
+	the dictionary are the names of the standard run lists.
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION00780000000000000000">
+Creating Documentation</A>
+</H1>
+
+<P>
+The distribution of <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> comes with the full set of
+documentation in readable form (PDF and HTML).  The documentation
+consists of two kinds:  this User's Guide and the API documentation.
+The User's Guide is written in L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X.  The PDF version is generated
+directly from L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X, and the HTML version is created by
+L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X2HTML.
+
+<P>
+I use the <I><I>make_docs</I></I> shell script in <I><I>doc</I></I> creates all these
+documents.  Briefly, that script does the following:
+
+<P>
+
+<UL>
+<LI>In the <I><I>doc/latex</I></I> directory, uses <FONT COLOR="#0000ff"><TT>python</TT></FONT> to
+	run <I><I>code_to_latex.py</I></I>, which generates the
+	L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X files describing the current <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> 
+	package settings, including text in the manual which gives
+	all uses of the current version number.
+
+<P>
+</LI>
+<LI>L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X is run on the L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X files in the <I><I>doc/latex</I></I> directory.
+	The PDF generated by the run is moved from <I><I>doc/latex</I></I> to
+	<I><I>doc</I></I>.
+
+<P>
+</LI>
+<LI>L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X2HTML is run on the L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X files in <I><I>doc/latex</I></I>.
+	The HTML files generated by the run are moved to <I><I>doc/html</I></I>.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>epydoc</TT></FONT> is run on the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package libraries.
+	This is run in <I><I>doc</I></I>, to make use of the <I><I>epydoc</I></I>
+	configuration file present there.  The syntax from the
+	command line is:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>epydoc -v -config epydocrc [name]</TT></FONT></TD></TR>
+</TABLE><FONT COLOR="#0000ff"><TT>[name]</TT></FONT> is either <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, if the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package is
+installed in a directory listed in <FONT COLOR="#0000ff"><TT>sys.path</TT></FONT>, or 
+<FONT COLOR="#0000ff"><TT>[name]</TT></FONT> is the name of the directory the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package is
+located in (e.g., <I><I>/usr/lib/python2.4/site-packages/qtcm</I></I>).
+
+<P>
+</LI>
+</UL>
+
+<P>
+The <I><I>make_docs</I></I> script cannot be used without customizing it
+to your system, so please <B>DO NOT USE IT</B> if you do
+not know what you are doing.  You could easily wipe out all your
+documentation by mistake.
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html518"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html514"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html508"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html516"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html519"
+  HREF="node8.html">Future Work</A>
+<B> Up:</B> <A NAME="tex2html515"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html509"
+  HREF="node6.html">Troubleshooting</A>
+ &nbsp; <B>  <A NAME="tex2html517"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

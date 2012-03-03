@@ -1,0 +1,2244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Using qtcm</TITLE>
+<META NAME="description" CONTENT="Using qtcm">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+<LINK REL="next" HREF="node6.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="manual.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html463"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html459"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html453"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html461"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html464"
+  HREF="node6.html">Troubleshooting</A>
+<B> Up:</B> <A NAME="tex2html460"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html454"
+  HREF="node4.html">Getting Started With qtcm</A>
+ &nbsp; <B>  <A NAME="tex2html462"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html465"
+  HREF="node5.html#SECTION00510000000000000000">Introduction</A>
+<LI><A NAME="tex2html466"
+  HREF="node5.html#SECTION00520000000000000000">Model Instances</A>
+<LI><A NAME="tex2html467"
+  HREF="node5.html#SECTION00530000000000000000">Initializing a Model Run</A>
+<LI><A NAME="tex2html468"
+  HREF="node5.html#SECTION00540000000000000000">The <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> Keyword</A>
+<UL>
+<LI><A NAME="tex2html469"
+  HREF="node5.html#SECTION00541000000000000000">Initialization for 
+			<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT></A>
+<LI><A NAME="tex2html470"
+  HREF="node5.html#SECTION00542000000000000000">Initialization for 
+			<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT></A>
+<LI><A NAME="tex2html471"
+  HREF="node5.html#SECTION00543000000000000000">Communication Between Python and Fortran-Levels</A>
+<UL>
+<LI><A NAME="tex2html472"
+  HREF="node5.html#SECTION00543100000000000000">Passing Variables</A>
+<LI><A NAME="tex2html473"
+  HREF="node5.html#SECTION00543200000000000000">Calling Compiled QTCM1 Model Subroutines</A>
+</UL>
+</UL>
+<BR>
+<LI><A NAME="tex2html474"
+  HREF="node5.html#SECTION00550000000000000000">Restart and Continuation Run Sessions</A>
+<UL>
+<LI><A NAME="tex2html475"
+  HREF="node5.html#SECTION00551000000000000000">Restart Runs In the Pure-Fortran QTCM1</A>
+<LI><A NAME="tex2html476"
+  HREF="node5.html#SECTION00552000000000000000">Overview of Restart/Continuation Options In <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT></A>
+<LI><A NAME="tex2html477"
+  HREF="node5.html#SECTION00553000000000000000">Restart/Continuation for 
+		<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT> 
+		Model Instances</A>
+<LI><A NAME="tex2html478"
+  HREF="node5.html#SECTION00554000000000000000">Restart/Continuation for 
+		<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT> 
+		Model Instances</A>
+<UL>
+<LI><A NAME="tex2html479"
+  HREF="node5.html#SECTION00554100000000000000">Method&nbsp;1:
+			From a QTCM1 Restart File</A>
+<LI><A NAME="tex2html480"
+  HREF="node5.html#SECTION00554200000000000000">Method&nbsp;2:
+			From a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance Snapshot</A>
+<LI><A NAME="tex2html481"
+  HREF="node5.html#SECTION00554300000000000000">Method&nbsp;3:
+			From the Calling <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance</A>
+</UL>
+<LI><A NAME="tex2html482"
+  HREF="node5.html#SECTION00555000000000000000">Snapshots of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html483"
+  HREF="node5.html#SECTION00560000000000000000">Creating and Using Run Lists</A>
+<LI><A NAME="tex2html484"
+  HREF="node5.html#SECTION00570000000000000000">Field Variables and the <FONT COLOR="#0000ff"><TT>Field</TT></FONT> Class</A>
+<UL>
+<LI><A NAME="tex2html485"
+  HREF="node5.html#SECTION00571000000000000000">Creating Field Variables</A>
+<LI><A NAME="tex2html486"
+  HREF="node5.html#SECTION00572000000000000000">Initial Field Variables</A>
+<UL>
+<LI><A NAME="tex2html487"
+  HREF="node5.html#SECTION00572100000000000000">Scalars</A>
+<LI><A NAME="tex2html488"
+  HREF="node5.html#SECTION00572200000000000000">Arrays</A>
+</UL>
+<LI><A NAME="tex2html489"
+  HREF="node5.html#SECTION00573000000000000000">Passing Fields Between the Python and Fortran-Levels</A>
+<LI><A NAME="tex2html490"
+  HREF="node5.html#SECTION00574000000000000000">Field Variable Shape</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html491"
+  HREF="node5.html#SECTION00580000000000000000">Model Output</A>
+<LI><A NAME="tex2html492"
+  HREF="node5.html#SECTION00590000000000000000">Miscellaneous</A>
+<LI><A NAME="tex2html493"
+  HREF="node5.html#SECTION005100000000000000000">Cookbook of Ways the Model Can Be Used</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00500000000000000000"></A>                 <A NAME="ch:using"></A>
+<BR>
+Using <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>
+</H1>
+
+<H1><A NAME="SECTION00510000000000000000">
+Introduction</A>
+</H1>
+
+<P>
+Now that you've successfully run your first model instances, in
+this chapter I provide detailed explanations regarding the features
+of <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>.  I present these explanations in a documentary
+rather than didactic fashion; my goal is to document how the features
+work.  More details are given in the code docstrings.  At the end
+of the chapter, in Section&nbsp;<A HREF="#sec:cookbook">4.10</A>, I provide a few
+cookbook ideas/examples of ways to use the model.
+
+<P>
+
+<H1><A NAME="SECTION00520000000000000000"></A>  <A NAME="sec:model.instances"></A>
+<BR>
+Model Instances
+</H1>
+
+<P>
+An instance of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> model is created in <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> the same way
+you create an instance of any class.
+For instance, to instantiate two <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>models, <FONT COLOR="#0000ff"><TT>model1</TT></FONT> and <FONT COLOR="#0000ff"><TT>model2</TT></FONT>, I type the following:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>from qtcm import Qtcm 
+<BR>
+model1 = Qtcm(compiled_form='full') 
+<BR>
+model2 = Qtcm(compiled_form='parts')</TT></FONT></TD></TR>
+</TABLE>
+<P>
+In the above example, <FONT COLOR="#0000ff"><TT>model1</TT></FONT> uses the compiled QTCM1 model
+that runs the model (essentially) using the Fortran driver,
+while <FONT COLOR="#0000ff"><TT>model2</TT></FONT> uses the compiled QTCM1 model where execution
+order and content all the way down to the atmospheric timestep level
+is controlled by Python run lists.  (Section&nbsp;<A HREF="#sec:compiledform">4.4</A>
+has more details about the difference between compiled forms.)
+
+<P>
+For each instance of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>, copies of all needed extension
+modules (e.g., <I><I>.so</I></I> files) are copied to a temporary directory
+that is automatically created by Python.  The full path name of
+that directory is saved in the instance attribute <FONT COLOR="#0000ff"><TT>sodir</TT></FONT>.
+These extension modules are then associated with the specific instance 
+through private instance attributes,
+and thus every instance of <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> has its own separate variable
+and name space on both the Fortran and Python sides.<A NAME="tex2html102"
+  HREF="footnode.html#foot5343"><SUP>4.1</SUP></A>The temporary directory and all of its contents are deleted when the 
+model instance is deleted.
+
+<P>
+On instantiation, <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances set all scalar field
+variables to their default values as given in the submodule
+<FONT COLOR="#0000ff"><TT>defaults</TT></FONT> (and listed in Section&nbsp;<A HREF="node10.html#sec:defaults.scalar">A.1</A>),
+and assign the fields as instance attributes.  The instance attribute
+<FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> is set to True by default, unless
+overridden on instantiation.
+
+<P>
+
+<H1><A NAME="SECTION00530000000000000000">
+Initializing a Model Run</A>
+</H1>
+
+<P>
+In the pure-Fortran QTCM1, there are three broad
+classes of initialized variables:
+
+<OL>
+<LI>Those that are read-in using a namelist, 
+</LI>
+<LI>Those that the are read-in from a restart file, and
+</LI>
+<LI>Those that are set by assignment in the Fortran code.  
+</LI>
+</OL>
+These variables are a combination of scalars and arrays.
+
+<P>
+For <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, interfaces were built so that all classes of
+initialized variables that could be user-controlled are accessible
+and changeable at the Python-level.  For <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>,
+the set of variables that could be changed is also expanded, to
+include not just the first and second classes of pure-Fortran
+QTCM1 initialized variables.  This was done to make <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>more flexible.  All variables that can be passed between the
+compiled QTCM1 model and Python model levels are called
+field variables, and are described in detail in
+Section&nbsp;sec:field.variables.
+
+<P>
+As it happens, all the namelist-set variables are scalars.  In the
+pure-Fortran QTCM1, those variables are given default values prior
+to reading in of the namelist.  To duplicate this functionality,
+on model instantiation, all scalar fields are set to their default
+values as given in the submodule <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> and listed in
+Section&nbsp;<A HREF="node10.html#sec:defaults.scalar">A.1</A>.  Most of the default values in
+<FONT COLOR="#0000ff"><TT>defaults</TT></FONT> are the same as in the pure-Fortran QTCM1, but
+there are a few differences.<A NAME="tex2html103"
+  HREF="footnode.html#foot5344"><SUP>4.2</SUP></A>This setting of scalar defaults is the same for both
+<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT> and
+<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT> instances.
+Of course, all
+<FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> fields are user-controllable, both via keyword input
+parameters at model instantiation as well as through direct
+manipulation of the instance attribute that stores the field variable.
+
+<P>
+The pure-Fortran QTCM1 initialized prognostic variables and
+right-hand sides are set in the Fortran subroutine <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>.
+Their they are read-in from a restart file or, as default,
+set by assignment.
+In <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, the same variables are initialized by a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>instance method of the same name, <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>, for the case when
+<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT>.  For the case
+of <FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT>, the compiled
+QTCM1 subroutine that is the same as in the pure-Fortran case is
+used, and that routine is inaccessible at the Python level.
+See Section&nbsp;<A HREF="#sec:snapshots">4.5.5</A>'s listing of snapshot variables,
+which also includes the prognostic variables and right-hand sides that
+are set in <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> (both Fortran and Python).
+
+<P>
+
+<H1><A NAME="SECTION00540000000000000000"></A>  <A NAME="sec:compiledform"></A>
+<BR>
+The <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> Keyword
+</H1>
+
+<P>
+The <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package is a Python wrap of the Fortran routines
+that make up QTCM1.  The wrapping layer adds flexibility and
+functionality, but at the cost of speed.  Thus, I created two
+types of extension modules from the Fortran QTCM1 code, one
+which permits very little control over the compiled Fortran
+<I>routines</I> at the Python level, and one that allows the Python-level
+to control model execution in the compiled QTCM1 model
+all the way down to the atmospheric timestep level.<A NAME="tex2html104"
+  HREF="footnode.html#foot5346"><SUP>4.3</SUP></A>The former extension module corresponds to 
+<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT> and
+the latter extension module to
+<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT>.
+
+<P>
+For <FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT>,
+the compiled portion of the model encompasses (nearly) the
+entire QTCM1 model as a whole.  Thus, the only compiled QTCM1 model
+modules or subroutines that Python should interact with is
+the <FONT COLOR="#0000ff"><TT>driver</TT></FONT> routine (which executes the entire model) and
+the <FONT COLOR="#0000ff"><TT>setbypy</TT></FONT> module (which enables communication between the
+compiled model and the Python-level of model fields.<A NAME="tex2html105"
+  HREF="footnode.html#foot5347"><SUP>4.4</SUP></A>
+<P>
+For <FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT>, the compiled
+portion of the model does not encompasses the model as a whole, but
+rather is broken up into separate units (as appropriate) all the
+way down to an atmosphere timestep.  Thus, compiled QTCM1 model
+modules/subroutines that are accessible at the Python-level include
+those that are executed within an atmosphere timestep on up.
+
+<P>
+Because the difference in compiled forms fundamentally affects how
+the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance facilitates Python-Fortran communication,
+this attribute must be set on instantiation via a keyword input
+parameter.
+
+<P>
+In the rest of this section, to avoid being verbose, when I
+write <FONT COLOR="#0000ff"><TT>'full'</TT></FONT>, I mean the situation where
+<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT>.
+Likewise, when I
+write <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT>, I mean the situation where
+<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT>.
+
+<P>
+
+<H2><A NAME="SECTION00541000000000000000"></A>
+				<A NAME="sec:init.compiledform.full"></A>
+<BR>
+Initialization for 
+			<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT>
+</H2>
+
+<P>
+For a model run of this case, the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance will
+initialize the model using the Fortran <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> subroutine
+in the compiled QTCM1 model.  This subroutine does the following:
+
+<P>
+
+<UL>
+<LI>If <FONT COLOR="#0000ff"><TT>mrestart=1</TT></FONT>, 
+	the restart file is used to initialize all prognostic
+	variables.  In terms of start date, the following rules are
+	used:
+	
+<OL>
+<LI>Variable <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> is read from the restart file.
+</LI>
+<LI>If <FONT COLOR="#0000ff"><TT>day0</TT></FONT>, <FONT COLOR="#0000ff"><TT>month0</TT></FONT>, and <FONT COLOR="#0000ff"><TT>year0</TT></FONT>		are negative, or otherwise
+		invalid (e.g., <FONT COLOR="#0000ff"><TT>month0</TT></FONT> greater than 12), the invalid
+		value is replaced with the
+		day, month, and/or year of the day <I>after</I> 
+		that given by <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT>.
+		If the value of <FONT COLOR="#0000ff"><TT>day0</TT></FONT>, <FONT COLOR="#0000ff"><TT>month0</TT></FONT>, or <FONT COLOR="#0000ff"><TT>year0</TT></FONT>		is not invalid in this sense, it is not replaced.
+	
+</LI>
+</OL>
+	Thus, if the restart file gives 
+	<FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> equal to 101102
+	(year 10, month 11, day 2), and 
+	<FONT COLOR="#0000ff"><TT>day0=-1</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>month0=-1</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>year0=-1</TT></FONT>,
+	and 
+	<FONT COLOR="#0000ff"><TT>mrestart=1</TT></FONT>, 
+	the model will start running from year 10, month 11, day 3.
+	If <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> equals to 101102, and 
+	<FONT COLOR="#0000ff"><TT>day0=-1</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>month0=3</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>year0=-1</TT></FONT>,
+	the model will start running from year 10, month 3, day 3.
+
+<P>
+</LI>
+<LI>If <FONT COLOR="#0000ff"><TT>mrestart=0</TT></FONT>, 
+	all prognostic variables and right-hand sides are set to an
+	initial value (which for most of those variables is zero).
+	In terms of start date, <FONT COLOR="#0000ff"><TT>day0</TT></FONT> is set to 1 (and thus 
+	the value of <FONT COLOR="#0000ff"><TT>day0</TT></FONT> previously input is ignored), and
+	both <FONT COLOR="#0000ff"><TT>month0</TT></FONT> and <FONT COLOR="#0000ff"><TT>year0</TT></FONT>	are set to 1 
+	if their previously input values are invalid (where
+	invalid means less than
+	1, or, for <FONT COLOR="#0000ff"><TT>month0</TT></FONT>, greater than 12).
+	Otherwise, <FONT COLOR="#0000ff"><TT>month0</TT></FONT> and <FONT COLOR="#0000ff"><TT>year0</TT></FONT> are left unchanged.
+	Variable <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> has the value it had when the variable
+	was declared (which is determined by the compiler and usually
+	is zero; <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> will not be properly set until
+	subroutine <FONT COLOR="#0000ff"><TT>TimeManager</TT></FONT> is called.
+
+<P>
+Thus, if 
+	<FONT COLOR="#0000ff"><TT>day0=-1</TT></FONT>,
+	<FONT COLOR="#0000ff"><TT>month0=-1</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>year0=-1</TT></FONT> is input into the model
+	(say from a namelist) and 
+	<FONT COLOR="#0000ff"><TT>mrestart=0</TT></FONT>,
+	the model will start running from year 1, month 1, day 1,
+	and <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> at the exit of subroutine 
+	<FONT COLOR="#0000ff"><TT>varinit</TT></FONT> will equal its compiler-set default.
+	If 
+	<FONT COLOR="#0000ff"><TT>day0=14</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>month0=3</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>year0=11</TT></FONT>, and 
+	<FONT COLOR="#0000ff"><TT>mrestart=0</TT></FONT> on input into the
+	model,
+	the model will start running from year 11, month 3, day 1,
+	and <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> at the exit of subroutine 
+	<FONT COLOR="#0000ff"><TT>varinit</TT></FONT> will equal its compiler-set default.
+
+<P>
+Note that <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT>	can thus be inconsistent with 
+	<FONT COLOR="#0000ff"><TT>month0</TT></FONT> and <FONT COLOR="#0000ff"><TT>year0</TT></FONT> at the
+	exit of subroutine <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>.
+</LI>
+</UL>
+
+<P>
+This behavior with respect to initializing
+the start date is different than in QTCM1 versions 1.0 and 2.1.
+Please see the source code from those earlier QTCM1 versions for
+details.
+
+<P>
+
+<H2><A NAME="SECTION00542000000000000000"></A>
+				<A NAME="sec:init.compiledform.parts"></A>
+<BR>
+Initialization for 
+			<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT>
+</H2>
+
+<P>
+For <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> model, the methodology of how initialized
+prognostic variables, right-hand sides, and start date related
+variables are set is controlled by the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance
+attribute/flag <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT>.  The initialization
+is (mostly) executed in the Python <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> method in the
+following way:
+
+<P>
+
+<UL>
+<LI>If <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> is False:
+The method as described for
+initialization for the 
+<FONT COLOR="#0000ff"><TT>'full'</TT></FONT> case is generally
+followed, with the exception that dateofmodel is set
+to match <FONT COLOR="#0000ff"><TT>day0</TT></FONT>, <FONT COLOR="#0000ff"><TT>month0</TT></FONT>, <FONT COLOR="#0000ff"><TT>year0</TT></FONT>, prior to exit of 
+<FONT COLOR="#0000ff"><TT>varinit</TT></FONT>.
+
+<P>
+</LI>
+<LI>If <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> is True:
+the model object will initialize the model based on the current
+state of the model instance.  This enables you to set a model run
+session's initial conditions based upon the state of the prognostic
+variables and parameters stored at the Python level, which is
+accessible at runtime.
+</LI>
+</UL>
+
+<P>
+Since the <FONT COLOR="#0000ff"><TT>init_with_instance_state=False</TT></FONT>case is mainly described by the initialization method for the
+<FONT COLOR="#0000ff"><TT>'full'</TT></FONT> case, I refer the
+reader to Section&nbsp;<A HREF="#sec:init.compiledform.full">4.4.1</A>.
+For the case of <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> is True, however,
+the task is more complicated.  Specifically, for that case,
+initialization includes the following:
+
+<P>
+
+<OL>
+<LI>If not currently defined,
+	variable <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> is set to a default value of 0,
+	which is specified in the module defaults.
+
+<P>
+</LI>
+<LI>The <FONT COLOR="#0000ff"><TT>mrestart</TT></FONT> flag is ignored for variable initialization.
+
+<P>
+</LI>
+<LI>All prognostic variables and right-hand sides
+        are set to an
+        initial value (which for most of those variables is zero),
+	unless the variable is defined at the Python level, in which
+	case the inital value is set to the Python level defined value.
+
+<P>
+</LI>
+<LI>If <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> is greater than 0, 
+	<FONT COLOR="#0000ff"><TT>day0</TT></FONT>, <FONT COLOR="#0000ff"><TT>month0</TT></FONT>, and <FONT COLOR="#0000ff"><TT>year0</TT></FONT> are overwritten
+        with values derived from <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> 
+	in order to set the run to start
+	the day <I>after</I> <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT>.
+
+<P>
+</LI>
+<LI>If <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> is less than or equal to 0, <FONT COLOR="#0000ff"><TT>day0</TT></FONT>,
+	<FONT COLOR="#0000ff"><TT>month0</TT></FONT>, and <FONT COLOR="#0000ff"><TT>year0</TT></FONT> are set to their respective
+	instance attribute values, if valid.  For invalid instance
+	attribute values, the invalid <FONT COLOR="#0000ff"><TT>day0</TT></FONT>, <FONT COLOR="#0000ff"><TT>month0</TT></FONT>,
+	and/or <FONT COLOR="#0000ff"><TT>year0</TT></FONT> is set to 1.
+
+<P>
+</LI>
+<LI>Variable <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> is recalculated
+	and overwritten to match 
+	<FONT COLOR="#0000ff"><TT>day0</TT></FONT>, <FONT COLOR="#0000ff"><TT>month0</TT></FONT>, <FONT COLOR="#0000ff"><TT>year0</TT></FONT>, prior to exit of 
+	<FONT COLOR="#0000ff"><TT>varinit</TT></FONT>.
+</LI>
+</OL>
+
+<P>
+As a result, for <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> is True, the
+way you indicate to the model that a run session is a brand-new run
+is by setting, before the <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> method call,
+<FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> to a value less than or equal to 0, and <FONT COLOR="#0000ff"><TT>day0</TT></FONT>,
+<FONT COLOR="#0000ff"><TT>model0</TT></FONT>, and <FONT COLOR="#0000ff"><TT>year0</TT></FONT> to the day you want the model to
+begin the run session.  To indicate to the model you wish to continue
+a run, set <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> to the day <I>before</I> you want the
+model to start running from.
+
+<P>
+Examples:
+
+<UL>
+<LI>If <FONT COLOR="#0000ff"><TT>day0=-1</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>month0=-1</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>year0=-1</TT></FONT>, and
+	<FONT COLOR="#0000ff"><TT>dateofmodel=0</TT></FONT> is input into 
+	the model the model will start running from year 1, month 1, day 1,
+	and 
+	variable <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> at the exit of 
+	subroutine <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>	will equal 10101.
+
+<P>
+</LI>
+<LI>If <FONT COLOR="#0000ff"><TT>day0=14</TT></FONT>,
+	<FONT COLOR="#0000ff"><TT>month0=3</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>year0=11</TT></FONT>,
+	and <FONT COLOR="#0000ff"><TT>dateofmodel=0</TT></FONT> is input into the
+	model, the model will start running from year 11, month 3, day 14,
+	and 
+	variable <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> at the exit of 
+	subroutine <FONT COLOR="#0000ff"><TT>varinit</TT></FONT> will equal
+	110314.
+
+<P>
+</LI>
+<LI>If <FONT COLOR="#0000ff"><TT>day0=14</TT></FONT>,
+	<FONT COLOR="#0000ff"><TT>month0=3</TT></FONT>, 
+	<FONT COLOR="#0000ff"><TT>year0=11</TT></FONT>,
+	and <FONT COLOR="#0000ff"><TT>dateofmodel=341023</TT></FONT> is input into the
+	model, the model will start running from year 34, month 10, day 24,
+	and at the exit of subroutine 
+	<FONT COLOR="#0000ff"><TT>varinit</TT></FONT>, <FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT> will equal
+	341024, with <FONT COLOR="#0000ff"><TT>day0=24</TT></FONT>,
+	<FONT COLOR="#0000ff"><TT>month0=10</TT></FONT>, and
+	<FONT COLOR="#0000ff"><TT>year0=34</TT></FONT>.
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00543000000000000000"></A>
+				<A NAME="sec:comm.py.fort.compiledform"></A>
+<BR>
+Communication Between Python and Fortran-Levels
+</H2>
+
+<P>
+After initialization, the second major difference between a
+<FONT COLOR="#0000ff"><TT>'full'</TT></FONT> and <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> model is how and when communication
+between the Python and Fortran levels can occur.  For the <FONT COLOR="#0000ff"><TT>'full'</TT></FONT>case, except for the passing in and out of variables before and after
+a run session, all variable passing and subroutine calling happens in
+the compiled QTCM1 model, with no control at the Python level.
+For the <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> case, variables can be passed between the
+Python and Fortran-levels at all levels down to the atmospheric
+timestep, and many Fortran QTCM1 subroutines can be called from the
+Python-level.  
+
+<P>
+
+<H3><A NAME="SECTION00543100000000000000">
+Passing Variables</A>
+</H3>
+
+<P>
+For all <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> cases, variables are passed back and
+forth between the Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance level and the
+compiled QTCM1 model Fortran-level using the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>instance methods <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> and <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>:<A NAME="tex2html106"
+  HREF="footnode.html#foot5351"><SUP>4.5</SUP></A>
+<P>
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT>(<I>key</I>):
+	Returns the value of the field variable given by the string
+	<I>key</I>.  If the compiled QTCM1 model variable given by
+	<I>key</I> is unreadable, the
+        custom exception 
+	<FONT COLOR="#0000ff"><TT>FieldNotReadableFromCompiledModel</TT></FONT> is thrown.
+	The value returned is a copy of the value on the Fortran
+	side, not a reference to the variable in memory.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>:
+	Sets the value of a field variable
+	in the compiled QTCM1 model <I>and at the Python-level,</I>
+	automatically overriding any previous value at both levels.
+	Thus, calling this method will change/create the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>	instance attribute corresponding to the field variable.
+        When the compiled QTCM1 model variable is set, a copy of the
+        Python value is passed to the Fortran model; the
+	variable is <I>not passed by reference.</I>
+	This value comes from the <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> calling
+	parameter list, <I>not</I> from the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>        instance attribute corresponding to the field variable.
+</LI>
+</UL>
+
+<P>
+The <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> method has two calling forms, one with
+one argument and the other with two arguments:
+
+<UL>
+<LI>One argument:  The method is called
+	as <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>(<I>arg</I>), where <I>arg</I> 
+	is either a string giving the name of the field variable or 
+	a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instance.
+
+<P>
+</LI>
+<LI>Two arguments:  The method is called as
+	<FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>(<I>key</I>, <I>value</I>), where
+	<I>key</I> is the string giving the name of the field variable
+	and <I>value</I> is the value to set the model field variable to
+	(note <I>value</I> can be a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instance).
+</LI>
+</UL>
+In either calling form, if no value given, the default value as defined
+in module <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> is used.
+
+<P>
+Some compiled QTCM1 model variables are not in a state where they
+can be set.  An example is a compiled QTCM1 model pointer variable,
+prior to the pointer being associated with a target (an attempt
+to set would yield a bus error).  In such cases, the
+<FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> method will throw a
+<FONT COLOR="#0000ff"><TT>FieldNotReadableFromCompiledModel</TT></FONT> exception, nothing will
+be set in the compiled QTCM1 model, and the Python counterpart
+field variable (if it previously existed) would be left unchanged.<A NAME="tex2html107"
+  HREF="footnode.html#foot5352"><SUP>4.6</SUP></A>
+<P>
+Examples, typed in at a Python prompt, and
+assuming that <FONT COLOR="#0000ff"><TT>model</TT></FONT> is a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance:
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>dtvalue=model.get_qtcm1_item('dt')</TT></FONT>:
+	Retrieves the value of field variable <FONT COLOR="#0000ff"><TT>dt</TT></FONT> (timestep)
+	from the compiled QTCM1 Fortran model and sets it to the
+	Python variable <FONT COLOR="#0000ff"><TT>dtvalue</TT></FONT>.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>model.set_qtcm1_item('dt')</TT></FONT>:
+	Sets the value of field variable <FONT COLOR="#0000ff"><TT>dt</TT></FONT>	in the compiled QTCM1 Fortran model to the default
+	value (as given in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>),
+	and sets the value of Python attribute <FONT COLOR="#0000ff"><TT>model.dt</TT></FONT> also to 
+	that default value.  
+	Remember that <FONT COLOR="#0000ff"><TT>model.dt</TT></FONT> is a <FONT COLOR="#0000ff"><TT>Field</TT></FONT>	instance.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>model.set_qtcm1_item('dt', 2000.)</TT></FONT>:
+	Sets the value of field variable <FONT COLOR="#0000ff"><TT>dt</TT></FONT>	in the compiled QTCM1 Fortran model to 2000 (as a real),
+	and sets the value of Python attribute <FONT COLOR="#0000ff"><TT>model.dt</TT></FONT> also to 2000.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00543200000000000000">
+Calling Compiled QTCM1 Model Subroutines</A>
+</H3>
+
+<P>
+All compiled QTCM1 model subroutines that can be called
+(except <FONT COLOR="#0000ff"><TT>driver</TT></FONT> and <FONT COLOR="#0000ff"><TT>varptrinit</TT></FONT>) are in the
+<FONT COLOR="#0000ff"><TT>setbypy</TT></FONT> or <FONT COLOR="#0000ff"><TT>wrapcall</TT></FONT> modules
+of the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance private attribute <FONT COLOR="#0000ff"><TT>__qtcm</TT></FONT>.
+(On <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance instantiation, <FONT COLOR="#0000ff"><TT>__qtcm</TT></FONT> is set
+to the <I><I>.so</I></I> extension module that is the compiled QTCM1 Fortran model.)
+Thus, to call <FONT COLOR="#0000ff"><TT>wmconvct</TT></FONT> in <FONT COLOR="#0000ff"><TT>wrapcall</TT></FONT> at the Python-level,
+just type <FONT COLOR="#0000ff"><TT>model.__qtcm.wrapcall.wmconvct()</TT></FONT> (where <FONT COLOR="#0000ff"><TT>model</TT></FONT>is a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance).
+For <FONT COLOR="#0000ff"><TT>driver</TT></FONT> and <FONT COLOR="#0000ff"><TT>varptrinit</TT></FONT>, these subroutines are not
+contained in a <FONT COLOR="#0000ff"><TT>__qtcm</TT></FONT> module, and thus can be called
+directly (e.g., just type <FONT COLOR="#0000ff"><TT>model.__qtcm.driver()</TT></FONT>).
+See Sections&nbsp;<A HREF="node7.html#sec:setbypy">6.3.1</A> and&nbsp;<A HREF="node7.html#sec:wrapcall">6.3.2</A> for more information
+on the <FONT COLOR="#0000ff"><TT>setbypy</TT></FONT> and <FONT COLOR="#0000ff"><TT>wrapcall</TT></FONT> modules.
+
+<P>
+For the <FONT COLOR="#0000ff"><TT>'full'</TT></FONT> case, the only compiled QTCM1 model
+subroutine you can usefully call during a run session is <FONT COLOR="#0000ff"><TT>driver</TT></FONT>.
+For the <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> case, while you can essentially call any subroutine
+given in a run list, you usually will not directly call a compiled QTCM1
+model subroutine but will instead call it through including it in a
+run list.  For example, if you have the following run list in a
+<FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> model:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>[ 'qtcminit', '__qtcm.wrapcall.woutpinit' ]</TT></FONT></TD></TR>
+</TABLE>Running this list using the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance method
+<FONT COLOR="#0000ff"><TT>run_list</TT></FONT> will result in <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance method
+<FONT COLOR="#0000ff"><TT>qtcminit</TT></FONT> first being run, 
+then the compiled QTCM1 Fortran model subroutine
+<FONT COLOR="#0000ff"><TT>woutpinit</TT></FONT> in Fortran module <FONT COLOR="#0000ff"><TT>wrapcall</TT></FONT> being run.
+See Section&nbsp;<A HREF="#sec:runlists">4.6</A> and
+Table&nbsp;<A HREF="#tab:stnd.runlists">4.3</A> for a discussion and list of the
+standard run lists that control routine execution content and order
+in the <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> case.
+
+<P>
+
+<H1><A NAME="SECTION00550000000000000000"></A>
+				<A NAME="sec:contination.run.sessions"></A>
+<BR>
+Restart and Continuation Run Sessions
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00551000000000000000"></A>
+					<A NAME="sec:puref90.restart"></A>
+<BR>
+Restart Runs In the Pure-Fortran QTCM1
+</H2>
+
+<P>
+To enable restart of a model run, the pure-Fortran QTCM1 model
+writes out a restart file with the state of the prognostic variables
+and select right-hand sides at that point in the run (for a list
+of the variables, see Section&nbsp;<A HREF="#sec:snapshots">4.5.5</A>).  This binary
+file can then be read in by later model runs.  The Fortran
+<FONT COLOR="#0000ff"><TT>mrestart</TT></FONT> flag is passed in via a namelist; if <FONT COLOR="#0000ff"><TT>mrestart</TT></FONT>is 1, the run uses the restart file (named <I><I>qtcm.restart</I></I>).
+
+<P>
+One of the problems with using the restart file to do a continuation
+run is that the continuation run will not be perfect.  In other words,
+a 15&nbsp;day run followed by a 25&nbsp;day run based on the restart file 
+generated at the end of the 15&nbsp;day run will <I>not</I> give the
+exact same output as a continuous 40&nbsp;day run.
+
+<P>
+
+<H2><A NAME="SECTION00552000000000000000"></A>
+					<A NAME="sec:restart.options.list"></A>
+<BR>
+Overview of Restart/Continuation Options In <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>
+</H2>
+
+<P>
+For a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance, in contrast to the pure-Fortran QTCM1,
+more than one method of continuation is available.
+Thus, for a continuation run, you need to tell the model
+``continue from what?''
+The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> class provides three choices for restart/continuing
+a run:
+
+<OL>
+<LI>From a restart file:  Move/rename a QTCM1 restart file
+        to the current working directory to <I><I>qtcm.restart</I></I>.
+	<A NAME="list:continue.from.restart"></A>
+<P>
+</LI>
+<LI>From a snapshot from another run session
+	(see Sections&nbsp;<A HREF="node4.html#sec:snapshot.intro">3.4.4</A> and&nbsp;<A HREF="#sec:snapshots">4.5.5</A>).
+	<A NAME="list:continue.from.snapshot"></A>
+<P>
+</LI>
+<LI>From the values of the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance you will be
+	calling <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> from.
+	<A NAME="list:continue.from.instance"></A></LI>
+</OL>
+
+<P>
+Restart/continuation methods&nbsp;<A HREF="#list:continue.from.restart">1</A> 
+and&nbsp;<A HREF="#list:continue.from.snapshot">2</A> both suffer from the
+same problem as the pure-Fortran QTCM1 restart process:
+They do not produce perfect restarts
+(see Section&nbsp;sec:puref90.restart for details).
+In this section, I discuss the restart/continuation options
+for each <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT> option.
+
+<P>
+Methods&nbsp;<A HREF="#list:continue.from.restart">1</A>
+and&nbsp;<A HREF="#list:continue.from.snapshot">2</A> are best used when making a
+run session from a newly instantiated <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+Method&nbsp;<A HREF="#list:continue.from.instance">3</A> is best used when executing
+a run session using a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance that has already gone
+through at least one run session.  Regardless of which method you
+use, however, please note that anytime you execute a run session
+using a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance that already has made a previous run
+session, some variables <I>cannot be updated</I> between run sessions.
+This feature is most noticeable with the output filename, and occurs
+because the name persists in the compiled QTCM model, and is stored
+in the extension module (<I><I>.so</I></I> files in <FONT COLOR="#0000ff"><TT>sodir</TT></FONT>) associated
+with the instance.  If you wish to control all variables possible
+from the Python level (including output filename), you need do the
+run session from a new model instance.
+
+<P>
+
+<H2><A NAME="SECTION00553000000000000000">
+Restart/Continuation for 
+		<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT> 
+		Model Instances</A>
+</H2>
+
+<P>
+The only option for restart when using
+<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT> model instances
+is method&nbsp;<A HREF="#list:continue.from.restart">1</A>, to use a QTCM1 restart
+file.<A NAME="tex2html108"
+  HREF="footnode.html#foot5356"><SUP>4.7</SUP></A>To use this option, the value of the <FONT COLOR="#0000ff"><TT>mrestart</TT></FONT> 
+attribute must equal 1, the restart file must be named
+<I><I>qtcm.restart</I></I>, and the restart file must be in the 
+current working directory.
+As with the pure-Fortran QTCM1 restart process, this method
+does not produce perfect restarts.
+
+<P>
+
+<H2><A NAME="SECTION00554000000000000000">
+Restart/Continuation for 
+		<FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT> 
+		Model Instances</A>
+</H2>
+
+<P>
+For the <FONT COLOR="#0000ff"><TT>compiled_form='parts'</TT></FONT> case,
+all three restart/continuation methods
+described in Section&nbsp;<A HREF="#sec:restart.options.list">4.5.2</A> are
+available.
+
+<P>
+
+<H3><A NAME="SECTION00554100000000000000">
+Method&nbsp;</A><A HREF="#list:continue.from.restart">1</A>:
+			From a QTCM1 Restart File
+</H3>
+
+<P>
+To use the QTCM1 restart file mechanism, not only must the
+<FONT COLOR="#0000ff"><TT>mrestart</TT></FONT> attribute have a value to 1, but the
+<FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> flag also has to be <FONT COLOR="#0000ff"><TT>False</TT></FONT>,
+otherwise the <FONT COLOR="#0000ff"><TT>mrestart</TT></FONT> attribute value will be ignored.  
+As with the pure-Fortran QTCM1 restart process, this method does not
+produce perfect restarts.
+
+<P>
+
+<H3><A NAME="SECTION00554200000000000000">
+Method&nbsp;</A><A HREF="#list:continue.from.snapshot">2</A>:
+			From a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance Snapshot
+</H3>
+
+<P>
+You can take snapshots of the model state of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance
+by the <FONT COLOR="#0000ff"><TT>make_snapshot</TT></FONT> instance method.  This snapshot saves
+a copy of all the variables saved to a QTCM1 restart file (see
+Section&nbsp;<A HREF="#sec:snapshots">4.5.5</A> for the full list of fields), which
+then can be passed to other <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances for use in other
+run sessions.
+
+<P>
+The key difference between this method and 
+method&nbsp;<A HREF="#list:continue.from.instance">3</A> (described below)
+is that <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> calls using the snapshot are done
+<I>without</I> the <FONT COLOR="#0000ff"><TT>cont</TT></FONT> keyword input parameter
+(by default, <FONT COLOR="#0000ff"><TT>cont</TT></FONT> is False).  If the <FONT COLOR="#0000ff"><TT>cont</TT></FONT> keyword
+is not False, it says the run session is a continuation run
+that uses the state of the compiled QTCM1 model for all variables
+that are not specified at, and read-in from,
+the Python level.  If the <FONT COLOR="#0000ff"><TT>cont</TT></FONT> keyword
+is False, the run session initializes as if it were a new run.
+
+<P>
+See Section&nbsp;<A HREF="node4.html#sec:snapshot.intro">3.4.4</A> for details and
+an example of using snapshots to initialize a run session.
+Note that as with the pure-Fortran QTCM1 restart process, this method 
+does not produce perfect restarts.
+
+<P>
+
+<H3><A NAME="SECTION00554300000000000000">
+Method&nbsp;</A><A HREF="#list:continue.from.instance">3</A>:
+			From the Calling <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance
+</H3>
+
+<P>
+This method is used when you want to make a run session that is a
+``true'' continuation run, i.e., one that uses the current state
+of the compiled QTCM1 model for all variables that are not read-in
+from the Python level (remember that <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances hold a
+subset of the variables defined at the Fortran level).  
+The key reason to use this method for a continuation run session
+is that the continuation is byte-for-byte the same (if no fields
+are changed) as if the run just went straight on through.  Thus,
+the continuation would be perfect: A 15&nbsp;day run followed by a 25&nbsp;day
+run using the same <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance with the <FONT COLOR="#0000ff"><TT>cont</TT></FONT> keyword
+will give the exact same output as a continuous 40&nbsp;day run.  This
+is not the case when making a new instance and passing a restart
+file or a snapshot, because a separate extension module is used for
+those new instances.
+
+<P>
+Control of this method is accomplished through the <FONT COLOR="#0000ff"><TT>cont</TT></FONT>keyword input parameter to the <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> method and the
+<FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> attribute of a
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance:
+
+<P>
+
+<UL>
+<LI><FONT COLOR="#0000ff"><TT>cont</TT></FONT>: If set to False, the run session is not a
+	continuation of the previous run, but a new run session.
+	If set to True, the run session is a continuation of the
+	previous run session.  If set to an integer greater than
+	zero, the run session is a continuation just like
+	<FONT COLOR="#0000ff"><TT>cont=True</TT></FONT>, but the value
+	<FONT COLOR="#0000ff"><TT>cont</TT></FONT> is set to is used for <FONT COLOR="#0000ff"><TT>lastday</TT></FONT> and replaces
+	<FONT COLOR="#0000ff"><TT>lastday.value</TT></FONT> in the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+
+<P>
+</LI>
+<LI><FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT>:
+	If True, for a <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> call using the
+	<FONT COLOR="#0000ff"><TT>cont</TT></FONT> keyword, whatever the field values are in the Python
+	instance are used in the run session.
+	If False, model variables are set and initialized as described in
+	Section&nbsp;<A HREF="#sec:init.compiledform.parts">4.4.2</A>.  In that case,
+	previous compiled QTCM1 model values will likely be overwritten.
+	Thus, if you want a continuation run that uses the state of
+	all field variables except for those you explicitly change at
+	the Python-level, make sure <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT>	is True.
+</LI>
+</UL>
+
+<P>
+(Note that the <FONT COLOR="#0000ff"><TT>cont</TT></FONT> keyword has no effect if <FONT COLOR="#0000ff"><TT>compiled_form</TT></FONT>is <FONT COLOR="#0000ff"><TT>'full'</TT></FONT>.  The default value of <FONT COLOR="#0000ff"><TT>cont</TT></FONT> in a
+<FONT COLOR="#0000ff"><TT>run_session</TT></FONT> call is False.  The value of keyword <FONT COLOR="#0000ff"><TT>cont</TT></FONT>is stored as private instance attribute <FONT COLOR="#0000ff"><TT>_cont</TT></FONT>, in case you
+really need to access it elsewhere; see
+Section&nbsp;<A HREF="node7.html#sec:Qtcm.private.attrib">6.7.3</A> for more details).
+
+<P>
+The example described in Section&nbsp;<A HREF="node4.html#sec:continuation.intro">3.4.3</A> is
+an example of method&nbsp;<A HREF="#list:continue.from.instance">3</A> in the list
+above: The second run session is continued from the state of
+<FONT COLOR="#0000ff"><TT>model</TT></FONT>, with the values of <FONT COLOR="#0000ff"><TT>model</TT></FONT>'s instance variables
+overriding any values in the compiled QTCM1 model in initializing
+the second run session.
+
+<P>
+This method has a few caveats worthy of note:
+
+<UL>
+<LI>The <FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> attribute value
+	will have no effect unless the instance prognostic variables
+	are set, i.e., unless a previous run session has been done.
+	Another way to put it is for an initial run session right
+	after a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance is created, <FONT COLOR="#0000ff"><TT>varinit</TT></FONT>	will use the same initial values for prognostic variables
+	(defined in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> module variable
+	<FONT COLOR="#0000ff"><TT>init_prognostic_dict</TT></FONT>)<A NAME="tex2html109"
+  HREF="footnode.html#foot5362"><SUP>4.8</SUP></A>	as it would with for both
+	<FONT COLOR="#0000ff"><TT>init_with_instance_state</TT></FONT> set to True or False).
+
+<P>
+</LI>
+<LI>Continuation run sessions using this method have to continue
+	with the next day from wherever the last run session left
+	off, contiguously.<A NAME="tex2html110"
+  HREF="footnode.html#foot5363"><SUP>4.9</SUP></A>	If you want to do a non-contiguous run,
+	create a new <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance initialized with a
+	snapshot instead of the continuation method describe in
+	this section.
+	will use restart rules to run a new model.  
+
+<P>
+</LI>
+<LI>When making a continuation run session using this method,
+	you cannot change some variables, for instance,
+	<FONT COLOR="#0000ff"><TT>outdir</TT></FONT> and any of the date related
+	variables.  In fact, the only thing you should change for
+	your continuation run session are the prognostic and
+	diagnostic variables and <FONT COLOR="#0000ff"><TT>lastday</TT></FONT>.  This is because
+	some variables cannot be updated between run sessions.
+	As noted in Section&nbsp;<A HREF="#sec:restart.options.list">4.5.2</A>,
+	if you wish to control all variables possible
+	from the Python level (including output filename), you need 
+	to execute the run session from a new model instance.
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00555000000000000000"></A>
+				<A NAME="sec:snapshots"></A>
+<BR>
+Snapshots of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> Instance
+</H2>
+
+<P>
+The snapshot dictionary (briefly described in
+Section&nbsp;<A HREF="node4.html#sec:snapshot.intro">3.4.4</A>), saved as the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance
+attribute <FONT COLOR="#0000ff"><TT>snapshot</TT></FONT>, and generated by the method
+<FONT COLOR="#0000ff"><TT>make_snapshot</TT></FONT>, saves the current state of the following
+instance field variables:
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Field</B></TH>
+<TH ALIGN="CENTER"><B>Shape</B></TH>
+<TH ALIGN="CENTER"><B>Units</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=200><B>Description</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>T1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>Ts</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>Surface temperature</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>WD</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>Date of model coded as an integer as yyyymmdd</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>psi0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 43)</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>q1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>rhsu0bar</TT></FONT></TD>
+<TD ALIGN="CENTER">(3,)</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>rhsvort0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42, 3)</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>title</TT></FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>A descriptive title</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>Barotropic zonal wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u0bar</TT></FONT></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>Current time step baroclinic zonal wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>v0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 43)</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>Barotropic meridional wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>v1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 43)</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>vort0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+</TABLE>
+
+</DIV>
+
+<P>
+These are the same variables saved to a QTCM1 restart file, and so
+a snapshot duplicates the restart functionality in the Python
+environment, but with more flexibility.  Since the <FONT COLOR="#0000ff"><TT>snapshot</TT></FONT>dictionary is a Python variable like any other, you can manipulate
+it and alter it to fit any condition you wish.
+
+<P>
+
+<H1><A NAME="SECTION00560000000000000000"></A>  <A NAME="sec:runlists"></A>
+<BR>
+Creating and Using Run Lists
+</H1>
+
+<P>
+Section&nbsp;<A HREF="node4.html#sec:runlist.intro">3.6</A> provides an introduction to the
+role and use of run lists.  A run list is a list of methods, Fortran
+subroutines, and other run lists that can be executed by the
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> method.  Run lists are stored
+in the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute <FONT COLOR="#0000ff"><TT>runlists</TT></FONT>, which is a
+dictionary of run lists.  The names of run lists should not be
+preceeded by two underscores (though elements of a run list may be
+very private variables), nor should names of run lists be the same
+as any instance attribute.  Run lists are not available for
+<FONT COLOR="#0000ff"><TT>compiled_form='full'</TT></FONT>.
+
+<P>
+The <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> method takes a single input parameter, a list,
+and runs through that list of elements that specify other run lists
+or instance method names to execute.  Methods with private attribute
+names are automatically mangled as needed to become executable by
+the method.  Note that if an item in the input run list is an
+instance method, it should be the entire name (not including the
+instance name) of the callable method, separated by periods as
+appropriate.
+
+<P>
+Elements in a run list are either strings or 1-element dictionaries.
+Consider the following example, where <FONT COLOR="#0000ff"><TT>model</TT></FONT> is a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>instance, and <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> is called using <FONT COLOR="#0000ff"><TT>mylist</TT></FONT> as
+input:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>model = Qtcm(...) 
+<BR>
+mylist = [ {'varinit':None}, 
+<BR> 'init_model', 
+<BR> '__qtcm.driver', 
+<BR> {'set_qtcm1_item': ['outdir', '/home/jlin']} ]
+model.run_list(mylist)</TT></FONT></TD></TR>
+</TABLE>
+<P>
+The first element in <FONT COLOR="#0000ff"><TT>mylist</TT></FONT> refers to a method that requires
+no positional input parameters be passed in (as shown by the None).
+The second and third elements in <FONT COLOR="#0000ff"><TT>mylist</TT></FONT> also refers to methods
+that require no positional input parameters be passed in.  The last
+element in <FONT COLOR="#0000ff"><TT>mylist</TT></FONT> refers to a method with two input parameters.
+Note that while I use the term ``method'' to describe the elements,
+the strings/keys do not have to be only Python instance methods.
+The second element, for instance, refers to another run list, and
+the third element refers to a compiled QTCM1 model subroutine (note
+the <FONT COLOR="#0000ff"><TT>__qtcm</TT></FONT> attribute).
+
+<P>
+When the <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> method is called, the items in the input
+run list are called in the order given in the list.  For each
+element,  the <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> method first checks if the string
+or dictionary key name corresponds to the key of an entry in the
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute <FONT COLOR="#0000ff"><TT>runlists</TT></FONT>.  If so, <FONT COLOR="#0000ff"><TT>run_list</TT></FONT>is called using that run list (i.e., it is a ``recursive'' call).
+If the string or dictionary key name does not refer to another run
+list, the <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> method checks if the string or dictionary
+key name is a method of the <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance, and if so the
+method is called.  Any other value throws an exception.
+
+<P>
+If input parameters for a method are of class <FONT COLOR="#0000ff"><TT>Field</TT></FONT>, the
+<FONT COLOR="#0000ff"><TT>run_list</TT></FONT> method first tries to pass the parameters into the
+method as is, i.e., as Field object(s).  If that fails, the
+<FONT COLOR="#0000ff"><TT>run_list </TT></FONT> method  passes its parameters in as the <FONT COLOR="#0000ff"><TT>value</TT></FONT>attribute of the <FONT COLOR="#0000ff"><TT>Field</TT></FONT> object.
+
+<P>
+If you want a variable that is being passed into a run list to be
+continuously updated, you have to set the parameter in the run list
+to a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instance that is a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute,
+not just to the value of the field variable (or to a non-<FONT COLOR="#0000ff"><TT>Field</TT></FONT>object).  Otherwise, subsequent calls to that run list element will
+not use the updated values as input parameters.
+
+<P>
+For instance, if you had a run list element:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>{'__qtcm.timemanager':[model.coupling_day,]}</TT></FONT></TD></TR>
+</TABLE>and <FONT COLOR="#0000ff"><TT>model.coupling_day</TT></FONT> were an integer (it's not by default,
+but pretend it was), then <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> calling
+<FONT COLOR="#0000ff"><TT>__qtcm.timemanager</TT></FONT> will pass in a scalar integer rather
+than a binding to the variable <FONT COLOR="#0000ff"><TT>model.coupling_day</TT></FONT>.  In such
+a situation, if the variable <FONT COLOR="#0000ff"><TT>model.coupling_day</TT></FONT> were updated
+in time, the <FONT COLOR="#0000ff"><TT>run_list</TT></FONT> call of <FONT COLOR="#0000ff"><TT>__qtcm.timemanager</TT></FONT>would not be updated in time.  This happens because when the
+dictionary that is the run list element is created, the value of
+list element(s) attached to the dictionary element is set to the
+scalar value of <FONT COLOR="#0000ff"><TT>model.coupling_day</TT></FONT> at that instant.
+
+<P>
+You can get around this feature by setting <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance
+attributes that will change with model execution to <FONT COLOR="#0000ff"><TT>Field</TT></FONT>instances, and then referring to those attributes in the parameter
+list in the run list element.  In that case:<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>{'__qtcm.timemanager':[model.coupling_day,]}</TT></FONT></TD></TR>
+</TABLE>will use the current value of <FONT COLOR="#0000ff"><TT>model.coupling_day</TT></FONT> anytime
+<FONT COLOR="#0000ff"><TT>__qtcm.timemanager</TT></FONT> is called by <FONT COLOR="#0000ff"><TT>run_list</TT></FONT>, if
+<FONT COLOR="#0000ff"><TT>model.coupling_day</TT></FONT> is a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> object.
+
+<P>
+When <FONT COLOR="#0000ff"><TT>run_list</TT></FONT>, encounters a calling input parameter that
+is a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> object, it will first try to pass the entire
+<FONT COLOR="#0000ff"><TT>Field</TT></FONT> object to the method/routine being called.  If that
+raises an exception, it will then try to pass just the value of the
+entire <FONT COLOR="#0000ff"><TT>Field</TT></FONT> object.  This is done to enable <FONT COLOR="#0000ff"><TT>run_list</TT></FONT>to be used for both pure-Python and compiled QTCM Fortran model
+routines.  Fortran cannot handle <FONT COLOR="#0000ff"><TT>Field</TT></FONT> objects as input
+parameters, only values.
+
+<P>
+Table&nbsp;<A HREF="#tab:stnd.runlists">4.3</A> shows all standard run lists
+stored in the <FONT COLOR="#0000ff"><TT>runlists</TT></FONT> attribute upon instantiation
+of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="tab:stnd.runlists"></A><A NAME="7263"></A>
+<TABLE>
+<CAPTION><STRONG>Table:</STRONG>
+Standard run lists stored in the <FONT COLOR="#0000ff"><TT>runlists</TT></FONT> 
+	attribute upon instantiation of a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance.
+	The run list and list element names are stored as strings.
+	<B>This table is improperly reproduced in the
+	HTML conversion.  Please see the PDF version for the table.</B></CAPTION>
+<TR><TD><IMG
+ WIDTH="518" HEIGHT="28" BORDER="0"
+ SRC="img45.png"
+ ALT="\begin{table}\begin{center}
+\fbox{Empty placeholder block for table that would have gone here.}
+\end{center}
+\end{table}"></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+Of course, feel free to change the contents of any of the run lists
+after instantiation, or to add additional run lists to the
+<FONT COLOR="#0000ff"><TT>runlists</TT></FONT> attribute dictionary.  The ability to alter run
+lists at runtime gives the <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> package much of its flexibility.
+
+<P>
+
+<H1><A NAME="SECTION00570000000000000000"></A>
+						<A NAME="sec:field.variables"></A>
+<BR>
+Field Variables and the <FONT COLOR="#0000ff"><TT>Field</TT></FONT> Class
+</H1>
+
+<P>
+The term ``field'' variable refers to QTCM1 model variables that 
+are accessible at both the compiled Fortran QTCM1 model-level as
+well as the Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance-level.
+Field variables are all instances of the <FONT COLOR="#0000ff"><TT>Field</TT></FONT> class
+(though non-field variables can also be instances of <FONT COLOR="#0000ff"><TT>Field</TT></FONT>).
+
+<P>
+Section&nbsp;<A HREF="node4.html#sec:field.variables.intro">3.3</A> gives a brief introduction to
+the attributes and methods in a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instance.
+A nitty gritty description of the class is found in its docstrings.
+
+<P>
+
+<H2><A NAME="SECTION00571000000000000000">
+Creating Field Variables</A>
+</H2>
+
+<P>
+To create a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instance whose value is set to the
+default, instantiate with the field id as the only positional
+input argument.  Thus:
+
+<P><TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>foo = Field('lastday')</TT></FONT></TD></TR>
+</TABLE>
+<P>
+will return <FONT COLOR="#0000ff"><TT>foo</TT></FONT> as a <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instance with <FONT COLOR="#0000ff"><TT>foo.value</TT></FONT>set to the value listed in Section&nbsp;<A HREF="node10.html#sec:defaults.scalar">A.1</A>.
+The value of all <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instances upon creation are specified
+in the <FONT COLOR="#0000ff"><TT>defaults</TT></FONT> submodule of package <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT>, and listed
+in Sections&nbsp;<A HREF="node10.html#sec:defaults.scalar">A.1</A> and&nbsp;<A HREF="node10.html#sec:defaults.array">A.2</A>.
+
+<P>
+To create <FONT COLOR="#0000ff"><TT>Field</TT></FONT> instances whose attributes are set different
+from their defaults, you can specify the different settings in the
+instantiation parameter list, or change the attributes once the
+instance is created.  See the <FONT COLOR="#0000ff"><TT>Field</TT></FONT> docstring for details.
+
+<P>
+
+<H2><A NAME="SECTION00572000000000000000"></A>  <A NAME="sec:initial.variables"></A>
+<BR>
+Initial Field Variables
+</H2>
+
+<P>
+Field variables include both model parameters that do not change
+for a <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance as well as prognostic variables that
+do change during model integration.  As a result, many field variables
+have values different from the default values listed in
+Sections&nbsp;<A HREF="node10.html#sec:defaults.scalar">A.1</A> and&nbsp;<A HREF="node10.html#sec:defaults.array">A.2</A>.
+In this section, I list the <I>initial</I> values of all field
+variables.  The ``initial'' values are the settings for <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>field variables execution of the <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> method, but
+prior to cycling through an atmosphere-ocean coupling timestep.
+This is in contrast to ``default'' values, which the field variables
+are given on instantiation, if no other value is specified.
+Numerical values are rounded as per the conventions
+of Python's <FONT COLOR="#0000ff"><TT>%g</TT></FONT> format code.
+
+<P>
+
+<H3><A NAME="SECTION00572100000000000000">
+Scalars</A>
+</H3>
+
+<P>
+For the fields that give the input/output directory names, and the
+run name, the entry ``value varies'' is provided in the ``Value''
+column.
+
+<P>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Field</B></TH>
+<TH ALIGN="CENTER"><B>Value</B></TH>
+<TH ALIGN="CENTER"><B>Units</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=210><B>Description</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>SSTdir</TT></FONT></TD>
+<TD ALIGN="CENTER">value varies</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Where SST files are</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>SSTmode</TT></FONT></TD>
+<TD ALIGN="CENTER">seasonal</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Decide what kind of SST to use</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>VVsmin</TT></FONT></TD>
+<TD ALIGN="CENTER">4.5</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Minimum wind speed for fluxes</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>bnddir</TT></FONT></TD>
+<TD ALIGN="CENTER">value varies</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Boundary data other than SST</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>dateofmodel</TT></FONT></TD>
+<TD ALIGN="CENTER">10101</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Date of model coded as an integer as yyyymmdd</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>day0</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Starting day; if <IMG
+ WIDTH="19" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$&lt;$"> 0 use day in restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>dt</TT></FONT></TD>
+<TD ALIGN="CENTER">1200</TD>
+<TD ALIGN="CENTER">s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Time step</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>eps_c</TT></FONT></TD>
+<TD ALIGN="CENTER">0.000138889</TD>
+<TD ALIGN="CENTER">1/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>1/tau_c NZ (5.7)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>interval</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Atmosphere-ocean coupling interval</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>it</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Time of day in time steps</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>landon</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>If not 1: land = ocean with fake SST</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>lastday</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Last day of integration</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>month0</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">mo</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Starting month; if <IMG
+ WIDTH="19" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$&lt;$"> 0 use mo in restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>mrestart</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>=1: restart using qtcm.restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>mt0</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Barotropic timestep every mt0 timesteps</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>nastep</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Number of atmosphere time steps within one air-sea coupling interval</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>noout</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>No output for the first noout days</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>nooutr</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>No restart file for the first nooutr days</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ntout</TT></FONT></TD>
+<TD ALIGN="CENTER">-30</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Monthly mean output</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ntouti</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Monthly instantaneous data output</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ntoutr</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">dy</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Restart file only at end of model run</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>outdir</TT></FONT></TD>
+<TD ALIGN="CENTER">value varies</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Where output goes to</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>runname</TT></FONT></TD>
+<TD ALIGN="CENTER">value varies</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>String for an output filename</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>title</TT></FONT></TD>
+<TD ALIGN="CENTER">value varies</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>A descriptive title</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u0bar</TT></FONT></TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>visc4x</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Del 4 viscocity parameter in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>visc4y</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Del 4 viscocity parameter in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxT</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Temperature diffusion parameter in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxq</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Humidity diffusion parameter in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxu0</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Viscocity parameter for u0 in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscxu1</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Viscocity parameter for u1 in x</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyT</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Temperature diffusion parameter in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyq</TT></FONT></TD>
+<TD ALIGN="CENTER">1.2e+06</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Humidity diffusion parameter in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyu0</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Viscocity parameter for u0 in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>viscyu1</TT></FONT></TD>
+<TD ALIGN="CENTER">700000</TD>
+<TD ALIGN="CENTER">m<IMG
+ WIDTH="12" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$^2$">/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Viscocity parameter for u1 in y</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>weml</TT></FONT></TD>
+<TD ALIGN="CENTER">0.01</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Mixed layer entrainment velocity</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>year0</TT></FONT></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">yr</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Starting year; if <IMG
+ WIDTH="19" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$&lt;$"> 0 use year in restart</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>ziml</TT></FONT></TD>
+<TD ALIGN="CENTER">500</TD>
+<TD ALIGN="CENTER">m</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=210>Atmosphere mixed layer depth <IMG
+ WIDTH="19" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img4.png"
+ ALT="$\sim$"> cloud base</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H3><A NAME="SECTION00572200000000000000">
+Arrays</A>
+</H3>
+
+<P>
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Field</B></TH>
+<TH ALIGN="CENTER"><B>Shape</B></TH>
+<TH ALIGN="CENTER"><B>Max</B></TH>
+<TH ALIGN="CENTER"><B>Min</B></TH>
+<TH ALIGN="CENTER"><B>Units</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=150><B>Description</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>Evap</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">1502.56</TD>
+<TD ALIGN="CENTER">223.552</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLW</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">74.5136</TD>
+<TD ALIGN="CENTER">74.5136</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLWds</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">206.424</TD>
+<TD ALIGN="CENTER">206.424</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLWus</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">429.708</TD>
+<TD ALIGN="CENTER">429.708</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FLWut</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">148.771</TD>
+<TD ALIGN="CENTER">148.771</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSW</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">147.767</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSWds</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">410.895</TD>
+<TD ALIGN="CENTER">-6.99713</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSWus</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">356.831</TD>
+<TD ALIGN="CENTER">-4.49983</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FSWut</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">332.431</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>FTs</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">930.115</TD>
+<TD ALIGN="CENTER">138.383</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>Qc</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Precipitation</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>S0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">534.264</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>STYPE</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">3</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Surface type; ocean or vegetation type over land</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>T1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">-100</TD>
+<TD ALIGN="CENTER">-100</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>Ts</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">295</TD>
+<TD ALIGN="CENTER">295</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Surface temperature</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>WD</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">350</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>WD0</TT></FONT></TD>
+<TD ALIGN="CENTER">(4,)</TD>
+<TD ALIGN="CENTER">500</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Field capacity SIB2/CSU (approximately)</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 1</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr2</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 2</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr3</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0.138699</TD>
+<TD ALIGN="CENTER">0.138699</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 3</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr4</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 4</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr5</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 5</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr6</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 6</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr7</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 7</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>arr8</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Auxiliary optional output array 8</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>psi0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 43)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>q1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">-50</TD>
+<TD ALIGN="CENTER">-50</TD>
+<TD ALIGN="CENTER">K</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>rhsu0bar</TT></FONT></TD>
+<TD ALIGN="CENTER">(3,)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>rhsvort0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42, 3)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>taux</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>tauy</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Barotropic zonal wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>u1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 44)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Current time step baroclinic zonal wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>v0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 43)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>Barotropic meridional wind</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>v1</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 43)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">m/s</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT"><FONT COLOR="#0000ff"><TT>vort0</TT></FONT></TD>
+<TD ALIGN="CENTER">(64, 42)</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">0</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=150>&nbsp;</TD>
+</TR>
+</TABLE>
+
+<P>
+
+<H2><A NAME="SECTION00573000000000000000">
+Passing Fields Between the Python and Fortran-Levels</A>
+</H2>
+
+<P>
+Section&nbsp;<A HREF="#sec:comm.py.fort.compiledform">4.4.3</A> discusses the differences
+between how the <FONT COLOR="#0000ff"><TT>'full'</TT></FONT> and <FONT COLOR="#0000ff"><TT>'parts'</TT></FONT> compiled forms
+pass field variables between the Python and Fortran-levels.  That
+discussion gives a detailed description of the methods used for
+passing fields to and from the Python and Fortran-levels (i.e., the
+<FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> and <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> methods).
+
+<P>
+Please note the following regarding field variables as you pass them 
+back and forth between the Python and Fortran-levels:
+
+<UL>
+<LI>Field variables with ghost latitudes, such as <FONT COLOR="#0000ff"><TT>u1</TT></FONT>, on
+	the Python end are always the full variables (i.e., including
+	the ghost latitudes).  On the Fortran end, variables like
+	<FONT COLOR="#0000ff"><TT>u1</TT></FONT> also always have the ghost latitudes while in the
+	model, but when stored as restart files, do not have the
+	ghost latitudes; the end points are not saved in restart
+	files or written to the netCDF output files.
+	See the
+	<A NAME="tex2html113"
+  HREF="http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf">QTCM1 manual</A>
+	[<A
+ HREF="node9.html#Neelin_etal:2002">4</A>]
+	for details about ghost latitudes.
+
+<P>
+</LI>
+<LI>You should assume there is only a full synchronizing between 
+	compiled QTCM1 model and Python model field variables
+	at the beginning and end of a run session.  
+
+<P>
+</LI>
+<LI>If you have a variable at the Python-level, but at the
+	compiled QTCM1 Fortran model-level the variable is not
+	readable, if you try to call <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> on the
+	variable, nothing is done, and the Python-level value is
+	left alone.  If you have a compiled QTCM1 model variable,
+	but no Python-level equivalent, if you call <FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT>	on the variable, the Python-level variable (as an attribute)
+	is created.
+
+<P>
+</LI>
+<LI>To be precise, only compiled QTCM1 model variables can be
+	passed pass back and forth between the Python and Fortran-levels;
+	there are many <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attributes that do not
+	have any counterparts at the Fortran-level.<A NAME="tex2html114"
+  HREF="footnode.html#foot8150"><SUP>4.10</SUP></A>
+<P>
+</LI>
+<LI>Although <FONT COLOR="#0000ff"><TT>dayofmodel</TT></FONT> is described in module <FONT COLOR="#0000ff"><TT>setbypy</TT></FONT>	as an option for the <FONT COLOR="#0000ff"><TT>get_qtcm1_item</TT></FONT> and
+	<FONT COLOR="#0000ff"><TT>set_qtcm1_item</TT></FONT> methods to operate on, in reality
+	those methods cannot operate on <FONT COLOR="#0000ff"><TT>dayofmodel</TT></FONT>, but
+	<FONT COLOR="#0000ff"><TT>dayofmodel</TT></FONT> is not defined in <FONT COLOR="#0000ff"><TT>defaults</TT></FONT>.<A NAME="tex2html115"
+  HREF="footnode.html#foot8314"><SUP>4.11</SUP></A>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00574000000000000000"></A>   <A NAME="sec:field.var.shape"></A>
+<BR>
+Field Variable Shape
+</H2>
+
+<P>
+Normally, Python arrays have a different dimension order than Fortran
+arrays.  While Fortran arrays are dimensioned (col, row, slice),
+with adjacent columns being contiguous, then rows, and then slices, Python
+arrays are dimensioned (slice, row, col), with adjacent columns being
+contiguous, then rows, and then slices.  Based on this, you would
+think that everytime you passed an array between the Python and
+Fortran-levels you would need to transpose the array.
+
+<P>
+Thankfully, we don't have to do this because <FONT COLOR="#0000ff"><TT>f2py</TT></FONT> handles
+array dimension order transparently so we can refer to each element
+the same way whether we're in Python or Fortran.  Thus, the array
+<FONT COLOR="#0000ff"><TT>Qc</TT></FONT> in Fortran is dimensioned (longitude, latitude), (64,42)
+by default, and the Python <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instance attribute <FONT COLOR="#0000ff"><TT>Qc</TT></FONT>has a <FONT COLOR="#0000ff"><TT>value</TT></FONT> attribute also dimensioned (longitude, latitude),
+(64,42) by default.  And at both the Fortran and Python-levels, the
+first longtude, second latitude element is referred to as <FONT COLOR="#0000ff"><TT>Qc(1,2)</TT></FONT>.
+
+<P>
+In contrast, however, netCDF output saved by the compiled QTCM1 model
+and read into Python (using the <FONT COLOR="#0000ff"><TT>Scientific</TT></FONT> package) is
+<I>not</I> in Fortran array order.  Arrays read from netCDF output
+into Python are in Python array order, and are dimensioned
+(latitude, longitude) or (time, latitude, longitude).  The <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>routines that manipulate netCDF data (e.g., <FONT COLOR="#0000ff"><TT>plotm</TT></FONT>), however,
+automatically adjust for this, so you only need to be aware of this
+when reading in output for your own analysis
+(see Section&nbsp;<A HREF="#sec:model.output">4.8</A>).
+
+<P>
+
+<H1><A NAME="SECTION00580000000000000000"></A>			<A NAME="sec:model.output"></A>
+<BR>
+Model Output
+</H1>
+
+<P>
+Section&nbsp;<A HREF="node4.html#sec:output.intro">3.7</A> gives an overview of how to
+use <FONT COLOR="#0000ff"><TT>qtcm</TT></FONT> model output to netCDF files.
+
+<P>
+All netCDF array output is dimensioned (time, latitude, longitude)
+when read into Python using the <FONT COLOR="#0000ff"><TT>Scientific</TT></FONT> package.  This
+differs from the way <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> saves field variables, which
+follows Fortran convention (longitude, latitude).  Thus, the shapes
+in Section&nbsp;<A HREF="#sec:initial.variables">4.7.2</A>, Appendix&nbsp;<A HREF="node10.html#app:defaults.values">A</A>,
+etc., are not the shapes of arrays read from the netCDF output.
+See Section&nbsp;<A HREF="#sec:field.var.shape">4.7.4</A> for a discussion of why
+there is this discrepancy.
+
+<P>
+Because netCDF files allow you to specify an ``unlimited'' dimension,
+it is possible to close a netCDF file, reopen it, and add more
+slices of data to the file.  Thus, continuous <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> run
+sessions (i.e., those that use the <FONT COLOR="#0000ff"><TT>cont</TT></FONT> keyword input parameter
+in the <FONT COLOR="#0000ff"><TT>run_session</TT></FONT> method) will automatically append output
+to the netCDF output files.
+
+<P>
+Field variables with ghost latitudes, such as <FONT COLOR="#0000ff"><TT>u1</TT></FONT>, on the
+Python and Fortran ends are always the full variables (i.e., including
+the ghost latitudes).  The ghost latitudes are not written to the
+netCDF output files, however.
+See the <A NAME="tex2html117"
+  HREF="http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf">QTCM1 manual</A>
+	[<A
+ HREF="node9.html#Neelin_etal:2002">4</A>]
+for details about ghost latitude structure.
+
+<P>
+<FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT> instances have a few built-in tools to visualization
+model output.  These are briefly described in Section&nbsp;<A HREF="node4.html#sec:viz.intro">3.7.2</A>.
+Note that the <FONT COLOR="#0000ff"><TT>plotm</TT></FONT> method is linked to a specific <FONT COLOR="#0000ff"><TT>Qtcm</TT></FONT>instance.  Do not use <FONT COLOR="#0000ff"><TT>plotm</TT></FONT> outside of the instance it is
+linked to.  It must also be used only after a successful run session
+(i.e., not in the middle of a run session).
+
+<P>
+
+<H1><A NAME="SECTION00590000000000000000">
+Miscellaneous</A>
+</H1>
+
+<P>
+A few miscellaneous items/issues about the model:
+
+<UL>
+<LI>The land model runs at same timestep as the atmosphere.
+
+<P>
+</LI>
+<LI>If the land model runs less often than 
+	<FONT COLOR="#0000ff"><TT>sflux</TT></FONT> in <FONT COLOR="#0000ff"><TT>physics1</TT></FONT>, 
+	the calculation of evaporation over the land 
+	needs to be fixed in sflux.
+
+<P>
+</LI>
+<LI>The units of some field variables are not what you would expect.
+	For instance, <FONT COLOR="#0000ff"><TT>Qc</TT></FONT> is in energy units, i.e., K, and not
+	mm/day.
+	See the
+	<A NAME="tex2html119"
+  HREF="http://www.atmos.ucla.edu/~csi/qtcm_man/v2.3/qtcm_manv2.3.pdf">QTCM1 manual</A>
+	[<A
+ HREF="node9.html#Neelin_etal:2002">4</A>]
+	for details.
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION005100000000000000000"></A>  <A NAME="sec:cookbook"></A>
+<BR>
+Cookbook of Ways the Model Can Be Used
+</H1>
+
+<P>
+This cookbook of a few ways to use the model is arranged by science
+tasks, i.e., certain types of runs we want to do.  For some of the
+examples below, I assume that the dictionary
+<FONT COLOR="#0000ff"><TT>inputs</TT></FONT> is initially defined as given in
+Figure&nbsp;<A HREF="#fig:defn.of.inputs">4.1</A>.  All examples assume that
+<FONT COLOR="#0000ff"><TT>from qtcm import Qtcm</TT></FONT> has already been executed.
+
+<P>
+<A NAME="fig:defn.of.inputs"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="337" HEIGHT="205" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+inputs = \...
+...it\_with\_instance\_state'] = True \\
+inputs['compiled\_form'] = 'parts'}}
+}}$"></DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="578" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img49.png"
+ ALT="% latex2html id marker 16908
+$\textstyle \parbox{70ex}{\footnotesize{Figure~\re...
+...tart on November 1, Year 1,
+last for 30 days, and will be an aquaplanet run.}}$">
+</DIV>
+<DL>
+<DT><STRONG>Plain model run:</STRONG></DT>
+<DD>Here I just want to make a single model run.
+	Tasks:  Instantiate a fresh model and execute a run session.
+	The code to run the model is just:
+	<TABLE  WIDTH="90%">
+<TR><TD><FONT COLOR="#0000ff"><TT>inputs['init_with_instance_state'] = False 
+<BR>
+model = Qtcm(**inputs) 
+<BR>
+model.run_session()</TT></FONT></TD></TR>
+</TABLE>	where <FONT COLOR="#0000ff"><TT>inputs</TT></FONT> is initialized with the code in
+	Figure&nbsp;<A HREF="#fig:defn.of.inputs">4.1</A>.
+
+<P>
+</DD>
+<DT><STRONG>Explore parameter space with a set of models:</STRONG></DT>
+<DD>Here I want to create an entire suite of separate models,
+	in order to determine the sensitivity of the model to changing
+	a parameter.
+	To do this, I
+	instantiate multiple fresh models, 
+	and execute a run session for each instance, all within
+	a <FONT COLOR="#0000ff"><TT>for</TT></FONT> loop:
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="346" HEIGHT="238" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+import os ...
+... = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}}
+}}$">
+</DIV>
+The loop explores mixed-layer depth <FONT COLOR="#0000ff"><TT>ziml</TT></FONT> from 0&nbsp;m to
+        1000&nbsp;m, in 10&nbsp;m intervals.  I create the <FONT COLOR="#0000ff"><TT>outdir</TT></FONT>	directory before every model call, since the compiled QTCM1 model
+	requires the output directory exist, specifying the run name
+	and output directory as the string <FONT COLOR="#0000ff"><TT>iname</TT></FONT>.
+	The output directories are assumed to all be in the <I><I>proc</I></I>
+	sub-directory of the current working directory.
+	<FONT COLOR="#0000ff"><TT>inputs</TT></FONT> is initialized with the code in
+	Figure&nbsp;<A HREF="#fig:defn.of.inputs">4.1</A>.
+
+<P>
+</DD>
+<DT><STRONG>Conditionally explore parameter space:</STRONG></DT>
+<DD>Here I want to 
+	conditionally explore the parameter space, on the basis of
+	some mathematical criteria.
+	To do this, I
+	instantiate a model, evaluate results using
+	that criteria, and run another fresh model depending on
+	the results (passing the previous model state via a snapshot),
+	all within a <FONT COLOR="#0000ff"><TT>while</TT></FONT> loop.
+	Note that this type of investigation is very difficult to 
+	automate if all you can use are shell scripts and
+	Fortran.
+	See Figure&nbsp;<A HREF="#fig:conditional.test.eg">4.2</A> for a detailed
+	example.
+
+<P>
+</DD>
+<DT><STRONG>With interactive adjustments at run time:</STRONG></DT>
+<DD>The example in Figure&nbsp;<A HREF="node4.html#sec:continuation.intro">3.4.3</A>
+	illustrates this type of run.  In this example,
+	I instantiate a fresh model, execute a run session, analyze the
+	output, change variables in the model instance, and then
+	execute a continuation run session.
+
+<P>
+</DD>
+<DT><STRONG>Test alternative parameterizations:</STRONG></DT>
+<DD>I've already described how we can use run lists to arbitrarily
+	change model execution order and content at run time.
+	We can take advantage of Python's inheritance
+	abilities, along with run lists, to simplify this.
+	Figure&nbsp;<A HREF="#fig:alt.param.inherit.eg">4.3</A> provides an example of
+	this use.
+
+<P>
+Of course, you can use pre-processor directives and shell
+	scripts to accomplish the same functionality seen in
+	Figure&nbsp;<A HREF="#fig:alt.param.inherit.eg">4.3</A> using just Fortran.
+	The Python solution, however, shortcuts the compile/linking
+	step, and enables you to easily do run time swapping between
+	subroutine choices based upon run time calculated
+	tests (see Figure&nbsp;<A HREF="#fig:conditional.test.eg">4.2</A> for an
+	example of such tests).
+</DD>
+</DL>
+
+<P>
+<A NAME="fig:conditional.test.eg"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="533" HEIGHT="410" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+import os ...
+...) \\
+\hspace*{5ex}mysnapshot = model.snapshot \\
+\hspace*{5ex}del model}}
+}}$"></DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="578" HEIGHT="166" ALIGN="MIDDLE" BORDER="0"
+ SRC="img52.png"
+ ALT="% latex2html id marker 16917
+$\textstyle \parbox{70ex}{\footnotesize{Figure \re...
+... dictionary is initialized with the code in
+Figure~\ref{fig:defn.of.inputs}.}}$">
+</DIV>
+<A NAME="fig:alt.param.inherit.eg"></A>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="466" HEIGHT="429" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.png"
+ ALT="$\textstyle \parbox{70ex}{\footnotesize{%
+\textcolor{blue}{\texttt{%
+import os ...
+... = ipath \\
+\hspace*{5ex}model.run\_session() \\
+\hspace*{5ex}del model}}
+}}$"></DIV>
+<P>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="578" HEIGHT="223" ALIGN="MIDDLE" BORDER="0"
+ SRC="img54.png"
+ ALT="% latex2html id marker 16919
+$\textstyle \parbox{70ex}{\footnotesize{Figure \re...
+...ramework, the selection of
+those models can be altered by changing a string.}}$">
+</DIV>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html463"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html459"
+  HREF="manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html453"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html461"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html464"
+  HREF="node6.html">Troubleshooting</A>
+<B> Up:</B> <A NAME="tex2html460"
+  HREF="manual.html">qtcm User's Guide</A>
+<B> Previous:</B> <A NAME="tex2html454"
+  HREF="node4.html">Getting Started With qtcm</A>
+ &nbsp; <B>  <A NAME="tex2html462"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+Johnny Lin
+2008-09-12
+</ADDRESS>
+</BODY>
+</HTML>

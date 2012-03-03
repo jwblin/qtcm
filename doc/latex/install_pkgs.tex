@@ -1,0 +1,73 @@
+% ==========================================================================
+% Python packages
+%
+% By Johnny Lin
+% ==========================================================================
+
+
+% ------ BODY -----
+%
+
+The following Python packages are required to be installed on your
+system in a directory listed in your \vars{sys.path}:
+\begin{itemize}
+\item \htmladdnormallinkfoot{Python}%
+	{http://www.python.org/}:  The Python programming language
+	and interpreter.  Make sure you have a version recent enough
+	to be compatible with all the needed Python packages.
+\item \htmladdnormallinkfoot{\mods{matplotlib}}%
+	{http://matplotlib.sourceforge.net/}:  Scientific plotting
+	package, using Matlab-like syntax.  The \mods{basemap} toolkit
+	for \mods{matplotlib} must also be installed.
+\item \htmladdnormallinkfoot{NumPy}%
+	{http://numpy.scipy.org/}:  The standard array package for
+	Python.  The module name of NumPy imported in a Python 
+	session is \mods{numpy}.
+\item \htmladdnormallinkfoot{Scientific Python}%
+	{http://dirac.cnrs-orleans.fr/plone/software/scientificpython/}:
+	Has netCDF file operators, in addition to other routines
+	of use in scientific computing.  The module name of
+	Scientific Python imported in a Python session is
+	\mods{Scientific}.
+\end{itemize}
+
+One other required Python package, \mods{f2py}, is now a part of the
+NumPy package, and so installation of NumPy is sufficient to give
+you both.
+
+The package \htmladdnormallinkfoot{SciPy}{http://www.scipy.org},
+which includes several Python-accessible scientific libraries, also
+includes NumPy (and thus \mods{f2py}), so if you install SciPy,
+you don't have to install NumPy again.  Note that SciPy is not the
+same as Scientific Python; the names are confusing.
+
+A few non-Python packages are also required:
+\begin{itemize}
+\item \LaTeX: A scientific typesetting program used by the 
+	\class{Qtcm} instance method \mods{plotm} to handle 
+	exponents and subscripts.  The most common Unix 
+	distribution of \LaTeX\ is
+	\htmladdnormallinkfoot{teTeX}{http://www.tug.org/teTeX}.
+
+\item netCDF:  This set of libraries enables one to write datasets into
+	a platform independent, binary format, with metdata attached.
+	The \htmladdnormallinkfoot{netCDF 3.6.2 library}%
+        	{http://www.unidata.ucar.edu/software/netcdf/}
+	source code can be
+\latexhtml{downloaded from UCAR\footnote{http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3\_6\_2/}}%
+        {\htmladdnormallink{downloaded from UCAR}{http://www.unidata.ucar.edu/downloads/netcdf/netcdf-3_6_2/}}.
+\end{itemize}
+
+For most Unix installations, the easiest way to install all the
+above is via a package manager, for instance \mods{apt-get} in
+Debian GNU/Linux, \mods{aptitude} or \mods{synaptic} in Ubuntu
+GNU/Linux, and \mods{fink} in Mac OS X.  Of course, you can also
+download a package's source code and build direct and/or install
+using Python's
+\htmladdnormallinkfoot{\mods{distutils}}{http://docs.python.org/dist/dist.html}
+utilities.
+
+
+
+
+% ===== end of file =====

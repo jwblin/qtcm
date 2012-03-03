@@ -1,0 +1,1713 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>qtcm.qtcm.Qtcm</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="qtcm-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.johnny-lin.com/py_pkgs/qtcm/">qtcm</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="qtcm-module.html">Package&nbsp;qtcm</a> ::
+        <a href="qtcm.qtcm-module.html">Module&nbsp;qtcm</a> ::
+        Class&nbsp;Qtcm
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="qtcm.qtcm.Qtcm-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Qtcm</h1><p class="nomargin-top"><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+object --+
+         |
+        <strong class="uidshort">Qtcm</strong>
+</pre>
+
+<hr />
+<pre class="literalblock">
+Qtcm model object.
+
+Public Instance Attributes:
+* compiled_form:  What form the compiled Fortran version of the
+  QTCM model has.  This attribute is a string and can have the 
+  following values:
+
+  - 'full':  The compiled portion of the model encompasses the
+    entire QTCM model.  Thus, the only compiled QTCM model
+    modules or subroutines that Python should interact with is
+    __qtcm.driver (which executes the entire model) and
+    __qtcm.setbypy (which enables communication between the
+    compiled model and the Python-level of model fields.
+
+  - 'parts':  The compiled portion of the model encompasses
+    parts of the model as separate units all the way down to
+    an atmosphere timestep.  Thus, compiled QTCM model
+    module/subroutines include those that are executed within
+    an atmosphere timestep.
+
+  This attribute must be set on instantiation via a keyword
+  input parameter.
+
+* coupling_day:  Current value of atmosphere-ocean coupling
+  day.  When compiled_form of type 'parts' is run, is started
+  at 1 and then is updated every coupling day.  coupling_day
+  not changed from instantiation value for compiled_form 'full'.
+  Is a Field object with integer scalar value, but is set to
+  None on instantiation (unless its value is overridden through
+  keyword input parameters).  Is set to a Field object to enable
+  run lists that specify it to be able to be updated.
+
+* init_with_instance_state:  This keyword only has an effect if 
+  compiled_form = 'parts'.  Boolean scalar.
+
+  If True, uses, in general, the values of the instance attributes
+  (for prognostic variables and right-hand sides, and start
+  date) are right before the run_session method call as the
+  initial values for the run_session.  If False, run_session
+  initialization, in general, follows the rules set by all the
+  standard QTCM model input parameters (e.g., the sign of day0,
+  month0, and year0, the value of the mrestart flag, etc.).
+  See the docstring for the varinit method for details, as well
+  as the manual.  Default is True, unless overridden, on
+  instantiation.
+
+* QTCM fields:  This is not the name of an attribute, but a
+  category of attributes.  These attributes are QTCM fields
+  whose names correspond to those given in the _qtcm_fields_ids
+  attribute, and whose values are Field objects.  Initially set
+  on instantiation.
+
+  Override of default values on instantiation is accomplished
+  by setting the value to a keyword input parameter with the
+  Field object id as the keyword key.  The __init__ method takes
+  all keyword input and sets it to instance attributes with the
+  key as the attribute name and attribute values being Field
+  objects.  Note that the instantiation keyword parameter does
+  not have to itself be a Field object; if the keyword is set
+  to a plain value, the __init__method will form a Field object
+  around that value and set the Field object to the instance
+  attribute.
+
+* runlists:  Dictionary of lists of methods, routines, and other
+  run lists that can be executed by the run_list method.  Altering
+  lists in this dictionary enables one to simply change order
+  or execution or insert/delete methods.  Runlist's keys are
+  strings, and are names that describe that the category of
+  routines does.  Run list names should not be preceeded by two
+  underscores (though runlist elements may be very private
+  variables), nor should runlist names be the same as any
+  instance attribute.  See list of run lists below for details
+  about the lists.
+
+* sodir:  Name of temporary directory containing all the copies
+  of shared object files for this instance of Qtcm.  This
+  temporary directory is located in the default temporary
+  directory, whose location is platform dependent, using the
+  rules of the module tempfile.  The name of the temporary
+  directory is generated randomly, and should not conflict with
+  any existing temporary directory.  String.  Set on model
+  instantiation.
+
+
+Public Instance Methods:
+* get_qtcm_item:  Get field from the compiled QTCM model (same
+  as get_qtcm1_item).
+
+* get_qtcm1_item:  Get field from the compiled QTCM model.
+
+* make_snapshot:  Make copy of current state of run session
+  variables that would be used for a restart.
+
+* more_first_method_at_atm_oc_step:  More of first method
+  executed at the atmosphere-coupling timestep.  This gives an
+  easy way to change the model at the atmosphere-coupling
+  timestep, after the update of the interval attribute:  Just
+  overload this method.
+
+* plotm:  Plot mean output for model field id.  Matplotlib is
+  used.
+
+* qtcm:  Run the qtcm atmosphere over a coupling interval step.
+
+* run_list:  Run runlist of run lists and/or instance methods.
+
+* run_session:  Run model session.
+
+* set_qtcm_item:  Set Python-accessible compiled QTCM model 
+  fields (same as set_qtcm1_item).
+
+* set_qtcm1_item:  Set Python-accessible compiled QTCM model
+  fields.
+
+* sync_set_py_values_to_snapshot:  Set Python attributes to
+  snapshot values from a dictionary created by make_snapshot.
+
+* sync_set_qtcm_items_to_all_py_values:  Synchronize so that
+  any Python attribute that corresponds to a compiled model
+  Python-changable variable is set, on both the Python attribute
+  side and the compiled model side, to the value of the Python
+  attribute.
+
+* sync_set_all_py_values_to_qtcm_items:  Set all Python-level
+  attributes to QTCM compiled model values.  Synchoronize so
+  that any Python attribute that corresponds to a compiled model
+  Python-changable variable is set to the value of the QTCM
+  compiled variable.
+
+* varinit:  Initialize model variables in a run session.
+
+
+List of Run Lists:
+* 'atm_oc_step':  Methods to run at an atmosphere-ocean coupling
+  time step.  As default, set to methods that set the calendar,
+  run the ocean (make SST for atmo), run the atmosphere, and
+  output all output variables.  Set on model instantiation.
+  See method __run_parts for details.
+
+* 'init_model':  Methods to initialize model variables.  Not
+  all model variables are initalized in these methods.  Note
+  that many of these methods use the values of QTCM parameters
+  as defined as instance attributes (and the defaults of which
+  are set by the _set_all_qtcm_scalar_fields_to_defaults method).
+  As default, set to initialize the atmosphere, ocean, and
+  output files.  Set on model instantiation.  See method
+  __run_parts for details.
+
+* 'qtcminit':  Duplicates functionality of the Fortran subroutine
+  qtcminit, for compiled_form 'parts'.
+
+
+Private Instance Attributes (partial list):
+* _monlen:  Integer array of the number of days in each month.
+  Assumes a 365 day year.
+
+* __qtcm:  The compiled Fortran model for this instance.  Set on
+  instantiation.
+
+* _qtcm_fields_ids:  Field ids for all default QTCM fields.
+  NB: The model assumes this is a list of all the default fields.
+  Set on instantiation.
+
+* _runlists_long_names:  Descriptions of the standard run lists.
+
+
+Private Instance Methods (partial list):
+* _bartropic_mode_at_atm_step:  Calculate the atmosphere
+  barotropic mode at atmosphere timestep.
+
+* _first_method_at_atm_oc_step:  First method executed at the 
+  atmosphere-coupling timestep.
+
+* __run_parts:  Run parts model starting at the atmosphere-ocean
+  coupling level.  This method duplicates the functionality of
+  the driver subroutine in the original compiled QTCM model.
+
+* _set_qtcm_array_item_in_model:  Set Python-accessible QTCM
+  array settings in compiled model.
+
+* _set_qtcm_scalar_item_in_model:  Set Python scalar variable
+  in the compiled QTCM model.
+
+
+Description of Compiled QTCM Modules Available to Class:
+* _qtcm_full_365.so:  QTCM shared object file for the full
+  model, compiled assuming a year is 365 days.  This is essentially
+  the default version of QTCM, with netCDF output used.
+
+* _qtcm_parts_365.so:  QTCM shared object file for the model
+separated so units within the atmosphere timestep are separate
+compiled units.
+
+</pre>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwds</span>)</span><br />
+      Initialize Qtcm instance.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#__del__" class="summary-sig-name">__del__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Method to execute before garbage collection.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.__del__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#get_qtcm_item" class="summary-sig-name">get_qtcm_item</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>)</span><br />
+      Get field from the compiled QTCM model.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.get_qtcm_item">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#get_qtcm1_item" class="summary-sig-name">get_qtcm1_item</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwds</span>)</span><br />
+      Get field from the compiled QTCM model.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.get_qtcm1_item">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#make_snapshot" class="summary-sig-name">make_snapshot</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Make copy of current state of run session variables.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.make_snapshot">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#_plot" class="summary-sig-name" onclick="show_private();">_plot</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">id</span>,
+        <span class="summary-sig-arg">datafn</span>,
+        <span class="summary-sig-arg">**kwds</span>)</span><br />
+      Plot model field id from the data in netCDF file datafn.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._plot">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#plotm" class="summary-sig-name">plotm</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">id</span>,
+        <span class="summary-sig-arg">**kwds</span>)</span><br />
+      Plot mean output for model field id.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.plotm">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#qtcm" class="summary-sig-name">qtcm</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Run the qtcm atmosphere over a coupling interval step.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.qtcm">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#run_list" class="summary-sig-name">run_list</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">runlist</span>)</span><br />
+      Run runlist of run lists and/or instance methods.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.run_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#run_session" class="summary-sig-name">run_session</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">**kwds</span>)</span><br />
+      Run model session.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.run_session">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#set_qtcm_item" class="summary-sig-name">set_qtcm_item</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>)</span><br />
+      Set Python-accessible compiled QTCM model fields.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.set_qtcm_item">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#set_qtcm1_item" class="summary-sig-name">set_qtcm1_item</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwds</span>)</span><br />
+      Set Python-accessible compiled QTCM model fields.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.set_qtcm1_item">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#sync_set_py_values_to_snapshot" class="summary-sig-name">sync_set_py_values_to_snapshot</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">snapshot</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Set Python attributes to snapshot values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.sync_set_py_values_to_snapshot">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#sync_set_qtcm_items_to_all_py_values" class="summary-sig-name">sync_set_qtcm_items_to_all_py_values</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Set QTCM items in compiled model to all Python-level values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.sync_set_qtcm_items_to_all_py_values">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#sync_set_all_py_values_to_qtcm_items" class="summary-sig-name">sync_set_all_py_values_to_qtcm_items</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Set all Python-level attributes to QTCM compiled model values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.sync_set_all_py_values_to_qtcm_items">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#_first_method_at_atm_oc_step" class="summary-sig-name" onclick="show_private();">_first_method_at_atm_oc_step</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      First method executed at the atmosphere-coupling timestep.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._first_method_at_atm_oc_step">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#more_first_method_at_atm_oc_step" class="summary-sig-name">more_first_method_at_atm_oc_step</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      More of first method executed at the atmo.-coupling timestep.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.more_first_method_at_atm_oc_step">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#_bartropic_mode_at_atm_step" class="summary-sig-name" onclick="show_private();">_bartropic_mode_at_atm_step</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Calculate the atmos.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._bartropic_mode_at_atm_step">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#varinit" class="summary-sig-name">varinit</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Initialize model variables in a run session.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.varinit">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#__run_parts" class="summary-sig-name" onclick="show_private();">__run_parts</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Run parts model starting at the atmos.-oc.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.__run_parts">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#_set_all_qtcm_scalar_fields_to_defaults" class="summary-sig-name" onclick="show_private();">_set_all_qtcm_scalar_fields_to_defaults</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Set all scalar QTCM fields to their default values.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_all_qtcm_scalar_fields_to_defaults">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#_set_compiled_qtcm_attr" class="summary-sig-name" onclick="show_private();">_set_compiled_qtcm_attr</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Set compiled QTCM attribute in Qtcm instance.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_compiled_qtcm_attr">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#_set_qtcm_array_item_in_model" class="summary-sig-name" onclick="show_private();">_set_qtcm_array_item_in_model</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">value</span>)</span><br />
+      Set Python-accessible QTCM array settings in compiled model.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_qtcm_array_item_in_model">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="qtcm.qtcm.Qtcm-class.html#_set_qtcm_scalar_item_in_model" class="summary-sig-name" onclick="show_private();">_set_qtcm_scalar_item_in_model</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">key</span>,
+        <span class="summary-sig-arg">value</span>)</span><br />
+      Set Python scalar variable in the compiled QTCM model.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_qtcm_scalar_item_in_model">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__str__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Properties</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Properties"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kwds</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Initialize Qtcm instance.
+
+Items in kwds are attributes of the model instance to be
+set.  There are two types of attributes:  (1) Field objects,
+and (2) Non-Field objects.  In both cases you can pass in
+the name and value in the input kwds dictionary.  For Field
+object attributes, the kwds key is the id, and the kwds
+value can be either the value of the Field object or a Field
+object itself.  For Non-Field objects, the kwds key:value
+pair directly provides the instance attribute name and
+value.  A more detailed description of this input and other
+input is provided in the class documentation.
+
+Examples:
+  model = Qtcm(dt=1200., compiled_form='parts')
+  model = Qtcm(dt=Field('dt'), compiled_form='full')
+  model = Qtcm(dt=Field('dt', 1200), compiled_form='full')
+  inputs = {}
+  inputs['dt'] = 1200.
+  inputs['title'] ='QTCM spinup part 1 test (aquaplanet)'
+  inputs['compiled_form'] = 'parts'
+  model = Qtcm(**inputs)
+
+NB:  Not all compiled QTCM model variables are accessible
+at the Python level, and vice versa.  Only the variables
+in defaults (whose names are specified by the _qtcm_fields_ids
+attribute) can be passed between the compiled QTCM model
+and the Python model instance.
+
+Additionally, there is only a full-as-possible syncronization
+between compiled QTCM model fields and Python fields at the
+beginning and end of the execution of a Python method.  If
+the compiled QTCM model changes a variable as the model is
+running, the Python field that variable corresponds to will
+in general not also be changed, since you need to execute
+get_qtcm_item at the Python level to retrieve it.  This
+only occurs with Python methods (e.g., run_session, varinit).
+
+</pre>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__del__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__del__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Destructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.__del__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Method to execute before garbage collection.</p>
+  <p>Delete the sodir temporary directory.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_qtcm_item"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_qtcm_item</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.get_qtcm_item">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Get field from the compiled QTCM model.
+
+Gets the value of the variable key from the compiled QTCM
+model.  (Note that not all compiled QTCM model variables
+are accessible to Python.)  Method does nothing else (such
+as saving that value as an object attribute).
+
+For scalar variables, in order to know which Fortran routine
+to use to access the item, this method needs to know the
+type of the variable named key.  For arrays, it needs to
+know the rank of the array.  It assumes that type is the
+same as the corresponding Field object default value, and
+rank is the same as the corresponding Field object default
+value.
+
+If the compiled QTCM model variable is unreadable, the
+custom exception FieldNotReadableFromCompiledModel is thrown.
+
+Positional Input Parameter:
+* key:  Name of QTCM variable.  String.  Scalar.
+
+Output:
+* Returns the value of the variable named key.  Scalar
+  string or numeric value, or numeric array.  The value
+  returned is a copy of the values, not a reference to the
+  array in memory.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="get_qtcm1_item"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">get_qtcm1_item</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwds</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.get_qtcm1_item">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Get field from the compiled QTCM model.</p>
+  <p>Identical to get_qtcm_item.  See get_qtcm_item description.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="make_snapshot"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">make_snapshot</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.make_snapshot">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Make copy of current state of run session variables.</p>
+  <p>The snapshot is a copy of the variables of the current state of the 
+  run session that would be used for a restart.  The variables are saved in
+  a dictionary, and the dictionary is saved in the attribute snapshot.  As 
+  most of the variables are Field objects, most of the values in the 
+  dictionary are Field objects.  Any variables that don't exist are just 
+  left out of the dictionary.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_plot"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_plot</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">id</span>,
+        <span class="sig-arg">datafn</span>,
+        <span class="sig-arg">**kwds</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._plot">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Plot model field id from the data in netCDF file datafn.</p>
+  <p>See docstrings for submodule plot in package qtcm, module function 
+  plot_ncdf_output.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="plotm"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">plotm</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">id</span>,
+        <span class="sig-arg">**kwds</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.plotm">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Plot mean output for model field id.
+
+Plotting is done using Matplotlib, and can accomodate either
+line plots or contour plots.  This method is designed for
+a quick look at the output, and thus only a few plotting
+parameters can be adjusted.
+
+Positional Input Parameter:
+* id:  Name of the id of the field to plot.  String.
+
+Input Keyword Parameters:
+* lat:  Latitude range to plot.  List of the min and max
+  value, or a scalar, in degrees.  If the keyword is not 
+  passed in, the entire range is plotted.
+
+* lon:  Longitude range to plot.  List of the min and max
+  value, or a scalar, in degrees.  If the keyword is not
+  passed in, the entire range is plotted.
+
+* time:  Time range to plot.  List of the min and max value,
+  or a scalar, in days.  If the keyword is not passed in,
+  the entire range is plotted.
+
+* fn:  Filename to write figure out to.  String.  If set to
+  None, plot is output to screen.
+
+* levels:  If a contour plot, the min, max, and interval
+  of the contour levels to be plotted.  If set to None, 
+  contour levels are calculated automatically.
+
+* filled:  If is True, and the plot is a contour plot, a
+  filled contour plot is drawn along with a horizontal
+  colorbar.  If not True, a line contour plot is drawn.  If
+  plot is a line plot, this keyword is ignored.
+
+* title:  Title of plot.  String.
+
+* xlabel:  Label for the x-axis.
+
+* ylabel:  Label for the y-axis.
+
+* nlatlon:  For lat vs. lon contour plots, this sets the
+  approximate number of meridions and parallels to annotate.
+  Ignored for all other types of plots.  Default is 8.
+
+* tmppreview:  If True, and your platform is 'darwin',
+  instead of screen display the method will write the plot
+  to a temp file and display that file using Preview.  You
+  must delete the temp file yourself (it's located probably
+  in /tmp, and is created using the tempfile module default
+  settings).  The variable is boolean.
+
+The default of all input keywords is None, unless otherwise
+noted.  Depending on which series of keywords is chosen,
+the range is chosen accordingly.  Title, x-axis and y-axis
+labels are automatically added, unless overridden by the
+title, xlabel, and ylabel keywords.
+
+For a lat vs. lon plot, the contour plot is superimposed
+onto a cylindrical projection map of the Earth with continents
+drawn and labeled meridians and parallels.  The title also
+includes the model time, and x- and y-axis labels are not
+drawn.
+
+Examples for model an instance of Qtcm:
+* model.plotm('Qc', lat=1.875):  A time vs. longitude contour
+  plot is made for the full range of time and longitude,
+  at the latitude 1.875 deg N, for mean precipitation.  The
+  period over which the mean is taken is self.ntout.
+
+* model.plotm('Evap', lat=1.875, lon=[100,200]):  A time
+  vs. longitude contour plot of evaporation is made for the
+  longitude points between 100 and 200 degrees east, at the
+  latitude 1.875 deg N.  The period over which the mean is
+  taken is self.ntout.
+
+* model.plotm('cl1', lat=1.875, lon=[100,200], time=20):
+  A deep cloud amount vs. longitude line plot is made for
+  the longitude points between 100 and 200 degrees east,
+  at the latitude 1.875 deg N, at day 20 of the model run.
+  The period over which the mean is taken is self.ntout.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="qtcm"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">qtcm</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.qtcm">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Run the qtcm atmosphere over a coupling interval step.</p>
+  <p>This method duplicates the functionality of the qtcm subroutine in the
+  original compiled QTCM model.  It assumes all fields that can be 
+  synchronized between the Python and compiled QTCM model levels have been 
+  so before the calling of this method.  The coupling interval step is 
+  given by the interval attribute.  It is meant to be called once in a run 
+  session, and assumes that the compiled_form is 'parts'.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="run_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">run_list</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">runlist</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.run_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Run runlist of run lists and/or instance methods.
+
+Run through list of elements that specify other run lists
+or instance method names to execute through in runlist
+order.  Methods with private attribute names are automatically
+mangled as needed to become executable by the method.  Note
+that if an item in runlist is an instance method, it should
+be the entire name (after &quot;self.&quot;) of the callable method,
+separated by periods as appropriate.
+
+Input Via Arguments:
+
+* runlist:  List whose elements are 1-element dictionaries
+  or strings.  The list can contain a mix of 1-element
+  dictionaries and strings, or just one of those types:
+
+  + If 1-element dictionaries:  The key of the dictionary
+    is a string, and is the name of the method to execute.
+    The value of the entry is a list, which gives the
+    positional input parameters, or is None, if there are
+    no input parameters.
+
+  + If strings:  Each string is the name of a run list or
+    the name of the method to execute.  All methods are
+    assumed to not require any positional input parameters.
+
+The methods in runlist are called in the order given in
+runlist.  For each element, we first check if the key name
+corresponds to the key of an entry in self.runlists.  If
+so, run_list is executed using that run list (recursive
+call).  If the key name is not a run list, we check if it
+is a method of the instance, and if so the method is called.
+Any other value throws an exception.
+
+If input parameters for a method are of class Field, we
+first try to pass the parameters into the method as is
+(i.e., as Field object(s)).  If that fails, we pass its
+parameters in as the value of the Field object.
+
+Examples:
+  a = Qtcm(...) 
+  a.run_list( ['qtcminit'                     , {'sync_set_all_py_values_to_qtcm_items':None}               , '__qtcm.driver' \ 
+            , {'set_qtcm_item': ['outdir', '/home/jlin']}] )
+  a.run_list( [{'sync_set_all_py_values_to_qtcm_items':None}                , {'__qtcm.driver':None} \ 
+            , {'set_qtcm_item': ['outdir', '/home/jlin']} )
+  a.run_list(['sync_set_all_py_values_to_qtcm_items',])
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="run_session"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">run_session</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">**kwds</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.run_session">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Run model session.
+
+Run the QTCM model in a model session.  A model session is
+defined as a &quot;complete&quot; model run, at the end of which
+restart files are written and the Python Qtcm instance is
+synchronized to the Fortran model.
+
+The following tasks are done by this method, in this order:
+* The attribute snapshot, if present, is deleted.
+* The compiled model is synchronized with the Python model 
+  instance so that any Python attribute that corresponds to a 
+  compiled model Python-changable variable is set to the value 
+  of the Python attribute.  If the compiled model variable is
+  not accessible, nothing is done, and the Python attribute is
+  left unchanged.
+* The model is run until lastday.  Restart and output files 
+  are written accordingly.
+* The Python-changable model attributes are set to the compiled
+  model's values.  If the compiled model variable is not 
+  accessible, an exception is raised.
+* A snapshot of the Python attributes that store the variables
+  that would be used in a restart run is taken and stored as
+  the attribute snapshot.
+
+Input Via Keywords Arguments:
+
+* cont:  If set to False, the run session is not a continuation
+  of the previous run, but a new run session.  If set to
+  True, the run session is a continuation of the previous
+  run, and whatever the field values are in the Python
+  instance are used in the model (if init_with_instance_state
+  is True).  If set to an integer greater than zero, the run
+  session is a continuation just like cont=True, but the
+  value set to cont is used for lastday and replaces
+  lastday.value.  This keyword has no effect if
+  compiled_form='full'.  Default is False.  (Note whatever
+  cont is set to in this method call is stored as attribute
+  _cont, in case you really need to access it elsewhere.)
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_qtcm_item"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_qtcm_item</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.set_qtcm_item">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Set Python-accessible compiled QTCM model fields.
+
+Sets the value in the compiled QTCM model as well as at the
+Python level.  If no value given, the default value is used.
+When the compiled model variable is set, a copy of the
+Python value input via the parameter list is passed to the
+Fortran model, not a reference.
+
+If this method is called with a single positional input
+argument, and that argument is a string, the compiled QTCM
+model variable is set to the default value of the Python
+counterpart of that same name.  If the single positional
+argument is a Field variable, the compiled QTCM model
+variable is set to that Field variable (the id and value
+attributes of the Field variable thus corresponding to the
+name and value of the compiled QTCM variable, respectively).
+
+Positional Input Parameters (for 1 argument):
+* Name of QTCM variable (scalar string) or a Field variable.
+
+Positional Input Parameters (for 2 arguments):
+* key:  Name of QTCM variable.  String.  Scalar.
+* value_in:  Value of variable or a Field object.  Scalar
+  or numeric array.  If you want to set an array to a single
+  quantity, value can be a scalar.  Type of value must be
+  the same as the type of Field(key), which is the same as
+  in the compiled QTCM model; the routine doesn't check for
+  this, however, as the compiled will return a fatal error
+  if this mismatch happens.
+
+Some compiled QTCM model variables are not ready to be set.
+An example is a compiled QTCM model pointer variable prior
+to the pointer being associated with a target (this would
+result in a bus error).  In such cases, this method will
+throw a FieldNotReadableFromCompiledModel exception, nothing
+will be set in the compiled QTCM model, and the Python
+counterpart variable (if it previously existed) would be
+left unchanged.  Otherwise, both the compiled QTCM model
+variable and its Python attribute counterpart are set by
+the method to the same value, overwriting any previous
+values held by either.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="set_qtcm1_item"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">set_qtcm1_item</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwds</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.set_qtcm1_item">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set Python-accessible compiled QTCM model fields.</p>
+  <p>Identical to set_qtcm_item.  See set_qtcm_item description.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="sync_set_py_values_to_snapshot"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sync_set_py_values_to_snapshot</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">snapshot</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.sync_set_py_values_to_snapshot">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Set Python attributes to snapshot values.
+
+The snapshot is copies of the variables of the current state
+of the run session that would be used for a restart.  This
+method sets the Python attributes corresponding to the
+snapshot variables to the snapshot values.  It does not set
+anything on the compiled QTCM model side.
+
+Keyword Input Parameter:
+* snapshot:  The snapshot (a dictionary, following the rules
+  of method make_snapshot) that is the source of the value
+  for the syncronization.  If set to None, the instance
+  attribute snapshot is used.  Default is None.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="sync_set_qtcm_items_to_all_py_values"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sync_set_qtcm_items_to_all_py_values</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.sync_set_qtcm_items_to_all_py_values">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set QTCM items in compiled model to all Python-level values.</p>
+  <p>Synchronize so that any Python attribute that corresponds to a 
+  compiled model Python-changable variable is set, on both the Python 
+  attribute side and the compiled model side, to the value of the Python 
+  attribute.  Note this method only sets attributes that are already 
+  defined in the object; it does not create new attributes.  If a compiled 
+  QTCM model variable is not ready to be set (e.g., a pointer variable is 
+  not yet associated, that variable is not set in the compiled QTCM model, 
+  and its Python counterpart is left unchanged.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="sync_set_all_py_values_to_qtcm_items"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sync_set_all_py_values_to_qtcm_items</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.sync_set_all_py_values_to_qtcm_items">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set all Python-level attributes to QTCM compiled model values.</p>
+  <p>Synchoronize so that any Python attribute that corresponds to a 
+  compiled model Python-changable variable is set to the value of the QTCM 
+  compiled variable.  Note this method goes through all items listed in 
+  self._qtcm_fields_ids and sets those values as object attributes.</p>
+  <p>If a compiled QTCM model variable is not ready to be read (e.g., a 
+  pointer variable is not yet associated, a 
+  FieldNotReadableFromCompiledModel exception is raised, because for the 
+  situations where this method is called (usually after the model has run 
+  for some time), that situation should not occur.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_first_method_at_atm_oc_step"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_first_method_at_atm_oc_step</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._first_method_at_atm_oc_step">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>First method executed at the atmosphere-coupling timestep.</p>
+  <p>This is a private method.  If you wish to add more computations at the
+  beginning of the atmosphere-ocean coupling timestep, overload 
+  more_first_method_at_atm_oc_step.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="more_first_method_at_atm_oc_step"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">more_first_method_at_atm_oc_step</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.more_first_method_at_atm_oc_step">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>More of first method executed at the atmo.-coupling timestep.</p>
+  <p>This gives an easy way to change the model at the atmosphere-coupling 
+  timestep, after the update of the interval attribute:  Just overload this
+  method.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_bartropic_mode_at_atm_step"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_bartropic_mode_at_atm_step</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._bartropic_mode_at_atm_step">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculate the atmos. barotropic mode at atmos. timestep.</p>
+  <p>The calculation is made at self.it timestep for the atmosphere, which 
+  is the time of day in terms of atmospheric timesteps. It assumes that the
+  compiled_form is 'parts'.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="varinit"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">varinit</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.varinit">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Initialize model variables in a run session.</p>
+  <p>Method duplicates the functionality of the Fortran QTCM1 subroutine 
+  varinit, but with changes that will enable us to handle restarts at the 
+  Python-level in a dynamic way. This method only works with compiled_form 
+  set to 'parts'.</p>
+  <p>If init_with_instance_state is False, this method just executes the 
+  compiled Fortran QTCM model varinit subroutine, and thus run_session 
+  initialization follows the rules set by all the standard QTCM model input
+  parameters (e.g., the sign of day0, month0, and year0, the value of the 
+  mrestart flag, etc.).  If init_with_instance_state is True, variable 
+  initialization uses the algorithm described below.</p>
+  <p>First, all prognostic pointer variables are associated. Next, 
+  initialization of prognostic variables and right-hand sides to default 
+  values (which for most of the variables is 0) occur for the cases where 
+  the corresponding Python attribute is not defined.  If the corresponding 
+  Python attribute is defined, the compiled QTCM model variable is set to 
+  the value that the attribute already has (the mrestart flag, given as the
+  instance attribute mrestart, is ignored). The exception is day0, month0, 
+  and year0, which are overwritten with values derived from dateofmodel to 
+  set the run to start the day after dateofmodel.  If dateofmodel is less 
+  than or equal to 0, day0, month0, and year0 are set to their respective 
+  instance values, if valid (for invalid values, day0, month0, and year0 
+  are all set to 1).</p>
+  <p>Note for init_with_instance_state True or False, at the end of this 
+  method, day0, month0, and year0, may all be changed, and dateofmodel may 
+  be inconsistent with will be updated to match the values of day0, month0,
+  and year0.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="__run_parts"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__run_parts</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm.__run_parts">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Run parts model starting at the atmos.-oc. coupling level.</p>
+  <p>This method duplicates the functionality of the driver subroutine in 
+  the original compiled QTCM model.  It assumes all fields that can be 
+  synchronized between the Python and compiled QTCM model levels have been 
+  so before the calling of this method.  It is meant to be called once in a
+  run session, and assumes that the compiled_form is 'parts'.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_set_all_qtcm_scalar_fields_to_defaults"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_set_all_qtcm_scalar_fields_to_defaults</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_all_qtcm_scalar_fields_to_defaults">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set all scalar QTCM fields to their default values.</p>
+  <p>Sets the values in the compiled QTCM model as well as at the Python 
+  level to their default values.  Scalar values are defined as those with 
+  rank 0.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_set_compiled_qtcm_attr"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_set_compiled_qtcm_attr</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_compiled_qtcm_attr">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Set compiled QTCM attribute in Qtcm instance.</p>
+  <p>This method makes a copy of the needed compiled shared object file in 
+  a unique hidden subdirectory of the current working directory, imports 
+  that .so file, and sets that imported shared object library to the 
+  compiled QTCM attribute self.__qtcm.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_set_qtcm_array_item_in_model"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_set_qtcm_array_item_in_model</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>,
+        <span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_qtcm_array_item_in_model">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Set Python-accessible QTCM array settings in compiled model.
+
+Sets the value of arrays in the compiled QTCM model only.
+Custom exception FieldNotReadableFromCompiledModel is raised
+if the compiled QTCM model variable is not readable/writable.
+
+Positional Input Parameters:
+* key:  Name of QTCM variable.  String.  Scalar.
+
+* value:  Value of variable.  Must be numeric scalar or
+  real numeric array.  If a scalar, all values in the array
+  named key are set to that scalar value.  If value cannot
+  be mapped onto the compiled QTCM model array successfully,
+  you'll receive a bus error or other unexpected error.
+
+Output:
+* Sets value into the compiled QTCM model array variable,
+  and also returns the shape of the array that was set.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="_set_qtcm_scalar_item_in_model"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_set_qtcm_scalar_item_in_model</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">key</span>,
+        <span class="sig-arg">value</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="qtcm.qtcm-pysrc.html#Qtcm._set_qtcm_scalar_item_in_model">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <pre class="literalblock">
+Set Python scalar variable in the compiled QTCM model.
+
+Sets value of Python scalar variable key in the compiled
+QTCM model.  Nothing else is done (e.g., nothing is set on
+the Python side).  Exception FieldNotReadableFromCompiledModel
+is raised if the compiled QTCM model variable is not
+readable/writable.
+
+Positional Input Parameters:
+* key:  Name of QTCM variable.  String.  Scalar.
+* value:  Value of variable.  String or numeric value.  Must be 
+  a scalar.
+
+</pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="qtcm-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.johnny-lin.com/py_pkgs/qtcm/">qtcm</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Fri Sep 12 14:24:50 2008
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
